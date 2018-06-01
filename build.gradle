@@ -1,0 +1,72 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
+        classpath 'com.meituan.android.walle:plugin:1.1.3'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    compileSdkVersion = 26
+    buildToolVersion = '26.0.0'
+    minSdkVersion = 16
+    targetSdkVersion = 25
+
+    espressoVersion = '3.0.1'
+    supportLibraryVersion = '26.1.0'
+
+    dagger2Version = '2.9'
+    retrofit2Version = '2.1.0'
+    retrofit2ConverterGsonVersion = '2.1.0'
+    //this adapter use rxJava 1.x, conflict with rxJava 2.x
+    //    retrofit2AdapterRxJavaVersion = '2.1.0'
+    retrofit2AdapterRxJava2Version = '1.0.0'
+    okHttpLoggingInterceptorVersion = '3.6.0'
+    rxJava2Version = '2.0.5'
+    rxAndroid2Version = '2.0.1'
+    butterknifeVersion = '8.5.1'
+    junitVersion = '4.12'
+    glideVersion = '3.7.0'
+    bottomBarVersion = '2.1.1'
+    circleImageVersion = '2.1.0'
+    //第三方AppBarLayout, 官方fling有bug,问题很多(support版本25.1.1)
+    smoothAppBarVersion = '25.1.0.0'
+    gsonVersion = '2.8.0'
+    ormliteAndroidVersion = '5.0'
+    greenDaoVersion = '3.2.0'
+    roundedimageviewVersion = '2.2.1'
+    analyticsVersion = 'latest.integration'
+    eventbusVersion = '3.0.0'
+    greendaoVersion = "3.2.2"
+    walleVersion = "1.1.3"
+    zxingVersion = "3.2.1"
+    bingoogolappleVersion = "1.1.3@aar"
+    multidexVersion = "1.0.1"
+    aviVersion = "1.0.0"
+    nineoldandroidsVersion = "2.4.0"
+    jpushVersion = "3.0.0"
+    jcoreVersion = "1.0.0"
+}
+
