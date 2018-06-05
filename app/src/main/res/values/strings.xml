@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MainApplication</string>
+
+    <!--权限-->
+    <string name="common_request_permission">该操作需要开通权限</string>
+    <string name="common_allow_permission">允许</string>
+    <string name="snack_bar_exception_msg">请基于BaseActivity和BaseFragment来设计</string>
 </resources>
