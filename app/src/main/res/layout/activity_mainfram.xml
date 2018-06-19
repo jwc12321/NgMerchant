@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_rl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_fifty_margin"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/receipt_rl"
+            style="@style/bottom_RelativeLayout_style">
+
+            <ImageView
+                android:id="@+id/receipt_iv"
+                style="@style/bottom_imageView_style"
+                android:src="@drawable/receipt_select" />
+
+            <TextView
+                android:id="@+id/receipt_tt"
+                style="@style/bottom_textView_style"
+                android:text="@string/receipt" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/bill_rl"
+            style="@style/bottom_RelativeLayout_style">
+
+            <ImageView
+                android:id="@+id/bill_iv"
+                style="@style/bottom_imageView_style"
+                android:src="@drawable/bill_select" />
+
+            <TextView
+                android:id="@+id/bill_tt"
+                style="@style/bottom_textView_style"
+                android:text="@string/bill" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/mine_rl"
+            style="@style/bottom_RelativeLayout_style">
+
+            <ImageView
+                android:id="@+id/mine_iv"
+                style="@style/bottom_imageView_style"
+                android:src="@drawable/mine_select" />
+
+            <TextView
+                android:id="@+id/mine_tt"
+                style="@style/bottom_textView_style"
+                android:text="@string/mine" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/common_fifty_margin"
+        android:background="@color/appText4" />
+
+    <com.nenggou.slsm.common.viewpage.ViewPagerSlide
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/common_fifty_margin" />
+</RelativeLayout>

@@ -164,5 +164,8 @@ dependencies {
     //友盟
     compile 'com.umeng.analytics:analytics:latest.integration'
 
+    //画廊效果
+    compile "com.azoft.carousellayoutmanager:carousel:$rootProject.ext.carouselVersion"
+
 
 }
