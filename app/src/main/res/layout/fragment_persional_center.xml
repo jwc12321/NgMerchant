@@ -1,6 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backGround1"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <com.nenggou.slsm.common.widget.ReboundScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadingEdge="none"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/mine_bg"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/setting"
+                        style="@style/title_right_back_style"
+                        android:src="@mipmap/setting_icon" />
+                </RelativeLayout>
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/head_photo"
+                    style="@style/PhotoStyle"
+                    android:layout_width="@dimen/common_eighty_two_margin"
+                    android:layout_height="@dimen/common_eighty_two_margin"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/common_five_margin"
+                    app:riv_oval="true"
+                    tools:background="@null"
+                    tools:src="@mipmap/app_icon" />
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/common_five_margin"
+                    android:textColor="@color/appText1"
+                    android:textSize="15sp"
+                    tools:text="小余" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_fifteen_margin"
+                android:background="@color/appText1"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/item_cash"
+                    style="@style/persion_item_fl_style">
+
+                    <TextView
+                        style="@style/persion_item_text_style"
+                        android:drawableLeft="@mipmap/cash_icon"
+                        android:drawableStart="@mipmap/cash_icon"
+                        android:text="@string/cash" />
+
+                    <ImageView style="@style/go_arrow" />
+                </RelativeLayout>
+
+                <View style="@style/persion_st_line" />
+
+                <RelativeLayout
+                    android:id="@+id/item_energy"
+                    style="@style/persion_item_fl_style">
+
+                    <TextView
+                        style="@style/persion_item_text_style"
+                        android:drawableLeft="@mipmap/energy_icon"
+                        android:drawableStart="@mipmap/energy_icon"
+                        android:text="@string/energy" />
+
+                    <ImageView style="@style/go_arrow" />
+                </RelativeLayout>
+
+                <View style="@style/persion_st_line" />
+
+                <RelativeLayout
+                    android:id="@+id/item_address"
+                    style="@style/persion_item_fl_style">
+
+                    <TextView
+                        style="@style/persion_item_text_style"
+                        android:drawableLeft="@mipmap/address_icon"
+                        android:drawableStart="@mipmap/address_icon"
+                        android:text="@string/address_tel" />
+
+                    <ImageView style="@style/go_arrow" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_fifteen_margin"
+                android:background="@color/appText1"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/item_evaluate"
+                    style="@style/persion_item_fl_style">
+
+                    <TextView
+                        style="@style/persion_item_text_style"
+                        android:drawableLeft="@mipmap/evaluate_icon"
+                        android:drawableStart="@mipmap/evaluate_icon"
+                        android:text="@string/evaluate" />
+
+                    <ImageView style="@style/go_arrow" />
+                </RelativeLayout>
+
+                <View style="@style/persion_st_line" />
+
+                <RelativeLayout
+                    android:id="@+id/item_rd_user"
+                    style="@style/persion_item_fl_style">
+
+                    <TextView
+                        style="@style/persion_item_text_style"
+                        android:drawableLeft="@mipmap/rduser_icon"
+                        android:drawableStart="@mipmap/rduser_icon"
+                        android:text="@string/rd_user" />
+
+                    <ImageView style="@style/go_arrow" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_fifteen_margin"
+                android:background="@color/appText1"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/item_feedback"
+                    style="@style/persion_item_fl_style">
+
+                    <TextView
+                        style="@style/persion_item_text_style"
+                        android:drawableLeft="@mipmap/feedback_icon"
+                        android:drawableStart="@mipmap/feedback_icon"
+                        android:text="@string/feedback" />
+
+                    <ImageView style="@style/go_arrow" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </com.nenggou.slsm.common.widget.ReboundScrollView>
+</LinearLayout>

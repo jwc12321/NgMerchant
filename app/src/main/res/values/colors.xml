@@ -8,34 +8,16 @@
 
     <!--字体颜色，也可以是边框颜色-->
     <color name="appText1">#FFFFFF</color>
-    <color name="appText2">#999999</color>
+    <color name="appText2">#4E4D4D</color>
     <color name="appText3">#ff6528</color>
     <color name="appText4">#0c0c0c</color>
     <color name="appText5">#333333</color>
-    <color name="appText6">#838383</color>
+    <color name="appText6">#AAAAAA</color>
     <color name="appText7">#616161</color>
-    <color name="appText8">#373433</color>
-    <color name="appText9">#56C9FF</color>
-    <color name="appText10">#666666</color>
-    <color name="appText11">#e61818</color>
-    <color name="appText12">#5F5F5F</color>
-    <color name="appText13">#888888</color>
-    <color name="appText14">#0c92c0</color>
-    <color name="appText15">#191919</color>
-    <color name="appText16">#444444</color>
+    <color name="appText8">#999999</color>
+
 
     <color name="backGround1">#f4f4f4</color>
-    <color name="backGround2">#dadada</color>
+    <color name="backGround2">#E6E6E6</color>
     <color name="backGround3">#00000000</color>
-    <color name="backGround4">#ffb1b7be</color>
-    <color name="backGround5">#ffa8adb3</color>
-    <color name="backGround6">#FFE0E0E0</color>
-    <color name="backGround7">#ffdcce</color>
-    <color name="backGround8">#dc521c</color>
-    <color name="backGround9">#27B8f3</color>
-    <color name="backGround10">#EEF2F5</color>
-    <color name="backGround11">#ffebea</color>
-    <color name="backGround12">#ffcebb</color>
-    <color name="backGround13">#e6241f</color>
-    <color name="backGround14">#e0e0e0</color>
 </resources>

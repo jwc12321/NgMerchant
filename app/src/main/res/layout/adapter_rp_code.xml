@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="316dp"
+    android:layout_height="wrap_content"
+    android:background="@color/appText1"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_twenty_seven_margin">
+
+        <TextView
+            android:id="@+id/shop_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/appText5"
+            android:textSize="18sp"
+            tools:text="齐市兰花" />
+
+        <Button
+            android:id="@+id/switch_bt"
+            android:layout_width="@dimen/common_forty_three_margin"
+            android:layout_height="@dimen/common_seventeen_margin"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/common_ten_margin"
+            android:layout_toRightOf="@id/shop_name"
+            android:background="@drawable/switch_mode"
+            android:text="@string/switch_mode"
+            android:textColor="@color/appText1"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/qr_code"
+        android:layout_width="@dimen/common_two_hundred_margin"
+        android:layout_height="@dimen/common_two_hundred_margin"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/common_twenty_six_margin"
+        android:adjustViewBounds="true"
+        android:background="@drawable/qr_code_bg"
+        android:padding="1dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/common_thirty_five_margin"
+        android:text="@string/pay_to_shop"
+        android:textColor="@color/appText4"
+        android:textSize="15sp" />
+
+    <RelativeLayout
+        android:id="@+id/item_income"
+        style="@style/persion_item_fl_style"
+        android:layout_marginTop="@dimen/common_sixty_four_margin">
+
+        <TextView
+            android:id="@+id/income_explain"
+            style="@style/rpcode_text_style"
+            android:drawableLeft="@mipmap/income_icon"
+            android:drawableStart="@mipmap/income_icon"
+            android:text="@string/total_income" />
+        <TextView
+            android:id="@+id/total_income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/appText3"
+            android:textSize="15sp"
+            tools:text="0.00"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/income_explain"
+            android:layout_marginLeft="@dimen/common_five_margin"/>
+        <ImageView style="@style/go_arrow" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/item_evaluate"
+        style="@style/persion_item_fl_style"
+        android:layout_marginTop="@dimen/common_twenty_four_margin">
+
+        <TextView
+            style="@style/rpcode_text_style"
+            android:drawableLeft="@mipmap/star"
+            android:drawableStart="@mipmap/star"
+            android:text="@string/evaluate" />
+
+        <ImageView style="@style/go_arrow" />
+    </RelativeLayout>
+</LinearLayout>

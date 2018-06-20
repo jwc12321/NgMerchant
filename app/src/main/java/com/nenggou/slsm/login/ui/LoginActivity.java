@@ -1,5 +1,7 @@
 package com.nenggou.slsm.login.ui;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -17,10 +19,16 @@ import javax.inject.Inject;
  * Created by JWC on 2018/6/5.
  */
 
-public class AccountLoginActivity extends BaseActivity implements LoginContract.LoginView{
+public class LoginActivity extends BaseActivity implements LoginContract.LoginView {
 
     @Inject
     LoginPresenter loginPresenter;
+
+    public static void start(Context context) {
+        Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +43,7 @@ public class AccountLoginActivity extends BaseActivity implements LoginContract.
                 .build()
                 .inject(this);
     }
+
     @Override
     public View getSnackBarHolderView() {
         return null;

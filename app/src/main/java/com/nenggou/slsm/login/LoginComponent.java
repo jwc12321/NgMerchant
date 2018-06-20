@@ -3,7 +3,7 @@ package com.nenggou.slsm.login;
 
 import com.nenggou.slsm.ActivityScope;
 import com.nenggou.slsm.ApplicationComponent;
-import com.nenggou.slsm.login.ui.AccountLoginActivity;
+import com.nenggou.slsm.login.ui.LoginActivity;
 
 import dagger.Component;
 
@@ -13,5 +13,5 @@ import dagger.Component;
 @ActivityScope
 @Component(dependencies = ApplicationComponent.class, modules = {LoginModule.class})
 public interface LoginComponent {
-    void inject(AccountLoginActivity accountLoginActivity);
+    void inject(LoginActivity accountLoginActivity);
 }

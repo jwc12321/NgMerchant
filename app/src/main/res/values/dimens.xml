@@ -2,6 +2,7 @@
     <dimen name="common_two_margin">2dp</dimen>
     <dimen name="common_five_margin">5dp</dimen>
     <dimen name="common_six_margin">6dp</dimen>
+    <dimen name="common_eight_margin">8dp</dimen>
     <dimen name="common_nine_margin">9dp</dimen>
     <dimen name="common_ten_margin">10dp</dimen>
     <dimen name="common_eleven_margin">11dp</dimen>
@@ -22,6 +23,7 @@
     <dimen name="common_twenty_six_margin">26dp</dimen>
     <dimen name="common_twenty_seven_margin">27dp</dimen>
     <dimen name="common_twenty_eight_margin">28dp</dimen>
+    <dimen name="common_twenty_nine_margin">29dp</dimen>
     <dimen name="common_thirty_margin">30dp</dimen>
     <dimen name="common_thirty_three_margin">33dp</dimen>
     <dimen name="common_thirty_five_margin">35dp</dimen>
@@ -30,17 +32,21 @@
     <dimen name="common_forty_three_margin">43dp</dimen>
     <dimen name="common_forty_four_margin">44dp</dimen>
     <dimen name="common_forty_five_margin">45dp</dimen>
+    <dimen name="common_forty_eight_margin">48dp</dimen>
     <dimen name="common_forty_nine_margin">49dp</dimen>
     <dimen name="common_fifty_margin">50dp</dimen>
     <dimen name="common_fifty_two_margin">52dp</dimen>
     <dimen name="common_fifty_five_margin">55dp</dimen>
     <dimen name="common_sixty_margin">60dp</dimen>
     <dimen name="common_sixty_one_margin">61dp</dimen>
+    <dimen name="common_sixty_four_margin">64dp</dimen>
     <dimen name="common_sixty_five_margin">65dp</dimen>
     <dimen name="common_sixty_six_margin">66dp</dimen>
     <dimen name="common_sixty_nine_margin">69dp</dimen>
     <dimen name="common_seventy_margin">70dp</dimen>
     <dimen name="common_seventy_two_margin">72dp</dimen>
+    <dimen name="common_eighty_margin">80dp</dimen>
+    <dimen name="common_eighty_one_margin">81dp</dimen>
     <dimen name="common_eighty_two_margin">82dp</dimen>
     <dimen name="common_eighty_five_margin">85dp</dimen>
     <dimen name="common_ninety_margin">90dp</dimen>

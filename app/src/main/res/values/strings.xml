@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">能购商户端</string>
-
+    <!--recyclerView Layout-->
+    <string name="layoutManager_Gridlayout">GridLayoutManager</string>
+    <string name="layoutManager_LinearLayout">LinearLayoutManager</string>
     <!--权限-->
     <string name="common_request_permission">该操作需要开通权限</string>
     <string name="common_allow_permission">允许</string>
@@ -10,4 +12,28 @@
     <string name="receipt">收款</string>
     <string name="bill">账单</string>
     <string name="mine">我的</string>
+
+    <!--收款-->
+    <string name="switch_mode">切换</string>
+    <string name="pay_to_shop">能购扫一扫,向我付钱</string>
+    <string name="total_income">月总收入:</string>
+    <string name="today_income">今日总收入</string>
+    <!--我的-->
+    <string name="cash">现金</string>
+    <string name="energy">能量</string>
+    <string name="address_tel">地址/电话</string>
+    <string name="evaluate">买家评价</string>
+    <string name="rd_user">推荐用户</string>
+    <string name="feedback">意见反馈</string>
+
+    <!--登录-->
+    <string name="login_password">密码登录</string>
+    <string name="login_vcode">验证码登录</string>
+    <string name="input_tel">请输入手机号</string>
+    <string name="input_password">输入密码</string>
+    <string name="input_vcode">输入验证码</string>
+    <string name="send_vcode">发送验证码</string>
+    <string name="login_in">登录</string>
+    <string name="forget_password">忘记密码?</string>
+    <string name="immediate_registration">立即注册</string>
 </resources>

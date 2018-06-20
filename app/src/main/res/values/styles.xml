@@ -50,4 +50,129 @@
         <item name="android:layout_marginBottom">6dp</item>
     </style>
 
+    <style name="title_rl_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/appText1</item>
+    </style>
+
+
+    <!--title最左边的返回-->
+    <style name="title_left_back_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/common_forty_four_margin</item>
+        <item name="android:src">@mipmap/return_gray</item>
+        <item name="android:background">@null</item>
+        <item name="android:paddingLeft">@dimen/common_eleven_margin</item>
+        <item name="android:paddingRight">@dimen/common_eleven_margin</item>
+    </style>
+    <!--title最右边图片-->
+    <style name="title_right_back_style">
+        <item name="android:layout_width">@dimen/common_forty_four_margin</item>
+        <item name="android:layout_height">@dimen/common_forty_four_margin</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:background">@null</item>
+        <item name="android:padding">@dimen/common_eleven_margin</item>
+    </style>
+
+    <style name="title_text_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/common_forty_four_margin</item>
+        <item name="android:textColor">@color/appText5</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="title_text_right_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/common_forty_four_margin</item>
+        <item name="android:textColor">@color/appText5</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingRight">@dimen/common_eleven_margin</item>
+        <item name="android:paddingLeft">@dimen/common_eleven_margin</item>
+    </style>
+    <style name="title_text_left_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/common_forty_four_margin</item>
+        <item name="android:textColor">@color/appText5</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingRight">@dimen/common_eleven_margin</item>
+        <item name="android:paddingLeft">@dimen/common_eleven_margin</item>
+    </style>
+
+    <style name="PhotoStyle">
+        <item name="android:scaleType">fitXY</item>
+        <item name="riv_border_width">3dp</item>
+        <item name="riv_border_color">@color/appText1</item>
+        <item name="riv_corner_radius">1dp</item>
+    </style>
+
+    <style name="persion_item_fl_style">
+        <item name="android:layout_height">@dimen/common_forty_four_margin</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/appText1</item>
+        <item name="android:paddingLeft">@dimen/common_twelve_margin</item>
+        <item name="android:paddingRight">@dimen/common_twelve_margin</item>
+    </style>
+
+
+    <style name="persion_item_text_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/appText2</item>
+    </style>
+
+    <style name="go_arrow">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:src">@mipmap/go_arrow</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
+    <style name="persion_st_line">
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/backGround2</item>
+        <item name="android:layout_marginLeft">@dimen/common_twelve_margin</item>
+        <item name="android:layout_marginRight">@dimen/common_twelve_margin</item>
+    </style>
+
+    <style name="rpcode_text_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:drawablePadding">4dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/appText4</item>
+    </style>
+
+    <style name="login_input_phone_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">@dimen/common_thirty_margin</item>
+        <item name="android:background">@null</item>
+        <item name="android:textColor">@color/appText6</item>
+        <item name="android:textColorHint">@color/appText6</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:drawablePadding">@dimen/common_six_margin</item>
+    </style>
+
+    <!--登录页忘记密码-->
+    <style name="login_forget_number_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/appText5</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:padding">14dp</item>
+    </style>
 </resources>
