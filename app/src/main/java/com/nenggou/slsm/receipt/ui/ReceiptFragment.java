@@ -2,13 +2,18 @@ package com.nenggou.slsm.receipt.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.nenggou.slsm.BaseFragment;
 import com.nenggou.slsm.R;
-import com.nenggou.slsm.receipt.adapter.RpCodeAdapter;
+import com.nenggou.slsm.common.widget.viewpagecards.CardPagerAdapter;
+import com.nenggou.slsm.common.widget.viewpagecards.ShadowTransformer;
+import com.nenggou.slsm.data.entity.ReceivablesInfo;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -17,7 +22,11 @@ import butterknife.ButterKnife;
 
 public class ReceiptFragment extends BaseFragment {
 
-    private RpCodeAdapter rpCodeAdapter;
+    @BindView(R.id.viewPager)
+    ViewPager viewPager;
+    private CardPagerAdapter cardPagerAdapter;
+    private ShadowTransformer mCardShadowTransformer;
+
     public ReceiptFragment() {
     }
 
@@ -44,7 +53,18 @@ public class ReceiptFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         initView();
     }
-    private void initView(){
+
+    private void initView() {
+        cardPagerAdapter = new CardPagerAdapter();
+        cardPagerAdapter.addCardItem(new ReceivablesInfo());
+        cardPagerAdapter.addCardItem(new ReceivablesInfo());
+        cardPagerAdapter.addCardItem(new ReceivablesInfo());
+        cardPagerAdapter.addCardItem(new ReceivablesInfo());
+        mCardShadowTransformer = new ShadowTransformer(viewPager, cardPagerAdapter);
+        mCardShadowTransformer.enableScaling(true);
+        viewPager.setAdapter(cardPagerAdapter);
+        viewPager.setPageTransformer(false, mCardShadowTransformer);
+        viewPager.setOffscreenPageLimit(3);
     }
 
     private boolean isFirstLoad = true;

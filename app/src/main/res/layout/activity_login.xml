@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -31,6 +32,22 @@
             android:text="@string/login_vcode"
             android:textColor="@color/appText1"
             android:textSize="17sp" />
+        <ImageView
+            android:id="@+id/password_t_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/triangle_icon"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/common_forty_eight_margin"/>
+        <ImageView
+            android:id="@+id/vcode_t_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/triangle_icon"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/common_forty_eight_margin"
+            android:visibility="gone"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -133,7 +150,7 @@
             android:text="@string/forget_password" />
 
         <TextView
-            android:id="@+id/immediate_registration"
+            android:id="@+id/register"
             style="@style/login_forget_number_style"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/common_thirty_margin"
