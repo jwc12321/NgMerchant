@@ -2,6 +2,7 @@ package com.nenggou.slsm.bill;
 
 import com.nenggou.slsm.ActivityScope;
 import com.nenggou.slsm.ApplicationComponent;
+import com.nenggou.slsm.bill.ui.BillFragment;
 
 import dagger.Component;
 
@@ -11,4 +12,5 @@ import dagger.Component;
 @ActivityScope
 @Component(dependencies = ApplicationComponent.class, modules = {BillModule.class})
 public interface BillComponent {
+    void inject(BillFragment billFragment);
 }

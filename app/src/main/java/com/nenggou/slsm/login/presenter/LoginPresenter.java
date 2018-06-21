@@ -1,13 +1,12 @@
 package com.nenggou.slsm.login.presenter;
 
-import android.text.TextUtils;
-
-
 import com.nenggou.slsm.data.RxSchedulerTransformer;
+import com.nenggou.slsm.data.entity.Ignore;
 import com.nenggou.slsm.data.entity.PersionInfoResponse;
 import com.nenggou.slsm.data.remote.RestApiService;
 import com.nenggou.slsm.data.remote.RxRemoteDataParse;
-import com.nenggou.slsm.data.request.LoginRequest;
+import com.nenggou.slsm.data.request.PasswordLoginRequest;
+import com.nenggou.slsm.data.request.SendCodeRequest;
 import com.nenggou.slsm.login.LoginContract;
 
 import java.util.ArrayList;
@@ -40,20 +39,20 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
     }
 
     /**
-     * 密码登录和短信登录
+     * 密码登录
      */
     @Override
-    public void accountLogin(String username, String pwd, String clientid) {
+    public void passwordLogin(String tel, String password) {
         loginView.showLoading();
-        LoginRequest loginRequest = new LoginRequest(username, pwd, clientid);
-        Disposable disposable = restApiService.accountLogin(loginRequest)
+        PasswordLoginRequest passwordLoginRequest = new PasswordLoginRequest(tel, password);
+        Disposable disposable = restApiService.passwordLogin(passwordLoginRequest)
                 .flatMap(new RxRemoteDataParse<PersionInfoResponse>())
                 .compose(new RxSchedulerTransformer<PersionInfoResponse>())
                 .subscribe(new Consumer<PersionInfoResponse>() {
                     @Override
                     public void accept(PersionInfoResponse persionInfoResponse) throws Exception {
                         loginView.dismissLoading();
-                        loginView.accountLoginSuccess(persionInfoResponse);
+                        loginView.loginSuccess(persionInfoResponse);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -73,6 +72,25 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
      */
     @Override
     public void sendCode(String tel, String dostr) {
+        loginView.showLoading();
+        SendCodeRequest sendCodeRequest=new SendCodeRequest(tel,dostr);
+        Disposable disposable=restApiService.sendCode(sendCodeRequest)
+                .flatMap(new RxRemoteDataParse<Ignore>())
+                .compose(new RxSchedulerTransformer<Ignore>())
+                .subscribe(new Consumer<Ignore>() {
+                    @Override
+                    public void accept(Ignore ignore) throws Exception {
+                        loginView.dismissLoading();
+                        loginView.codeSuccess();
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        loginView.dismissLoading();
+                        loginView.showError(throwable);
+                    }
+                });
+        mDisposableList.add(disposable);
     }
 
     /**

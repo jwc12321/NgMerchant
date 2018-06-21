@@ -37,7 +37,8 @@
                 android:background="@drawable/switch_mode"
                 android:text="@string/switch_mode"
                 android:textColor="@color/appText1"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:visibility="gone" />
         </RelativeLayout>
 
         <ImageView
@@ -72,12 +73,26 @@
                 android:text="@string/total_income" />
 
             <TextView
-                android:id="@+id/total_income"
+                android:id="@+id/cash_income"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/common_five_margin"
                 android:layout_toRightOf="@id/income_explain"
+                android:textColor="@color/appText3"
+                android:textSize="15sp"
+                tools:text="0.00" />
+
+            <TextView
+                android:id="@+id/energy_income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/common_five_margin"
+                android:layout_toRightOf="@id/cash_income"
+                android:drawableLeft="@mipmap/energy_icon"
+                android:drawablePadding="@dimen/common_five_margin"
+                android:drawableStart="@mipmap/energy_icon"
                 android:textColor="@color/appText3"
                 android:textSize="15sp"
                 tools:text="0.00" />
@@ -95,6 +110,8 @@
                 android:drawableLeft="@mipmap/star"
                 android:drawableStart="@mipmap/star"
                 android:text="@string/evaluate" />
+
+            <ImageView style="@style/go_arrow" />
         </RelativeLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

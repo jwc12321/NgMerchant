@@ -8,8 +8,9 @@ public class RemoteDataException extends Exception {
     public static final String CODE_SUCCESS = "0";
 
     public static final String CODE_INVALID_TOKEN = "1014";//token失效
-    public static final String CODE_INVALED_SECOND_TOKEN="1015";
-    public static final String CODE_INVALED_THIRD_TOKEN="1016";
+    public static final String CODE_INVALED_SECOND_TOKEN = "1015";
+    public static final String CODE_INVALED_THIRD_TOKEN = "1016";
+    public static final String CODE_INVALED_FOURTH_TOKEN = "1017";
 
     public static final String CODE_DEVICE = "2003";//非常用设备
 
@@ -25,9 +26,9 @@ public class RemoteDataException extends Exception {
 
     public static final String CODE_CERTIFICATION = "2016";//注册审核中
 
-    public static final String CODE_CERTIFICATION_FAIL= "2017";//注册审核失败
+    public static final String CODE_CERTIFICATION_FAIL = "2017";//注册审核失败
 
-    public static final String CODE_SCRAMBLE_FAIL= "9801";//抢单失败
+    public static final String CODE_SCRAMBLE_FAIL = "9801";//抢单失败
 
     private String mRetCode;
 
@@ -68,7 +69,8 @@ public class RemoteDataException extends Exception {
      * 判断是否token验证失败
      */
     public boolean isAuthFailed() {
-        if (mRetCode.equals(CODE_INVALID_TOKEN)||mRetCode.equals(CODE_INVALED_SECOND_TOKEN)||mRetCode.equals(CODE_INVALED_THIRD_TOKEN)){
+        if (mRetCode.equals(CODE_INVALID_TOKEN) || mRetCode.equals(CODE_INVALED_SECOND_TOKEN)
+                || mRetCode.equals(CODE_INVALED_THIRD_TOKEN) || mRetCode.equals(CODE_INVALED_FOURTH_TOKEN)) {
             return true;
         }
         return false;
@@ -78,13 +80,15 @@ public class RemoteDataException extends Exception {
         return mRetCode.equals(CODE_DEVICE);
     }
 
-    public boolean isNotRegister(){
+    public boolean isNotRegister() {
         return mRetCode.equals(CODE_NOT_REGISETR_USER) || mRetCode.equals(CODE_NOT_REGISTER);
     }
-    public boolean isErrorPwd(){
+
+    public boolean isErrorPwd() {
         return mRetCode.equals(ERROR_PASSWPRD);
     }
-    public boolean isCertification(){
+
+    public boolean isCertification() {
         return mRetCode.equals(CODE_CERTIFICATION);
     }
 

@@ -5,6 +5,7 @@
         <item name="colorPrimaryDark">@color/backGround3</item> <!-- toolbar -->
         <item name="colorAccent">@color/colorAccent</item>  <!-- 重点 -->
     </style>
+
     <style name="AppTheme" parent="@style/BaseAppTheme" />
 
     <style name="FullscreenTheme" parent="AppTheme">
@@ -53,7 +54,7 @@
     <style name="title_rl_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/appText1</item>
+        <item name="android:background">@color/appText3</item>
     </style>
 
 
@@ -78,7 +79,7 @@
     <style name="title_text_style">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">@dimen/common_forty_four_margin</item>
-        <item name="android:textColor">@color/appText5</item>
+        <item name="android:textColor">@color/appText1</item>
         <item name="android:textSize">17sp</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_centerHorizontal">true</item>
@@ -87,17 +88,18 @@
     <style name="title_text_right_style">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">@dimen/common_forty_four_margin</item>
-        <item name="android:textColor">@color/appText5</item>
+        <item name="android:textColor">@color/appText1</item>
         <item name="android:textSize">17sp</item>
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingRight">@dimen/common_eleven_margin</item>
         <item name="android:paddingLeft">@dimen/common_eleven_margin</item>
     </style>
+
     <style name="title_text_left_style">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">@dimen/common_forty_four_margin</item>
-        <item name="android:textColor">@color/appText5</item>
+        <item name="android:textColor">@color/appText1</item>
         <item name="android:textSize">17sp</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingRight">@dimen/common_eleven_margin</item>
@@ -174,5 +176,27 @@
         <item name="android:textColor">@color/appText5</item>
         <item name="android:textSize">13sp</item>
         <item name="android:padding">14dp</item>
+    </style>
+
+    <style name="account_detail_left_tv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/appText6</item>
+        <item name="android:layout_marginLeft">@dimen/common_sixteen_margin</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="account_detail_right_tv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/appText5</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">@dimen/common_sixteen_margin</item>
+        <item name="android:layout_marginLeft">@dimen/common_ninety_margin</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
     </style>
 </resources>

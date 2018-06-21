@@ -7,21 +7,32 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.nenggou.slsm.R;
+import com.nenggou.slsm.common.unit.FormatUtil;
+import com.nenggou.slsm.data.entity.InComeInfo;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * Created by JWC on 2018/6/20.
+ *
  */
 
 public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeView> {
     private LayoutInflater layoutInflater;
+    private List<InComeInfo> inComeInfos;
 
-    public void setData() {
+    public void setData(List<InComeInfo> inComeInfos) {
+        this.inComeInfos=inComeInfos;
         notifyDataSetChanged();
     }
-
+    public void addMore(List<InComeInfo> moreList) {
+        int pos = inComeInfos.size();
+        inComeInfos.addAll(moreList);
+        notifyItemRangeInserted(pos, moreList.size());
+    }
     @Override
     public IncomeView onCreateViewHolder(ViewGroup parent, int viewType) {
         if (layoutInflater == null) {
@@ -33,12 +44,13 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeView
 
     @Override
     public void onBindViewHolder(IncomeView holder, int position) {
-
+        InComeInfo inComeInfo=inComeInfos.get(holder.getAdapterPosition());
+        holder.bindData(inComeInfo);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return inComeInfos==null?0:inComeInfos.size();
     }
 
     public class IncomeView extends RecyclerView.ViewHolder {
@@ -58,8 +70,11 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeView
             ButterKnife.bind(this, itemView);
         }
 
-        public void bindData() {
-
+        public void bindData(InComeInfo inComeInfo) {
+            name.setText(inComeInfo.getNickname());
+            time.setText(FormatUtil.formatDayTime(inComeInfo.getUpdatedAt()));
+            cash.setText(inComeInfo.getPrice());
+            energy.setText(inComeInfo.getPower());
         }
     }
 }

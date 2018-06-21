@@ -3,6 +3,12 @@
     <!--recyclerView Layout-->
     <string name="layoutManager_Gridlayout">GridLayoutManager</string>
     <string name="layoutManager_LinearLayout">LinearLayoutManager</string>
+
+    <!--刷新-->
+    <string name="bottom_pull_refresh_content">刷新并查看服务项目</string>
+    <string name="top_pull_refresh_content">松开刷新</string>
+    <string name="top_pull_go_home_content">松开回到首页</string>
+
     <!--权限-->
     <string name="common_request_permission">该操作需要开通权限</string>
     <string name="common_allow_permission">允许</string>
@@ -36,4 +42,21 @@
     <string name="login_in">登录</string>
     <string name="forget_password">忘记密码?</string>
     <string name="immediate_registration">立即注册</string>
+    <string name="invalid_phone_input">请输入正确的手机号</string>
+    <string name="empty_phone">请输入手机号</string>
+    <string name="login_auth_code_sent">验证码已发送至您的手机,请注意查收</string>
+
+    <!--账单-->
+    <string name="account_detail">账单详情</string>
+    <string name="screen">筛选</string>
+    <string name="payment_method">付款方式</string>
+    <string name="commodity_description">商品说明</string>
+    <string name="other_account">对方账户</string>
+    <string name="cash_store">收款店铺</string>
+    <string name="created_at">创建时间</string>
+    <string name="order_number">订单号</string>
+    <string name="merchant_order_number">商户订单号</string>
+    <string name="see_intercourse_record">查看来往记录</string>
+    <string name="successful_trade">交易成功</string>
+    <string name="choose_time">选择时间</string>
 </resources>

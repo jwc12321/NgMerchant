@@ -61,7 +61,7 @@ android {
             zipAlignEnabled true
         }
         debug {
-            buildConfigField "String", "API_BASE_URL", "\"http://open.365neng.com/api/\""
+            buildConfigField "String", "API_BASE_URL", "\"http://192.168.100.151/git365neng/public/api/\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
@@ -166,8 +166,5 @@ dependencies {
 
     //画廊效果
     compile "com.azoft.carousellayoutmanager:carousel:$rootProject.ext.carouselVersion"
-
-    compile 'com.android.support:percent:25.2.0'
-
 
 }

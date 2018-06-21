@@ -12,7 +12,7 @@ import com.nenggou.slsm.data.entity.PersionInfoResponse;
 public interface LoginContract {
 
     interface LoginPresenter extends BasePresenter {
-       void accountLogin(String username, String pwd, String clientid);
+       void passwordLogin(String tel, String password);
        void sendCode(String tel, String dostr);
        void phoneLogin(String tel, String code);
        void registerPassword(String tel, String password, String address, String type, String storeid, String code);
@@ -21,7 +21,7 @@ public interface LoginContract {
     }
 
     interface LoginView extends BaseView<LoginPresenter> {
-        void accountLoginSuccess(PersionInfoResponse persionInfoResponse);
+        void loginSuccess(PersionInfoResponse persionInfoResponse);
         void codeSuccess();
         void checkCodeSuccess();
         void setPasswordSuccess();

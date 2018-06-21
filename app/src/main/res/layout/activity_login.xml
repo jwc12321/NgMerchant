@@ -19,7 +19,8 @@
             android:layout_marginLeft="@dimen/common_twenty_nine_margin"
             android:text="@string/login_password"
             android:textColor="@color/appText1"
-            android:textSize="17sp" />
+            android:textSize="17sp"
+            android:enabled="false"/>
 
         <TextView
             android:id="@+id/login_vcode"
@@ -58,7 +59,7 @@
         android:background="@color/appText1">
 
         <EditText
-            android:id="@+id/phone_number"
+            android:id="@+id/phone_number_et"
             style="@style/login_input_phone_style"
             android:drawableLeft="@mipmap/phone_icon"
             android:drawableStart="@mipmap/phone_icon"
@@ -79,7 +80,7 @@
         android:background="@color/appText1">
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/password_et"
             style="@style/login_input_phone_style"
             android:drawableLeft="@mipmap/password_icon"
             android:drawableStart="@mipmap/password_icon"
@@ -99,7 +100,7 @@
         android:visibility="gone">
 
         <EditText
-            android:id="@+id/vcode"
+            android:id="@+id/vcode_et"
             style="@style/login_input_phone_style"
             android:layout_toLeftOf="@id/send_vcode"
             android:drawableLeft="@mipmap/vcode_icon"

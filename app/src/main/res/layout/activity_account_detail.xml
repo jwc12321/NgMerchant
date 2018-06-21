@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backGround1"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/title_rel"
+        style="@style/title_rl_style">
+
+        <ImageView
+            android:id="@+id/back"
+            style="@style/title_left_back_style" />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/title_text_style"
+            android:text="@string/account_detail" />
+    </RelativeLayout>
+
+    <com.nenggou.slsm.common.widget.ReboundScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title_rel"
+        android:layout_marginTop="1dp"
+        android:fadingEdge="none"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/appText1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/common_eleven_margin"
+                android:orientation="horizontal">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/photo"
+                    style="@style/PhotoStyle"
+                    android:layout_width="@dimen/common_twenty_six_margin"
+                    android:layout_height="@dimen/common_twenty_six_margin"
+                    app:riv_oval="true"
+                    tools:background="@null"
+                    tools:src="@mipmap/app_icon" />
+
+                <TextView
+                    android:id="@+id/business_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/common_ten_margin"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/appText5"
+                    android:textSize="14sp"
+                    tools:text="店家" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/common_six_margin"
+                android:textColor="@color/appText5"
+                android:textSize="27sp"
+                tools:text="30" />
+
+            <TextView
+                android:id="@+id/trading_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/common_six_margin"
+                android:textColor="@color/appText6"
+                android:textSize="13sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_thirty_three_margin">
+
+                <TextView
+                    style="@style/account_detail_left_tv"
+                    android:text="@string/payment_method" />
+
+                <TextView
+                    android:id="@+id/payment_method"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/common_ninety_margin"
+                    android:layout_marginRight="@dimen/common_six_margin"
+                    android:layout_toLeftOf="@id/go_arrow"
+                    android:textColor="@color/appText6"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:id="@+id/go_arrow"
+                    style="@style/go_arrow"
+                    android:layout_marginRight="@dimen/common_sixteen_margin" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_thirty_three_margin">
+
+                <TextView
+                    style="@style/account_detail_left_tv"
+                    android:text="@string/commodity_description" />
+
+                <TextView
+                    android:id="@+id/commodity_description"
+                    style="@style/account_detail_right_tv" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_thirty_three_margin">
+
+                <TextView
+                    style="@style/account_detail_left_tv"
+                    android:text="@string/other_account" />
+
+                <TextView
+                    android:id="@+id/other_account"
+                    style="@style/account_detail_right_tv" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_thirty_three_margin">
+
+                <TextView
+                    style="@style/account_detail_left_tv"
+                    android:text="@string/cash_store" />
+
+                <TextView
+                    android:id="@+id/cash_store"
+                    style="@style/account_detail_right_tv" />
+            </RelativeLayout>
+
+            <View
+                style="@style/persion_st_line"
+                android:layout_marginBottom="@dimen/common_six_margin"
+                android:layout_marginTop="@dimen/common_six_margin" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_thirty_three_margin">
+
+                <TextView
+                    style="@style/account_detail_left_tv"
+                    android:text="@string/created_at" />
+
+                <TextView
+                    android:id="@+id/created_at"
+                    style="@style/account_detail_right_tv" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_thirty_three_margin">
+
+                <TextView
+                    style="@style/account_detail_left_tv"
+                    android:text="@string/order_number" />
+
+                <TextView
+                    android:id="@+id/order_number"
+                    style="@style/account_detail_right_tv" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_thirty_three_margin">
+
+                <TextView
+                    style="@style/account_detail_left_tv"
+                    android:text="@string/merchant_order_number" />
+
+                <TextView
+                    android:id="@+id/merchant_order_number"
+                    style="@style/account_detail_right_tv" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="@dimen/common_six_margin"
+                android:background="@color/backGround1" />
+
+            <RelativeLayout
+                android:id="@+id/go_recode_rl"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_forty_five_margin">
+
+                <TextView
+                    style="@style/account_detail_left_tv"
+                    android:text="@string/see_intercourse_record" />
+
+                <ImageView
+                    style="@style/go_arrow"
+                    android:layout_marginRight="@dimen/common_sixteen_margin" />
+            </RelativeLayout>
+        </LinearLayout>
+    </com.nenggou.slsm.common.widget.ReboundScrollView>
+</LinearLayout>
