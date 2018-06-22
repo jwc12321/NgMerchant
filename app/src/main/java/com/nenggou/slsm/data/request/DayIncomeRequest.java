@@ -8,12 +8,15 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class DayIncomeRequest {
+    @SerializedName("storeid")
+    private String storeid;
     @SerializedName("date")
     private String date;
     @SerializedName("page")
     private String page;
 
-    public DayIncomeRequest(String date, String page) {
+    public DayIncomeRequest(String storeid, String date, String page) {
+        this.storeid = storeid;
         this.date = date;
         this.page = page;
     }

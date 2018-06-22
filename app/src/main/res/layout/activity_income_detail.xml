@@ -45,8 +45,8 @@
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/photo"
                     style="@style/PhotoStyle"
-                    android:layout_width="@dimen/common_twenty_six_margin"
-                    android:layout_height="@dimen/common_twenty_six_margin"
+                    android:layout_width="@dimen/common_forty_four_margin"
+                    android:layout_height="@dimen/common_forty_four_margin"
                     app:riv_oval="true"
                     tools:background="@null"
                     tools:src="@mipmap/app_icon" />
@@ -60,7 +60,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:textColor="@color/appText5"
-                    android:textSize="14sp"
+                    android:textSize="15sp"
                     tools:text="店家" />
             </LinearLayout>
 

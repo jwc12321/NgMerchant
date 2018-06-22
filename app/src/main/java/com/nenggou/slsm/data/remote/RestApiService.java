@@ -4,9 +4,13 @@ package com.nenggou.slsm.data.remote;
 import com.nenggou.slsm.data.RemoteDataWrapper;
 import com.nenggou.slsm.data.entity.AppstoreInfo;
 import com.nenggou.slsm.data.entity.BillInfo;
+import com.nenggou.slsm.data.entity.HistoryIncomInfo;
 import com.nenggou.slsm.data.entity.Ignore;
+import com.nenggou.slsm.data.entity.IncomeDetailInfo;
 import com.nenggou.slsm.data.entity.PersionInfoResponse;
+import com.nenggou.slsm.data.request.BillIdRequest;
 import com.nenggou.slsm.data.request.DayIncomeRequest;
+import com.nenggou.slsm.data.request.HistoryIncomeRequest;
 import com.nenggou.slsm.data.request.PasswordLoginRequest;
 import com.nenggou.slsm.data.request.SendCodeRequest;
 import com.nenggou.slsm.data.request.TokenRequest;
@@ -38,4 +42,12 @@ public interface RestApiService {
     //商家今日收入
     @POST("home/bill/appstoreday")
     Flowable<RemoteDataWrapper<BillInfo>> getBillInfo(@Body DayIncomeRequest dayIncomeRequest);
+
+    //历史收益
+    @POST("home/bill/appstorelog")
+    Flowable<RemoteDataWrapper<HistoryIncomInfo>> getHistoryIncomInfo(@Body HistoryIncomeRequest historyIncomeRequest);
+
+    //收入详情
+    @POST("home/bill/billdetail")
+    Flowable<RemoteDataWrapper<IncomeDetailInfo>> getIncomeDetail(@Body BillIdRequest billIdRequest);
 }

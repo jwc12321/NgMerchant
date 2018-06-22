@@ -88,32 +88,48 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
     TextView energyIncome;
     RelativeLayout itemEvaluate;
 
-    private void bind(AppstoreInfo appstoreInfo, View view) {
+    private void bind(final AppstoreInfo appstoreInfo, View view) {
         shopName = view.findViewById(R.id.shop_name);
         switchBt = view.findViewById(R.id.switch_bt);
         qrCodeIv = view.findViewById(R.id.qr_code);
         itemIncome = view.findViewById(R.id.item_income);
         cashIncome = view.findViewById(R.id.cash_income);
-        energyIncome=view.findViewById(R.id.energy_income);
+        energyIncome = view.findViewById(R.id.energy_income);
         itemEvaluate = view.findViewById(R.id.item_evaluate);
         shopName.setText(appstoreInfo.getTitle());
-        if(appstoreInfo.getShouru()!=null) {
+        if (appstoreInfo.getShouru() != null) {
             cashIncome.setText("¥ " + appstoreInfo.getShouru().getAllmoney());
-            String allPower=appstoreInfo.getShouru().getAllpower();
-            if(TextUtils.isEmpty(allPower)||TextUtils.equals("0",allPower)
-                    ||TextUtils.equals("0.00",allPower)){
+            String allPower = appstoreInfo.getShouru().getAllpower();
+            if (TextUtils.isEmpty(allPower) || TextUtils.equals("0", allPower)
+                    || TextUtils.equals("0.00", allPower)) {
                 energyIncome.setVisibility(View.GONE);
-            }else {
+            } else {
                 energyIncome.setVisibility(View.VISIBLE);
                 energyIncome.setText(allPower);
             }
-        }else {
+        } else {
             cashIncome.setText("¥ 0");
             energyIncome.setVisibility(View.GONE);
         }
-        String qrCodeUrl= "ngapp::"+appstoreInfo.getId()+"&&"+appstoreInfo.getTitle()+"&&"+appstoreInfo.getzPics();
+        String qrCodeUrl = "ngapp::" + appstoreInfo.getId() + "&&" + appstoreInfo.getTitle() + "&&" + appstoreInfo.getzPics();
         Bitmap bitmap = QrCodeUtil.createQRCode(qrCodeUrl, 200, 200);
         qrCodeIv.setImageBitmap(bitmap);
+        itemIncome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (itemClickListener != null) {
+                    itemClickListener.goMonthIncome(appstoreInfo.getId());
+                }
+            }
+        });
+        itemEvaluate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (itemClickListener != null) {
+                    itemClickListener.goMonthIncome(appstoreInfo.getId());
+                }
+            }
+        });
     }
 
     @Override
@@ -122,6 +138,9 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
     }
 
     public interface ItemClickListener {
+        void goMonthIncome(String storeid);
+
+        void goBuyerEvaluate(String storeid);
     }
 
     private ItemClickListener itemClickListener;

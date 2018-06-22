@@ -40,14 +40,12 @@
                         <TextView
                             android:id="@+id/t_income"
                             style="@style/title_text_style"
-                            android:text="今日收益"
-                            android:textColor="@color/appText1" />
+                            android:text="今日收益" />
 
                         <TextView
                             android:id="@+id/h_income"
                             style="@style/title_text_right_style"
-                            android:text="历史收入"
-                            android:textColor="@color/appText1" />
+                            android:text="历史收入" />
 
                     </RelativeLayout>
                 </LinearLayout>

@@ -59,12 +59,12 @@ public class DayIncomePresenter implements BillContract.DayIncomePresenter {
 
 
     @Override
-    public void getDayIncome(String refreshType, String date) {
+    public void getDayIncome(String refreshType, String storeid,String date) {
         if (TextUtils.equals("1", refreshType)) {
             dayIncomeView.showLoading();
         }
         currentIndex = 1;
-        DayIncomeRequest dayIncomeRequest = new DayIncomeRequest(date, String.valueOf(currentIndex));
+        DayIncomeRequest dayIncomeRequest = new DayIncomeRequest(storeid,date, String.valueOf(currentIndex));
         Disposable disposable = restApiService.getBillInfo(dayIncomeRequest)
                 .flatMap(new RxRemoteDataParse<BillInfo>())
                 .compose(new RxSchedulerTransformer<BillInfo>())
@@ -85,9 +85,9 @@ public class DayIncomePresenter implements BillContract.DayIncomePresenter {
     }
 
     @Override
-    public void getMoreDayIncome(String date) {
+    public void getMoreDayIncome(String storeid,String date) {
         currentIndex = currentIndex + 1;
-        DayIncomeRequest dayIncomeRequest = new DayIncomeRequest(date, String.valueOf(currentIndex));
+        DayIncomeRequest dayIncomeRequest = new DayIncomeRequest(storeid,date, String.valueOf(currentIndex));
         Disposable disposable = restApiService.getBillInfo(dayIncomeRequest)
                 .flatMap(new RxRemoteDataParse<BillInfo>())
                 .compose(new RxSchedulerTransformer<BillInfo>())

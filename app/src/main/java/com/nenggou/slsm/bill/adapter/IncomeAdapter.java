@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nenggou.slsm.R;
@@ -17,7 +18,6 @@ import butterknife.ButterKnife;
 
 /**
  * Created by JWC on 2018/6/20.
- *
  */
 
 public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeView> {
@@ -25,14 +25,16 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeView
     private List<InComeInfo> inComeInfos;
 
     public void setData(List<InComeInfo> inComeInfos) {
-        this.inComeInfos=inComeInfos;
+        this.inComeInfos = inComeInfos;
         notifyDataSetChanged();
     }
+
     public void addMore(List<InComeInfo> moreList) {
         int pos = inComeInfos.size();
         inComeInfos.addAll(moreList);
         notifyItemRangeInserted(pos, moreList.size());
     }
+
     @Override
     public IncomeView onCreateViewHolder(ViewGroup parent, int viewType) {
         if (layoutInflater == null) {
@@ -44,13 +46,21 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeView
 
     @Override
     public void onBindViewHolder(IncomeView holder, int position) {
-        InComeInfo inComeInfo=inComeInfos.get(holder.getAdapterPosition());
+        final InComeInfo inComeInfo = inComeInfos.get(holder.getAdapterPosition());
         holder.bindData(inComeInfo);
+        holder.itemRl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(itemClickListener!=null){
+                    itemClickListener.goIncomeDetail(inComeInfo.getId());
+                }
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return inComeInfos==null?0:inComeInfos.size();
+        return inComeInfos == null ? 0 : inComeInfos.size();
     }
 
     public class IncomeView extends RecyclerView.ViewHolder {
@@ -64,6 +74,8 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeView
         TextView rmb;
         @BindView(R.id.energy)
         TextView energy;
+        @BindView(R.id.item_rl)
+        RelativeLayout itemRl;
 
         public IncomeView(View itemView) {
             super(itemView);
@@ -76,5 +88,15 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeView
             cash.setText(inComeInfo.getPrice());
             energy.setText(inComeInfo.getPower());
         }
+    }
+
+    public interface ItemClickListener {
+        void goIncomeDetail(String id);
+    }
+
+    private ItemClickListener itemClickListener;
+
+    public void setItemClickListener(ItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
     }
 }

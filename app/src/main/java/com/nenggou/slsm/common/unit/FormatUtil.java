@@ -143,6 +143,13 @@ public class FormatUtil {
         }
     }
 
+    public static String formatYMByLine() {
+        long time = System.currentTimeMillis();
+        String pattern = "yyyy-MM";
+        SimpleDateFormat format = new SimpleDateFormat(pattern);
+        return format.format(new Date(time));
+    }
+
     public static String formatDayTime(String timestamp) {
         if(!TextUtils.isEmpty(timestamp)) {
             long time = Long.parseLong(timestamp);

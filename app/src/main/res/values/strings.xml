@@ -22,7 +22,7 @@
     <!--收款-->
     <string name="switch_mode">切换</string>
     <string name="pay_to_shop">能购扫一扫,向我付钱</string>
-    <string name="total_income">月总收入:</string>
+    <string name="month_income">月总收入:</string>
     <string name="today_income">今日总收入</string>
     <!--我的-->
     <string name="cash">现金</string>
@@ -59,4 +59,15 @@
     <string name="see_intercourse_record">查看来往记录</string>
     <string name="successful_trade">交易成功</string>
     <string name="choose_time">选择时间</string>
+    <string name="history_income">历史收入</string>
+    <string name="total_income">总收入</string>
+    <string name="income_number">收款笔数</string>
+    <string name="total">合计</string>
+    <string name="switch_shop">切换店铺</string>
+    <string name="all_shop">全部店铺</string>
+    <string name="query_all">全部查询</string>
+    <string name="query_monthly">月度查询</string>
+    <string name="query_stage">阶段查询</string>
+    <string name="confirm">确定</string>
+    <string name="now_month_income">本月总收入</string>
 </resources>

@@ -30,6 +30,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by JWC on 2018/6/19.
@@ -99,12 +100,12 @@ public class BillFragment extends BaseFragment implements BillContract.DayIncome
     HeaderViewLayout.OnRefreshListener mOnRefreshListener = new HeaderViewLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            dayIncomePresenter.getDayIncome("0", "");
+            dayIncomePresenter.getDayIncome("0", "","");
         }
 
         @Override
         public void onLoadMore() {
-            dayIncomePresenter.getMoreDayIncome("");
+            dayIncomePresenter.getMoreDayIncome("","");
         }
 
         @Override
@@ -121,7 +122,7 @@ public class BillFragment extends BaseFragment implements BillContract.DayIncome
             if (getUserVisibleHint()) {
                 isFirstLoad = false;
                 if (dayIncomePresenter != null) {
-                    dayIncomePresenter.getDayIncome("1", "");
+                    dayIncomePresenter.getDayIncome("1", "","");
                 }
             }
         }
@@ -181,7 +182,7 @@ public class BillFragment extends BaseFragment implements BillContract.DayIncome
     @Override
     public void renderMoreDayIncome(BillInfo billInfo) {
         refreshLayout.stopRefresh();
-        if(billInfo!=null&&billInfo.getIncomeList()!=null){
+        if (billInfo != null && billInfo.getIncomeList() != null) {
             List<InComeInfo> inComeInfos = billInfo.getIncomeList().getInComeInfos();
             if (inComeInfos != null && inComeInfos.size() > 0) {
                 refreshLayout.setCanLoadMore(true);
@@ -189,8 +190,20 @@ public class BillFragment extends BaseFragment implements BillContract.DayIncome
             } else {
                 refreshLayout.setCanLoadMore(false);
             }
-        }else {
+        } else {
             refreshLayout.setCanLoadMore(false);
+        }
+    }
+
+    @OnClick({R.id.r_income, R.id.h_income})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.r_income:
+                break;
+            case R.id.h_income:
+                HistoryIncomeActivity.start(getActivity());
+                break;
+            default:
         }
     }
 }

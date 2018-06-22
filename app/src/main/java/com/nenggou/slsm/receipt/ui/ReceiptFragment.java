@@ -8,15 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.nenggou.slsm.BaseActivity;
 import com.nenggou.slsm.BaseFragment;
 import com.nenggou.slsm.R;
+import com.nenggou.slsm.bill.ui.MonthIncomeActivity;
 import com.nenggou.slsm.common.widget.viewpagecards.CardPagerAdapter;
 import com.nenggou.slsm.common.widget.viewpagecards.ShadowTransformer;
 import com.nenggou.slsm.data.RemoteDataException;
 import com.nenggou.slsm.data.entity.AppstoreInfo;
-import com.nenggou.slsm.data.entity.ReceivablesInfo;
-import com.nenggou.slsm.login.ui.LoginActivity;
 import com.nenggou.slsm.receipt.DaggerReceiptComponent;
 import com.nenggou.slsm.receipt.ReceiptContract;
 import com.nenggou.slsm.receipt.ReceiptModule;
@@ -28,6 +26,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by JWC on 2018/6/19.
@@ -141,5 +140,15 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
             viewPager.setPageTransformer(false, mCardShadowTransformer);
             viewPager.setOffscreenPageLimit(appstoreInfos.size() - 1);
         }
+    }
+
+    @Override
+    public void goMonthIncome(String storeid) {
+        MonthIncomeActivity.start(getActivity(),storeid);
+    }
+
+    @Override
+    public void goBuyerEvaluate(String storeid) {
+
     }
 }
