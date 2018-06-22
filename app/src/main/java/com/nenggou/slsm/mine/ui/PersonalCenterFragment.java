@@ -9,9 +9,11 @@ import android.widget.ImageView;
 
 import com.nenggou.slsm.BaseFragment;
 import com.nenggou.slsm.R;
+import com.nenggou.slsm.cash.ui.CashActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by JWC on 2018/6/19.
@@ -69,5 +71,25 @@ public class PersonalCenterFragment extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+    }
+
+    @OnClick({R.id.item_cash, R.id.item_energy,R.id.item_address,R.id.item_evaluate,R.id.item_rd_user,R.id.item_feedback})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.item_cash: //现金
+                CashActivity.start(getActivity());
+                break;
+            case R.id.item_energy://能量
+                break;
+            case R.id.item_address://地址电话
+                break;
+            case R.id.item_evaluate://评价
+                break;
+            case R.id.item_rd_user://推荐用户
+                break;
+            case R.id.item_feedback://意见反馈
+                break;
+            default:
+        }
     }
 }

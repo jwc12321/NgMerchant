@@ -70,4 +70,9 @@
     <string name="query_stage">阶段查询</string>
     <string name="confirm">确定</string>
     <string name="now_month_income">本月总收入</string>
+
+    <!--现金-->
+    <string name="cash_detail">明细</string>
+    <string name="account_balance">账户余额(元)</string>
+    <string name="put_forward">提现</string>
 </resources>

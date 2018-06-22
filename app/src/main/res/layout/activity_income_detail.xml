@@ -114,32 +114,6 @@
 
                 <TextView
                     style="@style/account_detail_left_tv"
-                    android:text="@string/commodity_description" />
-
-                <TextView
-                    android:id="@+id/commodity_description"
-                    style="@style/account_detail_right_tv" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/common_thirty_three_margin">
-
-                <TextView
-                    style="@style/account_detail_left_tv"
-                    android:text="@string/other_account" />
-
-                <TextView
-                    android:id="@+id/other_account"
-                    style="@style/account_detail_right_tv" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/common_thirty_three_margin">
-
-                <TextView
-                    style="@style/account_detail_left_tv"
                     android:text="@string/cash_store" />
 
                 <TextView

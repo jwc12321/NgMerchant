@@ -147,7 +147,7 @@ public class MonthIncomeActivity extends BaseActivity implements BillContract.Hi
                 energyIncome.setText("能量" + historyIncomAll.getAllpower() + "个");
                 String totalNumberStr;
                 if (!TextUtils.isEmpty(historyIncomAll.getAllTotal())) {
-                    totalNumberStr = "共计" + historyIncomAll.getAllpower() + "笔";
+                    totalNumberStr = "共计" + historyIncomAll.getAllTotal() + "笔";
                 } else {
                     totalNumberStr = "共计0笔";
                 }

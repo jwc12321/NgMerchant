@@ -72,17 +72,31 @@
             android:name=".mainframe.ui.MainFrameActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
-        <activity android:name=".bill.ui.HistoryIncomeActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".bill.ui.ChoiceTimeActivity"
+        <activity
+            android:name=".bill.ui.HistoryIncomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".bill.ui.ChoiceTimeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/TranslucentFullScreenTheme" />
-        <activity android:name=".bill.ui.MonthIncomeActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".bill.ui.IncomeListActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".bill.ui.IncomeDetailActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".bill.ui.MonthIncomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".bill.ui.IncomeListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".bill.ui.IncomeDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".energy.ui.EnergyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".cash.ui.CashActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".cash.ui.CashDetailActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

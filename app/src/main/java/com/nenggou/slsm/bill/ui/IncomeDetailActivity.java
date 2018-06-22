@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -33,6 +32,10 @@ import butterknife.OnClick;
  */
 
 public class IncomeDetailActivity extends BaseActivity implements BillContract.IncomeDetailView {
+
+
+    @Inject
+    IncomeDetailPresenter incomeDetailPresenter;
     @BindView(R.id.back)
     ImageView back;
     @BindView(R.id.title)
@@ -51,10 +54,6 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
     TextView paymentMethod;
     @BindView(R.id.go_arrow)
     ImageView goArrow;
-    @BindView(R.id.commodity_description)
-    TextView commodityDescription;
-    @BindView(R.id.other_account)
-    TextView otherAccount;
     @BindView(R.id.cash_store)
     TextView cashStore;
     @BindView(R.id.created_at)
@@ -65,9 +64,6 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
     TextView merchantOrderNumber;
     @BindView(R.id.go_recode_rl)
     RelativeLayout goRecodeRl;
-
-    @Inject
-    IncomeDetailPresenter incomeDetailPresenter;
     private String billId;
 
     public static void start(Context context, String billId) {
@@ -111,7 +107,6 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
             GlideHelper.load(this, incomeDetailInfo.getAvatar(), R.mipmap.app_icon, photo);
             businessName.setText(incomeDetailInfo.getNickname());
             price.setText(incomeDetailInfo.getAllprice());
-            otherAccount.setText(incomeDetailInfo.getNickname());
             cashStore.setText(incomeDetailInfo.getTitle());
             createdAt.setText(FormatUtil.formatDateByLine(incomeDetailInfo.getCreatedAt()));
             orderNumber.setText(incomeDetailInfo.getOrderno());

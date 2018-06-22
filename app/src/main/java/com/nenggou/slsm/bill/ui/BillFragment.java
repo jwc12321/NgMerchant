@@ -36,7 +36,7 @@ import butterknife.OnClick;
  * Created by JWC on 2018/6/19.
  */
 
-public class BillFragment extends BaseFragment implements BillContract.DayIncomeView {
+public class BillFragment extends BaseFragment implements BillContract.DayIncomeView ,IncomeAdapter.ItemClickListener{
     @BindView(R.id.r_income)
     TextView rIncome;
     @BindView(R.id.h_income)
@@ -205,5 +205,10 @@ public class BillFragment extends BaseFragment implements BillContract.DayIncome
                 break;
             default:
         }
+    }
+
+    @Override
+    public void goIncomeDetail(String id) {
+        IncomeDetailActivity.start(getActivity(),id);
     }
 }
