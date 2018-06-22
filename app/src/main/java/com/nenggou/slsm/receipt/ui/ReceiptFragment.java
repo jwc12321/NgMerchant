@@ -15,6 +15,7 @@ import com.nenggou.slsm.common.widget.viewpagecards.CardPagerAdapter;
 import com.nenggou.slsm.common.widget.viewpagecards.ShadowTransformer;
 import com.nenggou.slsm.data.RemoteDataException;
 import com.nenggou.slsm.data.entity.AppstoreInfo;
+import com.nenggou.slsm.evaluate.ui.AllEvaluationActivity;
 import com.nenggou.slsm.receipt.DaggerReceiptComponent;
 import com.nenggou.slsm.receipt.ReceiptContract;
 import com.nenggou.slsm.receipt.ReceiptModule;
@@ -149,6 +150,6 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
 
     @Override
     public void goBuyerEvaluate(String storeid) {
-
+        AllEvaluationActivity.start(getActivity(),storeid);
     }
 }

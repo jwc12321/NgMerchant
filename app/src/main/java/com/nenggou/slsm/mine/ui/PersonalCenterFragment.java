@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.nenggou.slsm.BaseFragment;
 import com.nenggou.slsm.R;
 import com.nenggou.slsm.cash.ui.CashActivity;
+import com.nenggou.slsm.evaluate.ui.AllEvaluationActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -84,6 +85,7 @@ public class PersonalCenterFragment extends BaseFragment {
             case R.id.item_address://地址电话
                 break;
             case R.id.item_evaluate://评价
+                AllEvaluationActivity.start(getActivity(),"");
                 break;
             case R.id.item_rd_user://推荐用户
                 break;

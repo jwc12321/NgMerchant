@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/photo"
+        android:layout_width="@dimen/common_seventy_margin"
+        android:layout_height="@dimen/common_seventy_margin"
+        tools:src="@mipmap/app_icon"
+        android:scaleType="fitXY"
+        android:padding="@dimen/common_five_margin"/>
+</LinearLayout>

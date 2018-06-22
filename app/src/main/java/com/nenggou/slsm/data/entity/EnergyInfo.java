@@ -2,7 +2,6 @@ package com.nenggou.slsm.data.entity;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
 
 /**
  * Created by JWC on 2018/6/22.
@@ -10,16 +9,16 @@ import java.util.List;
 
 public class EnergyInfo {
     @SerializedName("sum")
-    private List<EnergySum> energySums;
+    private String sum;
     @SerializedName("list")
     private EnergyListInfo energyListInfo;
 
-    public List<EnergySum> getEnergySums() {
-        return energySums;
+    public String getSum() {
+        return sum;
     }
 
-    public void setEnergySums(List<EnergySum> energySums) {
-        this.energySums = energySums;
+    public void setSum(String sum) {
+        this.sum = sum;
     }
 
     public EnergyListInfo getEnergyListInfo() {

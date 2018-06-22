@@ -126,7 +126,7 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
             @Override
             public void onClick(View v) {
                 if (itemClickListener != null) {
-                    itemClickListener.goMonthIncome(appstoreInfo.getId());
+                    itemClickListener.goBuyerEvaluate(appstoreInfo.getId());
                 }
             }
         });

@@ -2,6 +2,7 @@ package com.nenggou.slsm.data.remote;
 
 
 import com.nenggou.slsm.data.RemoteDataWrapper;
+import com.nenggou.slsm.data.entity.AllEvaluationInfo;
 import com.nenggou.slsm.data.entity.AppstoreInfo;
 import com.nenggou.slsm.data.entity.BillInfo;
 import com.nenggou.slsm.data.entity.CashDate;
@@ -18,6 +19,7 @@ import com.nenggou.slsm.data.request.EnergyRequest;
 import com.nenggou.slsm.data.request.HistoryIncomeRequest;
 import com.nenggou.slsm.data.request.PasswordLoginRequest;
 import com.nenggou.slsm.data.request.SendCodeRequest;
+import com.nenggou.slsm.data.request.StoreIdPageRequest;
 import com.nenggou.slsm.data.request.TokenRequest;
 
 import java.util.List;
@@ -68,4 +70,8 @@ public interface RestApiService {
     //现金明细
     @POST("home/bill/appbusinessxianjin")
     Flowable<RemoteDataWrapper<CashDate>> getCashDetailList(@Body CashDetailListRequest cashDetailListRequest);
+
+    //获取评价列表
+    @POST("home/business/appgetevaluate")
+    Flowable<RemoteDataWrapper<AllEvaluationInfo>> getAllEvaluation(@Body StoreIdPageRequest storeIdPageRequest);
 }

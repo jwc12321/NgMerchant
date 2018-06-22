@@ -166,5 +166,5 @@ dependencies {
 
     //画廊效果
     compile "com.azoft.carousellayoutmanager:carousel:$rootProject.ext.carouselVersion"
-
+    implementation files('libs/classes.jar')
 }
