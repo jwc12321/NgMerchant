@@ -47,11 +47,13 @@ public class SplashActivity extends BaseActivity {
     //跳转到主页
     private void goMain() {
         MainFrameActivity.start(this);
+        finish();
     }
 
     //跳转到主页
     private void goLogin() {
         LoginActivity.start(this);
+        finish();
     }
 
     public static class MyHandler extends StaticHandler<SplashActivity> {

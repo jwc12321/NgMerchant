@@ -259,6 +259,14 @@
         <item name="android:layout_gravity">center_vertical</item>
     </style>
 
+    <style name="apptext_five_text">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">@color/appText5</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
     <style name="choice_module_iv">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
@@ -276,5 +284,15 @@
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
+    </style>
+
+    <style name="next_bt_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/common_forty_four_margin</item>
+        <item name="android:background">@drawable/put_forward_button_bg</item>
+        <item name="android:layout_marginLeft">@dimen/common_twelve_margin</item>
+        <item name="android:layout_marginRight">@dimen/common_twelve_margin</item>
+        <item name="android:textColor">@color/appText1</item>
+        <item name="android:textSize">17sp</item>
     </style>
 </resources>

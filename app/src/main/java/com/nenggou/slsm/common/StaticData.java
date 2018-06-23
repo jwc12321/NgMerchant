@@ -23,4 +23,15 @@ public class StaticData {
     public static final String BUSINESS_NAME="bussinessName";
     //uid
     public static final String UID="uid";
+    //银行卡id
+    public static final String BANK_ID="bankId";
+    //银行卡属性
+    public static final String BANK_INFO="bankInfo";
+    //银行卡名字
+    public static final String BANK_NAME="bankName";
+    //银行卡卡号
+    public static final String BANK_NUMBER="bankNumber";
+    //银行卡用户
+    public static final String BANK_USER="bankUser";
+
 }

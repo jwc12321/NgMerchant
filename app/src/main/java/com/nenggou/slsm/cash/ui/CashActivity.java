@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.nenggou.slsm.BaseActivity;
 import com.nenggou.slsm.R;
+import com.nenggou.slsm.bankcard.ui.PutForwardActivity;
 import com.nenggou.slsm.bill.ui.ChoiceTimeActivity;
 import com.nenggou.slsm.bill.ui.HistoryIncomeActivity;
 import com.nenggou.slsm.cash.CashContract;
@@ -87,7 +88,7 @@ public class CashActivity extends BaseActivity implements CashContract.CashView 
         }
     }
 
-    @OnClick({R.id.back, R.id.cash_detail})
+    @OnClick({R.id.back, R.id.cash_detail,R.id.put_forward_bt})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
@@ -95,6 +96,9 @@ public class CashActivity extends BaseActivity implements CashContract.CashView 
                 break;
             case R.id.cash_detail:
                 CashDetailActivity.start(this);
+                break;
+            case R.id.put_forward_bt:
+                PutForwardActivity.start(this);
                 break;
             default:
         }

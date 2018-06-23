@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/common_sixty_margin"
+    android:id="@+id/item_bank">
+    <TextView
+        android:id="@+id/bank_name"
+        style="@style/apptext_five_text"
+        android:layout_marginLeft="@dimen/common_ten_margin"
+        tools:text="建设英航" />
+
+    <ImageView
+        android:id="@+id/bank_select"
+        android:layout_width="@dimen/common_twenty_margin"
+        android:layout_height="@dimen/common_twenty_margin"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/common_twenty_two_margin"
+        android:background="@drawable/bank_select" />
+
+    <View
+        style="@style/st_line"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>

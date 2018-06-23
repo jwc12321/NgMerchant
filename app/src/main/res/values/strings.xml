@@ -77,5 +77,15 @@
     <string name="account_balance">账户余额(元)</string>
     <string name="put_forward">提现</string>
 
-    <!--地址电话-->
+    <!--银行卡-->
+    <string name="add_bank_card">添加银行卡</string>
+    <string name="bind_card">请绑定持卡人本人的银行卡</string>
+    <string name="next">下一步</string>
+    <string name="confirm_putforward">确认提现</string>
+    <string name="card_list">卡列表</string>
+    <string name="card_tel">填写银行卡和身份信息</string>
+    <string name="choice_bank">请选择银行卡类型</string>
+    <string name="user_im">请填写个人信息</string>
+    <string name="information_encryption">信息加密处理,仅用于银行验证</string>
+    <string name="confirm_add">确认添加</string>
 </resources>

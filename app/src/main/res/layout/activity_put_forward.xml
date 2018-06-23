@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backGround1"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/title_rel"
+        style="@style/title_rl_style">
+
+        <ImageView
+            android:id="@+id/back"
+            style="@style/title_left_back_style" />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/title_text_style"
+            android:text="@string/put_forward" />
+    </RelativeLayout>
+
+    <com.nenggou.slsm.common.widget.ReboundScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadingEdge="none"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="215dp"
+                android:layout_marginLeft="@dimen/common_twelve_margin"
+                android:layout_marginRight="@dimen/common_twelve_margin"
+                android:layout_marginTop="@dimen/common_fifteen_margin"
+                android:background="@drawable/putforward_bg"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/item_bank"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_fifty_margin">
+
+                    <TextView
+                        style="@style/text_fifteen_style"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/common_twelve_margin"
+                        android:text="提现至" />
+
+                    <TextView
+                        android:id="@+id/bank_name"
+                        style="@style/choice_module_text"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/common_twenty_margin"
+                        tools:text="提现至" />
+
+                    <ImageView style="@style/go_arrow"
+                        android:layout_marginRight="@dimen/common_twelve_margin"/>
+
+                    <View
+                        style="@style/st_line"
+                        android:layout_alignParentBottom="true" />
+                </RelativeLayout>
+
+                <TextView
+                    style="@style/text_fifteen_style"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/common_twelve_margin"
+                    android:layout_marginTop="@dimen/common_nineteen_margin"
+                    android:text="提现金额" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_sixty_five_margin"
+                    android:layout_marginTop="@dimen/common_eleven_margin"
+                    android:background="@color/appText1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/common_twelve_margin"
+                        android:text="¥"
+                        android:textColor="@color/appText5"
+                        android:textSize="25sp" />
+
+                    <EditText
+                        android:id="@+id/name_et"
+                        style="@style/login_input_phone_style"
+                        android:layout_marginLeft="@dimen/common_forty_margin"
+                        android:inputType="number" />
+
+                    <View
+                        style="@style/persion_st_line"
+                        android:layout_alignParentBottom="true" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/common_twelve_margin"
+                    android:layout_marginTop="@dimen/common_fourteen_margin"
+                    android:textColor="@color/appText6"
+                    android:textSize="12sp"
+                    tools:text="最多能用" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/next_bt"
+                style="@style/next_bt_style"
+                android:layout_marginTop="@dimen/common_thirty_eight_margin"
+                android:enabled="true"
+                android:text="@string/confirm_putforward" />
+        </LinearLayout>
+    </com.nenggou.slsm.common.widget.ReboundScrollView>
+</LinearLayout>

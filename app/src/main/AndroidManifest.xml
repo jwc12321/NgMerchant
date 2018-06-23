@@ -108,6 +108,14 @@
             android:screenOrientation="portrait" />
         <activity android:name=".bill.ui.IntercourseRecordActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".bankcard.ui.PutForwardActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".bankcard.ui.BankCardListActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".bankcard.ui.BankNameActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".bankcard.ui.AddBankImActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

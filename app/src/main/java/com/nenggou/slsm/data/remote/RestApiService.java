@@ -2,8 +2,10 @@ package com.nenggou.slsm.data.remote;
 
 
 import com.nenggou.slsm.data.RemoteDataWrapper;
+import com.nenggou.slsm.data.entity.AddbankcardInfo;
 import com.nenggou.slsm.data.entity.AllEvaluationInfo;
 import com.nenggou.slsm.data.entity.AppstoreInfo;
+import com.nenggou.slsm.data.entity.BankCardInfo;
 import com.nenggou.slsm.data.entity.BillInfo;
 import com.nenggou.slsm.data.entity.CashDate;
 import com.nenggou.slsm.data.entity.CashInfo;
@@ -13,6 +15,7 @@ import com.nenggou.slsm.data.entity.Ignore;
 import com.nenggou.slsm.data.entity.IncomeDetailInfo;
 import com.nenggou.slsm.data.entity.IntercourseRecordInfo;
 import com.nenggou.slsm.data.entity.PersionInfoResponse;
+import com.nenggou.slsm.data.request.AddbankcardRequest;
 import com.nenggou.slsm.data.request.BillIdRequest;
 import com.nenggou.slsm.data.request.CashDetailListRequest;
 import com.nenggou.slsm.data.request.DayIncomeRequest;
@@ -90,4 +93,12 @@ public interface RestApiService {
     //来往记录
     @POST("home/bill/appsubill")
     Flowable<RemoteDataWrapper<IntercourseRecordInfo>> getIntercourseRecordInfo(@Body IntercourseRecordRequest intercourseRecordRequest);
+
+    //银行卡列表
+    @POST("home/business/banklist")
+    Flowable<RemoteDataWrapper<List<BankCardInfo>>> getBankCardInfos(@Body TokenRequest tokenRequest);
+
+    //添加银行卡
+    @POST("home/business/addbankcard")
+    Flowable<RemoteDataWrapper<AddbankcardInfo>> addbankcard(@Body AddbankcardRequest addbankcardRequest);
 }
