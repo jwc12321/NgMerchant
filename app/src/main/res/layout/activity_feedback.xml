@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backGround1"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/title_rel"
+        style="@style/title_rl_style">
+
+        <ImageView
+            android:id="@+id/back"
+            style="@style/title_left_back_style" />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/title_text_style"
+            android:text="@string/feedback" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/common_twelve_margin"
+            android:background="@drawable/feedback_bg">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|bottom"
+                android:layout_margin="@dimen/common_ten_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/appText2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|bottom"
+                    android:text="/200"
+                    android:textColor="@color/appText2" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/evaluate_et"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_two_hundred_margin"
+                android:background="@drawable/null_bg"
+                android:gravity="left|top"
+                android:hint="您的评价对其他会员都是很重要的参考"
+                android:maxEms="200"
+                android:maxLength="200"
+                android:padding="@dimen/common_eight_margin"
+                android:textColorHint="@color/appText2"
+                android:textSize="14sp" />
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/confirm_bt"
+            style="@style/confirm_bt_style"
+            android:layout_alignParentBottom="true"
+            android:enabled="false"
+            android:text="提交生申请" />
+    </RelativeLayout>
+</LinearLayout>

@@ -15,6 +15,7 @@ import com.nenggou.slsm.R;
 import com.nenggou.slsm.address.ui.AddressTelActivity;
 import com.nenggou.slsm.cash.ui.CashActivity;
 import com.nenggou.slsm.evaluate.ui.AllEvaluationActivity;
+import com.nenggou.slsm.feedback.ui.FeedBackActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -102,6 +103,7 @@ public class PersonalCenterFragment extends BaseFragment {
                 AddressTelActivity.start(getActivity());
                 break;
             case R.id.item_feedback://意见反馈
+                FeedBackActivity.start(getActivity());
                 break;
             default:
         }

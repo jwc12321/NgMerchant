@@ -20,6 +20,7 @@ import com.nenggou.slsm.data.request.BillIdRequest;
 import com.nenggou.slsm.data.request.CashDetailListRequest;
 import com.nenggou.slsm.data.request.DayIncomeRequest;
 import com.nenggou.slsm.data.request.EnergyRequest;
+import com.nenggou.slsm.data.request.FeedbackRequest;
 import com.nenggou.slsm.data.request.HistoryIncomeRequest;
 import com.nenggou.slsm.data.request.IntercourseRecordRequest;
 import com.nenggou.slsm.data.request.PageRequest;
@@ -101,4 +102,8 @@ public interface RestApiService {
     //添加银行卡
     @POST("home/business/addbankcard")
     Flowable<RemoteDataWrapper<AddbankcardInfo>> addbankcard(@Body AddbankcardRequest addbankcardRequest);
+
+    //意见反馈
+    @POST("home/business/appfeedback")
+    Flowable<RemoteDataWrapper<String>> subFeedBack(@Body FeedbackRequest feedbackRequest);
 }

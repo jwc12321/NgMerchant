@@ -116,6 +116,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".bankcard.ui.AddBankImActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".feedback.ui.FeedBackActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
