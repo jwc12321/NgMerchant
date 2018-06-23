@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface EnergyContract {
     interface EnergyListPresenter extends BasePresenter {
-        void getEnergyList(String type);
+        void getEnergyList(String refreshType,String type);
 
         void getMoreEnergyList(String type);
     }
@@ -21,5 +21,6 @@ public interface EnergyContract {
         void render(List<EnergyDetailInfo> energyDetailInfos);
 
         void renderMore(List<EnergyDetailInfo> energyDetailInfos);
+        void backEnergy(String sum,String proportion);
     }
 }

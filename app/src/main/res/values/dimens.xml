@@ -36,6 +36,7 @@
     <dimen name="common_twenty_eight_margin">28dp</dimen>
     <dimen name="common_twenty_nine_margin">29dp</dimen>
     <dimen name="common_thirty_margin">30dp</dimen>
+    <dimen name="common_thirty_two_margin">32dp</dimen>
     <dimen name="common_thirty_three_margin">33dp</dimen>
     <dimen name="common_thirty_five_margin">35dp</dimen>
     <dimen name="common_thirty_eight_margin">38dp</dimen>

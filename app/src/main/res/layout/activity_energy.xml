@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/title_rel"
+        style="@style/title_rl_style">
+
+        <ImageView
+            android:id="@+id/back"
+            style="@style/title_left_back_style" />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/title_text_style"
+            android:text="@string/address_tel" />
+
+        <TextView
+            android:id="@+id/explain"
+            style="@style/title_text_right_style"
+            android:text="@string/energy_explain" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/energy_bg">
+
+        <TextView
+            android:id="@+id/energy_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/appText1"
+            android:textSize="29sp"
+            tools:text="当前100能量" />
+
+        <Button
+            android:id="@+id/energy_purforward"
+            android:layout_width="@dimen/common_sixty_five_margin"
+            android:layout_height="@dimen/common_thirty_two_margin"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="156dp"
+            android:background="@drawable/energy_purforward_bg"
+            android:text="提现"
+            android:textColor="@color/appText1"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_forty_four_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="能量收支明细"
+            android:textColor="@color/appText5"
+            android:textSize="17sp" />
+    </RelativeLayout>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/appText1"
+        app:tabIndicatorColor="@color/appText3"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/appText3" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backGround1" />
+</LinearLayout>

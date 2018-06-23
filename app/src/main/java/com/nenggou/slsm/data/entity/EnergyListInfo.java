@@ -13,4 +13,20 @@ public class EnergyListInfo {
     private String currentPage;
     @SerializedName("data")
     private List<EnergyDetailInfo> energyDetailInfos;
+
+    public String getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setCurrentPage(String currentPage) {
+        this.currentPage = currentPage;
+    }
+
+    public List<EnergyDetailInfo> getEnergyDetailInfos() {
+        return energyDetailInfos;
+    }
+
+    public void setEnergyDetailInfos(List<EnergyDetailInfo> energyDetailInfos) {
+        this.energyDetailInfos = energyDetailInfos;
+    }
 }

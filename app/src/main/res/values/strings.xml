@@ -88,4 +88,7 @@
     <string name="user_im">请填写个人信息</string>
     <string name="information_encryption">信息加密处理,仅用于银行验证</string>
     <string name="confirm_add">确认添加</string>
+
+    <!--能量-->
+    <string name="energy_explain">能量说明</string>
 </resources>

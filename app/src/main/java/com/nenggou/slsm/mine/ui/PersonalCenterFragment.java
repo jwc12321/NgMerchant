@@ -14,6 +14,7 @@ import com.nenggou.slsm.BaseFragment;
 import com.nenggou.slsm.R;
 import com.nenggou.slsm.address.ui.AddressTelActivity;
 import com.nenggou.slsm.cash.ui.CashActivity;
+import com.nenggou.slsm.energy.ui.EnergyActivity;
 import com.nenggou.slsm.evaluate.ui.AllEvaluationActivity;
 import com.nenggou.slsm.feedback.ui.FeedBackActivity;
 
@@ -98,6 +99,7 @@ public class PersonalCenterFragment extends BaseFragment {
                 CashActivity.start(getActivity());
                 break;
             case R.id.item_energy://能量
+                EnergyActivity.start(getActivity());
                 break;
             case R.id.item_address://地址电话
                 AddressTelActivity.start(getActivity());

@@ -10,6 +10,8 @@ import com.google.gson.annotations.SerializedName;
 public class EnergyInfo {
     @SerializedName("sum")
     private String sum;
+    @SerializedName("proportion")
+    private String proportion;
     @SerializedName("list")
     private EnergyListInfo energyListInfo;
 
@@ -27,5 +29,13 @@ public class EnergyInfo {
 
     public void setEnergyListInfo(EnergyListInfo energyListInfo) {
         this.energyListInfo = energyListInfo;
+    }
+
+    public String getProportion() {
+        return proportion;
+    }
+
+    public void setProportion(String proportion) {
+        this.proportion = proportion;
     }
 }
