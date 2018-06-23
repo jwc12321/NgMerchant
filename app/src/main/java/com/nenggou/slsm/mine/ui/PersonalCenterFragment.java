@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.nenggou.slsm.BaseFragment;
 import com.nenggou.slsm.R;
+import com.nenggou.slsm.address.ui.AddressTelActivity;
 import com.nenggou.slsm.cash.ui.CashActivity;
 import com.nenggou.slsm.evaluate.ui.AllEvaluationActivity;
 
@@ -98,6 +99,7 @@ public class PersonalCenterFragment extends BaseFragment {
             case R.id.item_energy://能量
                 break;
             case R.id.item_address://地址电话
+                AddressTelActivity.start(getActivity());
                 break;
             case R.id.item_feedback://意见反馈
                 break;

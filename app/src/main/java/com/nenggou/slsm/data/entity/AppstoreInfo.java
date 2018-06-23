@@ -13,6 +13,10 @@ public class AppstoreInfo {
     private String id;
     @SerializedName("title")
     private String title;
+    @SerializedName("address")
+    private String address;
+    @SerializedName("telephone")
+    private String telephone;
     @SerializedName("shouru")
     private Shouru shouru;
 
@@ -46,5 +50,21 @@ public class AppstoreInfo {
 
     public void setShouru(Shouru shouru) {
         this.shouru = shouru;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 }
