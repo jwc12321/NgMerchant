@@ -62,7 +62,7 @@ public class IncomeListActivity extends BaseActivity implements BillContract.Day
 
     private String storeid;
     private String date;
-    private String timeType; //1:本月收入 2：历史收入
+    private String timeType; //1:本月收入 2：历史收入 3：推荐收入
 
     private IncomeAdapter incomeAdapter;
     @Inject
@@ -91,8 +91,10 @@ public class IncomeListActivity extends BaseActivity implements BillContract.Day
         timeType=getIntent().getStringExtra(StaticData.TIME_TYPE);
         if(TextUtils.equals("1",timeType)){
             tIncome.setText("本月收入");
-        }else {
+        }else if(TextUtils.equals("2",timeType)){
             tIncome.setText("历史收入");
+        }else {
+            tIncome.setText("推荐收入");
         }
         dateTv.setText(date+" 总收入");
         refreshLayout.setOnRefreshListener(mOnRefreshListener);
@@ -100,18 +102,30 @@ public class IncomeListActivity extends BaseActivity implements BillContract.Day
         incomeAdapter = new IncomeAdapter();
         incomeAdapter.setItemClickListener(this);
         incomeRv.setAdapter(incomeAdapter);
-        dayIncomePresenter.getDayIncome("0", storeid,date);
+        if(TextUtils.equals("3",timeType)){
+            dayIncomePresenter.getRdDayIncome("1",date);
+        }else {
+            dayIncomePresenter.getDayIncome("1", storeid, date);
+        }
     }
 
     HeaderViewLayout.OnRefreshListener mOnRefreshListener = new HeaderViewLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            dayIncomePresenter.getDayIncome("0", storeid,date);
+            if(TextUtils.equals("3",timeType)){
+                dayIncomePresenter.getRdDayIncome("1",date);
+            }else {
+                dayIncomePresenter.getDayIncome("0", storeid, date);
+            }
         }
 
         @Override
         public void onLoadMore() {
-            dayIncomePresenter.getMoreDayIncome(storeid,date);
+            if(TextUtils.equals("3",timeType)){
+                dayIncomePresenter.getMoreRdDayIncome(date);
+            }else {
+                dayIncomePresenter.getMoreDayIncome(storeid, date);
+            }
         }
 
         @Override
@@ -193,6 +207,8 @@ public class IncomeListActivity extends BaseActivity implements BillContract.Day
 
     @Override
     public void goIncomeDetail(String id) {
-        IncomeDetailActivity.start(this,id);
+        if(!TextUtils.equals("3",timeType)) {
+            IncomeDetailActivity.start(this, id);
+        }
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -65,6 +66,8 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
     @BindView(R.id.go_recode_rl)
     RelativeLayout goRecodeRl;
     private String billId;
+    private String uid;
+    private String shopName;
 
     public static void start(Context context, String billId) {
         Intent intent = new Intent(context, IncomeDetailActivity.class);
@@ -104,6 +107,8 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
     @Override
     public void renderIncomeDetail(IncomeDetailInfo incomeDetailInfo) {
         if (incomeDetailInfo != null) {
+            uid=incomeDetailInfo.getUid();
+            shopName=incomeDetailInfo.getTitle();
             GlideHelper.load(this, incomeDetailInfo.getAvatar(), R.mipmap.app_icon, photo);
             businessName.setText(incomeDetailInfo.getNickname());
             price.setText(incomeDetailInfo.getAllprice());
@@ -114,11 +119,16 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
         }
     }
 
-    @OnClick({R.id.back})
+    @OnClick({R.id.back,R.id.go_recode_rl})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
                 finish();
+                break;
+            case R.id.go_recode_rl:
+                if(!TextUtils.isEmpty(uid)){
+                    IntercourseRecordActivity.start(this,uid,shopName);
+                }
                 break;
             default:
         }

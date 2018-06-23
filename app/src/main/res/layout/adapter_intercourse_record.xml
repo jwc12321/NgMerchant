@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/common_sixty_margin"
+    android:background="@color/appText1">
+
+    <TextView
+        android:id="@+id/business_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/common_twelve_margin"
+        android:layout_marginTop="@dimen/common_ten_margin"
+        android:textColor="@color/appText4"
+        android:textSize="15sp"
+        tools:text="单家" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/common_ten_margin"
+        android:layout_marginLeft="@dimen/common_twelve_margin"
+        android:textColor="@color/appText6"
+        android:textSize="12sp"
+        tools:text="2017" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/common_twelve_margin"
+        android:layout_marginTop="@dimen/common_ten_margin"
+        android:textColor="@color/appText4"
+        android:textSize="17sp"
+        tools:text="2017" />
+
+    <TextView
+        android:id="@+id/state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/common_ten_margin"
+        android:layout_marginRight="@dimen/common_twelve_margin"
+        android:textColor="@color/appText6"
+        android:textSize="12sp"
+        tools:text="2017" />
+
+    <View
+        style="@style/st_line"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>

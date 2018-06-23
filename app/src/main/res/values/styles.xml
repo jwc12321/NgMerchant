@@ -113,6 +113,13 @@
         <item name="riv_corner_radius">1dp</item>
     </style>
 
+    <style name="head_PhotoStyle">
+        <item name="android:scaleType">fitXY</item>
+        <item name="riv_border_width">0dp</item>
+        <item name="riv_border_color">@color/appText1</item>
+        <item name="riv_corner_radius">0dp</item>
+    </style>
+
     <style name="persion_item_fl_style">
         <item name="android:layout_height">@dimen/common_forty_four_margin</item>
         <item name="android:layout_width">match_parent</item>

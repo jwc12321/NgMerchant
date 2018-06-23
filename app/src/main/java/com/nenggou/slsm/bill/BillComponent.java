@@ -6,7 +6,9 @@ import com.nenggou.slsm.bill.ui.BillFragment;
 import com.nenggou.slsm.bill.ui.HistoryIncomeActivity;
 import com.nenggou.slsm.bill.ui.IncomeDetailActivity;
 import com.nenggou.slsm.bill.ui.IncomeListActivity;
+import com.nenggou.slsm.bill.ui.IntercourseRecordActivity;
 import com.nenggou.slsm.bill.ui.MonthIncomeActivity;
+import com.nenggou.slsm.bill.ui.RdIncomeActivity;
 
 import dagger.Component;
 
@@ -21,4 +23,6 @@ public interface BillComponent {
     void inject(MonthIncomeActivity monthIncomeActivity);
     void inject(IncomeListActivity incomeListActivity);
     void inject(IncomeDetailActivity incomeDetailActivity);
+    void inject(RdIncomeActivity rdIncomeActivity);
+    void inject(IntercourseRecordActivity intercourseRecordActivity);
 }

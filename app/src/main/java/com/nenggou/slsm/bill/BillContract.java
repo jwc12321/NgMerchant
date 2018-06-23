@@ -5,6 +5,7 @@ import com.nenggou.slsm.BaseView;
 import com.nenggou.slsm.data.entity.BillInfo;
 import com.nenggou.slsm.data.entity.HistoryIncomInfo;
 import com.nenggou.slsm.data.entity.IncomeDetailInfo;
+import com.nenggou.slsm.data.entity.IntercourseRecordInfo;
 
 /**
  * Created by JWC on 2018/6/19.
@@ -15,6 +16,10 @@ public interface BillContract {
         void getDayIncome(String refreshType, String storeid,String date);
 
         void getMoreDayIncome(String storeid,String date);
+
+        void getRdDayIncome(String refreshType,String time);
+
+        void getMoreRdDayIncome(String time);
     }
 
     interface DayIncomeView extends BaseView<DayIncomePresenter> {
@@ -40,5 +45,26 @@ public interface BillContract {
     }
     interface IncomeDetailView extends BaseView<IncomeDetailPresenter>{
         void renderIncomeDetail(IncomeDetailInfo incomeDetailInfo);
+    }
+
+    interface RdIncomePresenter extends BasePresenter {
+        void getRdIncome(String refreshType);
+
+        void getMoreRdIncome();
+    }
+
+    interface RdIncomeView extends BaseView<RdIncomePresenter> {
+        void renderRdIncome(HistoryIncomInfo historyIncomInfo);
+
+        void renderMoreRdIncome(HistoryIncomInfo historyIncomInfo);
+    }
+
+    interface IntercourseRecordPresenter extends BasePresenter{
+        void getIntercourseRecordInfo(String refreshType,String uid);
+        void getMoreIntercourseRecordInfo(String uid);
+    }
+    interface IntercourseRecordView extends BaseView<IntercourseRecordPresenter>{
+        void intercourseRecordInfo(IntercourseRecordInfo intercourseRecordInfo);
+        void moreIntercourseRecordInfo(IntercourseRecordInfo intercourseRecordInfo);
     }
 }

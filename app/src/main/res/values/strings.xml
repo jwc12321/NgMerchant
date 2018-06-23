@@ -60,6 +60,7 @@
     <string name="successful_trade">交易成功</string>
     <string name="choose_time">选择时间</string>
     <string name="history_income">历史收入</string>
+    <string name="rd_income">推荐收益</string>
     <string name="total_income">总收入</string>
     <string name="income_number">收款笔数</string>
     <string name="total">合计</string>
@@ -75,4 +76,6 @@
     <string name="cash_detail">明细</string>
     <string name="account_balance">账户余额(元)</string>
     <string name="put_forward">提现</string>
+
+    <!--地址电话-->
 </resources>

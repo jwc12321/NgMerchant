@@ -11,13 +11,17 @@ import com.nenggou.slsm.data.entity.EnergyInfo;
 import com.nenggou.slsm.data.entity.HistoryIncomInfo;
 import com.nenggou.slsm.data.entity.Ignore;
 import com.nenggou.slsm.data.entity.IncomeDetailInfo;
+import com.nenggou.slsm.data.entity.IntercourseRecordInfo;
 import com.nenggou.slsm.data.entity.PersionInfoResponse;
 import com.nenggou.slsm.data.request.BillIdRequest;
 import com.nenggou.slsm.data.request.CashDetailListRequest;
 import com.nenggou.slsm.data.request.DayIncomeRequest;
 import com.nenggou.slsm.data.request.EnergyRequest;
 import com.nenggou.slsm.data.request.HistoryIncomeRequest;
+import com.nenggou.slsm.data.request.IntercourseRecordRequest;
+import com.nenggou.slsm.data.request.PageRequest;
 import com.nenggou.slsm.data.request.PasswordLoginRequest;
+import com.nenggou.slsm.data.request.RdIncomeRequest;
 import com.nenggou.slsm.data.request.SendCodeRequest;
 import com.nenggou.slsm.data.request.StoreIdPageRequest;
 import com.nenggou.slsm.data.request.TokenRequest;
@@ -74,4 +78,16 @@ public interface RestApiService {
     //获取评价列表
     @POST("home/business/appgetevaluate")
     Flowable<RemoteDataWrapper<AllEvaluationInfo>> getAllEvaluation(@Body StoreIdPageRequest storeIdPageRequest);
+
+    //推荐收益
+    @POST("home/bill/appgainslog")
+    Flowable<RemoteDataWrapper<HistoryIncomInfo>> getRdIncomeInfo(@Body PageRequest pageRequest);
+
+    //推荐收益收入某一天
+    @POST("home/bill/appgainsday")
+    Flowable<RemoteDataWrapper<BillInfo>> getRdDayIncome(@Body RdIncomeRequest rdIncomeRequest);
+
+    //来往记录
+    @POST("home/bill/appsubill")
+    Flowable<RemoteDataWrapper<IntercourseRecordInfo>> getIntercourseRecordInfo(@Body IntercourseRecordRequest intercourseRecordRequest);
 }

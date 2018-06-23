@@ -25,6 +25,8 @@ public class IncomeDetailInfo {
     private String createdAt;
     @SerializedName("quannum")
     private String quannum;
+    @SerializedName("uid")
+    private String uid;
 
     public String getNickname() {
         return nickname;
@@ -96,5 +98,13 @@ public class IncomeDetailInfo {
 
     public void setQuannum(String quannum) {
         this.quannum = quannum;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

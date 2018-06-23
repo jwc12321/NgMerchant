@@ -65,7 +65,8 @@
             android:drawableStart="@mipmap/phone_icon"
             android:hint="@string/input_tel"
             android:inputType="phone"
-            android:maxLength="11" />
+            android:maxLength="11"
+            android:text="15905701918"/>
 
         <View
             style="@style/persion_st_line"
@@ -84,7 +85,8 @@
             style="@style/login_input_phone_style"
             android:drawableLeft="@mipmap/password_icon"
             android:drawableStart="@mipmap/password_icon"
-            android:hint="@string/input_password" />
+            android:hint="@string/input_password"
+            android:text="123456"/>
 
         <View
             style="@style/persion_st_line"

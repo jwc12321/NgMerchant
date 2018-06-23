@@ -19,4 +19,8 @@ public class StaticData {
     public static final String TIME_TYPE="timeType";
     //billId
     public static final String BILL_ID="billId";
+    //商家名字
+    public static final String BUSINESS_NAME="bussinessName";
+    //uid
+    public static final String UID="uid";
 }

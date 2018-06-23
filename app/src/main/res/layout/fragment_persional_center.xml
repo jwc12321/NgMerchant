@@ -115,42 +115,6 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
-                    android:id="@+id/item_evaluate"
-                    style="@style/persion_item_fl_style">
-
-                    <TextView
-                        style="@style/persion_item_text_style"
-                        android:drawableLeft="@mipmap/evaluate_icon"
-                        android:drawableStart="@mipmap/evaluate_icon"
-                        android:text="@string/evaluate" />
-
-                    <ImageView style="@style/go_arrow" />
-                </RelativeLayout>
-
-                <View style="@style/persion_st_line" />
-
-                <RelativeLayout
-                    android:id="@+id/item_rd_user"
-                    style="@style/persion_item_fl_style">
-
-                    <TextView
-                        style="@style/persion_item_text_style"
-                        android:drawableLeft="@mipmap/rduser_icon"
-                        android:drawableStart="@mipmap/rduser_icon"
-                        android:text="@string/rd_user" />
-
-                    <ImageView style="@style/go_arrow" />
-                </RelativeLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/common_fifteen_margin"
-                android:background="@color/appText1"
-                android:orientation="vertical">
-
-                <RelativeLayout
                     android:id="@+id/item_feedback"
                     style="@style/persion_item_fl_style">
 

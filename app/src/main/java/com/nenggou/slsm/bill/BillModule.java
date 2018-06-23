@@ -11,6 +11,8 @@ public class BillModule {
     private BillContract.DayIncomeView dayIncomeView;
     private BillContract.HistoryIncomeView historyIncomeView;
     private BillContract.IncomeDetailView incomeDetailView;
+    private BillContract.RdIncomeView rdIncomeView;
+    private BillContract.IntercourseRecordView intercourseRecordView;
 
     public BillModule(BillContract.DayIncomeView dayIncomeView) {
         this.dayIncomeView = dayIncomeView;
@@ -22,6 +24,14 @@ public class BillModule {
 
     public BillModule(BillContract.IncomeDetailView incomeDetailView) {
         this.incomeDetailView = incomeDetailView;
+    }
+
+    public BillModule(BillContract.RdIncomeView rdIncomeView) {
+        this.rdIncomeView = rdIncomeView;
+    }
+
+    public BillModule(BillContract.IntercourseRecordView intercourseRecordView) {
+        this.intercourseRecordView = intercourseRecordView;
     }
 
     @Provides
@@ -37,5 +47,15 @@ public class BillModule {
     @Provides
     BillContract.IncomeDetailView provideIncomeDetailView(){
         return incomeDetailView;
+    }
+
+    @Provides
+    BillContract.RdIncomeView provideRdIncomeView(){
+        return rdIncomeView;
+    }
+
+    @Provides
+    BillContract.IntercourseRecordView provideIntercourseRecordView(){
+        return intercourseRecordView;
     }
 }

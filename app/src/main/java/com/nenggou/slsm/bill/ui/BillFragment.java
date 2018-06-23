@@ -94,6 +94,7 @@ public class BillFragment extends BaseFragment implements BillContract.DayIncome
         refreshLayout.setOnRefreshListener(mOnRefreshListener);
         refreshLayout.setCanLoadMore(false);
         incomeAdapter = new IncomeAdapter();
+        incomeAdapter.setItemClickListener(this);
         incomeRv.setAdapter(incomeAdapter);
     }
 
@@ -195,10 +196,11 @@ public class BillFragment extends BaseFragment implements BillContract.DayIncome
         }
     }
 
-    @OnClick({R.id.r_income, R.id.h_income})
+    @OnClick({R.id.r_income, R.id.h_income,})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.r_income:
+                RdIncomeActivity.start(getActivity());
                 break;
             case R.id.h_income:
                 HistoryIncomeActivity.start(getActivity());
