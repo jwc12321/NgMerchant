@@ -10,6 +10,8 @@ import com.google.gson.annotations.SerializedName;
 public class PersionInfoResponse {
     @SerializedName("id")
     private String id;
+    @SerializedName("tel")
+    private String tel;
     @SerializedName("password")
     private String password;
     @SerializedName("name")
@@ -80,5 +82,13 @@ public class PersionInfoResponse {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 }

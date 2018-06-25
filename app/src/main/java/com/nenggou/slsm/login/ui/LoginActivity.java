@@ -17,9 +17,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.nenggou.slsm.BaseActivity;
 import com.nenggou.slsm.R;
 import com.nenggou.slsm.common.unit.AccountUtils;
+import com.nenggou.slsm.common.unit.PersionAppPreferences;
 import com.nenggou.slsm.common.unit.TokenManager;
 import com.nenggou.slsm.common.widget.ColdDownButton;
 import com.nenggou.slsm.data.entity.PersionInfoResponse;
@@ -42,8 +44,6 @@ import butterknife.OnTextChanged;
 
 public class LoginActivity extends BaseActivity implements LoginContract.LoginView, ColdDownButton.OnResetListener {
 
-    @Inject
-    LoginPresenter loginPresenter;
     @BindView(R.id.login_password)
     TextView loginPassword;
     @BindView(R.id.login_vcode)
@@ -73,6 +73,12 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     @BindView(R.id.register)
     TextView register;
 
+
+    @Inject
+    LoginPresenter loginPresenter;
+
+    private PersionAppPreferences persionAppPreferences;
+
     private String userPhoneNumber;
     private String userPassword;
     private String userVcode;
@@ -93,6 +99,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     }
 
     private void initView() {
+        persionAppPreferences = new PersionAppPreferences(this);
         sendVcode.setOnResetListener(this);
     }
 
@@ -119,6 +126,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     @Override
     public void loginSuccess(PersionInfoResponse persionInfoResponse) {
         TokenManager.saveToken(persionInfoResponse.getToken());
+        Gson gson = new Gson();
+        String persionInfoResponseStr = gson.toJson(persionInfoResponse);
+        persionAppPreferences.setPersionInfo(persionInfoResponseStr);
         MainFrameActivity.start(this);
     }
 

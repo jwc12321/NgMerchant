@@ -118,6 +118,16 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".feedback.ui.FeedBackActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".setting.ui.SettingActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".setting.ui.BusinessImActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".setting.ui.ModifyPasswordActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".setting.ui.ShiftHandsetActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".webview.ui.WebViewActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

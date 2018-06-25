@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backGround1"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/title_rel"
+        style="@style/title_rl_style">
+
+        <ImageView
+            android:id="@+id/back"
+            style="@style/title_left_back_style" />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/title_text_style"
+            android:text="@string/shift_handset" />
+    </RelativeLayout>
+
+    <com.nenggou.slsm.common.widget.ReboundScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadingEdge="none"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/first"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="27dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_forty_four_margin"
+                    android:background="@color/appText1">
+
+                    <EditText
+                        android:id="@+id/photo_number_et"
+                        style="@style/phone_number_et_style"
+                        android:layout_toLeftOf="@+id/view"
+                        android:hint="@string/input_phone_number" />
+
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="1dp"
+                        android:layout_height="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/send_auth_code"
+                        android:background="@color/appText5" />
+
+                    <com.nenggou.slsm.common.widget.ColdDownButton
+                        android:id="@+id/send_auth_code"
+                        android:layout_width="@dimen/common_eighty_margin"
+                        android:layout_height="@dimen/common_thirty_margin"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/common_twelve_margin"
+                        android:background="@color/appText1"
+                        android:gravity="center"
+                        android:text="@string/button_send_auth_code"
+                        android:textColor="@color/appText3"
+                        android:textSize="13sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_forty_four_margin"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/appText1">
+
+                    <EditText
+                        android:id="@+id/phone_code_et"
+                        style="@style/password_et_style"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/common_twelve_margin"
+                        android:hint="@string/input_sms_verificationcode"
+                        android:textColorHint="@color/appText6" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/confirm_bt"
+                style="@style/next_bt_style"
+                android:layout_marginTop="@dimen/common_thirty_eight_margin"
+                android:enabled="true"
+                android:text="验证" />
+        </LinearLayout>
+    </com.nenggou.slsm.common.widget.ReboundScrollView>
+</LinearLayout>

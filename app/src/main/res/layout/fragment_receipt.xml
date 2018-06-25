@@ -9,12 +9,10 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="506dp"
         android:layout_gravity="bottom"
         android:clipToPadding="false"
         android:overScrollMode="never"
-        android:paddingTop="@dimen/common_sixty_margin"
-        android:paddingBottom="@dimen/common_sixty_margin"
         android:paddingEnd="@dimen/common_thirty_margin"
         android:paddingLeft="@dimen/common_thirty_margin"
         android:paddingRight="@dimen/common_thirty_margin"

@@ -95,4 +95,24 @@
 
     <!--能量-->
     <string name="energy_explain">能量说明</string>
+
+    <!--设置-->
+    <string name="setting">设置</string>
+    <string name="shift_handset">换绑手机</string>
+    <string name="business_im">商户信息</string>
+    <string name="modify_password">修改密码</string>
+    <string name="contact_us">联系我们</string>
+    <string name="new_version_detection">新版本检测</string>
+    <string name="login_out">退出当前账号</string>
+    <string name="head_phone">头像</string>
+    <string name="business_name">商户名称</string>
+    <string name="service_type">服务类型</string>
+    <string name="ut_date">承办日期</string>
+    <string name="old_password">原密码</string>
+    <string name="new_password">新密码</string>
+    <string name="confirm_password">确认密码</string>
+    <string name="password_number_limit">至少使用字母,数字和符号两种及以上的组合，6～32个字符</string>
+    <string name="input_phone_number">请输入手机号</string>
+    <string name="button_send_auth_code">发送验证码</string>
+    <string name="input_sms_verificationcode">请输入手机验证码</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.nenggou.slsm.data.remote;
 
 
+import com.nenggou.slsm.data.RemoteDataException;
 import com.nenggou.slsm.data.RemoteDataWrapper;
 import com.nenggou.slsm.data.entity.AddbankcardInfo;
 import com.nenggou.slsm.data.entity.AllEvaluationInfo;
@@ -16,27 +17,36 @@ import com.nenggou.slsm.data.entity.IncomeDetailInfo;
 import com.nenggou.slsm.data.entity.IntercourseRecordInfo;
 import com.nenggou.slsm.data.entity.PersionInfoResponse;
 import com.nenggou.slsm.data.request.AddbankcardRequest;
+import com.nenggou.slsm.data.request.AvatarRequest;
 import com.nenggou.slsm.data.request.BillIdRequest;
 import com.nenggou.slsm.data.request.CashDetailListRequest;
+import com.nenggou.slsm.data.request.CheckCodeRequest;
+import com.nenggou.slsm.data.request.CheckNewCodeRequest;
 import com.nenggou.slsm.data.request.DayIncomeRequest;
 import com.nenggou.slsm.data.request.EnergyRequest;
 import com.nenggou.slsm.data.request.FeedbackRequest;
 import com.nenggou.slsm.data.request.HistoryIncomeRequest;
 import com.nenggou.slsm.data.request.IntercourseRecordRequest;
+import com.nenggou.slsm.data.request.ModifyPasswordRequest;
 import com.nenggou.slsm.data.request.PageRequest;
 import com.nenggou.slsm.data.request.PasswordLoginRequest;
 import com.nenggou.slsm.data.request.PutForwardRequest;
 import com.nenggou.slsm.data.request.RdIncomeRequest;
 import com.nenggou.slsm.data.request.SendCodeRequest;
+import com.nenggou.slsm.data.request.SendNewVCodeRequest;
 import com.nenggou.slsm.data.request.StoreIdPageRequest;
 import com.nenggou.slsm.data.request.TokenRequest;
 
 import java.util.List;
+import java.util.Map;
 
 import dagger.Provides;
 import io.reactivex.Flowable;
+import okhttp3.RequestBody;
 import retrofit2.http.Body;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PartMap;
 
 /**
  * Created by Administrator on 2017/12/27.
@@ -111,4 +121,26 @@ public interface RestApiService {
     //提现
     @POST("home/business/atm")
     Flowable<RemoteDataWrapper<Ignore>> putForward(@Body PutForwardRequest putForwardRequest);
+
+    /**
+     * 修改头像
+     */
+    @POST("home/business/avatar")
+    Flowable<RemoteDataWrapper<Ignore>> changeAvatar(@Body AvatarRequest avatarRequest);
+
+    //上传图片(阿里云图片上传)
+    @Multipart
+    @POST("home/index/uploadFile")
+    Flowable<RemoteDataWrapper<String>> uploadFile(@PartMap Map<String, RequestBody> multipartParams);
+
+    //修改密码
+    @POST("home/business/appchangepwd")
+    Flowable<RemoteDataWrapper<Ignore>> modifyPw(@Body ModifyPasswordRequest modifyPasswordRequest);
+
+    //验证验证码
+    @POST("home/login/checkCode")
+    Flowable<RemoteDataWrapper<Ignore>> checkCode(@Body CheckCodeRequest checkCodeRequest);
+    //修改手机号
+    @POST("home/business/appchangePhone")
+    Flowable<RemoteDataWrapper<Ignore>> checkNewCode(@Body CheckNewCodeRequest checkNewCodeRequest);
 }

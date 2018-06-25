@@ -37,5 +37,15 @@ public class StaticData {
     public static final String CASH_TYPE="cashType";
     //能提现的金额
     public static final String AMOUNT_CASH="amountCash";
+    //存储的sharedPreferences的key
+    public static final String PERSION_SPF_M_NAME="persionspfMName";
+    //个人信息
+    public static String M_PERSION_INFO="mPersionInfo";
+    //手机号
+    public static String PHONE_NUMBER="phoneNumber";
+    //向webview传递数据
+    public static final String WEBVIEW_DETAILINFO="webViewDetailInfo";
+    //webview回调
+    public static final int CALLBACK_DATA=101;
 
 }
