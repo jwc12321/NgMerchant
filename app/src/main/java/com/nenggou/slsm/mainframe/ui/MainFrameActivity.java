@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.nenggou.slsm.BaseActivity;
 import com.nenggou.slsm.BaseFragment;
 import com.nenggou.slsm.R;
@@ -19,6 +18,7 @@ import com.nenggou.slsm.mainframe.adapter.MainPagerAdapter;
 import com.nenggou.slsm.mine.ui.PersonalCenterFragment;
 import com.nenggou.slsm.receipt.ui.ReceiptFragment;
 
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
  * Created by JWC on 2018/6/19.
  */
 
-public class MainFrameActivity extends BaseActivity {
+public class MainFrameActivity extends BaseActivity{
 
     @BindView(R.id.receipt_iv)
     ImageView receiptIv;

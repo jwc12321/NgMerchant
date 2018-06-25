@@ -2,6 +2,7 @@ package com.nenggou.slsm.receipt;
 
 import com.nenggou.slsm.ActivityScope;
 import com.nenggou.slsm.ApplicationComponent;
+import com.nenggou.slsm.receipt.ui.QrCodeScanActivity;
 import com.nenggou.slsm.receipt.ui.ReceiptFragment;
 
 import dagger.Component;
@@ -13,4 +14,5 @@ import dagger.Component;
 @Component(dependencies = ApplicationComponent.class, modules = {ReceiptModule.class})
 public interface ReceiptComponent {
     void inject(ReceiptFragment receiptFragment);
+    void inject(QrCodeScanActivity qrCodeScanActivity);
 }

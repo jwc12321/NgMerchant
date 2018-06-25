@@ -87,6 +87,7 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
     TextView cashIncome;
     TextView energyIncome;
     RelativeLayout itemEvaluate;
+    ImageView scanIv;
 
     private void bind(final AppstoreInfo appstoreInfo, View view) {
         shopName = view.findViewById(R.id.shop_name);
@@ -96,6 +97,7 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
         cashIncome = view.findViewById(R.id.cash_income);
         energyIncome = view.findViewById(R.id.energy_income);
         itemEvaluate = view.findViewById(R.id.item_evaluate);
+        scanIv=view.findViewById(R.id.scan_iv);
         shopName.setText(appstoreInfo.getTitle());
         if (appstoreInfo.getShouru() != null) {
             cashIncome.setText("¥ " + appstoreInfo.getShouru().getAllmoney());
@@ -130,6 +132,14 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
                 }
             }
         });
+        scanIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(itemClickListener!=null){
+                    itemClickListener.goScan(appstoreInfo.getId());
+                }
+            }
+        });
     }
 
     @Override
@@ -141,6 +151,8 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
         void goMonthIncome(String storeid);
 
         void goBuyerEvaluate(String storeid);
+
+        void goScan(String storeid);
     }
 
     private ItemClickListener itemClickListener;

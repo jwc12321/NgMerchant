@@ -39,6 +39,8 @@ public class StaticData {
     public static final String AMOUNT_CASH="amountCash";
     //存储的sharedPreferences的key
     public static final String PERSION_SPF_M_NAME="persionspfMName";
+    //存储的sharedPreferences的key
+    public static final String PERSION_NENG_M="spfMengM";
     //个人信息
     public static String M_PERSION_INFO="mPersionInfo";
     //手机号
@@ -49,5 +51,7 @@ public class StaticData {
     public static final int CALLBACK_DATA=101;
     //手机验证码
     public static final String PHONE_CODE="phoneCode";
+    //第一次提醒更新
+    public static final String TO_UPDATE="toUpdate";
 
 }

@@ -9,6 +9,7 @@ import com.nenggou.slsm.data.entity.BankCardInfo;
 import com.nenggou.slsm.data.entity.BillInfo;
 import com.nenggou.slsm.data.entity.CashDate;
 import com.nenggou.slsm.data.entity.CashInfo;
+import com.nenggou.slsm.data.entity.ChangeAppInfo;
 import com.nenggou.slsm.data.entity.EnergyInfo;
 import com.nenggou.slsm.data.entity.HistoryIncomInfo;
 import com.nenggou.slsm.data.entity.Ignore;
@@ -23,6 +24,7 @@ import com.nenggou.slsm.data.request.CheckCodeRequest;
 import com.nenggou.slsm.data.request.CheckNewCodeRequest;
 import com.nenggou.slsm.data.request.CodeLoginRequest;
 import com.nenggou.slsm.data.request.DayIncomeRequest;
+import com.nenggou.slsm.data.request.DetectionVersionRequest;
 import com.nenggou.slsm.data.request.EnergyRequest;
 import com.nenggou.slsm.data.request.FeedbackRequest;
 import com.nenggou.slsm.data.request.HistoryIncomeRequest;
@@ -35,6 +37,7 @@ import com.nenggou.slsm.data.request.RdIncomeRequest;
 import com.nenggou.slsm.data.request.SendCodeRequest;
 import com.nenggou.slsm.data.request.SetPasswordRequest;
 import com.nenggou.slsm.data.request.StoreIdPageRequest;
+import com.nenggou.slsm.data.request.TextRequest;
 import com.nenggou.slsm.data.request.TokenRequest;
 
 import java.util.List;
@@ -64,6 +67,7 @@ public interface RestApiService {
     //验证码登录
     @POST("home/business/apploginbycode")
     Flowable<RemoteDataWrapper<PersionInfoResponse>> codeLogin(@Body CodeLoginRequest codeLoginRequest);
+
     //店铺列表
     @POST("home/business/appstorelist")
     Flowable<RemoteDataWrapper<List<AppstoreInfo>>> getAppstoreInfos(@Body TokenRequest tokenRequest);
@@ -142,10 +146,19 @@ public interface RestApiService {
     //验证验证码
     @POST("home/login/checkCode")
     Flowable<RemoteDataWrapper<Ignore>> checkCode(@Body CheckCodeRequest checkCodeRequest);
+
     //修改手机号
     @POST("home/business/appchangePhone")
     Flowable<RemoteDataWrapper<Ignore>> checkNewCode(@Body CheckNewCodeRequest checkNewCodeRequest);
+
     //忘记密码
     @POST("home/business/forgetPwd")
     Flowable<RemoteDataWrapper<Ignore>> setPassword(@Body SetPasswordRequest setPasswordRequest);
+    //扫描
+    @POST("home/scancode")
+    Flowable<RemoteDataWrapper<String>> uploadQrText(@Body TextRequest textRequest);
+    //版本检测
+    @POST("home/changeApp")
+    Flowable<RemoteDataWrapper<ChangeAppInfo>> changeApp(@Body DetectionVersionRequest detectionVersionRequest);
+
 }

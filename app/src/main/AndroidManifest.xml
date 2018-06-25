@@ -64,6 +64,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name=".common.unit.DownloadService"/>
         <activity
             android:name=".login.ui.LoginActivity"
             android:launchMode="singleTop"
@@ -131,6 +132,8 @@
         <activity android:name=".login.ui.ForgetPasswordActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".login.ui.SetPasswordActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".receipt.ui.QrCodeScanActivity"
             android:screenOrientation="portrait"/>
     </application>
 

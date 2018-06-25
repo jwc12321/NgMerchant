@@ -2,8 +2,10 @@ package com.nenggou.slsm.receipt.presenter;
 
 import com.nenggou.slsm.data.RxSchedulerTransformer;
 import com.nenggou.slsm.data.entity.AppstoreInfo;
+import com.nenggou.slsm.data.entity.ChangeAppInfo;
 import com.nenggou.slsm.data.remote.RestApiService;
 import com.nenggou.slsm.data.remote.RxRemoteDataParse;
+import com.nenggou.slsm.data.request.DetectionVersionRequest;
 import com.nenggou.slsm.data.request.TokenRequest;
 import com.nenggou.slsm.receipt.ReceiptContract;
 
@@ -72,6 +74,26 @@ public class ReceiptPresenter implements ReceiptContract.ReceiptPresenter {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         receiptView.dismissLoading();
+                        receiptView.showError(throwable);
+                    }
+                });
+        mDisposableList.add(disposable);
+    }
+
+    @Override
+    public void detectionVersion(String edition, String type) {
+        DetectionVersionRequest detectionVersionRequest=new DetectionVersionRequest(edition,type);
+        Disposable disposable=restApiService.changeApp(detectionVersionRequest)
+                .flatMap(new RxRemoteDataParse<ChangeAppInfo>())
+                .compose(new RxSchedulerTransformer<ChangeAppInfo>())
+                .subscribe(new Consumer<ChangeAppInfo>() {
+                    @Override
+                    public void accept(ChangeAppInfo changeAppInfo) throws Exception {
+                        receiptView.detectionSuccess(changeAppInfo);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
                         receiptView.showError(throwable);
                     }
                 });

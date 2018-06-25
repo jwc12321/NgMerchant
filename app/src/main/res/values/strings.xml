@@ -22,6 +22,7 @@
     <string name="receipt">收款</string>
     <string name="bill">账单</string>
     <string name="mine">我的</string>
+    <string name="scan_qr_code">扫描二维码</string>
 
     <!--收款-->
     <string name="switch_mode">切换</string>

@@ -15,8 +15,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/common_twenty_seven_margin">
+            android:layout_height="@dimen/common_seventy_margin">
 
             <TextView
                 android:id="@+id/shop_name"
@@ -25,8 +24,17 @@
                 android:layout_centerInParent="true"
                 android:textColor="@color/appText5"
                 android:textSize="18sp"
-                tools:text="齐市兰花" />
-
+                tools:text="起始兰花" />
+            <ImageView
+                android:id="@+id/scan_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/common_fifty_margin"
+                android:layout_toRightOf="@id/shop_name"
+                android:paddingLeft="@dimen/common_fifteen_margin"
+                android:paddingRight="@dimen/common_fifteen_margin"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/home_sweep"
+                android:scaleType="fitCenter"/>
             <Button
                 android:id="@+id/switch_bt"
                 android:layout_width="@dimen/common_forty_three_margin"
@@ -46,7 +54,6 @@
             android:layout_width="@dimen/common_two_hundred_margin"
             android:layout_height="@dimen/common_two_hundred_margin"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/common_twenty_six_margin"
             android:adjustViewBounds="true"
             android:background="@drawable/qr_code_bg"
             android:padding="1dp" />
