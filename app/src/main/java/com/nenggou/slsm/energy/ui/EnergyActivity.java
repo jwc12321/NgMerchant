@@ -20,6 +20,8 @@ import com.nenggou.slsm.R;
 import com.nenggou.slsm.bankcard.ui.PutForwardActivity;
 import com.nenggou.slsm.common.widget.dialog.CommonDialog;
 import com.nenggou.slsm.common.widget.list.BaseListAdapter;
+import com.nenggou.slsm.data.entity.WebViewDetailInfo;
+import com.nenggou.slsm.webview.ui.WebViewActivity;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -65,6 +67,7 @@ public class EnergyActivity extends BaseActivity implements InEnergyFragment.InB
     private BigDecimal percentageDecimal;//能量兑换比是200，要除以100才行
     private BigDecimal offsetCashDecimal;//能抵用的现金金额
     private String content;
+    private WebViewDetailInfo webViewDetailInfo;
 
     public static void start(Context context) {
         Intent intent = new Intent(context, EnergyActivity.class);
@@ -118,7 +121,7 @@ public class EnergyActivity extends BaseActivity implements InEnergyFragment.InB
         energyNumber.setText("当前" + sum + "个能量");
     }
 
-    @OnClick({R.id.back, R.id.energy_purforward})
+    @OnClick({R.id.back, R.id.energy_purforward,R.id.explain})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
@@ -126,6 +129,12 @@ public class EnergyActivity extends BaseActivity implements InEnergyFragment.InB
                 break;
             case R.id.energy_purforward:
                 goPutFroward();
+                break;
+            case R.id.explain:
+                webViewDetailInfo = new WebViewDetailInfo();
+                webViewDetailInfo.setTitle("能量明细");
+                webViewDetailInfo.setUrl("https://open.365neng.com/api/home/power/powerInfo");
+                WebViewActivity.start(this, webViewDetailInfo);
                 break;
             default:
         }
