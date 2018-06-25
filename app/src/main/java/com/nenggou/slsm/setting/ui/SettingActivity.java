@@ -14,12 +14,16 @@ import android.widget.TextView;
 import com.nenggou.slsm.BaseActivity;
 import com.nenggou.slsm.R;
 import com.nenggou.slsm.common.StaticData;
+import com.nenggou.slsm.common.unit.PersionAppPreferences;
+import com.nenggou.slsm.common.unit.TokenManager;
 import com.nenggou.slsm.data.entity.WebViewDetailInfo;
+import com.nenggou.slsm.login.ui.LoginActivity;
 import com.nenggou.slsm.webview.ui.WebViewActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * Created by JWC on 2018/6/25.
@@ -48,6 +52,7 @@ public class SettingActivity extends BaseActivity {
     RelativeLayout itemBusinessIm;
 
     private String phoneNumber;
+    private PersionAppPreferences persionAppPreferences;
 
     private WebViewDetailInfo webViewDetailInfo;
     public static void start(Context context,String phoneNumber) {
@@ -65,6 +70,7 @@ public class SettingActivity extends BaseActivity {
     }
 
     private void initView() {
+        persionAppPreferences = new PersionAppPreferences(this);
         phoneNumber=getIntent().getStringExtra(StaticData.PHONE_NUMBER);
     }
 
@@ -97,6 +103,10 @@ public class SettingActivity extends BaseActivity {
             case R.id.item_new_version_detection://版本检测
                 break;
             case R.id.login_out://登出
+                persionAppPreferences.clean();
+                TokenManager.saveToken("");
+                LoginActivity.start(this);
+                finish();
                 break;
             default:
         }

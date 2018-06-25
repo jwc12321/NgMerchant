@@ -12,27 +12,38 @@ import com.nenggou.slsm.data.entity.PersionInfoResponse;
 public interface LoginContract {
 
     interface LoginPresenter extends BasePresenter {
-       void passwordLogin(String tel, String password);
-       void sendCode(String tel, String dostr);
-       void phoneLogin(String tel, String code);
-       void registerPassword(String tel, String password, String address, String type, String storeid, String code);
-       void checkCode(String tel, String code, String type);
-       void changepwd(String tel, String password, String type);
+        void passwordLogin(String tel, String password);
+
+        void sendCode(String tel, String dostr);
+
+        void codeLogin(String tel, String code);
     }
 
     interface LoginView extends BaseView<LoginPresenter> {
         void loginSuccess(PersionInfoResponse persionInfoResponse);
+
         void codeSuccess();
-        void checkCodeSuccess();
-        void setPasswordSuccess();
-    }
-    interface RetrievePassWordPresenter extends BasePresenter {
-        void sendCaptcha(String phone);
     }
 
-    interface RetrievePassWordView extends BaseView<RetrievePassWordPresenter> {
-        void onCaptchaSend();
+    interface ForgetPasswordPresenter extends BasePresenter {
+        void sendVcode(String tel, String dostr);
 
-        void notRegister();
+        void checkVcode(String tel, String code, String type);
+
+    }
+
+    interface ForgetPasswrodView extends BaseView<ForgetPasswordPresenter> {
+        void vcodeSuccess();
+
+        void checkVcodeSuccess();
+
+    }
+
+    interface SetPasswordPresenter extends BasePresenter {
+        void setPassword(String tel, String code, String newpwd);
+    }
+
+    interface SetPasswordVeiw extends BaseView<SetPasswordPresenter> {
+        void setPasswroeSuccess();
     }
 }

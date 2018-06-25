@@ -5,6 +5,7 @@ import com.nenggou.slsm.data.entity.Ignore;
 import com.nenggou.slsm.data.entity.PersionInfoResponse;
 import com.nenggou.slsm.data.remote.RestApiService;
 import com.nenggou.slsm.data.remote.RxRemoteDataParse;
+import com.nenggou.slsm.data.request.CodeLoginRequest;
 import com.nenggou.slsm.data.request.PasswordLoginRequest;
 import com.nenggou.slsm.data.request.SendCodeRequest;
 import com.nenggou.slsm.login.LoginContract;
@@ -100,36 +101,27 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
      * @param code
      */
     @Override
-    public void phoneLogin(String tel, String code) {
+    public void codeLogin(String tel, String code) {
+        loginView.showLoading();
+        CodeLoginRequest codeLoginRequest=new CodeLoginRequest(tel,code);
+        Disposable disposable=restApiService.codeLogin(codeLoginRequest)
+                .flatMap(new RxRemoteDataParse<PersionInfoResponse>())
+                .compose(new RxSchedulerTransformer<PersionInfoResponse>())
+                .subscribe(new Consumer<PersionInfoResponse>() {
+                    @Override
+                    public void accept(PersionInfoResponse persionInfoResponse) throws Exception {
+                        loginView.dismissLoading();
+                        loginView.loginSuccess(persionInfoResponse);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        loginView.dismissLoading();
+                        loginView.showError(throwable);
+                    }
+                });
+        mDisposableList.add(disposable);
     }
-
-    /**
-     * 注册和修改密码
-     *
-     * @param tel
-     * @param password
-     * @param address
-     * @param type     register(注册)/changepwd(修改密码)
-     */
-    @Override
-    public void registerPassword(String tel, String password, String address, String type, String storeid, String code) {
-    }
-
-    /**
-     * 验证验证码
-     *
-     * @param tel
-     * @param code
-     * @param type
-     */
-    @Override
-    public void checkCode(String tel, String code, String type) {
-    }
-
-    @Override
-    public void changepwd(String tel, String password, String type) {
-    }
-
 
     @Override
     public void start() {

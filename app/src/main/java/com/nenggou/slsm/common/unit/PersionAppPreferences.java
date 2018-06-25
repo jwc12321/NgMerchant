@@ -27,5 +27,9 @@ public class PersionAppPreferences {
     public String getPersionInfo() {
         return sharedPreferences.getString(StaticData.M_PERSION_INFO, "");
     }
-
+    public void clean(){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.commit();
+    }
 }

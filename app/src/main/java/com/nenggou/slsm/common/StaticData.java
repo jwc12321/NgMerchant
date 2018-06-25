@@ -47,5 +47,7 @@ public class StaticData {
     public static final String WEBVIEW_DETAILINFO="webViewDetailInfo";
     //webview回调
     public static final int CALLBACK_DATA=101;
+    //手机验证码
+    public static final String PHONE_CODE="phoneCode";
 
 }

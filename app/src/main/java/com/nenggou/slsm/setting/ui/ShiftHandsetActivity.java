@@ -89,8 +89,7 @@ public class ShiftHandsetActivity extends BaseActivity implements SettingContrac
     }
 
     private void initView() {
-        phoneNumberStr = getIntent().getStringExtra(StaticData.PHONE_NUMBER);
-        phoneNumberStr = "18758302924";
+        phoneNumberStr = getIntent().getStringExtra(StaticData.PHONE_NUMBER);;
         typeWhat = "1";
         photoNumberEt.setText(phoneNumberStr);
         sendAuthCode.startCold();

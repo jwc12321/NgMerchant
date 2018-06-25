@@ -9,20 +9,34 @@ import dagger.Provides;
 @Module
 public class LoginModule {
     private LoginContract.LoginView loginView;
-    private LoginContract.RetrievePassWordView retrievePassWordView;
-    public LoginModule(LoginContract.LoginView loginView){
-        this.loginView=loginView;
+    private LoginContract.ForgetPasswrodView forgetPasswrodView;
+    private LoginContract.SetPasswordVeiw setPasswordVeiw;
+
+
+    public LoginModule(LoginContract.LoginView loginView) {
+        this.loginView = loginView;
     }
-    public LoginModule(LoginContract.RetrievePassWordView retrievePassWordView) {
-        this.retrievePassWordView = retrievePassWordView;
+
+    public LoginModule(LoginContract.ForgetPasswrodView forgetPasswrodView) {
+        this.forgetPasswrodView = forgetPasswrodView;
+    }
+
+    public LoginModule(LoginContract.SetPasswordVeiw setPasswordVeiw) {
+        this.setPasswordVeiw = setPasswordVeiw;
     }
 
     @Provides
-    LoginContract.LoginView provideLoginView(){
+    LoginContract.LoginView provideLoginView() {
         return loginView;
     }
+
     @Provides
-    LoginContract.RetrievePassWordView provideLoginContractRetrievePassWordView() {
-        return retrievePassWordView;
+    LoginContract.ForgetPasswrodView provideForgetPasswrodView(){
+        return forgetPasswrodView;
+    }
+
+    @Provides
+    LoginContract.SetPasswordVeiw provideSetPasswordVeiw(){
+        return setPasswordVeiw;
     }
 }

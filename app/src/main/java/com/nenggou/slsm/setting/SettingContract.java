@@ -10,19 +10,21 @@ import com.nenggou.slsm.BaseView;
 public interface SettingContract {
     interface ChangeAvatarPresenter extends BasePresenter {
         void uploadFile(String photoUrl);
+
         void changeAvata(String avatar);
     }
 
     interface ChangeAvatarView extends BaseView<ChangeAvatarPresenter> {
         void uploadFileSuccess(String photoUrl);
+
         void changeAvataSuccess();
     }
 
-    interface ModifyPasswordPresenter extends BasePresenter{
+    interface ModifyPasswordPresenter extends BasePresenter {
         void modifyPassword(String newpwd, String old, String code, String tel);
     }
 
-    interface ModifyPasswordView extends BaseView<ModifyPasswordPresenter>{
+    interface ModifyPasswordView extends BaseView<ModifyPasswordPresenter> {
         void modifyPasswordSuccess();
     }
 
@@ -41,4 +43,5 @@ public interface SettingContract {
 
         void checkNewCodeSuccess();
     }
+
 }

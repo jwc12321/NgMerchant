@@ -29,7 +29,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -109,7 +108,8 @@
 
                 <RelativeLayout
                     android:id="@+id/item_new_version_detection"
-                    style="@style/persion_item_fl_style">
+                    style="@style/persion_item_fl_style"
+                    android:visibility="gone">
 
                     <TextView
                         style="@style/setting_item_text_style"

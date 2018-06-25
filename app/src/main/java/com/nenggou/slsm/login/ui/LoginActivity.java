@@ -137,17 +137,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
         showMessage(getString(R.string.login_auth_code_sent));
     }
 
-    @Override
-    public void checkCodeSuccess() {
 
-    }
-
-    @Override
-    public void setPasswordSuccess() {
-
-    }
-
-    @OnClick({R.id.login_password, R.id.login_vcode, R.id.login_in, R.id.send_vcode})
+    @OnClick({R.id.login_password, R.id.login_vcode, R.id.login_in, R.id.send_vcode,R.id.forget_password})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.login_password:
@@ -166,11 +157,14 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
                 if (TextUtils.equals("1", loginType)) {
                     loginPresenter.passwordLogin(userPhoneNumber, userPassword);
                 } else {
-
+                    loginPresenter.codeLogin(userPhoneNumber,userVcode);
                 }
                 break;
             case R.id.send_vcode:
                 sendCode();
+                break;
+            case R.id.forget_password:
+                ForgetPasswordActivity.start(this);
                 break;
             default:
         }
@@ -197,6 +191,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
         userPhoneNumber = phoneNumberEt.getText().toString().trim();
         userPassword = passwordEt.getText().toString().trim();
         userVcode = vcodeEt.getText().toString().trim();
+        sendVcode.setEnabled(!TextUtils.isEmpty(userPhoneNumber) && AccountUtils.isAccountValid(userPhoneNumber));
         if (TextUtils.equals("1", loginType)) {
             loginIn.setEnabled(!(TextUtils.isEmpty(userPhoneNumber) || TextUtils.isEmpty(userPassword)));
         } else {

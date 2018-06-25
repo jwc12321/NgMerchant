@@ -49,6 +49,9 @@
     <string name="invalid_phone_input">请输入正确的手机号</string>
     <string name="empty_phone">请输入手机号</string>
     <string name="login_auth_code_sent">验证码已发送至您的手机,请注意查收</string>
+    <string name="fg_password">忘记密码</string>
+    <string name="set_password">设置密码</string>
+    <string name="set_password_explain">请输入6-16位新密码</string>
 
     <!--账单-->
     <string name="account_detail">账单详情</string>

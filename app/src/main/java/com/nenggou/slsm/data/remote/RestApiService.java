@@ -1,7 +1,6 @@
 package com.nenggou.slsm.data.remote;
 
 
-import com.nenggou.slsm.data.RemoteDataException;
 import com.nenggou.slsm.data.RemoteDataWrapper;
 import com.nenggou.slsm.data.entity.AddbankcardInfo;
 import com.nenggou.slsm.data.entity.AllEvaluationInfo;
@@ -22,6 +21,7 @@ import com.nenggou.slsm.data.request.BillIdRequest;
 import com.nenggou.slsm.data.request.CashDetailListRequest;
 import com.nenggou.slsm.data.request.CheckCodeRequest;
 import com.nenggou.slsm.data.request.CheckNewCodeRequest;
+import com.nenggou.slsm.data.request.CodeLoginRequest;
 import com.nenggou.slsm.data.request.DayIncomeRequest;
 import com.nenggou.slsm.data.request.EnergyRequest;
 import com.nenggou.slsm.data.request.FeedbackRequest;
@@ -33,14 +33,13 @@ import com.nenggou.slsm.data.request.PasswordLoginRequest;
 import com.nenggou.slsm.data.request.PutForwardRequest;
 import com.nenggou.slsm.data.request.RdIncomeRequest;
 import com.nenggou.slsm.data.request.SendCodeRequest;
-import com.nenggou.slsm.data.request.SendNewVCodeRequest;
+import com.nenggou.slsm.data.request.SetPasswordRequest;
 import com.nenggou.slsm.data.request.StoreIdPageRequest;
 import com.nenggou.slsm.data.request.TokenRequest;
 
 import java.util.List;
 import java.util.Map;
 
-import dagger.Provides;
 import io.reactivex.Flowable;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
@@ -62,6 +61,9 @@ public interface RestApiService {
     @POST("home/login/sendcode")
     Flowable<RemoteDataWrapper<Ignore>> sendCode(@Body SendCodeRequest sendCodeRequest);
 
+    //验证码登录
+    @POST("home/business/apploginbycode")
+    Flowable<RemoteDataWrapper<PersionInfoResponse>> codeLogin(@Body CodeLoginRequest codeLoginRequest);
     //店铺列表
     @POST("home/business/appstorelist")
     Flowable<RemoteDataWrapper<List<AppstoreInfo>>> getAppstoreInfos(@Body TokenRequest tokenRequest);
@@ -143,4 +145,7 @@ public interface RestApiService {
     //修改手机号
     @POST("home/business/appchangePhone")
     Flowable<RemoteDataWrapper<Ignore>> checkNewCode(@Body CheckNewCodeRequest checkNewCodeRequest);
+    //忘记密码
+    @POST("home/business/forgetPwd")
+    Flowable<RemoteDataWrapper<Ignore>> setPassword(@Body SetPasswordRequest setPasswordRequest);
 }
