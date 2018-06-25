@@ -11,6 +11,7 @@ import dagger.Provides;
 public class BankCardModule {
     private BankCardContract.BankCardListView bankCardListView;
     private BankCardContract.AddbankcardView addbankcardView;
+    private BankCardContract.PutForwardView putForwardView;
 
     public BankCardModule(BankCardContract.BankCardListView bankCardListView) {
         this.bankCardListView = bankCardListView;
@@ -20,6 +21,10 @@ public class BankCardModule {
         this.addbankcardView = addbankcardView;
     }
 
+    public BankCardModule(BankCardContract.PutForwardView putForwardView) {
+        this.putForwardView = putForwardView;
+    }
+
     @Provides
     BankCardContract.BankCardListView provideBankCardListView(){
         return bankCardListView;
@@ -27,5 +32,10 @@ public class BankCardModule {
     @Provides
     BankCardContract.AddbankcardView provideAddbankcardView(){
         return addbankcardView;
+    }
+
+    @Provides
+    BankCardContract.PutForwardView providePutForwardView(){
+        return putForwardView;
     }
 }

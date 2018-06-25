@@ -25,6 +25,7 @@ import com.nenggou.slsm.data.request.HistoryIncomeRequest;
 import com.nenggou.slsm.data.request.IntercourseRecordRequest;
 import com.nenggou.slsm.data.request.PageRequest;
 import com.nenggou.slsm.data.request.PasswordLoginRequest;
+import com.nenggou.slsm.data.request.PutForwardRequest;
 import com.nenggou.slsm.data.request.RdIncomeRequest;
 import com.nenggou.slsm.data.request.SendCodeRequest;
 import com.nenggou.slsm.data.request.StoreIdPageRequest;
@@ -106,4 +107,8 @@ public interface RestApiService {
     //意见反馈
     @POST("home/business/appfeedback")
     Flowable<RemoteDataWrapper<String>> subFeedBack(@Body FeedbackRequest feedbackRequest);
+
+    //提现
+    @POST("home/business/atm")
+    Flowable<RemoteDataWrapper<Ignore>> putForward(@Body PutForwardRequest putForwardRequest);
 }

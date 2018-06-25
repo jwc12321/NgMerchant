@@ -33,5 +33,9 @@ public class StaticData {
     public static final String BANK_NUMBER="bankNumber";
     //银行卡用户
     public static final String BANK_USER="bankUser";
+    //能量还是现金type
+    public static final String CASH_TYPE="cashType";
+    //能提现的金额
+    public static final String AMOUNT_CASH="amountCash";
 
 }

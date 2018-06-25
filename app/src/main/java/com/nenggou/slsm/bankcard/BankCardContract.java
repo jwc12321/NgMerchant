@@ -24,4 +24,12 @@ public interface BankCardContract {
     interface AddbankcardView extends BaseView<AddbankcardPresenter>{
         void addSuccess();
     }
+
+    interface PutForwardPresenter extends BasePresenter{
+        void putForward(String amount,String type,String bankid);
+    }
+
+    interface PutForwardView extends BaseView<PutForwardPresenter>{
+        void purForwardSuccess();
+    }
 }

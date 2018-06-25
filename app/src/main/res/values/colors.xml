@@ -6,6 +6,9 @@
 
     <color name="black_overlay">#66000000</color>
 
+    <!-- 用于分隔条-->
+    <color name="colorDivider">#dfdbdb</color>
+
     <!--字体颜色，也可以是边框颜色-->
     <color name="appText1">#FFFFFF</color>
     <color name="appText2">#4E4D4D</color>
