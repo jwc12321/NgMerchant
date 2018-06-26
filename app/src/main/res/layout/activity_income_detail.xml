@@ -80,6 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/common_six_margin"
+                android:text="交易成功"
                 android:textColor="@color/appText6"
                 android:textSize="13sp" />
 

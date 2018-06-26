@@ -116,6 +116,11 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
             createdAt.setText(FormatUtil.formatDateByLine(incomeDetailInfo.getCreatedAt()));
             orderNumber.setText(incomeDetailInfo.getOrderno());
             merchantOrderNumber.setText(incomeDetailInfo.getOrderno());
+            if (TextUtils.equals("1", incomeDetailInfo.getPaytype())) {
+                paymentMethod.setText("支付宝");
+            } else {
+                paymentMethod.setText("微信");
+            }
         }
     }
 

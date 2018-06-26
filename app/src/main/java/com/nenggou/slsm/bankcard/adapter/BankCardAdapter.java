@@ -78,7 +78,7 @@ public class BankCardAdapter extends RecyclerView.Adapter<BankCardAdapter.BankCa
 
         public void bindData(BankCardInfo bankCardInfo) {
             String bankFour="";
-            if (!TextUtils.isEmpty(bankCardInfo.getCardno())) {
+            if (!TextUtils.isEmpty(bankCardInfo.getCardno())&&bankCardInfo.getCardno().length()>6) {
                 String cardNo = bankCardInfo.getCardno();
                 bankFour=cardNo.substring(cardNo.length() - 4, cardNo.length());
             }

@@ -126,7 +126,16 @@ public class PutForwardActivity extends BaseActivity implements BankCardContract
                     bankCardInfo = (BankCardInfo) data.getSerializableExtra(StaticData.BANK_INFO);
                     if (bankCardInfo != null) {
                         bankId = bankCardInfo.getId();
-                        bankName.setText(bankCardInfo.getCardbank());
+                        String bankFour="";
+                        if (!TextUtils.isEmpty(bankCardInfo.getCardno())&&bankCardInfo.getCardno().length()>6) {
+                            String cardNo = bankCardInfo.getCardno();
+                            bankFour=cardNo.substring(cardNo.length() - 4, cardNo.length());
+                        }
+                        if(TextUtils.isEmpty(bankFour)){
+                            bankName.setText(bankCardInfo.getCardbank());
+                        }else {
+                            bankName.setText(bankCardInfo.getCardbank()+"("+bankFour+")");
+                        }
                     }
                     break;
                 default:
