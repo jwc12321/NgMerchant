@@ -17,7 +17,7 @@
         <TextView
             android:id="@+id/title"
             style="@style/title_text_style"
-            android:text="@string/address_tel" />
+            android:text="@string/energy" />
 
         <TextView
             android:id="@+id/explain"

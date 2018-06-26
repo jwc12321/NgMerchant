@@ -122,7 +122,7 @@ public class MainFrameActivity extends BaseActivity{
     };
     @Override
     public View getSnackBarHolderView() {
-        return null;
+        return mainRl;
     }
 
     @Override

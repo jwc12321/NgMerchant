@@ -63,6 +63,8 @@ public class HistoryIncomeActivity extends BaseActivity implements BillContract.
     GradationScrollView scrollview;
     @BindView(R.id.refreshLayout)
     HeaderViewLayout refreshLayout;
+    @BindView(R.id.date_income)
+    TextView dateIncome;
 
     private String storeid;
     private String startTime;
@@ -212,6 +214,6 @@ public class HistoryIncomeActivity extends BaseActivity implements BillContract.
 
     @Override
     public void goIncomeList(String date) {
-        IncomeListActivity.start(this,storeid,date,"2");
+        IncomeListActivity.start(this, storeid, date, "2");
     }
 }

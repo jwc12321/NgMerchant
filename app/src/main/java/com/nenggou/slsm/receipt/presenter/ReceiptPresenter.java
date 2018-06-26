@@ -1,5 +1,7 @@
 package com.nenggou.slsm.receipt.presenter;
 
+import android.text.TextUtils;
+
 import com.nenggou.slsm.data.RxSchedulerTransformer;
 import com.nenggou.slsm.data.entity.AppstoreInfo;
 import com.nenggou.slsm.data.entity.ChangeAppInfo;
@@ -58,8 +60,10 @@ public class ReceiptPresenter implements ReceiptContract.ReceiptPresenter {
     }
 
     @Override
-    public void getAppstoreInfos() {
-        receiptView.showLoading();
+    public void getAppstoreInfos(String refreshType) {
+        if (TextUtils.equals("1", refreshType)) {
+            receiptView.showLoading();
+        }
         TokenRequest tokenRequest=new TokenRequest();
         Disposable disposable=restApiService.getAppstoreInfos(tokenRequest)
                 .flatMap(new RxRemoteDataParse<List<AppstoreInfo>>())

@@ -14,7 +14,7 @@ import java.util.List;
 
 public interface ReceiptContract {
     interface ReceiptPresenter extends BasePresenter{
-        void getAppstoreInfos();
+        void getAppstoreInfos(String refreshType);
         void detectionVersion(String edition, String type);
     }
     interface ReceiptView extends BaseView<ReceiptPresenter>{

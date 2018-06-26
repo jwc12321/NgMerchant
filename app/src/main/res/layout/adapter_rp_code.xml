@@ -70,7 +70,7 @@
         <RelativeLayout
             android:id="@+id/item_income"
             style="@style/persion_item_fl_style"
-            android:layout_marginTop="@dimen/common_twenty_five_margin">
+            android:layout_marginTop="@dimen/common_thirty_five_margin">
 
             <TextView
                 android:id="@+id/income_explain"
@@ -110,7 +110,7 @@
         <RelativeLayout
             android:id="@+id/item_evaluate"
             style="@style/persion_item_fl_style"
-            android:layout_marginTop="@dimen/common_five_margin">
+            android:layout_marginTop="@dimen/common_fifteen_margin">
 
             <TextView
                 style="@style/rpcode_text_style"

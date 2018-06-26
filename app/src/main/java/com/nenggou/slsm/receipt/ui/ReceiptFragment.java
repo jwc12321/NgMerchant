@@ -1,7 +1,6 @@
 package com.nenggou.slsm.receipt.ui;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,13 +12,13 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.nenggou.slsm.BaseFragment;
 import com.nenggou.slsm.BuildConfig;
 import com.nenggou.slsm.R;
 import com.nenggou.slsm.bill.ui.MonthIncomeActivity;
+import com.nenggou.slsm.common.refreshview.HeaderViewLayout;
 import com.nenggou.slsm.common.unit.CommonAppPreferences;
 import com.nenggou.slsm.common.unit.DownloadService;
 import com.nenggou.slsm.common.unit.PermissionUtil;
@@ -30,9 +29,6 @@ import com.nenggou.slsm.data.RemoteDataException;
 import com.nenggou.slsm.data.entity.AppstoreInfo;
 import com.nenggou.slsm.data.entity.ChangeAppInfo;
 import com.nenggou.slsm.evaluate.ui.AllEvaluationActivity;
-import com.nenggou.slsm.mainframe.DaggerMainFrameComponent;
-import com.nenggou.slsm.mainframe.MainFrameModule;
-import com.nenggou.slsm.mainframe.ui.MainFrameActivity;
 import com.nenggou.slsm.receipt.DaggerReceiptComponent;
 import com.nenggou.slsm.receipt.ReceiptContract;
 import com.nenggou.slsm.receipt.ReceiptModule;
@@ -45,7 +41,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by JWC on 2018/6/19.
@@ -55,6 +50,8 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
 
     @BindView(R.id.viewPager)
     ViewPager viewPager;
+    @BindView(R.id.refreshLayout)
+    HeaderViewLayout refreshLayout;
     private CardPagerAdapter cardPagerAdapter;
     private ShadowTransformer mCardShadowTransformer;
     private ChangeAppInfo changeAppInfo;
@@ -86,7 +83,7 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootview = inflater.inflate(R.layout.fragment_receipt, container, false);
         ButterKnife.bind(this, rootview);
-        commonAppPreferences=new CommonAppPreferences(getActivity());
+        commonAppPreferences = new CommonAppPreferences(getActivity());
         return rootview;
     }
 
@@ -98,8 +95,10 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
 
 
     private void initView() {
-        receiptPresenter.getAppstoreInfos();
-        if(!TextUtils.equals("1",commonAppPreferences.getToUpdate())) {
+        refreshLayout.setOnRefreshListener(mOnRefreshListener);
+        refreshLayout.setCanLoadMore(false);
+        receiptPresenter.getAppstoreInfos("1");
+        if (!TextUtils.equals("1", commonAppPreferences.getToUpdate())) {
             receiptPresenter.detectionVersion(BuildConfig.VERSION_NAME, "android");
         }
     }
@@ -117,6 +116,20 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
         }
     }
 
+    HeaderViewLayout.OnRefreshListener mOnRefreshListener = new HeaderViewLayout.OnRefreshListener() {
+        @Override
+        public void onRefresh() {
+            receiptPresenter.getAppstoreInfos("0");
+        }
+
+        @Override
+        public void onLoadMore() {
+        }
+
+        @Override
+        public void onModeChanged(@HeaderViewLayout.Mode int mode) {
+        }
+    };
 
     @Override
     protected void initializeInjector() {
@@ -132,7 +145,7 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
         super.onResume();
         if (!isFirstLoad && getUserVisibleHint() && TextUtils.equals("1", refreshType)) {
             refreshType = "2";
-            receiptPresenter.getAppstoreInfos();
+            receiptPresenter.getAppstoreInfos("1");
         }
     }
 
@@ -158,6 +171,7 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
 
     @Override
     public void renderAppstoreInfos(List<AppstoreInfo> appstoreInfos) {
+        refreshLayout.stopRefresh();
         if (appstoreInfos != null && appstoreInfos.size() > 0) {
             cardPagerAdapter = new CardPagerAdapter(appstoreInfos);
             cardPagerAdapter.setOnItemClickListener(this);
