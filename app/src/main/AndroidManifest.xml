@@ -135,6 +135,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".receipt.ui.QrCodeScanActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".splash.GuideActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

@@ -8,13 +8,13 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class RdIncomeRequest {
-    @SerializedName("time")
-    private String time;
+    @SerializedName("date")
+    private String date;
     @SerializedName("page")
     private String page;
 
-    public RdIncomeRequest(String time, String page) {
-        this.time = time;
+    public RdIncomeRequest(String date, String page) {
+        this.date = date;
         this.page = page;
     }
 }

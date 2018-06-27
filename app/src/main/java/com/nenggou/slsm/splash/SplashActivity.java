@@ -1,5 +1,6 @@
 package com.nenggou.slsm.splash;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -22,7 +23,10 @@ import butterknife.ButterKnife;
 public class SplashActivity extends BaseActivity {
     private static final int GO_MAIN = 1;
     private static final int GO_LOGIN = 2;
+    private static final int GO_GUIDE = 3;
     private Handler mHandler = new MyHandler(this);
+    private static final String SHAREDPREFERENCES_NAME = "ngm_first_pref";
+    boolean isFirstIn = false;
     @Override
     public View getSnackBarHolderView() {
         return null;
@@ -37,10 +41,23 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void initView() {
-        if (TextUtils.isEmpty(TokenManager.getToken())) {
-            mHandler.sendEmptyMessageDelayed(GO_LOGIN, 1000);
-        } else {
-            mHandler.sendEmptyMessageDelayed(GO_MAIN, 1000);
+        SharedPreferences preferences = getSharedPreferences(SHAREDPREFERENCES_NAME, MODE_PRIVATE);
+
+        // 取得相应的值，如果没有该值，说明还未写入，用true作为默认值
+        isFirstIn = preferences.getBoolean("isFirstIn", true);
+        //直接写入
+        if(isFirstIn) {
+            preferences.edit().putBoolean("isFirstIn", false).apply();
+        }
+        // 判断程序与第几次运行，如果是第一次运行则跳转到引导界面，否则跳转到主界面
+        if (!isFirstIn) {
+            if (TextUtils.isEmpty(TokenManager.getToken())) {
+                mHandler.sendEmptyMessageDelayed(GO_LOGIN, 1000);
+            } else {
+                mHandler.sendEmptyMessageDelayed(GO_MAIN, 1000);
+            }
+        }else {
+            mHandler.sendEmptyMessageDelayed(GO_GUIDE, 1000);
         }
     }
 
@@ -53,6 +70,12 @@ public class SplashActivity extends BaseActivity {
     //跳转到主页
     private void goLogin() {
         LoginActivity.start(this);
+        finish();
+    }
+
+    //跳转引导页
+    private void goGuide() {
+        GuideActivity.start(this);
         finish();
     }
 
@@ -70,6 +93,9 @@ public class SplashActivity extends BaseActivity {
                     break;
                 case GO_LOGIN:
                     target.goLogin();
+                    break;
+                case GO_GUIDE:
+                    target.goGuide();
                     break;
             }
         }
