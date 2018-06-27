@@ -16,14 +16,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.nenggou.slsm.BaseActivity;
 import com.nenggou.slsm.R;
 import com.nenggou.slsm.common.StaticData;
 import com.nenggou.slsm.common.unit.AccountUtils;
-import com.nenggou.slsm.common.unit.PersionAppPreferences;
 import com.nenggou.slsm.common.widget.ColdDownButton;
-import com.nenggou.slsm.data.entity.PersionInfoResponse;
 import com.nenggou.slsm.login.ui.LoginActivity;
 import com.nenggou.slsm.setting.DaggerSettingComponent;
 import com.nenggou.slsm.setting.SettingContract;
@@ -104,7 +101,7 @@ public class ShiftHandsetActivity extends BaseActivity implements SettingContrac
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.showSoftInput(phoneCodeEt, InputMethodManager.SHOW_FORCED);
             }
-        }, 1000);
+        }, 500);
     }
 
     private void upKeyboard() {
@@ -198,7 +195,6 @@ public class ShiftHandsetActivity extends BaseActivity implements SettingContrac
         sendAuthCode.startCold();
         shiftHandsetPresenter.sendVcode(phoneNumberStr, "changetel");
         sendAuthCode.setOnResetListener(this);
-        photoNumberEt.setFocusable(false);
     }
 
     private void okButton() {

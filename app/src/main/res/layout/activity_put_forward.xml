@@ -93,7 +93,7 @@
                         android:id="@+id/amount_et"
                         style="@style/login_input_phone_style"
                         android:layout_marginLeft="@dimen/common_forty_margin"
-                        android:inputType="number" />
+                        android:inputType="number|numberDecimal" />
 
                     <View
                         style="@style/persion_st_line"

@@ -21,7 +21,6 @@ import com.nenggou.slsm.bill.adapter.IncomeAdapter;
 import com.nenggou.slsm.bill.presenter.DayIncomePresenter;
 import com.nenggou.slsm.common.StaticData;
 import com.nenggou.slsm.common.refreshview.HeaderViewLayout;
-import com.nenggou.slsm.common.widget.GradationScrollView;
 import com.nenggou.slsm.common.widget.KeywordUtil;
 import com.nenggou.slsm.data.entity.BillInfo;
 import com.nenggou.slsm.data.entity.InComeInfo;
@@ -38,7 +37,9 @@ import butterknife.OnClick;
  * Created by JWC on 2018/6/22.
  */
 
-public class IncomeListActivity extends BaseActivity implements BillContract.DayIncomeView,IncomeAdapter.ItemClickListener{
+public class IncomeListActivity extends BaseActivity implements BillContract.DayIncomeView, IncomeAdapter.ItemClickListener {
+
+
     @BindView(R.id.back)
     ImageView back;
     @BindView(R.id.t_income)
@@ -55,11 +56,8 @@ public class IncomeListActivity extends BaseActivity implements BillContract.Day
     LinearLayout incomeLl;
     @BindView(R.id.income_rv)
     RecyclerView incomeRv;
-    @BindView(R.id.scrollview)
-    GradationScrollView scrollview;
     @BindView(R.id.refreshLayout)
     HeaderViewLayout refreshLayout;
-
     private String storeid;
     private String date;
     private String timeType; //1:本月收入 2：历史收入 3：推荐收入
@@ -69,42 +67,43 @@ public class IncomeListActivity extends BaseActivity implements BillContract.Day
     DayIncomePresenter dayIncomePresenter;
 
 
-    public static void start(Context context, String storeId,String date,String timeType) {
+    public static void start(Context context, String storeId, String date, String timeType) {
         Intent intent = new Intent(context, IncomeListActivity.class);
         intent.putExtra(StaticData.STORE_ID, storeId);
-        intent.putExtra(StaticData.DATE,date);
-        intent.putExtra(StaticData.TIME_TYPE,timeType);
+        intent.putExtra(StaticData.DATE, date);
+        intent.putExtra(StaticData.TIME_TYPE, timeType);
         context.startActivity(intent);
     }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_income_list);
         ButterKnife.bind(this);
-        setHeight(back,tIncome,null);
+        setHeight(back, tIncome, null);
         initView();
     }
 
-    private void initView(){
-        storeid=getIntent().getStringExtra(StaticData.STORE_ID);
-        date=getIntent().getStringExtra(StaticData.DATE);
-        timeType=getIntent().getStringExtra(StaticData.TIME_TYPE);
-        if(TextUtils.equals("1",timeType)){
+    private void initView() {
+        storeid = getIntent().getStringExtra(StaticData.STORE_ID);
+        date = getIntent().getStringExtra(StaticData.DATE);
+        timeType = getIntent().getStringExtra(StaticData.TIME_TYPE);
+        if (TextUtils.equals("1", timeType)) {
             tIncome.setText("本月收入");
-        }else if(TextUtils.equals("2",timeType)){
+        } else if (TextUtils.equals("2", timeType)) {
             tIncome.setText("历史收入");
-        }else {
+        } else {
             tIncome.setText("推荐收入");
         }
-        dateTv.setText(date+" 总收入");
+        dateTv.setText(date + " 总收入");
         refreshLayout.setOnRefreshListener(mOnRefreshListener);
         refreshLayout.setCanLoadMore(false);
         incomeAdapter = new IncomeAdapter();
         incomeAdapter.setItemClickListener(this);
         incomeRv.setAdapter(incomeAdapter);
-        if(TextUtils.equals("3",timeType)){
-            dayIncomePresenter.getRdDayIncome("1",date);
-        }else {
+        if (TextUtils.equals("3", timeType)) {
+            dayIncomePresenter.getRdDayIncome("1", date);
+        } else {
             dayIncomePresenter.getDayIncome("1", storeid, date);
         }
     }
@@ -112,18 +111,18 @@ public class IncomeListActivity extends BaseActivity implements BillContract.Day
     HeaderViewLayout.OnRefreshListener mOnRefreshListener = new HeaderViewLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            if(TextUtils.equals("3",timeType)){
-                dayIncomePresenter.getRdDayIncome("1",date);
-            }else {
+            if (TextUtils.equals("3", timeType)) {
+                dayIncomePresenter.getRdDayIncome("1", date);
+            } else {
                 dayIncomePresenter.getDayIncome("0", storeid, date);
             }
         }
 
         @Override
         public void onLoadMore() {
-            if(TextUtils.equals("3",timeType)){
+            if (TextUtils.equals("3", timeType)) {
                 dayIncomePresenter.getMoreRdDayIncome(date);
-            }else {
+            } else {
                 dayIncomePresenter.getMoreDayIncome(storeid, date);
             }
         }
@@ -207,7 +206,7 @@ public class IncomeListActivity extends BaseActivity implements BillContract.Day
 
     @Override
     public void goIncomeDetail(String id) {
-        if(!TextUtils.equals("3",timeType)) {
+        if (!TextUtils.equals("3", timeType)) {
             IncomeDetailActivity.start(this, id);
         }
     }

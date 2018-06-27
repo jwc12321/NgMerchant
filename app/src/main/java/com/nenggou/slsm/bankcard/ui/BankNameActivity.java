@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 
 import com.nenggou.slsm.BaseActivity;
 import com.nenggou.slsm.R;
-import com.nenggou.slsm.cash.ui.CashDetailActivity;
 import com.nenggou.slsm.common.unit.BankInfo;
 import com.nenggou.slsm.common.widget.dialog.CommonDialog;
 

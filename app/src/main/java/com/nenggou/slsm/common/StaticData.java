@@ -53,5 +53,7 @@ public class StaticData {
     public static final String PHONE_CODE="phoneCode";
     //第一次提醒更新
     public static final String TO_UPDATE="toUpdate";
+    //兑换比例
+    public static final String PROPORTION="proportion";
 
 }

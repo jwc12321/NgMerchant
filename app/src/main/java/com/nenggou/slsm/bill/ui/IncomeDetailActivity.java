@@ -68,6 +68,7 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
     private String billId;
     private String uid;
     private String shopName;
+    private String nickName;
 
     public static void start(Context context, String billId) {
         Intent intent = new Intent(context, IncomeDetailActivity.class);
@@ -110,6 +111,7 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
             uid=incomeDetailInfo.getUid();
             shopName=incomeDetailInfo.getTitle();
             GlideHelper.load(this, incomeDetailInfo.getAvatar(), R.mipmap.app_icon, photo);
+            nickName=incomeDetailInfo.getNickname();
             businessName.setText(incomeDetailInfo.getNickname());
             price.setText(incomeDetailInfo.getAllprice());
             cashStore.setText(incomeDetailInfo.getTitle());
@@ -132,7 +134,7 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
                 break;
             case R.id.go_recode_rl:
                 if(!TextUtils.isEmpty(uid)){
-                    IntercourseRecordActivity.start(this,uid,shopName);
+                    IntercourseRecordActivity.start(this,uid,nickName);
                 }
                 break;
             default:

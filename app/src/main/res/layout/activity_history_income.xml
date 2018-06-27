@@ -1,114 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backGround1">
+    android:background="@color/backGround1"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/bill_bg">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/back"
+                    style="@style/title_left_back_style" />
+
+                <TextView
+                    android:id="@+id/h_income"
+                    style="@style/title_text_style"
+                    android:text="@string/history_income" />
+
+                <TextView
+                    android:id="@+id/screen"
+                    style="@style/title_text_right_style"
+                    android:text="@string/screen" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/income_ll"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_one_hundred_and_fifty_five_margin"
+            android:layout_marginLeft="@dimen/common_twelve_margin"
+            android:layout_marginRight="@dimen/common_twelve_margin"
+            android:layout_marginTop="@dimen/common_seventy_margin"
+            android:background="@drawable/bill_income"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/date_income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/common_fourteen_margin"
+                android:text="@string/total_income"
+                android:textColor="@color/appText6"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/cash_income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/common_twelve_margin"
+                android:textColor="@color/appText3"
+                android:textSize="17sp"
+                tools:text="现金收入" />
+
+            <TextView
+                android:id="@+id/energy_income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/common_twelve_margin"
+                android:textColor="@color/appText3"
+                android:textSize="17sp"
+                tools:text="能量收入" />
+
+            <TextView
+                android:id="@+id/total_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/common_twelve_margin"
+                android:textColor="@color/appText6"
+                android:textSize="15sp"
+                tools:text="总共6笔" />
+        </LinearLayout>
+    </RelativeLayout>
 
     <com.nenggou.slsm.common.refreshview.HeaderViewLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/income_ll"
+        android:layout_marginTop="@dimen/common_ten_margin"
         app:refreshMode="LIST_LOAD">
 
-        <com.nenggou.slsm.common.widget.GradationScrollView
-            android:id="@+id/scrollview"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:overScrollMode="never">
+            android:background="@color/backGround1">
 
-            <RelativeLayout
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/income_rv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/bill_bg">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:id="@+id/back"
-                            style="@style/title_left_back_style" />
-
-                        <TextView
-                            android:id="@+id/h_income"
-                            style="@style/title_text_style"
-                            android:text="@string/history_income" />
-
-                        <TextView
-                            android:id="@+id/screen"
-                            style="@style/title_text_right_style"
-                            android:text="@string/screen" />
-
-                    </RelativeLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/income_ll"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/common_one_hundred_and_fifty_five_margin"
-                    android:layout_marginLeft="@dimen/common_twelve_margin"
-                    android:layout_marginRight="@dimen/common_twelve_margin"
-                    android:layout_marginTop="@dimen/common_seventy_margin"
-                    android:background="@drawable/bill_income"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/date_income"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/common_fourteen_margin"
-                        android:text="@string/total_income"
-                        android:textColor="@color/appText6"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/cash_income"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/common_twelve_margin"
-                        android:textColor="@color/appText3"
-                        android:textSize="17sp"
-                        tools:text="现金收入" />
-
-                    <TextView
-                        android:id="@+id/energy_income"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/common_twelve_margin"
-                        android:textColor="@color/appText3"
-                        android:textSize="17sp"
-                        tools:text="能量收入" />
-
-                    <TextView
-                        android:id="@+id/total_number"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/common_twelve_margin"
-                        android:textColor="@color/appText6"
-                        android:textSize="15sp"
-                        tools:text="总共6笔" />
-                </LinearLayout>
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/income_rv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/income_ll"
-                    android:layout_marginTop="@dimen/common_ten_margin"
-                    android:background="@color/appText1"
-                    app:layoutManager="@string/layoutManager_LinearLayout" />
-            </RelativeLayout>
-        </com.nenggou.slsm.common.widget.GradationScrollView>
+                android:layout_below="@id/income_ll"
+                app:layoutManager="@string/layoutManager_LinearLayout" />
+        </FrameLayout>
     </com.nenggou.slsm.common.refreshview.HeaderViewLayout>
-</RelativeLayout>
+</LinearLayout>

@@ -22,7 +22,6 @@ import com.nenggou.slsm.bill.adapter.HMIncomeAdapter;
 import com.nenggou.slsm.bill.presenter.HistoryIncomePresenter;
 import com.nenggou.slsm.common.StaticData;
 import com.nenggou.slsm.common.refreshview.HeaderViewLayout;
-import com.nenggou.slsm.common.widget.GradationScrollView;
 import com.nenggou.slsm.common.widget.KeywordUtil;
 import com.nenggou.slsm.data.entity.HistoryIncomAll;
 import com.nenggou.slsm.data.entity.HistoryIncomInfo;
@@ -42,13 +41,14 @@ import butterknife.OnClick;
 
 public class HistoryIncomeActivity extends BaseActivity implements BillContract.HistoryIncomeView, HMIncomeAdapter.ItemClickListener {
 
-
     @BindView(R.id.back)
     ImageView back;
     @BindView(R.id.h_income)
     TextView hIncome;
     @BindView(R.id.screen)
     TextView screen;
+    @BindView(R.id.date_income)
+    TextView dateIncome;
     @BindView(R.id.cash_income)
     TextView cashIncome;
     @BindView(R.id.energy_income)
@@ -59,13 +59,8 @@ public class HistoryIncomeActivity extends BaseActivity implements BillContract.
     LinearLayout incomeLl;
     @BindView(R.id.income_rv)
     RecyclerView incomeRv;
-    @BindView(R.id.scrollview)
-    GradationScrollView scrollview;
     @BindView(R.id.refreshLayout)
     HeaderViewLayout refreshLayout;
-    @BindView(R.id.date_income)
-    TextView dateIncome;
-
     private String storeid;
     private String startTime;
     private String endTime;
@@ -205,6 +200,13 @@ public class HistoryIncomeActivity extends BaseActivity implements BillContract.
                     storeid = data.getStringExtra(StaticData.SCREEN_STOREID);
                     startTime = data.getStringExtra(StaticData.SCREEN_START_TIME);
                     endTime = data.getStringExtra(StaticData.SCREEN_END_TIME);
+                    if (TextUtils.isEmpty(startTime) && TextUtils.isEmpty(endTime)) {
+                        dateIncome.setText("总收入");
+                    } else if (!TextUtils.isEmpty(startTime) && TextUtils.isEmpty(endTime)) {
+                        dateIncome.setText(startTime + "总收入");
+                    } else if (!TextUtils.isEmpty(startTime) && !TextUtils.isEmpty(endTime)) {
+                        dateIncome.setText(startTime + "-" + endTime + "总收入");
+                    }
                     historyIncomePresenter.getHistoryIncome("1", storeid, startTime, endTime);
                     break;
                 default:

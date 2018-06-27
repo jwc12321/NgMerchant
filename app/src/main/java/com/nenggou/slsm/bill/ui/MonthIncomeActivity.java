@@ -22,7 +22,6 @@ import com.nenggou.slsm.bill.presenter.HistoryIncomePresenter;
 import com.nenggou.slsm.common.StaticData;
 import com.nenggou.slsm.common.refreshview.HeaderViewLayout;
 import com.nenggou.slsm.common.unit.FormatUtil;
-import com.nenggou.slsm.common.widget.GradationScrollView;
 import com.nenggou.slsm.common.widget.KeywordUtil;
 import com.nenggou.slsm.data.entity.HistoryIncomAll;
 import com.nenggou.slsm.data.entity.HistoryIncomInfo;
@@ -41,8 +40,6 @@ import butterknife.OnClick;
  */
 
 public class MonthIncomeActivity extends BaseActivity implements BillContract.HistoryIncomeView, HMIncomeAdapter.ItemClickListener {
-
-
     @BindView(R.id.back)
     ImageView back;
     @BindView(R.id.h_income)
@@ -59,8 +56,6 @@ public class MonthIncomeActivity extends BaseActivity implements BillContract.Hi
     LinearLayout incomeLl;
     @BindView(R.id.income_rv)
     RecyclerView incomeRv;
-    @BindView(R.id.scrollview)
-    GradationScrollView scrollview;
     @BindView(R.id.refreshLayout)
     HeaderViewLayout refreshLayout;
     private String storeid;
@@ -193,6 +188,6 @@ public class MonthIncomeActivity extends BaseActivity implements BillContract.Hi
 
     @Override
     public void goIncomeList(String date) {
-        IncomeListActivity.start(this,storeid,date,"1");
+        IncomeListActivity.start(this, storeid, date, "1");
     }
 }

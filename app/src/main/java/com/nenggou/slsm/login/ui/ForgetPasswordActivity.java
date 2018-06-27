@@ -137,7 +137,6 @@ public class ForgetPasswordActivity extends BaseActivity implements LoginContrac
         sendVcode.startCold();
         forgetPasswordPresenter.sendVcode(userPhoneNumber, "changepwd");
         sendVcode.setOnResetListener(this);
-        phoneNumberEt.setFocusable(false);
     }
 
     @Override

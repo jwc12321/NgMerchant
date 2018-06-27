@@ -121,7 +121,7 @@ public class EnergyActivity extends BaseActivity implements InEnergyFragment.InB
         energyNumber.setText("当前" + sum + "个能量");
     }
 
-    @OnClick({R.id.back, R.id.energy_purforward,R.id.explain})
+    @OnClick({R.id.back, R.id.energy_purforward, R.id.explain})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
@@ -146,25 +146,24 @@ public class EnergyActivity extends BaseActivity implements InEnergyFragment.InB
             ptDecimal = new BigDecimal(proportion).setScale(2, BigDecimal.ROUND_DOWN);
             percentageDecimal = new BigDecimal(100).setScale(2, BigDecimal.ROUND_DOWN);
             offsetCashDecimal = sumDecimal.multiply(ptDecimal).divide(percentageDecimal, 2, BigDecimal.ROUND_DOWN);
-            content = "能量比例为" + proportion + "%,可兑换¥" + offsetCashDecimal.toString();
-            if (putForwardDialog == null)
-                putForwardDialog = new CommonDialog.Builder()
-                        .showTitle(false)
-                        .setContent(content)
-                        .setContentGravity(Gravity.CENTER)
-                        .setCancelButton("取消", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                putForwardDialog.dismiss();
-                            }
-                        })
-                        .setConfirmButton("确定", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                putForwardDialog.dismiss();
-                                PutForwardActivity.start(EnergyActivity.this, "2", offsetCashDecimal.toString());
-                            }
-                        }).create();
+            content = "当前兑换比例为" + proportion + "%,可兑换¥" + offsetCashDecimal.toString();
+            putForwardDialog = new CommonDialog.Builder()
+                    .showTitle(false)
+                    .setContent(content)
+                    .setContentGravity(Gravity.CENTER)
+                    .setCancelButton("取消", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            putForwardDialog.dismiss();
+                        }
+                    })
+                    .setConfirmButton("确定", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            putForwardDialog.dismiss();
+                            PutForwardActivity.start(EnergyActivity.this, "2", offsetCashDecimal.toString(), proportion);
+                        }
+                    }).create();
             putForwardDialog.show(getSupportFragmentManager(), "");
         }
     }

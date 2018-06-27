@@ -1,6 +1,5 @@
 package com.nenggou.slsm.bill.ui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -21,7 +20,6 @@ import com.nenggou.slsm.bill.DaggerBillComponent;
 import com.nenggou.slsm.bill.adapter.HMIncomeAdapter;
 import com.nenggou.slsm.bill.presenter.RdIncomePresenter;
 import com.nenggou.slsm.common.refreshview.HeaderViewLayout;
-import com.nenggou.slsm.common.widget.GradationScrollView;
 import com.nenggou.slsm.common.widget.KeywordUtil;
 import com.nenggou.slsm.data.entity.HistoryIncomAll;
 import com.nenggou.slsm.data.entity.HistoryIncomInfo;
@@ -42,7 +40,6 @@ import butterknife.OnClick;
 
 public class RdIncomeActivity extends BaseActivity implements BillContract.RdIncomeView, HMIncomeAdapter.ItemClickListener {
 
-
     @BindView(R.id.back)
     ImageView back;
     @BindView(R.id.h_income)
@@ -57,13 +54,9 @@ public class RdIncomeActivity extends BaseActivity implements BillContract.RdInc
     LinearLayout incomeLl;
     @BindView(R.id.income_rv)
     RecyclerView incomeRv;
-    @BindView(R.id.scrollview)
-    GradationScrollView scrollview;
     @BindView(R.id.refreshLayout)
     HeaderViewLayout refreshLayout;
     private String storeid;
-    private String startTime;
-    private String endTime;
 
     @Inject
     RdIncomePresenter rdIncomePresenter;
@@ -169,6 +162,7 @@ public class RdIncomeActivity extends BaseActivity implements BillContract.RdInc
             refreshLayout.setCanLoadMore(false);
         }
     }
+
     @OnClick({R.id.back})
     public void onClick(View view) {
         switch (view.getId()) {

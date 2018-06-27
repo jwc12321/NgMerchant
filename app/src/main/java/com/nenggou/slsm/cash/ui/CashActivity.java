@@ -14,8 +14,6 @@ import android.widget.TextView;
 import com.nenggou.slsm.BaseActivity;
 import com.nenggou.slsm.R;
 import com.nenggou.slsm.bankcard.ui.PutForwardActivity;
-import com.nenggou.slsm.bill.ui.ChoiceTimeActivity;
-import com.nenggou.slsm.bill.ui.HistoryIncomeActivity;
 import com.nenggou.slsm.cash.CashContract;
 import com.nenggou.slsm.cash.CashModule;
 import com.nenggou.slsm.cash.DaggerCashComponent;
@@ -62,6 +60,11 @@ public class CashActivity extends BaseActivity implements CashContract.CashView 
         setContentView(R.layout.activity_cash);
         ButterKnife.bind(this);
         setHeight(back, title, cashDetail);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         cashPresenter.getCashInfo();
     }
 
@@ -103,7 +106,7 @@ public class CashActivity extends BaseActivity implements CashContract.CashView 
                 break;
             case R.id.put_forward_bt:
                 if(!TextUtils.isEmpty(cashPrice)) {
-                    PutForwardActivity.start(this, "1", cashPrice);
+                    PutForwardActivity.start(this, "1", cashPrice,"100");
                 }
                 break;
             default:

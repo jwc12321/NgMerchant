@@ -3,6 +3,7 @@ package com.nenggou.slsm.bill.ui;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -19,7 +20,7 @@ import com.nenggou.slsm.bill.DaggerBillComponent;
 import com.nenggou.slsm.bill.adapter.IncomeAdapter;
 import com.nenggou.slsm.bill.presenter.DayIncomePresenter;
 import com.nenggou.slsm.common.refreshview.HeaderViewLayout;
-import com.nenggou.slsm.common.widget.GradationScrollView;
+import com.nenggou.slsm.common.unit.FormatUtil;
 import com.nenggou.slsm.common.widget.KeywordUtil;
 import com.nenggou.slsm.data.entity.BillInfo;
 import com.nenggou.slsm.data.entity.InComeInfo;
@@ -36,13 +37,13 @@ import butterknife.OnClick;
  * Created by JWC on 2018/6/19.
  */
 
-public class BillFragment extends BaseFragment implements BillContract.DayIncomeView ,IncomeAdapter.ItemClickListener{
+public class BillFragment extends BaseFragment implements BillContract.DayIncomeView, IncomeAdapter.ItemClickListener {
     @BindView(R.id.r_income)
     TextView rIncome;
-    @BindView(R.id.h_income)
-    TextView hIncome;
     @BindView(R.id.t_income)
     TextView tIncome;
+    @BindView(R.id.h_income)
+    TextView hIncome;
     @BindView(R.id.cash_income)
     TextView cashIncome;
     @BindView(R.id.energy_income)
@@ -53,14 +54,15 @@ public class BillFragment extends BaseFragment implements BillContract.DayIncome
     LinearLayout incomeLl;
     @BindView(R.id.income_rv)
     RecyclerView incomeRv;
-    @BindView(R.id.scrollview)
-    GradationScrollView scrollview;
+    @BindView(R.id.empty_view)
+    NestedScrollView emptyView;
     @BindView(R.id.refreshLayout)
     HeaderViewLayout refreshLayout;
-
     private IncomeAdapter incomeAdapter;
     @Inject
     DayIncomePresenter dayIncomePresenter;
+
+    private String today;
 
     public BillFragment() {
     }
@@ -91,6 +93,7 @@ public class BillFragment extends BaseFragment implements BillContract.DayIncome
     }
 
     private void initView() {
+        today = FormatUtil.formatYMDByLine();
         refreshLayout.setOnRefreshListener(mOnRefreshListener);
         refreshLayout.setCanLoadMore(false);
         incomeAdapter = new IncomeAdapter();
@@ -101,12 +104,12 @@ public class BillFragment extends BaseFragment implements BillContract.DayIncome
     HeaderViewLayout.OnRefreshListener mOnRefreshListener = new HeaderViewLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            dayIncomePresenter.getDayIncome("0", "","");
+            dayIncomePresenter.getDayIncome("0", "", today);
         }
 
         @Override
         public void onLoadMore() {
-            dayIncomePresenter.getMoreDayIncome("","");
+            dayIncomePresenter.getMoreDayIncome("", today);
         }
 
         @Override
@@ -123,7 +126,7 @@ public class BillFragment extends BaseFragment implements BillContract.DayIncome
             if (getUserVisibleHint()) {
                 isFirstLoad = false;
                 if (dayIncomePresenter != null) {
-                    dayIncomePresenter.getDayIncome("1", "","");
+                    dayIncomePresenter.getDayIncome("1", "", today);
                 }
             }
         }
@@ -171,11 +174,18 @@ public class BillFragment extends BaseFragment implements BillContract.DayIncome
                 totalNumber.setText(KeywordUtil.matcherActivity(Color.parseColor("#FF8E61"), totalNumberStr));
                 List<InComeInfo> inComeInfos = billInfo.getIncomeList().getInComeInfos();
                 if (inComeInfos != null && inComeInfos.size() > 0) {
+                    incomeRv.setVisibility(View.VISIBLE);
+                    emptyView.setVisibility(View.GONE);
                     refreshLayout.setCanLoadMore(true);
                 } else {
+                    incomeRv.setVisibility(View.GONE);
+                    emptyView.setVisibility(View.VISIBLE);
                     refreshLayout.setCanLoadMore(false);
                 }
                 incomeAdapter.setData(inComeInfos);
+            } else {
+                incomeRv.setVisibility(View.GONE);
+                emptyView.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -211,6 +221,6 @@ public class BillFragment extends BaseFragment implements BillContract.DayIncome
 
     @Override
     public void goIncomeDetail(String id) {
-        IncomeDetailActivity.start(getActivity(),id);
+        IncomeDetailActivity.start(getActivity(), id);
     }
 }

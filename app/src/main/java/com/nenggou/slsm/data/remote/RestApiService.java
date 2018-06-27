@@ -158,7 +158,7 @@ public interface RestApiService {
     @POST("home/scancode")
     Flowable<RemoteDataWrapper<String>> uploadQrText(@Body TextRequest textRequest);
     //版本检测
-    @POST("home/changeApp")
+    @POST("home/businessChangeApp")
     Flowable<RemoteDataWrapper<ChangeAppInfo>> changeApp(@Body DetectionVersionRequest detectionVersionRequest);
 
 }

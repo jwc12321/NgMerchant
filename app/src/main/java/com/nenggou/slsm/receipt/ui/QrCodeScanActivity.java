@@ -67,16 +67,17 @@ public class QrCodeScanActivity extends BaseActivity implements QRCodeView.Deleg
 
     public static void start(Context context, String storeId) {
         Intent intent = new Intent(context, QrCodeScanActivity.class);
-        intent.putExtra(StaticData.STORE_ID,storeId);
+        intent.putExtra(StaticData.STORE_ID, storeId);
         context.startActivity(intent);
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_code_scan);
         ButterKnife.bind(this);
         setHeight(back, title, null);
-        storeId=getIntent().getStringExtra(StaticData.STORE_ID);
+        storeId = getIntent().getStringExtra(StaticData.STORE_ID);
         mQRCodeView.setDelegate(this);
     }
 
@@ -176,19 +177,18 @@ public class QrCodeScanActivity extends BaseActivity implements QRCodeView.Deleg
                 webViewDetailInfo.setUrl(backQrtext);
                 WebViewActivity.start(this, webViewDetailInfo);
             } else {
-                if (textDialog == null)
-                    textDialog = new CommonDialog.Builder()
-                            .showTitle(false)
-                            .setContent(backQrtext)
-                            .setContentGravity(Gravity.CENTER)
-                            .showButton(false)
-                            .setConfirmButton("确定", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    textDialog.dismiss();
-                                    QrCodeScanActivity.this.finish();
-                                }
-                            }).create();
+                textDialog = new CommonDialog.Builder()
+                        .showTitle(false)
+                        .setContent(backQrtext)
+                        .setContentGravity(Gravity.CENTER)
+                        .showButton(false)
+                        .setConfirmButton("确定", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                textDialog.dismiss();
+                                QrCodeScanActivity.this.finish();
+                            }
+                        }).create();
                 textDialog.show(getSupportFragmentManager(), "");
             }
         }

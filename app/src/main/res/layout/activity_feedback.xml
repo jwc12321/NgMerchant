@@ -71,6 +71,6 @@
             style="@style/confirm_bt_style"
             android:layout_alignParentBottom="true"
             android:enabled="false"
-            android:text="提交生申请" />
+            android:text="提交申请" />
     </RelativeLayout>
 </LinearLayout>

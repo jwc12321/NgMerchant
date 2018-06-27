@@ -55,7 +55,6 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
     private CardPagerAdapter cardPagerAdapter;
     private ShadowTransformer mCardShadowTransformer;
     private ChangeAppInfo changeAppInfo;
-    private CommonAppPreferences commonAppPreferences;
 
     private static final int REQUEST_PERMISSION_WRITE = 2;
     private static final int REQUEST_CODE_CAMERA = 4;
@@ -83,7 +82,6 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootview = inflater.inflate(R.layout.fragment_receipt, container, false);
         ButterKnife.bind(this, rootview);
-        commonAppPreferences = new CommonAppPreferences(getActivity());
         return rootview;
     }
 
@@ -98,9 +96,7 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
         refreshLayout.setOnRefreshListener(mOnRefreshListener);
         refreshLayout.setCanLoadMore(false);
         receiptPresenter.getAppstoreInfos("1");
-        if (!TextUtils.equals("1", commonAppPreferences.getToUpdate())) {
-            receiptPresenter.detectionVersion(BuildConfig.VERSION_NAME, "android");
-        }
+        receiptPresenter.detectionVersion(BuildConfig.VERSION_NAME, "android");
     }
 
 
@@ -221,36 +217,33 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
     @Override
     public void detectionSuccess(ChangeAppInfo changeAppInfo) {
         this.changeAppInfo = changeAppInfo;
-        if (requestRuntimePermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE,}, REQUEST_PERMISSION_WRITE)) {
-            showUpdate(changeAppInfo);
+        if (changeAppInfo != null && TextUtils.equals("1", changeAppInfo.getStatus())) {
+            if (requestRuntimePermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE,}, REQUEST_PERMISSION_WRITE)) {
+                showUpdate(changeAppInfo);
+            }
         }
     }
 
     private void showUpdate(final ChangeAppInfo changeAppInfo) {
-        if (changeAppInfo != null && TextUtils.equals("1", changeAppInfo.getStatus())) {
-            commonAppPreferences.setToUpdate("1");
-            if (dialogUpdate == null)
-                dialogUpdate = new CommonDialog.Builder()
-                        .setTitle("版本更新")
-                        .setContent(changeAppInfo.getTitle())
-                        .setContentGravity(Gravity.CENTER)
-                        .setCancelButton("忽略", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                dialogUpdate.dismiss();
-                            }
-                        })
-                        .setConfirmButton("更新", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                showMessage("开始下载");
-                                updateApk(changeAppInfo.getUrl());
-                            }
-                        }).create();
-            dialogUpdate.show(getFragmentManager(), "");
-        } else if (changeAppInfo != null && TextUtils.equals("0", changeAppInfo.getStatus()) && !TextUtils.isEmpty(changeAppInfo.getTitle())) {
-            showMessage(changeAppInfo.getTitle());
-        }
+        if (dialogUpdate == null)
+            dialogUpdate = new CommonDialog.Builder()
+                    .setTitle("版本更新")
+                    .setContent(changeAppInfo.getTitle())
+                    .setContentGravity(Gravity.CENTER)
+                    .setCancelButton("忽略", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialogUpdate.dismiss();
+                        }
+                    })
+                    .setConfirmButton("更新", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            showMessage("开始下载");
+                            updateApk(changeAppInfo.getUrl());
+                        }
+                    }).create();
+        dialogUpdate.show(getFragmentManager(), "");
     }
 
     private MaterialDialog materialDialog;

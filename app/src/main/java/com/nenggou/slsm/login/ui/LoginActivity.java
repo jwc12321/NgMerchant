@@ -180,7 +180,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
         }
         loginPresenter.sendCode(userPhoneNumber, "login");
         sendVcode.startCold();
-        phoneNumberEt.setFocusable(false);
     }
 
     /**
