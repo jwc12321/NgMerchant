@@ -29,7 +29,7 @@ android {
 
         manifestPlaceholders = [
                 JPUSH_PKGNAME: applicationId,
-                JPUSH_APPKEY : "55111797ee2f801613a2fd0d", //JPush上注册的包名对应的appkey.
+                JPUSH_APPKEY : "86c22e5d3fef095cfb53d195", //JPush上注册的包名对应的appkey.
                 JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
                 PACKAGE_NAME : applicationId,
 
@@ -56,7 +56,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
-            manifestPlaceholders.put("JPUSH_APPKEY", "55111797ee2f801613a2fd0d")
+            manifestPlaceholders.put("JPUSH_APPKEY", "86c22e5d3fef095cfb53d195")
             manifestPlaceholders.put("JPUSH_CHANNEL", "developer-default")
             zipAlignEnabled true
         }
@@ -65,7 +65,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
-            manifestPlaceholders.put("JPUSH_APPKEY", "55111797ee2f801613a2fd0d")
+            manifestPlaceholders.put("JPUSH_APPKEY", "86c22e5d3fef095cfb53d195")
             manifestPlaceholders.put("JPUSH_CHANNEL", "developer-default")
         }
     }

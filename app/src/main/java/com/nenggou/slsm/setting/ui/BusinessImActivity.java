@@ -2,7 +2,6 @@ package com.nenggou.slsm.setting.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -11,13 +10,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.nenggou.slsm.BaseActivity;
 import com.nenggou.slsm.R;
-import com.nenggou.slsm.bill.ui.ChoiceTimeActivity;
 import com.nenggou.slsm.common.GlideHelper;
 import com.nenggou.slsm.common.unit.FormatUtil;
 import com.nenggou.slsm.common.unit.PersionAppPreferences;

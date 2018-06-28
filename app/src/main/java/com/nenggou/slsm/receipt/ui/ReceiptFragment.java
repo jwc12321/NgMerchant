@@ -61,7 +61,6 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
 
     @Inject
     ReceiptPresenter receiptPresenter;
-    private String refreshType = "2";  //1：刷新 2：不刷新
     private String storeId;
 
     public ReceiptFragment() {
@@ -139,20 +138,6 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
     @Override
     public void onResume() {
         super.onResume();
-        if (!isFirstLoad && getUserVisibleHint() && TextUtils.equals("1", refreshType)) {
-            refreshType = "2";
-            receiptPresenter.getAppstoreInfos("1");
-        }
-    }
-
-    @Override
-    public void showError(Throwable e) {
-        if (e != null && e instanceof RemoteDataException) {
-            if (((RemoteDataException) e).isAuthFailed()) {
-                refreshType = "1";
-            }
-        }
-        super.showError(e);
     }
 
     @Override

@@ -21,12 +21,15 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.nenggou.slsm.common.unit.HandleBackUtil;
+import com.nenggou.slsm.common.unit.TokenManager;
 import com.nenggou.slsm.common.unit.WeiboDialogUtils;
 import com.nenggou.slsm.data.RemoteDataException;
 import com.nenggou.slsm.login.ui.LoginActivity;
 import com.umeng.analytics.MobclickAgent;
 
 import java.lang.reflect.Field;
+
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * Created by Administrator on 2017/12/27.
@@ -170,6 +173,11 @@ public abstract class BaseActivity extends AppCompatActivity implements LoadData
             if (e instanceof RemoteDataException) {
                 if (((RemoteDataException) e).isAuthFailed()) {
                     //跳转到登录页面
+                    TokenManager.saveToken("");
+                    JPushInterface.setAliasAndTags(getApplicationContext(),
+                            "",
+                            null,
+                            null);
                     LoginActivity.start(BaseActivity.this);
                 } else {
                     showMessage(e.getMessage());

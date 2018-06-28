@@ -105,6 +105,10 @@ public class SettingActivity extends BaseActivity {
             case R.id.login_out://登出
                 persionAppPreferences.clean();
                 TokenManager.saveToken("");
+                JPushInterface.setAliasAndTags(getApplicationContext(),
+                        "",
+                        null,
+                        null);
                 LoginActivity.start(this);
                 finish();
                 break;

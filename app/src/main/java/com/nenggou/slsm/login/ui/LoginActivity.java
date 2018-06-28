@@ -37,6 +37,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * Created by JWC on 2018/6/5.
@@ -129,6 +130,10 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
         Gson gson = new Gson();
         String persionInfoResponseStr = gson.toJson(persionInfoResponse);
         persionAppPreferences.setPersionInfo(persionInfoResponseStr);
+        JPushInterface.setAliasAndTags(getApplicationContext(),
+                persionInfoResponse.getTel(),
+                null,
+                null);
         MainFrameActivity.start(this);
     }
 

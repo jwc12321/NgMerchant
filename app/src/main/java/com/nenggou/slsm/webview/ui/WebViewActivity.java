@@ -19,9 +19,9 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 
 import com.nenggou.slsm.BaseActivity;
 import com.nenggou.slsm.R;
@@ -52,6 +52,8 @@ public class WebViewActivity extends BaseActivity {
     RelativeLayout titleRel;
     @BindView(R.id.webView)
     WebView webView;
+    @BindView(R.id.item_web)
+    LinearLayout itemWeb;
 
     private BridgeImpl bridge;
     private WebViewDetailInfo webViewDetailInfo;
@@ -69,7 +71,7 @@ public class WebViewActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview);
         ButterKnife.bind(this);
-        setHeight(back,title,collection);
+        setHeight(back, title, collection);
         initView();
     }
 
@@ -83,12 +85,12 @@ public class WebViewActivity extends BaseActivity {
         }
         settings.setJavaScriptEnabled(true);
         webView.setWebChromeClient(new JSBridgeWebChromeClient());
-        webView.setWebViewClient(new WebViewClient(){
+        webView.setWebViewClient(new WebViewClient() {
             @TargetApi(Build.VERSION_CODES.LOLLIPOP)
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 String url = request.getUrl().toString();
-                if (!TextUtils.isEmpty(url)&&url.startsWith("tel:")){
+                if (!TextUtils.isEmpty(url) && url.startsWith("tel:")) {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     startActivity(intent);
                     return true;
@@ -98,7 +100,7 @@ public class WebViewActivity extends BaseActivity {
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if (!TextUtils.isEmpty(url)&&url.startsWith("tel:")){
+                if (!TextUtils.isEmpty(url) && url.startsWith("tel:")) {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     startActivity(intent);
                     return true;
@@ -144,7 +146,7 @@ public class WebViewActivity extends BaseActivity {
 
     @Override
     public View getSnackBarHolderView() {
-        return null;
+        return itemWeb;
     }
 
     @OnClick({R.id.back})
