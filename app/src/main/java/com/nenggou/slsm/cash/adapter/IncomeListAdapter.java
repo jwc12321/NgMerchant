@@ -84,7 +84,7 @@ public class IncomeListAdapter extends RecyclerView.Adapter<IncomeListAdapter.In
         }
 
         public void bindData(CashDetailInfo cashDetailInfo) {
-            name.setText(cashDetailInfo.getUsername());
+            name.setText(cashDetailInfo.getNickname());
             time.setText(FormatUtil.formatDateByLine(cashDetailInfo.getCreatedAt()));
             if(TextUtils.equals("0",type)){
                 price.setText("+" + cashDetailInfo.getXianjin());

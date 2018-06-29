@@ -84,7 +84,8 @@
             style="@style/login_input_phone_style"
             android:drawableLeft="@mipmap/password_icon"
             android:drawableStart="@mipmap/password_icon"
-            android:hint="@string/input_password" />
+            android:hint="@string/input_password"
+            android:inputType="textWebPassword"/>
 
         <View
             style="@style/persion_st_line"
@@ -105,7 +106,8 @@
             android:layout_toLeftOf="@id/send_vcode"
             android:drawableLeft="@mipmap/vcode_icon"
             android:drawableStart="@mipmap/vcode_icon"
-            android:hint="@string/input_vcode" />
+            android:hint="@string/input_vcode"
+            android:inputType="textWebPassword"/>
 
         <com.nenggou.slsm.common.widget.ColdDownButton
             android:id="@+id/send_vcode"
