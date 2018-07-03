@@ -59,6 +59,7 @@ public class RemoteDataException extends Exception {
             case CODE_INVALID_TOKEN:
             case CODE_INVALED_SECOND_TOKEN:
             case CODE_INVALED_THIRD_TOKEN:
+            case CODE_INVALED_FOURTH_TOKEN:
                 return "token验证失败";
             default:
                 return "接口操作失败!";
