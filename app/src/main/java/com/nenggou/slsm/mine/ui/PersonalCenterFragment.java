@@ -18,9 +18,9 @@ import com.nenggou.slsm.address.ui.AddressTelActivity;
 import com.nenggou.slsm.cash.ui.CashActivity;
 import com.nenggou.slsm.common.GlideHelper;
 import com.nenggou.slsm.common.unit.PersionAppPreferences;
+import com.nenggou.slsm.common.unit.TokenManager;
 import com.nenggou.slsm.data.entity.PersionInfoResponse;
 import com.nenggou.slsm.energy.ui.EnergyActivity;
-import com.nenggou.slsm.evaluate.ui.AllEvaluationActivity;
 import com.nenggou.slsm.feedback.ui.FeedBackActivity;
 import com.nenggou.slsm.login.ui.LoginActivity;
 import com.nenggou.slsm.setting.ui.SettingActivity;
@@ -50,7 +50,6 @@ public class PersonalCenterFragment extends BaseFragment {
     RelativeLayout itemFeedback;
 
     private String phoneNumber;
-    private String firstIn = "0";
 
     private PersionAppPreferences persionAppPreferences;
     private String persionInfoStr;
@@ -106,15 +105,14 @@ public class PersonalCenterFragment extends BaseFragment {
 
 
     private void initVeiw() {
-        if (!isFirstLoad && getUserVisibleHint() && TextUtils.equals("0", firstIn)) {
+        if (!isFirstLoad && getUserVisibleHint()) {
             persionInfoStr = persionAppPreferences.getPersionInfo();
             gson = new Gson();
-            if (!TextUtils.isEmpty(persionInfoStr)) {
+            if (!TextUtils.isEmpty(persionInfoStr)&& !TextUtils.isEmpty(TokenManager.getToken())) {
                 persionInfoResponse = gson.fromJson(persionInfoStr, PersionInfoResponse.class);
                 GlideHelper.load(this, persionInfoResponse.getAvatar(), R.mipmap.app_icon, headPhoto);
                 userName.setText(persionInfoResponse.getName());
                 phoneNumber = persionInfoResponse.getTel();
-                firstIn = "1";
             } else {
                 LoginActivity.start(getActivity());
             }
@@ -130,7 +128,6 @@ public class PersonalCenterFragment extends BaseFragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.setting:
-                firstIn="0";
                 SettingActivity.start(getActivity(),phoneNumber);
                 break;
             case R.id.item_cash: //现金

@@ -17,8 +17,18 @@ public class AppstoreInfo {
     private String address;
     @SerializedName("telephone")
     private String telephone;
+    @SerializedName("qrcode")
+    private String qrcode;
     @SerializedName("shouru")
     private Shouru shouru;
+
+    public String getQrcode() {
+        return qrcode;
+    }
+
+    public void setQrcode(String qrcode) {
+        this.qrcode = qrcode;
+    }
 
     public String getzPics() {
         return zPics;

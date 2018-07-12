@@ -113,7 +113,8 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
             cashIncome.setText("¥ 0");
             energyIncome.setVisibility(View.GONE);
         }
-        String qrCodeUrl = "ngapp::" + appstoreInfo.getId() + "&&" + appstoreInfo.getTitle() + "&&" + appstoreInfo.getzPics();
+//        String qrCodeUrl = "ngapp::" + appstoreInfo.getId() + "&&" + appstoreInfo.getTitle() + "&&" + appstoreInfo.getzPics();
+        String qrCodeUrl = appstoreInfo.getQrcode();
         Bitmap bitmap = QrCodeUtil.createQRCode(qrCodeUrl, 200, 200);
         qrCodeIv.setImageBitmap(bitmap);
         itemIncome.setOnClickListener(new View.OnClickListener() {
