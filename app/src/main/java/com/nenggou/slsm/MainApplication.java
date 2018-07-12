@@ -2,7 +2,10 @@ package com.nenggou.slsm;
 
 import android.os.StrictMode;
 import android.support.multidex.MultiDexApplication;
+
+import com.meituan.android.walle.WalleChannelReader;
 import com.nenggou.slsm.common.unit.SPManager;
+import com.umeng.analytics.MobclickAgent;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -22,6 +25,10 @@ public class MainApplication  extends MultiDexApplication {
         SPManager.getInstance().register(this);
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
+
+        //友盟统计
+        String channelId = WalleChannelReader.getChannel(this.getApplicationContext());
+        MobclickAgent. startWithConfigure(new MobclickAgent.UMAnalyticsConfig(getApplicationContext(),"5b46ef5ab27b0a096a000035",channelId));
     }
     private void initDaggerComponent() {
         mApplicationComponent = DaggerApplicationComponent.builder()
