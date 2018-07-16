@@ -22,6 +22,7 @@ import com.nenggou.slsm.bill.presenter.DayIncomePresenter;
 import com.nenggou.slsm.common.refreshview.HeaderViewLayout;
 import com.nenggou.slsm.common.unit.FormatUtil;
 import com.nenggou.slsm.common.widget.KeywordUtil;
+import com.nenggou.slsm.data.RemoteDataException;
 import com.nenggou.slsm.data.entity.BillInfo;
 import com.nenggou.slsm.data.entity.InComeInfo;
 
@@ -63,6 +64,7 @@ public class BillFragment extends BaseFragment implements BillContract.DayIncome
     DayIncomePresenter dayIncomePresenter;
 
     private String today;
+    private String firstIn = "1";
 
     public BillFragment() {
     }
@@ -132,10 +134,23 @@ public class BillFragment extends BaseFragment implements BillContract.DayIncome
         }
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
+        if (!isFirstLoad && getUserVisibleHint() && TextUtils.equals("0", firstIn)) {
+            if (dayIncomePresenter != null) {
+                dayIncomePresenter.getDayIncome("1", "", today);
+            }
+            firstIn = "1";
+        }
+    }
+
+    @Override
+    public void showError(Throwable e) {
+        if (e != null && e instanceof RemoteDataException && ((RemoteDataException) e).isAuthFailed()) {
+            firstIn="0";
+        }
+        super.showError(e);
     }
 
     @Override
