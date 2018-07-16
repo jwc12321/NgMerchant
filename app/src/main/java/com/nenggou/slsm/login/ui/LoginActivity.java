@@ -135,6 +135,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
                 null,
                 null);
         MainFrameActivity.start(this);
+        this.finish();
     }
 
     @Override
