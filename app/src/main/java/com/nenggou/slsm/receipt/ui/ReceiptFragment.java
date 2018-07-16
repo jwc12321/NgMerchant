@@ -63,6 +63,8 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
     ReceiptPresenter receiptPresenter;
     private String storeId;
 
+    private String firstIn = "1";
+
     public ReceiptFragment() {
     }
 
@@ -101,6 +103,7 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
 
     private boolean isFirstLoad = true;
 
+
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
@@ -138,6 +141,20 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
     @Override
     public void onResume() {
         super.onResume();
+        if (!isFirstLoad && getUserVisibleHint() && TextUtils.equals("0", firstIn)) {
+            if (receiptPresenter != null) {
+                receiptPresenter.getAppstoreInfos("1");
+            }
+            firstIn = "1";
+        }
+    }
+
+    @Override
+    public void showError(Throwable e) {
+        if (e != null && e instanceof RemoteDataException && ((RemoteDataException) e).isAuthFailed()) {
+            firstIn="0";
+        }
+        super.showError(e);
     }
 
     @Override
