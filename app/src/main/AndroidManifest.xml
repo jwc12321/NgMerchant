@@ -176,6 +176,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".splash.GuideActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".jurisdiction.JurisdictionActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

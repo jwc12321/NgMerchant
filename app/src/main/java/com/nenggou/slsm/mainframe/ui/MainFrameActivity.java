@@ -9,15 +9,17 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.nenggou.slsm.BaseActivity;
 import com.nenggou.slsm.BaseFragment;
 import com.nenggou.slsm.R;
 import com.nenggou.slsm.bill.ui.BillFragment;
 import com.nenggou.slsm.common.viewpage.ViewPagerSlide;
+import com.nenggou.slsm.financing.ui.FinancingFragment;
 import com.nenggou.slsm.mainframe.adapter.MainPagerAdapter;
 import com.nenggou.slsm.mine.ui.PersonalCenterFragment;
+import com.nenggou.slsm.ranking.ui.RankingFragment;
 import com.nenggou.slsm.receipt.ui.ReceiptFragment;
-
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,7 +28,7 @@ import butterknife.ButterKnife;
  * Created by JWC on 2018/6/19.
  */
 
-public class MainFrameActivity extends BaseActivity{
+public class MainFrameActivity extends BaseActivity {
 
     @BindView(R.id.receipt_iv)
     ImageView receiptIv;
@@ -50,6 +52,18 @@ public class MainFrameActivity extends BaseActivity{
     ViewPagerSlide viewPager;
     @BindView(R.id.main_rl)
     RelativeLayout mainRl;
+    @BindView(R.id.ranking_iv)
+    ImageView rankingIv;
+    @BindView(R.id.ranking_tt)
+    TextView rankingTt;
+    @BindView(R.id.ranking_rl)
+    RelativeLayout rankingRl;
+    @BindView(R.id.financing_iv)
+    ImageView financingIv;
+    @BindView(R.id.financing_tt)
+    TextView financingTt;
+    @BindView(R.id.financing_rl)
+    RelativeLayout financingRl;
 
     private RelativeLayout[] relativeLayouts;
     private BaseFragment[] fragments;
@@ -70,27 +84,35 @@ public class MainFrameActivity extends BaseActivity{
         initView();
     }
 
-    private void initView(){
-        fragments = new BaseFragment[3];
+    private void initView() {
+        fragments = new BaseFragment[5];
         fragments[0] = ReceiptFragment.newInstance();
         fragments[1] = BillFragment.newInstance();
-        fragments[2] = PersonalCenterFragment.newInstance();
-        relativeLayouts = new RelativeLayout[3];
+        fragments[2] = RankingFragment.newInstance();
+        fragments[3] = FinancingFragment.newInstance();
+        fragments[4] = PersonalCenterFragment.newInstance();
+        relativeLayouts = new RelativeLayout[5];
         relativeLayouts[0] = receiptRl;
         relativeLayouts[1] = billRl;
-        relativeLayouts[2] = mineRl;
-        imageViews = new ImageView[3];
+        relativeLayouts[2] = rankingRl;
+        relativeLayouts[3] = financingRl;
+        relativeLayouts[4] = mineRl;
+        imageViews = new ImageView[5];
         imageViews[0] = receiptIv;
         imageViews[1] = billIv;
-        imageViews[2] = mineIv;
-        textViews = new TextView[3];
+        imageViews[2] = rankingIv;
+        imageViews[3] = financingIv;
+        imageViews[4] = mineIv;
+        textViews = new TextView[5];
         textViews[0] = receiptTt;
         textViews[1] = billTt;
-        textViews[2] = mineTt;
+        textViews[2] = rankingTt;
+        textViews[3] = financingTt;
+        textViews[4] = mineTt;
         for (RelativeLayout relativeLayout : relativeLayouts) {
             relativeLayout.setOnClickListener(onClickListener);
         }
-        viewPager.setOffscreenPageLimit(2);
+        viewPager.setOffscreenPageLimit(4);
         adapter = new MainPagerAdapter(getSupportFragmentManager(), fragments);
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(onPageChangeListener);
@@ -120,6 +142,7 @@ public class MainFrameActivity extends BaseActivity{
             }
         }
     };
+
     @Override
     public View getSnackBarHolderView() {
         return mainRl;

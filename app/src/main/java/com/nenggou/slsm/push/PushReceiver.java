@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 
+import com.google.gson.Gson;
+
 import javax.inject.Inject;
 
 import cn.jpush.android.api.JPushInterface;
@@ -17,6 +19,7 @@ import cn.jpush.android.api.JPushInterface;
 
 public class PushReceiver extends BroadcastReceiver {
     private static final String TAG = "JPushReceiver";
+    private static final Gson gson = new Gson();
     @Inject
     PushUtil pushUtil;
 
@@ -33,19 +36,7 @@ public class PushReceiver extends BroadcastReceiver {
          */
         //当用户点击了通知
         if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
-            Log.i(TAG, "[MyReceiver]用户点击通知的标题" + bundle.getString(JPushInterface.EXTRA_NOTIFICATION_TITLE));
-            String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);//获取附加字段,是一个json数组
-            Log.i(TAG, "[MyReceiver]附加字段" + extras);
-//            Intent intentActivity = new Intent(context,MessageNotificationActivity.class);
-//            intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            context.startActivity(intentActivity);
 
-
-
-            //现在说只需要去消息中心
-//            if (!TextUtils.isEmpty(extras)) {
-//                pushUtil.parseMessage(context, extras);
-//            }
         }
         //当用户收到了通知(用户只有先收到通知,才能点击通知)
         else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
@@ -54,10 +45,9 @@ public class PushReceiver extends BroadcastReceiver {
             String text = bundle.getString(JPushInterface.EXTRA_ALERT);//获取通知内容
             Log.i(TAG, "[MyReceiver]用户收到了通知,通知的内容为" + text);
             String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);//获取附加字段,是一个json数
+            PushInfo pushInfo = gson.fromJson(extras, PushInfo.class);
         } else if (JPushInterface.ACTION_REGISTRATION_ID.equals(intent.getAction())) {
             String regId = bundle.getString(JPushInterface.EXTRA_REGISTRATION_ID);
-            Log.d(TAG, "[MyReceiver] 接收Registration Id : " + regId);
-//            SPManager.getInstance().putData("clientId",regId);
         }
     }
 }

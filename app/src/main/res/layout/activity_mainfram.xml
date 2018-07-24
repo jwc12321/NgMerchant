@@ -39,6 +39,34 @@
                 style="@style/bottom_textView_style"
                 android:text="@string/bill" />
         </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/ranking_rl"
+            style="@style/bottom_RelativeLayout_style">
+
+            <ImageView
+                android:id="@+id/ranking_iv"
+                style="@style/bottom_imageView_style"
+                android:src="@drawable/ranking_select" />
+
+            <TextView
+                android:id="@+id/ranking_tt"
+                style="@style/bottom_textView_style"
+                android:text="@string/ranking" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/financing_rl"
+            style="@style/bottom_RelativeLayout_style">
+
+            <ImageView
+                android:id="@+id/financing_iv"
+                style="@style/bottom_imageView_style"
+                android:src="@drawable/financing_select" />
+
+            <TextView
+                android:id="@+id/financing_tt"
+                style="@style/bottom_textView_style"
+                android:text="@string/financing" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/mine_rl"

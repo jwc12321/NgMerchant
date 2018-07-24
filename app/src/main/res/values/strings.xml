@@ -21,6 +21,8 @@
     <!--首页-->
     <string name="receipt">收款</string>
     <string name="bill">账单</string>
+    <string name="ranking">排行榜</string>
+    <string name="financing">理财</string>
     <string name="mine">我的</string>
     <string name="scan_qr_code">扫描二维码</string>
 
@@ -119,4 +121,9 @@
     <string name="input_phone_number">请输入手机号</string>
     <string name="button_send_auth_code">发送验证码</string>
     <string name="input_sms_verificationcode">请输入手机验证码</string>
+    
+    <!--排行榜-->
+    <string name="year_ranking">年排行</string>
+    <string name="season_ranking">季排行</string>
+    <string name="month_ranking">月排行</string>
 </resources>

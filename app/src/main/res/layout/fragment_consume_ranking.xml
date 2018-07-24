@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.nenggou.slsm.common.refreshview.HeaderViewLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:refreshMode="LIST_LOAD">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/appText1"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/ranking_bg_icon">
+
+                    <LinearLayout
+                        android:id="@+id/choice_year_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/common_forty_four_margin"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/year_ranking"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/common_forty_four_margin"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/year_ranking"
+                            android:textColor="@color/appText1"
+                            android:textSize="15sp" />
+
+                        <LinearLayout
+                            android:id="@+id/season_ranking_ll"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/common_forty_four_margin"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/season_ranking"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawablePadding="@dimen/common_six_margin"
+                                android:drawableRight="@mipmap/season_down_icon"
+                                android:text="@string/season_ranking"
+                                android:textColor="@color/appText1"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/month_ranking"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/common_forty_four_margin"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/month_ranking"
+                            android:textColor="@color/appText1"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/consume_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/common_twelve_margin"
+                    android:layout_marginRight="@dimen/common_twelve_margin"
+                    android:layout_marginTop="@dimen/common_forty_four_margin"
+                    android:background="@mipmap/cost_total_bg"
+                    android:orientation="vertical">
+
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </com.nenggou.slsm.common.refreshview.HeaderViewLayout>
+</LinearLayout>
