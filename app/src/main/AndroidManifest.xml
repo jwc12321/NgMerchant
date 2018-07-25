@@ -178,6 +178,9 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".jurisdiction.JurisdictionActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".cash.ui.ReceivablesActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
     </application>
 
 </manifest>

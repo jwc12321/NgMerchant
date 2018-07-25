@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.nenggou.slsm.R;
 import com.nenggou.slsm.data.entity.HistoryIncomeItem;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import butterknife.BindView;
@@ -20,10 +21,21 @@ import butterknife.ButterKnife;
  */
 
 public class HMIncomeAdapter extends RecyclerView.Adapter<HMIncomeAdapter.HMIncomeView> {
-
     private LayoutInflater layoutInflater;
     private List<HistoryIncomeItem> historyIncomeItems;
 
+    private BigDecimal offsetCashDecimal;//兑换现金
+    private BigDecimal ptDecimal;//兑换比例
+    private BigDecimal percentageDecimal;//能量兑换比是200，要除以100才行
+    private BigDecimal energyDecimal;//总能量
+
+    public HMIncomeAdapter() {
+        percentageDecimal = new BigDecimal(100).setScale(2, BigDecimal.ROUND_DOWN);
+    }
+
+    public void setProportion(String proportion) {
+        ptDecimal = new BigDecimal(proportion).setScale(2, BigDecimal.ROUND_DOWN);
+    }
     public void setData(List<HistoryIncomeItem> historyIncomeItems) {
         this.historyIncomeItems = historyIncomeItems;
         notifyDataSetChanged();
@@ -51,7 +63,7 @@ public class HMIncomeAdapter extends RecyclerView.Adapter<HMIncomeAdapter.HMInco
         holder.incomeItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(itemClickListener!=null){
+                if (itemClickListener != null) {
                     itemClickListener.goIncomeList(historyIncomeItem.getDate());
                 }
             }
@@ -74,11 +86,12 @@ public class HMIncomeAdapter extends RecyclerView.Adapter<HMIncomeAdapter.HMInco
         TextView cashIncome;
         @BindView(R.id.energy_income)
         TextView energyIncome;
+        @BindView(R.id.energy_cash)
+        TextView energyCash;
         @BindView(R.id.detail_rl)
         RelativeLayout detailRl;
         @BindView(R.id.income_item)
         RelativeLayout incomeItem;
-
         public HMIncomeView(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -89,6 +102,9 @@ public class HMIncomeAdapter extends RecyclerView.Adapter<HMIncomeAdapter.HMInco
             incomeNumber.setText(historyIncomeItem.getCountTotal());
             cashIncome.setText("现金:" + historyIncomeItem.getAllmoney() + "元");
             energyIncome.setText("能量" + historyIncomeItem.getAllpower() + "个");
+            energyDecimal = new BigDecimal(historyIncomeItem.getAllpower()).setScale(2, BigDecimal.ROUND_DOWN);
+            offsetCashDecimal = energyDecimal.multiply(ptDecimal).divide(percentageDecimal, 2, BigDecimal.ROUND_DOWN);
+            energyCash.setText("(可兑换现金¥"+offsetCashDecimal.toString()+")");
         }
     }
 

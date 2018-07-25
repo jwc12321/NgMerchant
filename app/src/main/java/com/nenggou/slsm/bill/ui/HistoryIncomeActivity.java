@@ -27,6 +27,7 @@ import com.nenggou.slsm.data.entity.HistoryIncomAll;
 import com.nenggou.slsm.data.entity.HistoryIncomInfo;
 import com.nenggou.slsm.data.entity.HistoryIncomeItem;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -61,9 +62,18 @@ public class HistoryIncomeActivity extends BaseActivity implements BillContract.
     RecyclerView incomeRv;
     @BindView(R.id.refreshLayout)
     HeaderViewLayout refreshLayout;
+    @BindView(R.id.energy_cash)
+    TextView energyCash;
     private String storeid;
     private String startTime;
     private String endTime;
+
+    private String proportion;
+
+    private BigDecimal offsetCashDecimal;//兑换现金
+    private BigDecimal ptDecimal;//兑换比例
+    private BigDecimal percentageDecimal;//能量兑换比是200，要除以100才行
+    private BigDecimal energyDecimal;//总能量
 
     @Inject
     HistoryIncomePresenter historyIncomePresenter;
@@ -135,11 +145,18 @@ public class HistoryIncomeActivity extends BaseActivity implements BillContract.
     public void renderHistoryIncome(HistoryIncomInfo historyIncomInfo) {
         refreshLayout.stopRefresh();
         if (historyIncomInfo != null) {
+            proportion = historyIncomInfo.getPowerRate();
+            hmIncomeAdapter.setProportion(proportion);
             List<HistoryIncomAll> historyIncomAlls = historyIncomInfo.getHistoryIncomAlls();
             if (historyIncomAlls != null && historyIncomAlls.size() > 0) {
                 HistoryIncomAll historyIncomAll = historyIncomAlls.get(0);
                 cashIncome.setText("现金:" + historyIncomAll.getAllmoney() + "元");
                 energyIncome.setText("能量" + historyIncomAll.getAllpower() + "个");
+                energyDecimal = new BigDecimal(historyIncomAll.getAllpower()).setScale(2, BigDecimal.ROUND_DOWN);
+                ptDecimal = new BigDecimal(proportion).setScale(2, BigDecimal.ROUND_DOWN);
+                percentageDecimal = new BigDecimal(100).setScale(2, BigDecimal.ROUND_DOWN);
+                offsetCashDecimal = energyDecimal.multiply(ptDecimal).divide(percentageDecimal, 2, BigDecimal.ROUND_DOWN);
+                energyCash.setText("(可兑换现金¥"+offsetCashDecimal.toString()+")");
                 String totalNumberStr;
                 if (!TextUtils.isEmpty(historyIncomAll.getAllTotal())) {
                     totalNumberStr = "共计" + historyIncomAll.getAllTotal() + "笔";

@@ -12,6 +12,8 @@ public class BillInfo {
     private String allmoney;
     @SerializedName("allpower")
     private String allpower;
+    @SerializedName("power_rate")
+    private String powerRate;
     @SerializedName("list")
     private IncomeList incomeList;
 
@@ -37,5 +39,13 @@ public class BillInfo {
 
     public void setIncomeList(IncomeList incomeList) {
         this.incomeList = incomeList;
+    }
+
+    public String getPowerRate() {
+        return powerRate;
+    }
+
+    public void setPowerRate(String powerRate) {
+        this.powerRate = powerRate;
     }
 }

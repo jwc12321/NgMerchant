@@ -55,5 +55,7 @@ public class StaticData {
     public static final String TO_UPDATE="toUpdate";
     //兑换比例
     public static final String PROPORTION="proportion";
-
+    //推送信息
+    public static final String PUSH_INFO="pushInfo";
+    public static final String PUSH_INFO_STR="pushInfoStr";
 }

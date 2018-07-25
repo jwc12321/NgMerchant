@@ -112,7 +112,18 @@
         <item name="riv_border_color">@color/appText1</item>
         <item name="riv_corner_radius">1dp</item>
     </style>
-
+    <style name="orangePhotoStyle">
+        <item name="android:scaleType">fitXY</item>
+        <item name="riv_border_width">3dp</item>
+        <item name="riv_border_color">@color/appText3</item>
+        <item name="riv_corner_radius">1dp</item>
+    </style>
+    <style name="noPhotoStyle">
+        <item name="android:scaleType">fitXY</item>
+        <item name="riv_border_width">0dp</item>
+        <item name="riv_border_color">@color/appText1</item>
+        <item name="riv_corner_radius">0dp</item>
+    </style>
     <style name="head_PhotoStyle">
         <item name="android:scaleType">fitXY</item>
         <item name="riv_border_width">0dp</item>
@@ -355,6 +366,13 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/appText5</item>
+    </style>
+
+    <style name="energy_number_style">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/appText3</item>
     </style>
 
     <style name="modify_password_ll_style">

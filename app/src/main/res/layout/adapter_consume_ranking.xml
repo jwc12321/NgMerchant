@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/common_eighty_margin">
+
+    <ImageView
+        android:id="@+id/medal"
+        android:layout_width="@dimen/common_thirty_two_margin"
+        android:layout_height="@dimen/common_thirty_five_margin"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/common_twelve_margin"
+        android:scaleType="fitXY"
+        tools:src="@mipmap/bronze_medal_icon" />
+
+    <TextView
+        android:id="@+id/ranking"
+        android:layout_width="@dimen/common_thirty_two_margin"
+        android:layout_height="@dimen/common_thirty_five_margin"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/common_twelve_margin"
+        android:gravity="center"
+        android:textColor="@color/appText3"
+        android:textSize="18sp"
+        android:visibility="gone"
+        tools:text="6" />
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/head_photo"
+        style="@style/noPhotoStyle"
+        android:layout_width="@dimen/common_fifty_margin"
+        android:layout_height="@dimen/common_fifty_margin"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/common_sixty_four_margin"
+        app:riv_oval="true"
+        tools:background="@null"
+        tools:src="@mipmap/app_icon" />
+
+    <TextView
+        android:id="@+id/rmb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/common_one_hundred_margin"
+        android:layout_marginTop="@dimen/common_seventeen_margin"
+        android:text="¥"
+        android:textColor="@color/appText6"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/rmb_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/common_seventy_margin"
+        android:layout_marginTop="@dimen/common_seventeen_margin"
+        android:text="100"
+        android:textColor="@color/appText6"
+        android:textSize="13sp" />
+
+    <ImageView
+        android:id="@+id/rank_coupon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/common_twelve_margin"
+        android:src="@mipmap/rank_coupon_icon" />
+
+    <TextView
+        android:id="@+id/energy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/common_seventeen_margin"
+        android:layout_marginRight="@dimen/common_seventy_margin"
+        android:textColor="@color/appText6"
+        android:textSize="13sp"
+        tools:text="100" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/common_seventeen_margin"
+        android:layout_marginRight="@dimen/common_one_hundred_margin"
+        android:src="@mipmap/energy_icon" />
+</RelativeLayout>

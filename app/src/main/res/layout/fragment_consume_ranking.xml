@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <com.nenggou.slsm.common.refreshview.HeaderViewLayout
         android:id="@+id/refreshLayout"
@@ -11,79 +11,161 @@
         android:layout_height="match_parent"
         app:refreshMode="LIST_LOAD">
 
-        <LinearLayout
+        <com.nenggou.slsm.common.widget.GradationScrollView
+            android:id="@+id/scrollview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/appText1"
-            android:orientation="vertical">
+            android:overScrollMode="never">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:background="@color/backGround1"
+                android:orientation="vertical">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/ranking_bg_icon">
+                    android:layout_height="wrap_content">
 
                     <LinearLayout
-                        android:id="@+id/choice_year_ll"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/common_forty_four_margin"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/year_ranking"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/common_forty_four_margin"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="@string/year_ranking"
-                            android:textColor="@color/appText1"
-                            android:textSize="15sp" />
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/ranking_bg_icon">
 
                         <LinearLayout
-                            android:id="@+id/season_ranking_ll"
+                            android:id="@+id/choice_year_ll"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/common_forty_four_margin"
-                            android:layout_weight="1"
-                            android:gravity="center">
+                            android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/season_ranking"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:drawablePadding="@dimen/common_six_margin"
-                                android:drawableRight="@mipmap/season_down_icon"
-                                android:text="@string/season_ranking"
+                                android:id="@+id/year_ranking"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/common_forty_four_margin"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="@string/year_ranking"
+                                android:textColor="@color/appText1"
+                                android:textSize="15sp" />
+
+                            <LinearLayout
+                                android:id="@+id/season_ranking_ll"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/common_forty_four_margin"
+                                android:layout_weight="1"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:id="@+id/season_ranking"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:drawablePadding="@dimen/common_six_margin"
+                                    android:drawableRight="@mipmap/season_down_icon"
+                                    android:text="@string/season_ranking"
+                                    android:textColor="@color/appText1"
+                                    android:textSize="15sp" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/month_ranking"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/common_forty_four_margin"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="@string/month_ranking"
                                 android:textColor="@color/appText1"
                                 android:textSize="15sp" />
                         </LinearLayout>
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/consume_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common_twelve_margin"
+                        android:layout_marginRight="@dimen/common_twelve_margin"
+                        android:layout_marginTop="@dimen/common_forty_four_margin"
+                        android:background="@mipmap/cost_total_bg"
+                        android:orientation="vertical">
+
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/head_photo"
+                            style="@style/orangePhotoStyle"
+                            android:layout_width="@dimen/common_seventy_two_margin"
+                            android:layout_height="@dimen/common_seventy_two_margin"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/common_fifteen_margin"
+                            app:riv_oval="true"
+                            tools:background="@null"
+                            tools:src="@mipmap/app_icon" />
 
                         <TextView
-                            android:id="@+id/month_ranking"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/common_forty_four_margin"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="@string/month_ranking"
-                            android:textColor="@color/appText1"
-                            android:textSize="15sp" />
-                    </LinearLayout>
-                </LinearLayout>
+                            android:id="@+id/user_name"
+                            style="@style/modify_password_style"
+                            android:layout_below="@id/head_photo"
+                            android:layout_centerHorizontal="true"
+                            tools:text="小明" />
 
-                <RelativeLayout
-                    android:id="@+id/consume_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/common_twelve_margin"
-                    android:layout_marginRight="@dimen/common_twelve_margin"
-                    android:layout_marginTop="@dimen/common_forty_four_margin"
-                    android:background="@mipmap/cost_total_bg"
-                    android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/common_forty_four_margin"
+                            android:orientation="vertical">
 
+                            <TextView
+                                style="@style/modify_password_style"
+                                android:layout_gravity="center_horizontal"
+                                android:text="@string/energy" />
+
+                            <TextView
+                                android:id="@+id/energy_num"
+                                style="@style/energy_number_style"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="@dimen/common_five_margin"
+                                tools:text="100.00" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/common_forty_four_margin"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/modify_password_style"
+                                android:layout_gravity="center_horizontal"
+                                android:text="@string/consumption" />
+
+                            <TextView
+                                android:id="@+id/consume_num"
+                                style="@style/energy_number_style"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="@dimen/common_five_margin"
+                                tools:text="100.00" />
+                        </LinearLayout>
+                    </RelativeLayout>
                 </RelativeLayout>
-            </RelativeLayout>
-        </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/consume_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/common_eight_margin"
+                    android:background="@color/appText1"
+                    app:layoutManager="@string/layoutManager_LinearLayout" />
+            </LinearLayout>
+        </com.nenggou.slsm.common.widget.GradationScrollView>
     </com.nenggou.slsm.common.refreshview.HeaderViewLayout>
-</LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/season_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_forty_four_margin"
+        android:background="@color/appText1"
+        android:visibility="gone"
+        app:layoutManager="@string/layoutManager_LinearLayout" />
+</RelativeLayout>

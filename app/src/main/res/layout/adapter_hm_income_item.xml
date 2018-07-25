@@ -57,16 +57,31 @@
             android:textSize="17sp"
             tools:text="现金" />
 
-        <TextView
-            android:id="@+id/energy_income"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/cash_income"
             android:layout_marginTop="@dimen/common_six_margin"
-            android:textColor="@color/appText3"
-            android:textSize="17sp"
-            tools:text="能量" />
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/cash_income">
+
+            <TextView
+                android:id="@+id/energy_income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/appText3"
+                android:textSize="17sp"
+                tools:text="能量收入" />
+
+            <TextView
+                android:id="@+id/energy_cash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/appText3"
+                android:textSize="13sp"
+                tools:text="能量收入" />
+        </LinearLayout>
     </RelativeLayout>
 
     <View

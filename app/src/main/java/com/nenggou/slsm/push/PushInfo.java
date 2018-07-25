@@ -2,6 +2,7 @@ package com.nenggou.slsm.push;
 
 
 import com.google.gson.annotations.SerializedName;
+import com.nenggou.slsm.data.request.PageRequest;
 
 import java.io.Serializable;
 
@@ -20,6 +21,14 @@ public class PushInfo implements Serializable {
     private String type;
     @SerializedName("username")
     private String username;
+    @SerializedName("userid")
+    private String userid;
+    @SerializedName("storename")
+    private String storename;
+    @SerializedName("paytime")
+    private String paytime;
+    @SerializedName("useravatar")
+    private String useravatar;
 
     public String getNowprice() {
         return nowprice;
@@ -59,5 +68,37 @@ public class PushInfo implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
+    public String getStorename() {
+        return storename;
+    }
+
+    public void setStorename(String storename) {
+        this.storename = storename;
+    }
+
+    public String getPaytime() {
+        return paytime;
+    }
+
+    public void setPaytime(String paytime) {
+        this.paytime = paytime;
+    }
+
+    public String getUseravatar() {
+        return useravatar;
+    }
+
+    public void setUseravatar(String useravatar) {
+        this.useravatar = useravatar;
     }
 }

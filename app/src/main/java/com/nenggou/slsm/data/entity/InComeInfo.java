@@ -17,6 +17,8 @@ public class InComeInfo {
     private String updatedAt;
     @SerializedName("nickname")
     private String nickname;
+    @SerializedName("types")
+    private String types;
 
     public String getId() {
         return id;
@@ -56,5 +58,13 @@ public class InComeInfo {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public String getTypes() {
+        return types;
+    }
+
+    public void setTypes(String types) {
+        this.types = types;
     }
 }

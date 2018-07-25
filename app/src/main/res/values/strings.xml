@@ -81,6 +81,8 @@
     <string name="query_stage">阶段查询</string>
     <string name="confirm">确定</string>
     <string name="now_month_income">本月总收入</string>
+    <string name="service_charge">服务费</string>
+    <string name="subsidy_energy_out">补贴能量支出</string>
 
     <!--现金-->
     <string name="cash_detail">明细</string>
@@ -101,6 +103,7 @@
 
     <!--能量-->
     <string name="energy_explain">能量说明</string>
+    <string name="coupon">优惠券</string>
 
     <!--设置-->
     <string name="setting">设置</string>
@@ -126,4 +129,6 @@
     <string name="year_ranking">年排行</string>
     <string name="season_ranking">季排行</string>
     <string name="month_ranking">月排行</string>
+    <string name="consumption">消费</string>
+    <string name="receivables">收款</string>
 </resources>

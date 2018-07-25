@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.nenggou.slsm.BaseActivity;
 import com.nenggou.slsm.R;
+import com.nenggou.slsm.common.unit.CommonAppPreferences;
 import com.nenggou.slsm.common.unit.StaticHandler;
 import com.nenggou.slsm.common.unit.TokenManager;
 import com.nenggou.slsm.jurisdiction.JurisdictionActivity;

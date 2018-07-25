@@ -28,4 +28,14 @@ public class CommonAppPreferences {
     public String getToUpdate(){
         return sharedPreferences.getString(StaticData.TO_UPDATE,"");
     }
+
+    public void setPushInfoStr(String pushInfoStr){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(StaticData.PUSH_INFO_STR,pushInfoStr);
+        editor.commit();
+    }
+    public String getPushInfoStr(){
+        return sharedPreferences.getString(StaticData.PUSH_INFO_STR,"");
+    }
+
 }

@@ -25,6 +25,7 @@ import com.nenggou.slsm.common.widget.KeywordUtil;
 import com.nenggou.slsm.data.entity.BillInfo;
 import com.nenggou.slsm.data.entity.InComeInfo;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -58,6 +59,8 @@ public class IncomeListActivity extends BaseActivity implements BillContract.Day
     RecyclerView incomeRv;
     @BindView(R.id.refreshLayout)
     HeaderViewLayout refreshLayout;
+    @BindView(R.id.energy_cash)
+    TextView energyCash;
     private String storeid;
     private String date;
     private String timeType; //1:本月收入 2：历史收入 3：推荐收入
@@ -65,6 +68,13 @@ public class IncomeListActivity extends BaseActivity implements BillContract.Day
     private IncomeAdapter incomeAdapter;
     @Inject
     DayIncomePresenter dayIncomePresenter;
+
+    private String proportion;
+
+    private BigDecimal offsetCashDecimal;//兑换现金
+    private BigDecimal ptDecimal;//兑换比例
+    private BigDecimal percentageDecimal;//能量兑换比是200，要除以100才行
+    private BigDecimal energyDecimal;//总能量
 
 
     public static void start(Context context, String storeId, String date, String timeType) {
@@ -156,8 +166,15 @@ public class IncomeListActivity extends BaseActivity implements BillContract.Day
     public void renderDayIncome(BillInfo billInfo) {
         refreshLayout.stopRefresh();
         if (billInfo != null) {
+            proportion=billInfo.getPowerRate();
+            incomeAdapter.setProportion(proportion);
             cashIncome.setText("现金" + billInfo.getAllmoney() + "元");
             energyIncome.setText("能量" + billInfo.getAllpower() + "个");
+            energyDecimal = new BigDecimal(billInfo.getAllpower()).setScale(2, BigDecimal.ROUND_DOWN);
+            ptDecimal = new BigDecimal(proportion).setScale(2, BigDecimal.ROUND_DOWN);
+            percentageDecimal = new BigDecimal(100).setScale(2, BigDecimal.ROUND_DOWN);
+            offsetCashDecimal = energyDecimal.multiply(ptDecimal).divide(percentageDecimal, 2, BigDecimal.ROUND_DOWN);
+            energyCash.setText("(可兑换现金¥"+offsetCashDecimal.toString()+")");
             String totalNumberStr;
             if (billInfo.getIncomeList() != null) {
                 if (!TextUtils.isEmpty(billInfo.getIncomeList().getTotal())) {

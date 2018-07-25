@@ -13,6 +13,8 @@ public class HistoryIncomInfo {
     private List<HistoryIncomAll> historyIncomAlls;
     @SerializedName("count")
     private HistoryIncomCount historyIncomCount;
+    @SerializedName("power_rate")
+    private String powerRate;
 
     public List<HistoryIncomAll> getHistoryIncomAlls() {
         return historyIncomAlls;
@@ -28,5 +30,13 @@ public class HistoryIncomInfo {
 
     public void setHistoryIncomCount(HistoryIncomCount historyIncomCount) {
         this.historyIncomCount = historyIncomCount;
+    }
+
+    public String getPowerRate() {
+        return powerRate;
+    }
+
+    public void setPowerRate(String powerRate) {
+        this.powerRate = powerRate;
     }
 }

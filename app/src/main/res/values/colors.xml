@@ -21,10 +21,12 @@
     <color name="appText9">#56C9FF</color>
     <color name="appText11">#e61818</color>
     <color name="appText12">#5F5F5F</color>
+    <color name="appText13">#FFA93A</color>
 
 
     <color name="backGround1">#f4f4f4</color>
     <color name="backGround2">#E6E6E6</color>
     <color name="backGround3">#00000000</color>
+    <color name="backGround4">#FFA93A</color>
     <color name="backGround9">#27B8f3</color>
 </resources>

@@ -15,6 +15,10 @@ public class IncomeDetailInfo {
     private String title;
     @SerializedName("allprice")
     private String allprice;
+    @SerializedName("price")
+    private String price;
+    @SerializedName("power")
+    private String power;
     @SerializedName("status")
     private String status;
     @SerializedName("orderno")
@@ -27,6 +31,14 @@ public class IncomeDetailInfo {
     private String quannum;
     @SerializedName("uid")
     private String uid;
+    @SerializedName("aprice")
+    private String aprice;
+    @SerializedName("apower")
+    private String apower;
+    @SerializedName("bpower")
+    private String bpower;
+    @SerializedName("power_rate")
+    private String powerRate;
 
     public String getNickname() {
         return nickname;
@@ -106,5 +118,53 @@ public class IncomeDetailInfo {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getPower() {
+        return power;
+    }
+
+    public void setPower(String power) {
+        this.power = power;
+    }
+
+    public String getAprice() {
+        return aprice;
+    }
+
+    public void setAprice(String aprice) {
+        this.aprice = aprice;
+    }
+
+    public String getApower() {
+        return apower;
+    }
+
+    public void setApower(String apower) {
+        this.apower = apower;
+    }
+
+    public String getBpower() {
+        return bpower;
+    }
+
+    public void setBpower(String bpower) {
+        this.bpower = bpower;
+    }
+
+    public String getPowerRate() {
+        return powerRate;
+    }
+
+    public void setPowerRate(String powerRate) {
+        this.powerRate = powerRate;
     }
 }

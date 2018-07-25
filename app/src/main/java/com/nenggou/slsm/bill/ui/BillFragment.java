@@ -26,6 +26,7 @@ import com.nenggou.slsm.data.RemoteDataException;
 import com.nenggou.slsm.data.entity.BillInfo;
 import com.nenggou.slsm.data.entity.InComeInfo;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -59,12 +60,20 @@ public class BillFragment extends BaseFragment implements BillContract.DayIncome
     NestedScrollView emptyView;
     @BindView(R.id.refreshLayout)
     HeaderViewLayout refreshLayout;
+    @BindView(R.id.energy_cash)
+    TextView energyCash;
     private IncomeAdapter incomeAdapter;
     @Inject
     DayIncomePresenter dayIncomePresenter;
 
     private String today;
     private String firstIn = "1";
+    private String proportion;
+
+    private BigDecimal offsetCashDecimal;//兑换现金
+    private BigDecimal ptDecimal;//兑换比例
+    private BigDecimal percentageDecimal;//能量兑换比是200，要除以100才行
+    private BigDecimal energyDecimal;//总能量
 
     public BillFragment() {
     }
@@ -148,7 +157,7 @@ public class BillFragment extends BaseFragment implements BillContract.DayIncome
     @Override
     public void showError(Throwable e) {
         if (e != null && e instanceof RemoteDataException && ((RemoteDataException) e).isAuthFailed()) {
-            firstIn="0";
+            firstIn = "0";
         }
         super.showError(e);
     }
@@ -177,8 +186,15 @@ public class BillFragment extends BaseFragment implements BillContract.DayIncome
     public void renderDayIncome(BillInfo billInfo) {
         refreshLayout.stopRefresh();
         if (billInfo != null) {
+            proportion = billInfo.getPowerRate();
+            incomeAdapter.setProportion(proportion);
             cashIncome.setText("现金" + billInfo.getAllmoney() + "元");
             energyIncome.setText("能量" + billInfo.getAllpower() + "个");
+            energyDecimal = new BigDecimal(billInfo.getAllpower()).setScale(2, BigDecimal.ROUND_DOWN);
+            ptDecimal = new BigDecimal(proportion).setScale(2, BigDecimal.ROUND_DOWN);
+            percentageDecimal = new BigDecimal(100).setScale(2, BigDecimal.ROUND_DOWN);
+            offsetCashDecimal = energyDecimal.multiply(ptDecimal).divide(percentageDecimal, 2, BigDecimal.ROUND_DOWN);
+            energyCash.setText("(可兑换现金¥"+offsetCashDecimal.toString()+")");
             String totalNumberStr;
             if (billInfo.getIncomeList() != null) {
                 if (!TextUtils.isEmpty(billInfo.getIncomeList().getTotal())) {

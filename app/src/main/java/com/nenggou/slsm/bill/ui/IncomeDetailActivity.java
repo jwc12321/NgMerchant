@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,6 +22,8 @@ import com.nenggou.slsm.common.GlideHelper;
 import com.nenggou.slsm.common.StaticData;
 import com.nenggou.slsm.common.unit.FormatUtil;
 import com.nenggou.slsm.data.entity.IncomeDetailInfo;
+
+import java.math.BigDecimal;
 
 import javax.inject.Inject;
 
@@ -65,10 +68,44 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
     TextView merchantOrderNumber;
     @BindView(R.id.go_recode_rl)
     RelativeLayout goRecodeRl;
+    @BindView(R.id.energy_numbe)
+    TextView energyNumbe;
+    @BindView(R.id.cash_numbe)
+    TextView cashNumbe;
+    @BindView(R.id.coupon_numbe)
+    TextView couponNumbe;
+    @BindView(R.id.service_c_proportion)
+    TextView serviceCProportion;
+    @BindView(R.id.service_c_price)
+    TextView serviceCPrice;
+    @BindView(R.id.proportion)
+    TextView proportion;
+    @BindView(R.id.subsidy_e_out_price)
+    TextView subsidyEOutPrice;
+    @BindView(R.id.energy_ll)
+    LinearLayout energyLl;
+    @BindView(R.id.spare_ll)
+    LinearLayout spareLl;
+    @BindView(R.id.cash_ll)
+    LinearLayout cashLl;
+    @BindView(R.id.coupon_ll)
+    LinearLayout couponLl;
+    @BindView(R.id.spare_second_ll)
+    LinearLayout spareSecondLl;
+    @BindView(R.id.service_c_p_ll)
+    LinearLayout serviceCPLl;
+    @BindView(R.id.subsidy_e_out_p_ll)
+    LinearLayout subsidyEOutPLl;
     private String billId;
     private String uid;
     private String shopName;
     private String nickName;
+
+    private BigDecimal priceDecimal;//现金
+    private BigDecimal energyDecimal;//能量
+    private BigDecimal ptDecimal;//兑换比例
+    private BigDecimal percentageDecimal;//能量兑换比是200，要除以100才行
+    private BigDecimal divisorDecimal;
 
     public static void start(Context context, String billId) {
         Intent intent = new Intent(context, IncomeDetailActivity.class);
@@ -108,10 +145,10 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
     @Override
     public void renderIncomeDetail(IncomeDetailInfo incomeDetailInfo) {
         if (incomeDetailInfo != null) {
-            uid=incomeDetailInfo.getUid();
-            shopName=incomeDetailInfo.getTitle();
+            uid = incomeDetailInfo.getUid();
+            shopName = incomeDetailInfo.getTitle();
             GlideHelper.load(this, incomeDetailInfo.getAvatar(), R.mipmap.app_icon, photo);
-            nickName=incomeDetailInfo.getNickname();
+            nickName = incomeDetailInfo.getNickname();
             businessName.setText(incomeDetailInfo.getNickname());
             price.setText(incomeDetailInfo.getAllprice());
             cashStore.setText(incomeDetailInfo.getTitle());
@@ -123,18 +160,75 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
             } else {
                 paymentMethod.setText("微信");
             }
+            int zeroTotal = 0;
+            if (TextUtils.equals("0.00", incomeDetailInfo.getPower())) {
+                energyLl.setVisibility(View.GONE);
+                zeroTotal++;
+            }
+            if (TextUtils.equals("0.00", incomeDetailInfo.getPrice())) {
+                cashLl.setVisibility(View.GONE);
+                zeroTotal++;
+            }
+            if (TextUtils.equals("0.00", incomeDetailInfo.getQuannum())) {
+                couponLl.setVisibility(View.GONE);
+                zeroTotal++;
+            }
+            if (zeroTotal == 1) {
+                if (energyLl.getVisibility() == View.GONE) {
+                    spareLl.setVisibility(View.GONE);
+                    spareSecondLl.setVisibility(View.VISIBLE);
+                } else if (cashLl.getVisibility() == View.GONE) {
+                    spareLl.setVisibility(View.VISIBLE);
+                    spareSecondLl.setVisibility(View.GONE);
+                } else if (couponLl.getVisibility() == View.GONE) {
+                    spareLl.setVisibility(View.VISIBLE);
+                    spareSecondLl.setVisibility(View.GONE);
+                }
+            } else {
+                spareLl.setVisibility(View.GONE);
+                spareSecondLl.setVisibility(View.GONE);
+            }
+            energyNumbe.setText(incomeDetailInfo.getPower() + "能量");
+            cashNumbe.setText("¥" + incomeDetailInfo.getPrice());
+            couponNumbe.setText("¥" + incomeDetailInfo.getQuannum());
+            priceDecimal = new BigDecimal(incomeDetailInfo.getAprice()).setScale(2, BigDecimal.ROUND_DOWN);
+            energyDecimal = new BigDecimal(incomeDetailInfo.getApower()).setScale(2, BigDecimal.ROUND_DOWN);
+            serviceCPrice.setText("¥" + priceDecimal.add(energyDecimal).toString());
+            ptDecimal = new BigDecimal(incomeDetailInfo.getPowerRate()).setScale(2, BigDecimal.ROUND_DOWN);
+            percentageDecimal = new BigDecimal(100).setScale(2, BigDecimal.ROUND_DOWN);
+            divisorDecimal = ptDecimal.divide(percentageDecimal, 2, BigDecimal.ROUND_DOWN);
+            String divisorStr = divisorDecimal.toString();
+            String lastDiv = divisorStr.substring(divisorStr.length() - 1, divisorStr.length());
+            String sLastDiv = divisorStr.substring(divisorStr.length() - 2, divisorStr.length() - 1);
+            String intercept;
+            if (TextUtils.equals("0", lastDiv) && TextUtils.equals("0", sLastDiv)) {
+                intercept = divisorStr.substring(0, divisorStr.length() - 3);
+            } else if (TextUtils.equals("0", lastDiv + "0") && !TextUtils.equals("0", sLastDiv + "")) {
+                intercept = divisorStr.substring(0, divisorStr.length() - 1);
+            } else {
+                intercept = divisorStr;
+            }
+            proportion.setText("能量 : 现金 = 1 : " + intercept);
+            subsidyEOutPrice.setText(incomeDetailInfo.getBpower() + "能量");
+            if (TextUtils.equals("0.00", serviceCPrice.toString())) {
+                serviceCPLl.setVisibility(View.GONE);
+            }
+            if (TextUtils.equals("0.00", incomeDetailInfo.getBpower())) {
+                subsidyEOutPLl.setVisibility(View.GONE);
+            }
+
         }
     }
 
-    @OnClick({R.id.back,R.id.go_recode_rl})
+    @OnClick({R.id.back, R.id.go_recode_rl})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
                 finish();
                 break;
             case R.id.go_recode_rl:
-                if(!TextUtils.isEmpty(uid)){
-                    IntercourseRecordActivity.start(this,uid,nickName);
+                if (!TextUtils.isEmpty(uid)) {
+                    IntercourseRecordActivity.start(this, uid, nickName);
                 }
                 break;
             default:
