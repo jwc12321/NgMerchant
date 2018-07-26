@@ -3,6 +3,8 @@ package com.nenggou.slsm.bankcard;
 import com.nenggou.slsm.BasePresenter;
 import com.nenggou.slsm.BaseView;
 import com.nenggou.slsm.data.entity.BankCardInfo;
+import com.nenggou.slsm.data.entity.PutForwardDetailInfo;
+import com.nenggou.slsm.data.entity.PutForwardInfo;
 
 import java.util.List;
 
@@ -31,5 +33,20 @@ public interface BankCardContract {
 
     interface PutForwardView extends BaseView<PutForwardPresenter>{
         void purForwardSuccess();
+    }
+
+    interface PutForwardInfosPresenter extends BasePresenter{
+        void getPutForwardInfos(String starttime);
+    }
+    interface PutForwardInfosView extends BaseView<PutForwardInfosPresenter>{
+        void renderPutForwardInfos(List<PutForwardInfo> putForwardInfos);
+    }
+
+    interface PutForwardDetailPresenter extends BasePresenter{
+        void getPutForwardDetail(String id);
+    }
+
+    interface PutForwardDetailView extends BaseView<PutForwardDetailPresenter>{
+        void renderPutForwardDetail(PutForwardDetailInfo putForwardDetailInfo);
     }
 }

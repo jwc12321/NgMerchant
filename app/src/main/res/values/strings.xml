@@ -83,11 +83,19 @@
     <string name="now_month_income">本月总收入</string>
     <string name="service_charge">服务费</string>
     <string name="subsidy_energy_out">补贴能量支出</string>
+    <string name="current_state">当前状态</string>
+    <string name="putforward_type">类型</string>
+    <string name="putforward_number">提现数量</string>
+    <string name="apply_time">提现提现时间</string>
+    <string name="reach_time">提现到账时间</string>
+    <string name="putforward_bank">提现银行</string>
+    <string name="putforward_orderno">提现单号</string>
 
     <!--现金-->
     <string name="cash_detail">明细</string>
     <string name="account_balance">账户余额(元)</string>
     <string name="put_forward">提现</string>
+    <string name="present_record">提现记录</string>
 
     <!--银行卡-->
     <string name="add_bank_card">添加银行卡</string>

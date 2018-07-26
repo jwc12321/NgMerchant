@@ -24,6 +24,8 @@ public class EnergyDetailInfo {
     private String nickname;
     @SerializedName("avatar")
     private String avatar;
+    @SerializedName("payoutid")
+    private String payoutid;
 
     public String getId() {
         return id;
@@ -87,5 +89,13 @@ public class EnergyDetailInfo {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public String getPayoutid() {
+        return payoutid;
+    }
+
+    public void setPayoutid(String payoutid) {
+        this.payoutid = payoutid;
     }
 }

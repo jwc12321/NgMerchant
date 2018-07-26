@@ -58,4 +58,5 @@ public class StaticData {
     //推送信息
     public static final String PUSH_INFO="pushInfo";
     public static final String PUSH_INFO_STR="pushInfoStr";
+    public static final String ID="id";
 }

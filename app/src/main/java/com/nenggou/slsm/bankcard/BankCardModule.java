@@ -1,5 +1,7 @@
 package com.nenggou.slsm.bankcard;
 
+import com.nenggou.slsm.cash.CashContract;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -12,6 +14,8 @@ public class BankCardModule {
     private BankCardContract.BankCardListView bankCardListView;
     private BankCardContract.AddbankcardView addbankcardView;
     private BankCardContract.PutForwardView putForwardView;
+    private BankCardContract.PutForwardInfosView putForwardInfosView;
+    private BankCardContract.PutForwardDetailView putForwardDetailView;
 
     public BankCardModule(BankCardContract.BankCardListView bankCardListView) {
         this.bankCardListView = bankCardListView;
@@ -23,6 +27,14 @@ public class BankCardModule {
 
     public BankCardModule(BankCardContract.PutForwardView putForwardView) {
         this.putForwardView = putForwardView;
+    }
+
+    public BankCardModule(BankCardContract.PutForwardInfosView putForwardInfosView) {
+        this.putForwardInfosView = putForwardInfosView;
+    }
+
+    public BankCardModule(BankCardContract.PutForwardDetailView putForwardDetailView) {
+        this.putForwardDetailView = putForwardDetailView;
     }
 
     @Provides
@@ -37,5 +49,15 @@ public class BankCardModule {
     @Provides
     BankCardContract.PutForwardView providePutForwardView(){
         return putForwardView;
+    }
+
+    @Provides
+    BankCardContract.PutForwardInfosView providePutForwardInfosView(){
+        return putForwardInfosView;
+    }
+
+    @Provides
+    BankCardContract.PutForwardDetailView providePutForwardDetailView(){
+        return putForwardDetailView;
     }
 }

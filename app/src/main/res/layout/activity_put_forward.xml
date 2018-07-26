@@ -18,6 +18,11 @@
             android:id="@+id/title"
             style="@style/title_text_style"
             android:text="@string/put_forward" />
+
+        <TextView
+            android:id="@+id/present_record"
+            style="@style/title_text_right_style"
+            android:text="@string/present_record" />
     </RelativeLayout>
 
     <com.nenggou.slsm.common.widget.ReboundScrollView
@@ -59,8 +64,9 @@
                         android:layout_marginRight="@dimen/common_twenty_margin"
                         tools:text="提现至" />
 
-                    <ImageView style="@style/go_arrow"
-                        android:layout_marginRight="@dimen/common_twelve_margin"/>
+                    <ImageView
+                        style="@style/go_arrow"
+                        android:layout_marginRight="@dimen/common_twelve_margin" />
 
                     <View
                         style="@style/st_line"

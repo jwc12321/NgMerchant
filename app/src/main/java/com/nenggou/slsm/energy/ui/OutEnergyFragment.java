@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.nenggou.slsm.bill.ui.IncomeDetailActivity;
 import com.nenggou.slsm.common.refreshview.HeaderViewLayout;
 import com.nenggou.slsm.common.widget.list.BaseListFragment;
 import com.nenggou.slsm.data.entity.EnergyDetailInfo;
@@ -24,7 +25,7 @@ import javax.inject.Inject;
  * Created by JWC on 2018/6/23.
  */
 
-public class OutEnergyFragment extends BaseListFragment<EnergyDetailInfo> implements EnergyContract.EnergyListView, HeaderViewLayout.OnRefreshListener {
+public class OutEnergyFragment extends BaseListFragment<EnergyDetailInfo> implements EnergyContract.EnergyListView, HeaderViewLayout.OnRefreshListener,EnergyItemAdapter.ItemClickListener {
 
     @Inject
     EnergyListPresenter energyListPresenter;
@@ -59,6 +60,7 @@ public class OutEnergyFragment extends BaseListFragment<EnergyDetailInfo> implem
     @Override
     public RecyclerView.Adapter initAdapter(List<EnergyDetailInfo> list) {
         energyItemAdapter = new EnergyItemAdapter(getActivity(), "3");
+        energyItemAdapter.setItemClickListener(this);
         energyItemAdapter.setData(list);
         return energyItemAdapter;
     }
@@ -106,6 +108,11 @@ public class OutEnergyFragment extends BaseListFragment<EnergyDetailInfo> implem
         if(outBackEnergyListener!=null){
             outBackEnergyListener.outBackEnergySum(sum,proportion);
         }
+    }
+
+    @Override
+    public void goIncomeDetail(String id) {
+        IncomeDetailActivity.start(getActivity(),id);
     }
 
     public interface OutBackEnergyListener {

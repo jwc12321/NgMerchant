@@ -16,6 +16,8 @@ import com.nenggou.slsm.data.entity.Ignore;
 import com.nenggou.slsm.data.entity.IncomeDetailInfo;
 import com.nenggou.slsm.data.entity.IntercourseRecordInfo;
 import com.nenggou.slsm.data.entity.PersionInfoResponse;
+import com.nenggou.slsm.data.entity.PutForwardDetailInfo;
+import com.nenggou.slsm.data.entity.PutForwardInfo;
 import com.nenggou.slsm.data.request.AddbankcardRequest;
 import com.nenggou.slsm.data.request.AvatarRequest;
 import com.nenggou.slsm.data.request.BillIdRequest;
@@ -28,6 +30,7 @@ import com.nenggou.slsm.data.request.DetectionVersionRequest;
 import com.nenggou.slsm.data.request.EnergyRequest;
 import com.nenggou.slsm.data.request.FeedbackRequest;
 import com.nenggou.slsm.data.request.HistoryIncomeRequest;
+import com.nenggou.slsm.data.request.IdRequest;
 import com.nenggou.slsm.data.request.IntercourseRecordRequest;
 import com.nenggou.slsm.data.request.ModifyPasswordRequest;
 import com.nenggou.slsm.data.request.PageRequest;
@@ -36,6 +39,7 @@ import com.nenggou.slsm.data.request.PutForwardRequest;
 import com.nenggou.slsm.data.request.RdIncomeRequest;
 import com.nenggou.slsm.data.request.SendCodeRequest;
 import com.nenggou.slsm.data.request.SetPasswordRequest;
+import com.nenggou.slsm.data.request.StartimeRequest;
 import com.nenggou.slsm.data.request.StoreIdPageRequest;
 import com.nenggou.slsm.data.request.TextRequest;
 import com.nenggou.slsm.data.request.TokenRequest;
@@ -154,11 +158,20 @@ public interface RestApiService {
     //忘记密码
     @POST("home/business/forgetPwd")
     Flowable<RemoteDataWrapper<Ignore>> setPassword(@Body SetPasswordRequest setPasswordRequest);
+
     //扫描
     @POST("home/scancode")
     Flowable<RemoteDataWrapper<String>> uploadQrText(@Body TextRequest textRequest);
+
     //版本检测
     @POST("home/businessChangeApp")
     Flowable<RemoteDataWrapper<ChangeAppInfo>> changeApp(@Body DetectionVersionRequest detectionVersionRequest);
 
+    //提现类表
+    @POST("home/business/atmlog")
+    Flowable<RemoteDataWrapper<List<PutForwardInfo>>> getPutForwardInfos(@Body StartimeRequest startimeRequest);
+
+    //提现详情
+    @POST("home/business/atmdetail")
+    Flowable<RemoteDataWrapper<PutForwardDetailInfo>> getPutForwardDetailInfo(@Body IdRequest idRequest);
 }

@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nenggou.slsm.R;
@@ -47,8 +48,18 @@ public class IncomeListAdapter extends RecyclerView.Adapter<IncomeListAdapter.In
 
     @Override
     public void onBindViewHolder(IncomeListView holder, int position) {
-        CashDetailInfo cashDetailInfo = cashDetailInfos.get(holder.getAdapterPosition());
+        final CashDetailInfo cashDetailInfo = cashDetailInfos.get(holder.getAdapterPosition());
         holder.bindData(cashDetailInfo);
+        holder.incomeItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(itemClickListener!=null){
+                    if(TextUtils.equals("1",cashDetailInfo.getTypes())||TextUtils.equals("4",cashDetailInfo.getTypes())){
+                        itemClickListener.goIncomeDetail(cashDetailInfo.getPayoutid());
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -77,6 +88,8 @@ public class IncomeListAdapter extends RecyclerView.Adapter<IncomeListAdapter.In
         TextView time;
         @BindView(R.id.price)
         TextView price;
+        @BindView(R.id.income_item)
+        RelativeLayout incomeItem;
 
         public IncomeListView(View itemView) {
             super(itemView);
@@ -84,13 +97,31 @@ public class IncomeListAdapter extends RecyclerView.Adapter<IncomeListAdapter.In
         }
 
         public void bindData(CashDetailInfo cashDetailInfo) {
-            name.setText(cashDetailInfo.getNickname());
+            if(TextUtils.equals("1",cashDetailInfo.getTypes())){
+                name.setText(cashDetailInfo.getNickname()+"到店消费");
+            }else if(TextUtils.equals("2",cashDetailInfo.getTypes())){
+                name.setText(cashDetailInfo.getNickname()+"推荐收入");
+            }else if(TextUtils.equals("3",cashDetailInfo.getTypes())){
+                name.setText("申请提现");
+            }else if(TextUtils.equals("4",cashDetailInfo.getTypes())){
+                name.setText(cashDetailInfo.getNickname()+"服务费支出");
+            }
             time.setText(FormatUtil.formatDateByLine(cashDetailInfo.getCreatedAt()));
-            if(TextUtils.equals("0",type)){
+            if (TextUtils.equals("0", type)) {
                 price.setText("+" + cashDetailInfo.getXianjin());
-            }else {
+            } else {
                 price.setText("-" + cashDetailInfo.getXianjin());
             }
         }
+    }
+
+    public interface ItemClickListener {
+        void goIncomeDetail(String id);
+    }
+
+    private ItemClickListener itemClickListener;
+
+    public void setItemClickListener(ItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
     }
 }

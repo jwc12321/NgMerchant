@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/common_seventy_margin"
-    android:background="@color/appText1">
+    android:background="@color/appText1"
+    android:id="@+id/energy_item">
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/head_photo"

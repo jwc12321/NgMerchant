@@ -25,7 +25,7 @@ public class CashModule {
     }
 
     @Provides
-    CashContract.CashListView provideCashListView(){
+    CashContract.CashListView provideCashListView() {
         return cashListView;
     }
 }

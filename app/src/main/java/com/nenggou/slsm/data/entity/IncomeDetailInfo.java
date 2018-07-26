@@ -39,6 +39,16 @@ public class IncomeDetailInfo {
     private String bpower;
     @SerializedName("power_rate")
     private String powerRate;
+    @SerializedName("scharge")//保护费比例
+    private String scharge;
+
+    public String getScharge() {
+        return scharge;
+    }
+
+    public void setScharge(String scharge) {
+        this.scharge = scharge;
+    }
 
     public String getNickname() {
         return nickname;

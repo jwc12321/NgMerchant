@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.makeramen.roundedimageview.RoundedImageView;
@@ -32,8 +33,8 @@ public class EnergyItemAdapter extends RecyclerView.Adapter<EnergyItemAdapter.En
     private String type;
     private Context context;
 
-    public EnergyItemAdapter(Context context,String type) {
-        this.context=context;
+    public EnergyItemAdapter(Context context, String type) {
+        this.context = context;
         this.type = type;
     }
 
@@ -55,6 +56,16 @@ public class EnergyItemAdapter extends RecyclerView.Adapter<EnergyItemAdapter.En
     public void onBindViewHolder(EnergyItemView holder, int position) {
         final EnergyDetailInfo energyDetailInfo = energyDetailInfos.get(holder.getAdapterPosition());
         holder.bindData(energyDetailInfo);
+        holder.energyItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (itemClickListener != null)
+                    if (TextUtils.equals("1", energyDetailInfo.getTypes()) || TextUtils.equals("4", energyDetailInfo.getTypes())) {
+                        itemClickListener.goIncomeDetail(energyDetailInfo.getPayoutid());
+                    }
+            }
+        });
+
     }
 
     @Override
@@ -84,6 +95,8 @@ public class EnergyItemAdapter extends RecyclerView.Adapter<EnergyItemAdapter.En
         TextView time;
         @BindView(R.id.price)
         TextView price;
+        @BindView(R.id.energy_item)
+        RelativeLayout energyItem;
 
         public EnergyItemView(View itemView) {
             super(itemView);
@@ -92,13 +105,31 @@ public class EnergyItemAdapter extends RecyclerView.Adapter<EnergyItemAdapter.En
 
         public void bindData(EnergyDetailInfo energyDetailInfo) {
             GlideHelper.load((Activity) context, energyDetailInfo.getAvatar(), R.mipmap.app_icon, headPhoto);
-            name.setText(energyDetailInfo.getNickname());
+            if(TextUtils.equals("1",energyDetailInfo.getTypes())){
+                name.setText(energyDetailInfo.getNickname()+"到店消费");
+            }else if(TextUtils.equals("2",energyDetailInfo.getTypes())){
+                name.setText(energyDetailInfo.getNickname()+"推荐收入");
+            }else if(TextUtils.equals("3",energyDetailInfo.getTypes())){
+                name.setText("申请提现");
+            }else if(TextUtils.equals("4",energyDetailInfo.getTypes())){
+                name.setText(energyDetailInfo.getNickname()+"服务费支出");
+            }
             time.setText(FormatUtil.formatDateByLine(energyDetailInfo.getCreated_at()));
-            if(TextUtils.equals("0",type)){
-                price.setText("+"+energyDetailInfo.getPower());
-            }else {
-                price.setText("-"+energyDetailInfo.getPower());
+            if (TextUtils.equals("0", type)) {
+                price.setText("+" + energyDetailInfo.getPower());
+            } else {
+                price.setText("-" + energyDetailInfo.getPower());
             }
         }
+    }
+
+    public interface ItemClickListener {
+        void goIncomeDetail(String id);
+    }
+
+    private ItemClickListener itemClickListener;
+
+    public void setItemClickListener(ItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
     }
 }

@@ -21,6 +21,16 @@ public class CashDetailInfo {
     private String nickname;
     @SerializedName("avatar")
     private String avatar;
+    @SerializedName("payoutid")
+    private String payoutid;
+
+    public String getPayoutid() {
+        return payoutid;
+    }
+
+    public void setPayoutid(String payoutid) {
+        this.payoutid = payoutid;
+    }
 
     public String getId() {
         return id;

@@ -3,11 +3,11 @@ package com.nenggou.slsm.energy.ui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.nenggou.slsm.bill.ui.IncomeDetailActivity;
 import com.nenggou.slsm.common.refreshview.HeaderViewLayout;
 import com.nenggou.slsm.common.widget.list.BaseListFragment;
 import com.nenggou.slsm.data.entity.EnergyDetailInfo;
@@ -25,7 +25,7 @@ import javax.inject.Inject;
  * Created by JWC on 2018/6/23.
  */
 
-public class InEnergyFragment extends BaseListFragment<EnergyDetailInfo> implements EnergyContract.EnergyListView,HeaderViewLayout.OnRefreshListener {
+public class InEnergyFragment extends BaseListFragment<EnergyDetailInfo> implements EnergyContract.EnergyListView,HeaderViewLayout.OnRefreshListener,EnergyItemAdapter.ItemClickListener {
 
     @Inject
     EnergyListPresenter energyListPresenter;
@@ -52,7 +52,6 @@ public class InEnergyFragment extends BaseListFragment<EnergyDetailInfo> impleme
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("111","inBackEnergyListener:"+inBackEnergyListeners);
         if (energyListPresenter != null && getUserVisibleHint()) {
             energyListPresenter.getEnergyList("1", "0");
         }
@@ -61,6 +60,7 @@ public class InEnergyFragment extends BaseListFragment<EnergyDetailInfo> impleme
     @Override
     public RecyclerView.Adapter initAdapter(List<EnergyDetailInfo> list) {
         energyItemAdapter = new EnergyItemAdapter(getActivity(),"0");
+        energyItemAdapter.setItemClickListener(this);
         energyItemAdapter.setData(list);
         return energyItemAdapter;
     }
@@ -110,6 +110,11 @@ public class InEnergyFragment extends BaseListFragment<EnergyDetailInfo> impleme
         }
     }
 
+    @Override
+    public void goIncomeDetail(String id) {
+        IncomeDetailActivity.start(getActivity(),id);
+    }
+
     public interface InBackEnergyListener {
         void inBackEnergySum(String sum,String proportion);
     }
@@ -118,7 +123,6 @@ public class InEnergyFragment extends BaseListFragment<EnergyDetailInfo> impleme
 
     public void setInBackEnergyListener(InBackEnergyListener inBackEnergyListener) {
         inBackEnergyListeners = inBackEnergyListener;
-        Log.d("111","inBackEnergyListener:"+inBackEnergyListeners);
     }
 
 }

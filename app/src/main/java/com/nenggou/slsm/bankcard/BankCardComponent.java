@@ -9,6 +9,8 @@ import com.nenggou.slsm.ApplicationComponent;
 import com.nenggou.slsm.bankcard.ui.AddBankImActivity;
 import com.nenggou.slsm.bankcard.ui.BankCardListActivity;
 import com.nenggou.slsm.bankcard.ui.PutForwardActivity;
+import com.nenggou.slsm.bankcard.ui.PutForwardDetailActivity;
+import com.nenggou.slsm.bankcard.ui.PutForwardListActivity;
 
 import dagger.Component;
 
@@ -18,4 +20,6 @@ public interface BankCardComponent {
     void inject(PutForwardActivity putForwardActivity);
     void inject(BankCardListActivity bankCardListActivity);
     void inject(AddBankImActivity addBankImActivity);
+    void inject(PutForwardListActivity putForwardListActivity);
+    void inject(PutForwardDetailActivity putForwardDetailActivity);
 }

@@ -110,133 +110,199 @@
             </RelativeLayout>
 
             <LinearLayout
+                android:id="@+id/money_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/common_twenty_six_margin"
                 android:layout_marginRight="@dimen/common_twenty_six_margin"
                 android:layout_marginTop="@dimen/common_five_margin"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:id="@+id/energy_ll"
-                    android:layout_width="@dimen/common_ninety_four_margin"
+                    android:id="@+id/first_ll"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/common_nine_margin"
                     android:layout_marginRight="@dimen/common_nine_margin"
+                    android:layout_weight="1"
                     android:background="@drawable/income_d_e_bg"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/first_info"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/energy"
                         android:textColor="@color/appText3"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        tools:text="@string/energy" />
 
                     <TextView
-                        android:id="@+id/energy_numbe"
+                        android:id="@+id/first_numbe"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/appText3"
-                        android:textSize="17sp"
+                        android:textSize="15sp"
                         tools:text="100" />
                 </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/spare_ll"
-                    android:layout_width="@dimen/common_ninety_four_margin"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/common_nine_margin"
-                    android:layout_marginRight="@dimen/common_nine_margin"
-                    android:background="@drawable/income_d_e_bg"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:visibility="gone"/>
 
                 <LinearLayout
-                    android:id="@+id/cash_ll"
-                    android:layout_width="@dimen/common_ninety_four_margin"
+                    android:id="@+id/second_ll"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/common_nine_margin"
                     android:layout_marginRight="@dimen/common_nine_margin"
+                    android:layout_weight="1"
                     android:background="@drawable/income_d_e_bg"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/second_info"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/cash"
                         android:textColor="@color/appText3"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        tools:text="@string/cash" />
 
                     <TextView
-                        android:id="@+id/cash_numbe"
+                        android:id="@+id/second_numbe"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/appText3"
-                        android:textSize="17sp"
+                        android:textSize="15sp"
                         tools:text="100" />
                 </LinearLayout>
+
                 <LinearLayout
-                    android:id="@+id/spare_second_ll"
-                    android:layout_width="@dimen/common_ninety_four_margin"
+                    android:id="@+id/third_ll"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/common_nine_margin"
                     android:layout_marginRight="@dimen/common_nine_margin"
-                    android:background="@drawable/income_d_e_bg"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:visibility="gone"/>
-                <LinearLayout
-                    android:id="@+id/coupon_ll"
-                    android:layout_width="@dimen/common_ninety_four_margin"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/common_nine_margin"
-                    android:layout_marginRight="@dimen/common_nine_margin"
+                    android:layout_weight="1"
                     android:background="@drawable/income_d_e_bg"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/third_info"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/coupon"
                         android:textColor="@color/appText3"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        tools:text="@string/coupon" />
 
                     <TextView
-                        android:id="@+id/coupon_numbe"
+                        android:id="@+id/third_numbe"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/appText3"
-                        android:textSize="17sp"
+                        android:textSize="15sp"
                         tools:text="100" />
                 </LinearLayout>
             </LinearLayout>
 
-
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/service_rl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/common_twenty_six_margin"
-                android:layout_marginRight="@dimen/common_twenty_six_margin"
-                android:layout_marginTop="@dimen/common_fifteen_margin"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
+                android:layout_marginTop="@dimen/common_fifteen_margin">
 
                 <LinearLayout
-                    android:id="@+id/service_c_p_ll"
-                    android:layout_width="@dimen/common_one_hundred_and_forty_four_margin"
+                    android:id="@+id/service_ll"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/common_nine_margin"
-                    android:layout_marginRight="@dimen/common_nine_margin"
+                    android:layout_marginLeft="@dimen/common_twenty_six_margin"
+                    android:layout_marginRight="@dimen/common_twenty_six_margin"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/service_c_p_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common_nine_margin"
+                        android:layout_marginRight="@dimen/common_nine_margin"
+                        android:layout_weight="1"
+                        android:background="@drawable/income_p_e_bg"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/service_charge"
+                            android:textColor="@color/appText13"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/service_c_proportion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/appText13"
+                            android:textSize="10sp"
+                            tools:text="100" />
+
+                        <TextView
+                            android:id="@+id/service_c_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/appText13"
+                            android:textSize="17sp"
+                            tools:text="100" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/subsidy_e_out_p_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common_nine_margin"
+                        android:layout_marginRight="@dimen/common_nine_margin"
+                        android:layout_weight="1"
+                        android:background="@drawable/income_p_e_bg"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/subsidy_energy_out"
+                            android:textColor="@color/appText13"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/proportion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/appText13"
+                            android:textSize="10sp"
+                            tools:text="100" />
+
+                        <TextView
+                            android:id="@+id/subsidy_e_out_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/appText13"
+                            android:textSize="17sp"
+                            tools:text="100" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/service_one_ll"
+                    android:layout_width="@dimen/common_one_hundred_and_forty_margin"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/common_thirty_five_margin"
+                    android:layout_marginRight="@dimen/common_thirty_five_margin"
                     android:background="@drawable/income_p_e_bg"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_centerHorizontal="true"
+                    android:visibility="gone">
 
                     <TextView
+                        android:id="@+id/service_one_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/service_charge"
@@ -244,52 +310,22 @@
                         android:textSize="13sp" />
 
                     <TextView
-                        android:id="@+id/service_c_proportion"
+                        android:id="@+id/service_one_info"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/appText13"
                         android:textSize="10sp"
                         tools:text="100" />
+
                     <TextView
-                        android:id="@+id/service_c_price"
+                        android:id="@+id/service_one_number"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/appText13"
                         android:textSize="17sp"
                         tools:text="100" />
                 </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/subsidy_e_out_p_ll"
-                    android:layout_width="@dimen/common_one_hundred_and_forty_four_margin"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/common_twenty_margin"
-                    android:background="@drawable/income_p_e_bg"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/subsidy_energy_out"
-                        android:textColor="@color/appText13"
-                        android:textSize="13sp" />
-
-                    <TextView
-                        android:id="@+id/proportion"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/appText13"
-                        android:textSize="10sp"
-                        tools:text="100" />
-                    <TextView
-                        android:id="@+id/subsidy_e_out_price"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/appText13"
-                        android:textSize="17sp"
-                        tools:text="100" />
-                </LinearLayout>
-            </LinearLayout>
+            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"

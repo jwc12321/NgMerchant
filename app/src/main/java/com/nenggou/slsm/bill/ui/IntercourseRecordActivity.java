@@ -34,7 +34,7 @@ import butterknife.OnClick;
  * 来往记录
  */
 
-public class IntercourseRecordActivity extends BaseActivity implements BillContract.IntercourseRecordView {
+public class IntercourseRecordActivity extends BaseActivity implements BillContract.IntercourseRecordView,IntercourseRecordAdapter.ItemClickListener {
     @BindView(R.id.back)
     ImageView back;
     @BindView(R.id.title)
@@ -83,6 +83,7 @@ public class IntercourseRecordActivity extends BaseActivity implements BillContr
 
     private void addAdapter() {
         intercourseRecordAdapter = new IntercourseRecordAdapter(businessName);
+        intercourseRecordAdapter.setItemClickListener(this);
         irRv.setAdapter(intercourseRecordAdapter);
     }
 
@@ -155,5 +156,10 @@ public class IntercourseRecordActivity extends BaseActivity implements BillContr
                 break;
             default:
         }
+    }
+
+    @Override
+    public void goIncomeDetail(String id) {
+        IncomeDetailActivity.start(this,id);
     }
 }

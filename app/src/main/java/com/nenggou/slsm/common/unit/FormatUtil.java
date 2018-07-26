@@ -143,6 +143,17 @@ public class FormatUtil {
         }
     }
 
+    public static String formatMonthByLine(String timestamp) {
+        if(!TextUtils.isEmpty(timestamp)) {
+            long time = Long.parseLong(timestamp);
+            String pattern = "MM-dd  HH:mm";
+            SimpleDateFormat format = new SimpleDateFormat(pattern);
+            return format.format(new Date(time * 1000));
+        }else{
+            return "";
+        }
+    }
+
     public static String formatYMByLine() {
         long time = System.currentTimeMillis();
         String pattern = "yyyy-MM";

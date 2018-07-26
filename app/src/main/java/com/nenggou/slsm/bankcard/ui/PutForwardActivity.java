@@ -59,6 +59,8 @@ public class PutForwardActivity extends BaseActivity implements BankCardContract
     TextView maxAmountPrice;
     @BindView(R.id.confirm_bt)
     Button confirmBt;
+    @BindView(R.id.present_record)
+    TextView presentRecord;
     private String bankId;
     private BankCardInfo bankCardInfo;
 
@@ -96,7 +98,7 @@ public class PutForwardActivity extends BaseActivity implements BankCardContract
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_put_forward);
         ButterKnife.bind(this);
-        setHeight(back, title, null);
+        setHeight(back, title, presentRecord);
         initView();
     }
 
@@ -179,7 +181,7 @@ public class PutForwardActivity extends BaseActivity implements BankCardContract
         return null;
     }
 
-    @OnClick({R.id.back, R.id.item_bank, R.id.confirm_bt})
+    @OnClick({R.id.back, R.id.item_bank, R.id.confirm_bt,R.id.present_record})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
@@ -192,6 +194,9 @@ public class PutForwardActivity extends BaseActivity implements BankCardContract
                 break;
             case R.id.confirm_bt:
                 confirm();
+                break;
+            case R.id.present_record:
+                PutForwardListActivity.start(this);
                 break;
             default:
         }

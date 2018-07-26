@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nenggou.slsm.R;
@@ -51,8 +52,16 @@ public class IntercourseRecordAdapter extends RecyclerView.Adapter<IntercourseRe
 
     @Override
     public void onBindViewHolder(IntercourseRecordView holder, int position) {
-        IRItemInfo irItemInfo = irItemInfos.get(holder.getAdapterPosition());
+        final IRItemInfo irItemInfo = irItemInfos.get(holder.getAdapterPosition());
         holder.bindData(irItemInfo);
+        holder.recordItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(itemClickListener!=null){
+                    itemClickListener.goIncomeDetail(irItemInfo.getId());
+                }
+            }
+        });
     }
 
     @Override
@@ -69,6 +78,8 @@ public class IntercourseRecordAdapter extends RecyclerView.Adapter<IntercourseRe
         TextView price;
         @BindView(R.id.state)
         TextView state;
+        @BindView(R.id.record_item)
+        RelativeLayout recordItem;
 
         public IntercourseRecordView(View itemView) {
             super(itemView);
@@ -79,11 +90,21 @@ public class IntercourseRecordAdapter extends RecyclerView.Adapter<IntercourseRe
             businessName.setText(title);
             time.setText(FormatUtil.formatDateByLine(irItemInfo.getCreatedAt()));
             price.setText(irItemInfo.getAllprice());
-            if(TextUtils.equals("1",irItemInfo.getStatus())){
+            if (TextUtils.equals("1", irItemInfo.getStatus())) {
                 state.setText("交易成功");
-            }else {
+            } else {
                 state.setText("交易失败");
             }
         }
+    }
+
+    public interface ItemClickListener {
+        void goIncomeDetail(String id);
+    }
+
+    private ItemClickListener itemClickListener;
+
+    public void setItemClickListener(ItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
     }
 }

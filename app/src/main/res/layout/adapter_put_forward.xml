@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/time"
+        style="@style/modify_password_style"
+        android:layout_marginLeft="@dimen/common_twelve_margin"
+        android:layout_marginTop="@dimen/common_fourteen_margin"
+        tools:text="2018"/>
+    <TextView
+        android:id="@+id/total_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/appText6"
+        android:textSize="12sp"
+        android:layout_marginLeft="@dimen/common_twelve_margin"
+        android:layout_marginTop="@dimen/common_six_margin"
+        tools:text="2018"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/put_forward_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="@string/layoutManager_LinearLayout"
+        android:nestedScrollingEnabled="false"
+        android:background="@color/appText1"
+        android:layout_marginTop="@dimen/common_fourteen_margin"/>
+</LinearLayout>

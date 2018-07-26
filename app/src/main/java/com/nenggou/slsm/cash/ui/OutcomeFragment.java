@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.nenggou.slsm.bill.ui.IncomeDetailActivity;
 import com.nenggou.slsm.cash.CashContract;
 import com.nenggou.slsm.cash.CashModule;
 import com.nenggou.slsm.cash.DaggerCashComponent;
@@ -25,7 +26,7 @@ import javax.inject.Inject;
  * 现金收入
  */
 
-public class OutcomeFragment extends BaseListFragment<CashDetailInfo> implements CashContract.CashListView, HeaderViewLayout.OnRefreshListener {
+public class OutcomeFragment extends BaseListFragment<CashDetailInfo> implements CashContract.CashListView, HeaderViewLayout.OnRefreshListener,IncomeListAdapter.ItemClickListener {
 
     @Inject
     CashListPresenter cashListPresenter;
@@ -50,6 +51,7 @@ public class OutcomeFragment extends BaseListFragment<CashDetailInfo> implements
     @Override
     public RecyclerView.Adapter initAdapter(List<CashDetailInfo> list) {
         incomeListAdapter = new IncomeListAdapter("3");
+        incomeListAdapter.setItemClickListener(this);
         incomeListAdapter.setData(list);
         return incomeListAdapter;
     }
@@ -104,5 +106,10 @@ public class OutcomeFragment extends BaseListFragment<CashDetailInfo> implements
                 .cashModule(new CashModule(this))
                 .build()
                 .inject(this);
+    }
+
+    @Override
+    public void goIncomeDetail(String id) {
+        IncomeDetailActivity.start(getActivity(),id);
     }
 }

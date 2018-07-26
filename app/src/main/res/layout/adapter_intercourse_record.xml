@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/common_sixty_margin"
-    android:background="@color/appText1">
+    android:background="@color/appText1"
+    android:id="@+id/record_item">
 
     <TextView
         android:id="@+id/business_name"
