@@ -188,6 +188,8 @@
         <activity android:name=".bill.ui.ExplainCashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/TranslucentFullScreenTheme" />
+        <activity android:name=".ranking.ui.RIncomeListActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

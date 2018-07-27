@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/common_eighty_margin">
+    android:layout_height="@dimen/common_eighty_margin"
+    android:id="@+id/ranking_item">
 
     <ImageView
         android:id="@+id/medal"
@@ -96,4 +97,7 @@
         android:layout_marginRight="@dimen/common_seven_margin"
         android:layout_toLeftOf="@id/energy"
         android:src="@mipmap/energy_icon" />
+    <View
+        style="@style/st_line"
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>

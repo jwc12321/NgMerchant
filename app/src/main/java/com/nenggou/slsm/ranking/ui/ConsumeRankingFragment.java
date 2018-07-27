@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.nenggou.slsm.BaseFragment;
 import com.nenggou.slsm.R;
+import com.nenggou.slsm.bill.ui.IntercourseRecordActivity;
 import com.nenggou.slsm.common.GlideHelper;
 import com.nenggou.slsm.common.refreshview.HeaderViewLayout;
 import com.nenggou.slsm.common.unit.FormatUtil;
@@ -43,7 +44,7 @@ import butterknife.OnClick;
  * 消费排行
  */
 
-public class ConsumeRankingFragment extends BaseFragment implements RankingContract.CRankingView {
+public class ConsumeRankingFragment extends BaseFragment implements RankingContract.CRankingView,ConsumeRankingAdapter.ItemClickListener {
 
     @BindView(R.id.year_ranking)
     TextView yearRanking;
@@ -144,6 +145,7 @@ public class ConsumeRankingFragment extends BaseFragment implements RankingContr
 
     private void addconsumeAdapter() {
         consumeRankingAdapter = new ConsumeRankingAdapter(getActivity());
+        consumeRankingAdapter.setItemClickListener(this);
         consumeRv.setAdapter(consumeRankingAdapter);
     }
 
@@ -379,5 +381,10 @@ public class ConsumeRankingFragment extends BaseFragment implements RankingContr
             }
         });
         seasonTimePicker.show(getActivity());
+    }
+
+    @Override
+    public void goIntercourseRecord(String uid, String nickName) {
+        IntercourseRecordActivity.start(getActivity(),uid,nickName,choiceType,starttime);
     }
 }

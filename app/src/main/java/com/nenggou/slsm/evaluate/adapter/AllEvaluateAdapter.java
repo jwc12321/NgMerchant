@@ -114,7 +114,18 @@ public class AllEvaluateAdapter extends RecyclerView.Adapter<AllEvaluateAdapter.
             List<UsersInfo> usersInfos = evaluateItemInfo.getUsersInfos();
             if (usersInfos != null && usersInfos.size() > 0 && usersInfos.get(0) != null) {
                 GlideHelper.load((Activity) context, usersInfos.get(0).getAvatar(), R.mipmap.app_icon, peopleIcon);
-                peopleName.setText(usersInfos.get(0).getNickname());
+                String nikeName=usersInfos.get(0).getNickname();
+                if(!TextUtils.isEmpty(nikeName)) {
+                    if(nikeName.length()==1){
+                        peopleName.setText("*"+nikeName);
+                    }else if(nikeName.length()==11){
+                        peopleName.setText("*"+nikeName.substring(nikeName.length()-4,nikeName.length()));
+                    }else {
+                        peopleName.setText("*"+nikeName.substring(nikeName.length()-1,nikeName.length()));
+                    }
+                }else {
+                    peopleName.setText("*");
+                }
             }
             ratingBar.setmScope(Float.parseFloat(evaluateItemInfo.getStarts()));
             peopleTime.setText(FormatUtil.formatDate(evaluateItemInfo.getCreatedAt()));

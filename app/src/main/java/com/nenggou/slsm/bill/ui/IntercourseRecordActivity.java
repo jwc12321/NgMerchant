@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -53,12 +54,17 @@ public class IntercourseRecordActivity extends BaseActivity implements BillContr
     private IntercourseRecordAdapter intercourseRecordAdapter;
     private String uid;
     private String businessName;
+    private String timeType;
+    private String startTime;
     @Inject
     IntercourseRecordPresenter intercourseRecordPresenter;
 
-    public static void start(Context context, String uid,String businessName) {
+
+    public static void start(Context context, String uid,String businessName,String type, String starttime) {
         Intent intent = new Intent(context, IntercourseRecordActivity.class);
         intent.putExtra(StaticData.UID, uid);
+        intent.putExtra(StaticData.TIME_TYPE,type);
+        intent.putExtra(StaticData.START_TIME,starttime);
         intent.putExtra(StaticData.BUSINESS_NAME,businessName);
         context.startActivity(intent);
     }
@@ -76,12 +82,25 @@ public class IntercourseRecordActivity extends BaseActivity implements BillContr
     private void initView() {
         uid = getIntent().getStringExtra(StaticData.UID);
         businessName=getIntent().getStringExtra(StaticData.BUSINESS_NAME);
+        timeType=getIntent().getStringExtra(StaticData.TIME_TYPE);
+        startTime=getIntent().getStringExtra(StaticData.START_TIME);
         refreshLayout.setOnRefreshListener(mOnRefreshListener);
         addAdapter();
-        intercourseRecordPresenter.getIntercourseRecordInfo("1",uid);
+        intercourseRecordPresenter.getIntercourseRecordInfo("1",uid,timeType,startTime);
     }
 
     private void addAdapter() {
+        if(!TextUtils.isEmpty(businessName)) {
+            if(businessName.length()==1){
+                businessName="*"+businessName;
+            }else if(businessName.length()==11){
+                businessName="*"+businessName.substring(businessName.length()-4,businessName.length());
+            }else {
+                businessName="*"+businessName.substring(businessName.length()-1,businessName.length());
+            }
+        }else {
+            businessName="*";
+        }
         intercourseRecordAdapter = new IntercourseRecordAdapter(businessName);
         intercourseRecordAdapter.setItemClickListener(this);
         irRv.setAdapter(intercourseRecordAdapter);
@@ -90,12 +109,12 @@ public class IntercourseRecordActivity extends BaseActivity implements BillContr
     HeaderViewLayout.OnRefreshListener mOnRefreshListener = new HeaderViewLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            intercourseRecordPresenter.getIntercourseRecordInfo("0",uid);
+            intercourseRecordPresenter.getIntercourseRecordInfo("0",uid,timeType,startTime);
         }
 
         @Override
         public void onLoadMore() {
-            intercourseRecordPresenter.getMoreIntercourseRecordInfo(uid);
+            intercourseRecordPresenter.getMoreIntercourseRecordInfo(uid,timeType,startTime);
         }
 
         @Override

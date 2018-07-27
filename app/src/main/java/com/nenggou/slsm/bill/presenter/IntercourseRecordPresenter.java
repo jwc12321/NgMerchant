@@ -58,12 +58,12 @@ public class IntercourseRecordPresenter implements BillContract.IntercourseRecor
     }
 
     @Override
-    public void getIntercourseRecordInfo(String refreshType,String uid) {
+    public void getIntercourseRecordInfo(String refreshType,String uid,String type, String starttime) {
         if(TextUtils.equals("1",refreshType)){
             intercourseRecordView.showLoading();
         }
         currentIndex = 1;
-        IntercourseRecordRequest intercourseRecordRequest = new IntercourseRecordRequest(String.valueOf(currentIndex),uid);
+        IntercourseRecordRequest intercourseRecordRequest = new IntercourseRecordRequest(String.valueOf(currentIndex),uid,type,starttime);
         Disposable disposable = restApiService.getIntercourseRecordInfo(intercourseRecordRequest)
                 .flatMap(new RxRemoteDataParse<IntercourseRecordInfo>())
                 .compose(new RxSchedulerTransformer<IntercourseRecordInfo>())
@@ -84,9 +84,9 @@ public class IntercourseRecordPresenter implements BillContract.IntercourseRecor
     }
 
     @Override
-    public void getMoreIntercourseRecordInfo(String uid) {
+    public void getMoreIntercourseRecordInfo(String uid,String type, String starttime) {
         currentIndex = currentIndex + 1;
-        IntercourseRecordRequest intercourseRecordRequest = new IntercourseRecordRequest(String.valueOf(currentIndex),uid);
+        IntercourseRecordRequest intercourseRecordRequest = new IntercourseRecordRequest(String.valueOf(currentIndex),uid,type,starttime);
         Disposable disposable = restApiService.getIntercourseRecordInfo(intercourseRecordRequest)
                 .flatMap(new RxRemoteDataParse<IntercourseRecordInfo>())
                 .compose(new RxSchedulerTransformer<IntercourseRecordInfo>())

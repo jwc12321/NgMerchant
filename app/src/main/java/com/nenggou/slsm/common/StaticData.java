@@ -61,4 +61,6 @@ public class StaticData {
     public static final String ID="id";
     //现金能量退换说明
     public static final String EXPLAIN_CASH="explainCash";
+    //时间
+    public static final String START_TIME="startTime";
 }

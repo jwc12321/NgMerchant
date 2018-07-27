@@ -2,6 +2,7 @@ package com.nenggou.slsm.ranking;
 
 import com.nenggou.slsm.BasePresenter;
 import com.nenggou.slsm.BaseView;
+import com.nenggou.slsm.data.entity.RIncomeInfo;
 import com.nenggou.slsm.data.entity.RankingListInfo;
 
 /**
@@ -25,5 +26,15 @@ public interface RankingContract {
     interface RRankingView extends BaseView<RRankingPresenter>{
         void renderRRankingList(RankingListInfo rankingListInfo);
         void renderMoreRRankingList(RankingListInfo rankingListInfo);
+    }
+
+    interface RIncomePresenter extends BasePresenter{
+        void getRIncomeList(String refreshType,String uid,String type, String starttime);
+        void getMoreRIncomeList(String uid,String type, String starttime);
+    }
+
+    interface RIncomeView extends BaseView<RIncomePresenter>{
+        void renderRIncomeList(RIncomeInfo rIncomeInfo);
+        void renderMoreRIncomeList(RIncomeInfo rIncomeInfo);
     }
 }

@@ -10,6 +10,7 @@ import dagger.Provides;
 public class RankingModule {
     private RankingContract.CRankingView cRankingView;
     private RankingContract.RRankingView rRankingView;
+    private RankingContract.RIncomeView rIncomeView;
 
     public RankingModule(RankingContract.CRankingView cRankingView) {
         this.cRankingView = cRankingView;
@@ -17,6 +18,10 @@ public class RankingModule {
 
     public RankingModule(RankingContract.RRankingView rRankingView) {
         this.rRankingView = rRankingView;
+    }
+
+    public RankingModule(RankingContract.RIncomeView rIncomeView) {
+        this.rIncomeView = rIncomeView;
     }
 
     @Provides
@@ -27,5 +32,10 @@ public class RankingModule {
     @Provides
     RankingContract.RRankingView provideRRankingView(){
         return rRankingView;
+    }
+
+    @Provides
+    RankingContract.RIncomeView provideRIncomeView(){
+        return rIncomeView;
     }
 }

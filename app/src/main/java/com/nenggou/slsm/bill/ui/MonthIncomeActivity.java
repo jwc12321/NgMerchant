@@ -67,6 +67,8 @@ public class MonthIncomeActivity extends BaseActivity implements BillContract.Hi
 
     private HMIncomeAdapter hmIncomeAdapter;
 
+    private String proportion;
+
 
     public static void start(Context context, String storeId) {
         Intent intent = new Intent(context, MonthIncomeActivity.class);
@@ -135,6 +137,8 @@ public class MonthIncomeActivity extends BaseActivity implements BillContract.Hi
     public void renderHistoryIncome(HistoryIncomInfo historyIncomInfo) {
         refreshLayout.stopRefresh();
         if (historyIncomInfo != null) {
+            proportion = historyIncomInfo.getPowerRate();
+            hmIncomeAdapter.setProportion(proportion);
             List<HistoryIncomAll> historyIncomAlls = historyIncomInfo.getHistoryIncomAlls();
             if (historyIncomAlls != null && historyIncomAlls.size() > 0) {
                 HistoryIncomAll historyIncomAll = historyIncomAlls.get(0);

@@ -7,6 +7,7 @@ package com.nenggou.slsm.ranking;
 import com.nenggou.slsm.ActivityScope;
 import com.nenggou.slsm.ApplicationComponent;
 import com.nenggou.slsm.ranking.ui.ConsumeRankingFragment;
+import com.nenggou.slsm.ranking.ui.RIncomeListActivity;
 import com.nenggou.slsm.ranking.ui.RRankingFragment;
 
 import dagger.Component;
@@ -16,4 +17,5 @@ import dagger.Component;
 public interface RankingComponent {
     void inject(ConsumeRankingFragment consumeRankingFragment);
     void inject(RRankingFragment rRankingFragment);
+    void inject(RIncomeListActivity rIncomeListActivity);
 }

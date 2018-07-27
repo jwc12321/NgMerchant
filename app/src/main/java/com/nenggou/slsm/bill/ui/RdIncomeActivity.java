@@ -58,6 +58,8 @@ public class RdIncomeActivity extends BaseActivity implements BillContract.RdInc
     HeaderViewLayout refreshLayout;
     private String storeid;
 
+    private String proportion;
+
     @Inject
     RdIncomePresenter rdIncomePresenter;
 
@@ -122,6 +124,8 @@ public class RdIncomeActivity extends BaseActivity implements BillContract.RdInc
     public void renderRdIncome(HistoryIncomInfo historyIncomInfo) {
         refreshLayout.stopRefresh();
         if (historyIncomInfo != null) {
+            proportion = historyIncomInfo.getPowerRate();
+            hmIncomeAdapter.setProportion(proportion);
             List<HistoryIncomAll> historyIncomAlls = historyIncomInfo.getHistoryIncomAlls();
             if (historyIncomAlls != null && historyIncomAlls.size() > 0) {
                 HistoryIncomAll historyIncomAll = historyIncomAlls.get(0);

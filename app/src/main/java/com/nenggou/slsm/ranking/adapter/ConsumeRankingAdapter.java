@@ -3,10 +3,12 @@ package com.nenggou.slsm.ranking.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.makeramen.roundedimageview.RoundedImageView;
@@ -54,8 +56,16 @@ public class ConsumeRankingAdapter extends RecyclerView.Adapter<ConsumeRankingAd
 
     @Override
     public void onBindViewHolder(ConsumeRankingView holder, int position) {
-        RankingInfo rankingInfo = rankingInfos.get(holder.getAdapterPosition());
+        final RankingInfo rankingInfo = rankingInfos.get(holder.getAdapterPosition());
         holder.bindData(holder.getAdapterPosition(), rankingInfo);
+        holder.rankingItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(itemClickListener!=null){
+                    itemClickListener.goIntercourseRecord(rankingInfo.getUid(),rankingInfo.getNickname());
+                }
+            }
+        });
     }
 
     @Override
@@ -80,6 +90,8 @@ public class ConsumeRankingAdapter extends RecyclerView.Adapter<ConsumeRankingAd
         TextView energy;
         @BindView(R.id.name)
         TextView name;
+        @BindView(R.id.ranking_item)
+        RelativeLayout rankingItem;
 
         public ConsumeRankingView(View itemView) {
             super(itemView);
@@ -102,19 +114,28 @@ public class ConsumeRankingAdapter extends RecyclerView.Adapter<ConsumeRankingAd
             } else {
                 medal.setVisibility(View.GONE);
                 ranking.setVisibility(View.VISIBLE);
-                ranking.setText(position);
+                ranking.setText(String.valueOf(position));
             }
             GlideHelper.load((Activity) context, rankingInfo.getAvatar(), R.mipmap.app_icon, headPhoto);
-            name.setText(rankingInfo.getNickname());
+            String nikeName=rankingInfo.getNickname();
+            if(!TextUtils.isEmpty(nikeName)) {
+                if(nikeName.length()==1){
+                    name.setText("*"+nikeName);
+                }else if(nikeName.length()==11){
+                    name.setText("*"+nikeName.substring(nikeName.length()-4,nikeName.length()));
+                }else {
+                    name.setText("*"+nikeName.substring(nikeName.length()-1,nikeName.length()));
+                }
+            }else {
+                name.setText("*");
+            }
             rmbNumber.setText(rankingInfo.getPrice());
             energy.setText(rankingInfo.getPower());
         }
     }
 
     public interface ItemClickListener {
-        void goConsumeDetail(String id);
-
-        void goGiveCoupon();
+        void goIntercourseRecord(String uid, String nickName);
     }
 
     private ItemClickListener itemClickListener;

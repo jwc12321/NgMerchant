@@ -18,6 +18,7 @@ import com.nenggou.slsm.data.entity.IntercourseRecordInfo;
 import com.nenggou.slsm.data.entity.PersionInfoResponse;
 import com.nenggou.slsm.data.entity.PutForwardDetailInfo;
 import com.nenggou.slsm.data.entity.PutForwardInfo;
+import com.nenggou.slsm.data.entity.RIncomeInfo;
 import com.nenggou.slsm.data.entity.RankingListInfo;
 import com.nenggou.slsm.data.request.AddbankcardRequest;
 import com.nenggou.slsm.data.request.AvatarRequest;
@@ -38,6 +39,7 @@ import com.nenggou.slsm.data.request.PageRequest;
 import com.nenggou.slsm.data.request.PasswordLoginRequest;
 import com.nenggou.slsm.data.request.PutForwardRequest;
 import com.nenggou.slsm.data.request.CRankingRequest;
+import com.nenggou.slsm.data.request.RIncomeRequest;
 import com.nenggou.slsm.data.request.RdIncomeRequest;
 import com.nenggou.slsm.data.request.SendCodeRequest;
 import com.nenggou.slsm.data.request.SetPasswordRequest;
@@ -184,4 +186,8 @@ public interface RestApiService {
     //推荐收益排行
     @POST("home/bill/gainsranking")
     Flowable<RemoteDataWrapper<RankingListInfo>> getRRankingListInfo(@Body CRankingRequest cRankingRequest);
+
+    //推荐收益
+    @POST("home/bill/usergains")
+    Flowable<RemoteDataWrapper<RIncomeInfo>> getRIncomeInfo(@Body RIncomeRequest rIncomeRequest);
 }

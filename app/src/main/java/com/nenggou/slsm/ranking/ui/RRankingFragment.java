@@ -29,7 +29,6 @@ import com.nenggou.slsm.ranking.DaggerRankingComponent;
 import com.nenggou.slsm.ranking.RankingContract;
 import com.nenggou.slsm.ranking.RankingModule;
 import com.nenggou.slsm.ranking.adapter.ConsumeRankingAdapter;
-import com.nenggou.slsm.ranking.presenter.CRankingPresenter;
 import com.nenggou.slsm.ranking.presenter.RRankingPresenter;
 
 import javax.inject.Inject;
@@ -43,7 +42,7 @@ import butterknife.OnClick;
  *推荐收益排行
  */
 
-public class RRankingFragment extends BaseFragment implements RankingContract.RRankingView {
+public class RRankingFragment extends BaseFragment implements RankingContract.RRankingView,ConsumeRankingAdapter.ItemClickListener {
 
     @BindView(R.id.year_ranking)
     TextView yearRanking;
@@ -144,6 +143,7 @@ public class RRankingFragment extends BaseFragment implements RankingContract.RR
 
     private void addconsumeAdapter() {
         consumeRankingAdapter = new ConsumeRankingAdapter(getActivity());
+        consumeRankingAdapter.setItemClickListener(this);
         consumeRv.setAdapter(consumeRankingAdapter);
     }
 
@@ -381,5 +381,10 @@ public class RRankingFragment extends BaseFragment implements RankingContract.RR
     @Override
     public void setPresenter(RankingContract.RRankingPresenter presenter) {
 
+    }
+
+    @Override
+    public void goIntercourseRecord(String uid, String nickName) {
+        RIncomeListActivity.start(getActivity(),uid,choiceType,starttime);
     }
 }

@@ -1,6 +1,7 @@
 package com.nenggou.slsm.bill.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,7 +102,18 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeView
         }
 
         public void bindData(InComeInfo inComeInfo) {
-            name.setText(inComeInfo.getNickname());
+            String nikeName=inComeInfo.getNickname();
+            if(!TextUtils.isEmpty(nikeName)) {
+                if(nikeName.length()==1){
+                    name.setText("*"+nikeName);
+                }else if(nikeName.length()==11){
+                    name.setText("*"+nikeName.substring(nikeName.length()-4,nikeName.length()));
+                }else {
+                    name.setText("*"+nikeName.substring(nikeName.length()-1,nikeName.length()));
+                }
+            }else {
+                name.setText("*");
+            }
             time.setText(FormatUtil.formatDayTime(inComeInfo.getUpdatedAt()));
             cash.setText(inComeInfo.getPrice());
             cashDecimal=new BigDecimal(inComeInfo.getPrice()).setScale(2, BigDecimal.ROUND_DOWN);

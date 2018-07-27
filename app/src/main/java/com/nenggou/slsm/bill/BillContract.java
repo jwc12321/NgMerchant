@@ -60,8 +60,8 @@ public interface BillContract {
     }
 
     interface IntercourseRecordPresenter extends BasePresenter{
-        void getIntercourseRecordInfo(String refreshType,String uid);
-        void getMoreIntercourseRecordInfo(String uid);
+        void getIntercourseRecordInfo(String refreshType,String uid,String type, String starttime);
+        void getMoreIntercourseRecordInfo(String uid,String type, String starttime);
     }
     interface IntercourseRecordView extends BaseView<IntercourseRecordPresenter>{
         void intercourseRecordInfo(IntercourseRecordInfo intercourseRecordInfo);

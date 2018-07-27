@@ -148,7 +148,17 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
             shopName = incomeDetailInfo.getTitle();
             GlideHelper.load(this, incomeDetailInfo.getAvatar(), R.mipmap.app_icon, photo);
             nickName = incomeDetailInfo.getNickname();
-            businessName.setText(incomeDetailInfo.getNickname());
+            if(!TextUtils.isEmpty(nickName)) {
+                if(nickName.length()==1){
+                    businessName.setText("*"+nickName);
+                }else if(nickName.length()==11){
+                    businessName.setText("*"+nickName.substring(nickName.length()-4,nickName.length()));
+                }else {
+                    businessName.setText("*"+nickName.substring(nickName.length()-1,nickName.length()));
+                }
+            }else {
+                businessName.setText("*");
+            }
             price.setText(incomeDetailInfo.getAllprice());
             cashStore.setText(incomeDetailInfo.getTitle());
             createdAt.setText(FormatUtil.formatDateByLine(incomeDetailInfo.getCreatedAt()));
@@ -225,7 +235,7 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
                 break;
             case R.id.go_recode_rl:
                 if (!TextUtils.isEmpty(uid)) {
-                    IntercourseRecordActivity.start(this, uid, nickName);
+                    IntercourseRecordActivity.start(this, uid, nickName,"","");
                 }
                 break;
             default:

@@ -22,6 +22,7 @@ import butterknife.ButterKnife;
  */
 
 public class IntercourseRecordAdapter extends RecyclerView.Adapter<IntercourseRecordAdapter.IntercourseRecordView> {
+
     private LayoutInflater layoutInflater;
     private List<IRItemInfo> irItemInfos;
     private String title;
@@ -57,7 +58,7 @@ public class IntercourseRecordAdapter extends RecyclerView.Adapter<IntercourseRe
         holder.recordItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(itemClickListener!=null){
+                if (itemClickListener != null) {
                     itemClickListener.goIncomeDetail(irItemInfo.getId());
                 }
             }
@@ -74,10 +75,12 @@ public class IntercourseRecordAdapter extends RecyclerView.Adapter<IntercourseRe
         TextView businessName;
         @BindView(R.id.time)
         TextView time;
-        @BindView(R.id.price)
-        TextView price;
-        @BindView(R.id.state)
-        TextView state;
+        @BindView(R.id.rmb)
+        TextView rmb;
+        @BindView(R.id.rmb_number)
+        TextView rmbNumber;
+        @BindView(R.id.energy)
+        TextView energy;
         @BindView(R.id.record_item)
         RelativeLayout recordItem;
 
@@ -89,12 +92,8 @@ public class IntercourseRecordAdapter extends RecyclerView.Adapter<IntercourseRe
         public void bindData(IRItemInfo irItemInfo) {
             businessName.setText(title);
             time.setText(FormatUtil.formatDateByLine(irItemInfo.getCreatedAt()));
-            price.setText(irItemInfo.getAllprice());
-            if (TextUtils.equals("1", irItemInfo.getStatus())) {
-                state.setText("交易成功");
-            } else {
-                state.setText("交易失败");
-            }
+            rmbNumber.setText(irItemInfo.getPrice());
+            energy.setText(irItemInfo.getPower());
         }
     }
 
