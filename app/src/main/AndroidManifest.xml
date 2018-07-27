@@ -185,6 +185,9 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".bankcard.ui.PutForwardDetailActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".bill.ui.ExplainCashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentFullScreenTheme" />
     </application>
 
 </manifest>

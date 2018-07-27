@@ -38,4 +38,14 @@ public class CommonAppPreferences {
         return sharedPreferences.getString(StaticData.PUSH_INFO_STR,"");
     }
 
+    public void setExplainCash(String eCash){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(StaticData.EXPLAIN_CASH,eCash);
+        editor.commit();
+    }
+
+    public String getExplainCash(){
+        return sharedPreferences.getString(StaticData.EXPLAIN_CASH,"");
+    }
+
 }

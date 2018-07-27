@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextPaint;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +30,7 @@ import com.nenggou.slsm.ranking.RankingContract;
 import com.nenggou.slsm.ranking.RankingModule;
 import com.nenggou.slsm.ranking.adapter.ConsumeRankingAdapter;
 import com.nenggou.slsm.ranking.presenter.CRankingPresenter;
+import com.nenggou.slsm.ranking.presenter.RRankingPresenter;
 
 import javax.inject.Inject;
 
@@ -40,10 +40,10 @@ import butterknife.OnClick;
 
 /**
  * Created by JWC on 2018/7/24.
- * 消费排行
+ *推荐收益排行
  */
 
-public class ConsumeRankingFragment extends BaseFragment implements RankingContract.CRankingView {
+public class RRankingFragment extends BaseFragment implements RankingContract.RRankingView {
 
     @BindView(R.id.year_ranking)
     TextView yearRanking;
@@ -103,13 +103,13 @@ public class ConsumeRankingFragment extends BaseFragment implements RankingContr
     private int seasonStartMonthSelect = 0;
 
     @Inject
-    CRankingPresenter cRankingPresenter;
+    RRankingPresenter rRankingPresenter;
 
     private RankingInfo rankingInfo;
 
-    public static ConsumeRankingFragment newInstance() {
-        ConsumeRankingFragment consumeRankingFragment = new ConsumeRankingFragment();
-        return consumeRankingFragment;
+    public static RRankingFragment newInstance() {
+        RRankingFragment rRankingFragment = new RRankingFragment();
+        return rRankingFragment;
     }
 
     @Override
@@ -120,7 +120,7 @@ public class ConsumeRankingFragment extends BaseFragment implements RankingContr
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootview = inflater.inflate(R.layout.fragment_consume_ranking, container, false);
+        View rootview = inflater.inflate(R.layout.fragment_r_ranking, container, false);
         ButterKnife.bind(this, rootview);
         return rootview;
     }
@@ -154,8 +154,9 @@ public class ConsumeRankingFragment extends BaseFragment implements RankingContr
         if (isFirstLoad) {
             if (getUserVisibleHint()) {
                 isFirstLoad = false;
-                if (cRankingPresenter != null) {
-                    cRankingPresenter.getCRankingList("0", choiceType, starttime);
+                isFirstIn="1";
+                if (rRankingPresenter != null) {
+                    rRankingPresenter.getRRankingList("1", choiceType, starttime);
                 }
             }
         }
@@ -166,8 +167,8 @@ public class ConsumeRankingFragment extends BaseFragment implements RankingContr
         super.onResume();
         if (!isFirstLoad && getUserVisibleHint() && TextUtils.equals("0", isFirstIn)) {
             isFirstIn = "1";
-            if (cRankingPresenter != null) {
-                cRankingPresenter.getCRankingList("1", choiceType, starttime);
+            if (rRankingPresenter != null) {
+                rRankingPresenter.getRRankingList("1", choiceType, starttime);
             }
         }
     }
@@ -186,12 +187,12 @@ public class ConsumeRankingFragment extends BaseFragment implements RankingContr
     HeaderViewLayout.OnRefreshListener mOnRefreshListener = new HeaderViewLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            cRankingPresenter.getCRankingList("0", choiceType, starttime);
+            rRankingPresenter.getRRankingList("0", choiceType, starttime);
         }
 
         @Override
         public void onLoadMore() {
-            cRankingPresenter.getMoreCRankingList(choiceType, starttime);
+            rRankingPresenter.getMoreRRankingList(choiceType, starttime);
         }
 
         @Override
@@ -232,13 +233,9 @@ public class ConsumeRankingFragment extends BaseFragment implements RankingContr
         super.onDestroyView();
     }
 
-    @Override
-    public void setPresenter(RankingContract.CRankingPresenter presenter) {
-
-    }
 
     @Override
-    public void renderCRankingList(RankingListInfo rankingListInfo) {
+    public void renderRRankingList(RankingListInfo rankingListInfo) {
         refreshLayout.stopRefresh();
         if (rankingListInfo != null) {
             if (rankingListInfo.getRankingInfos() != null && rankingListInfo.getRankingInfos().size() > 0) {
@@ -266,7 +263,7 @@ public class ConsumeRankingFragment extends BaseFragment implements RankingContr
     }
 
         @Override
-        public void renderMoreCRankingList (RankingListInfo rankingListInfo){
+        public void renderMoreRRankingList (RankingListInfo rankingListInfo){
             refreshLayout.stopRefresh();
             if (rankingListInfo != null && rankingListInfo.getRankingInfos() != null && rankingListInfo.getRankingInfos().size() > 0) {
                 consumeRankingAdapter.addMore(rankingListInfo.getRankingInfos());
@@ -307,7 +304,7 @@ public class ConsumeRankingFragment extends BaseFragment implements RankingContr
                 yearStartMonthSelect = backMonthSelect;
                 yearStartDaySelect = backDaySelect;
                 starttime = time;
-                cRankingPresenter.getCRankingList("1", choiceType, starttime);
+                rRankingPresenter.getRRankingList("1", choiceType, starttime);
                 yearTimePicker = null;
                 textBold(choiceType);
             }
@@ -338,7 +335,7 @@ public class ConsumeRankingFragment extends BaseFragment implements RankingContr
                 monthStartMonthSelect = backMonthSelect;
                 monthStartDaySelect = backDaySelect;
                 starttime = time;
-                cRankingPresenter.getCRankingList("1", choiceType, starttime);
+                rRankingPresenter.getRRankingList("1", choiceType, starttime);
                 monthTimePicker = null;
                 textBold(choiceType);
             }
@@ -367,7 +364,7 @@ public class ConsumeRankingFragment extends BaseFragment implements RankingContr
                 seasonStartYearSelect = backYearSelect;
                 seasonStartMonthSelect=backMonthSelect;
                 starttime = time;
-                cRankingPresenter.getCRankingList("1", choiceType, starttime);
+                rRankingPresenter.getRRankingList("1", choiceType, starttime);
                 seasonTimePicker = null;
                 textBold(choiceType);
             }
@@ -379,5 +376,10 @@ public class ConsumeRankingFragment extends BaseFragment implements RankingContr
             }
         });
         seasonTimePicker.show(getActivity());
+    }
+
+    @Override
+    public void setPresenter(RankingContract.RRankingPresenter presenter) {
+
     }
 }

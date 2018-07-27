@@ -1,4 +1,4 @@
-package com.nenggou.slsm.common.widget.chooseTime;
+package com.nenggou.slsm.common.widget.chooseTime.adapter;
 
 
 import android.content.Context;
@@ -11,9 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
 import com.nenggou.slsm.R;
-import com.nenggou.slsm.common.widget.chooseTime.adapter.AbstractWheelTextAdapter;
+import com.nenggou.slsm.common.widget.chooseTime.ActionSheet;
+import com.nenggou.slsm.common.widget.chooseTime.OnWheelChangedListener;
+import com.nenggou.slsm.common.widget.chooseTime.OnWheelScrollListener;
+import com.nenggou.slsm.common.widget.chooseTime.WheelView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -26,7 +28,7 @@ import butterknife.OnClick;
  * Created by JWC on 2017/1/13.
  */
 
-public class ChooseTimePicker extends ActionSheet {
+public class ChooseSeasonTimePicker extends ActionSheet {
 
 
     private static final String TAG = "ChooseTimePicker";
@@ -38,36 +40,23 @@ public class ChooseTimePicker extends ActionSheet {
     WheelView mYearWheelView;
     @BindView(R.id.month_wv)
     WheelView mMonthWheelView;
-    @BindView(R.id.day_wv)
-    WheelView mDayWheelView;
     private CalendarTextAdapter mYearAdapter;
     private CalendarTextAdapter mMonthAdapter;
-    private CalendarTextAdapter mDayAdapter;
 
     //变量
     private ArrayList<String> arry_year = new ArrayList<String>();
     private ArrayList<String> arry_month = new ArrayList<String>();
-    private ArrayList<String> arry_day = new ArrayList<String>();
 
     private int nowYearId = 0;
     private int nowMonthId = 0;
-    private int nowDayId = 0;
-    private String chooseType;
 
     private int nowYearPosition = 0;
 
     private String mYearStr;
     private String mMonthStr;
-    private String mDayStr;
 
     private int backYearSelect = 0;
     private int backMonthSelect = 0;
-    private int backDaySelect = 0;
-
-    private int selectYearInt;
-    private int selectMonthInt;
-
-
     //常量
     private final int MAX_TEXT_SIZE = 16;
     private final int MIN_TEXT_SIZE = 14;
@@ -76,20 +65,18 @@ public class ChooseTimePicker extends ActionSheet {
     private boolean yearAll = false;
 
     private View sheetView;
-    private static final String KEY_TYPE_SELECT = "key_type_select";
     private static final String KEY_YEAR_SELECT = "key_year_select";
     private static final String KEY_MONTH_SELECT = "key_month_select";
-    private static final String KEY_DAY_SELECT = "key_day_select";
 
 
-    public static ChooseTimePicker newInstance() {
-        ChooseTimePicker chooseTimePicker = new ChooseTimePicker();
+    public static ChooseSeasonTimePicker newInstance() {
+        ChooseSeasonTimePicker chooseTimePicker = new ChooseSeasonTimePicker();
         return chooseTimePicker;
     }
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.action_sheet_choose_time_schedule;
+        return R.layout.action_sheet_choose_season_schedule;
     }
 
     @SuppressWarnings("unchecked")
@@ -98,21 +85,10 @@ public class ChooseTimePicker extends ActionSheet {
         sheetView = getSheetView();
         ButterKnife.bind(this, sheetView);
         Bundle bundle = getArguments();
-        chooseType = bundle.getString(KEY_TYPE_SELECT);
         nowYearId = bundle.getInt(KEY_YEAR_SELECT);
         nowMonthId = bundle.getInt(KEY_MONTH_SELECT);
-        nowDayId = bundle.getInt(KEY_DAY_SELECT);
         monthAll = false;
         yearAll = false;
-        if (TextUtils.equals("1", chooseType)) {
-            mDayWheelView.setVisibility(View.GONE);
-            mMonthWheelView.setVisibility(View.GONE);
-        } else if(TextUtils.equals("2",chooseType)){
-            mDayWheelView.setVisibility(View.GONE);
-        }else {
-            mDayWheelView.setVisibility(View.VISIBLE);
-            mMonthWheelView.setVisibility(View.VISIBLE);
-        }
         initData();
     }
 
@@ -125,7 +101,6 @@ public class ChooseTimePicker extends ActionSheet {
     private void initData() {
         initYear();
         initMonth();
-        initDay();
         initListener();
         initNowData();
     }
@@ -134,24 +109,14 @@ public class ChooseTimePicker extends ActionSheet {
         new Handler().postDelayed(new Runnable() {
             public void run() {
                 mYearWheelView.setCurrentItem(nowYearId);
-                mMonthWheelView.setCurrentItem(nowMonthId);
-                mDayWheelView.setCurrentItem(nowDayId);
+//                mMonthWheelView.setCurrentItem(nowMonthId);
             }
         }, 100);
     }
 
-    private void initDayDate() {
-        new Handler().postDelayed(new Runnable() {
-            public void run() {
-                mDayWheelView.setCurrentItem(0);
-            }
-        }, 100);
-    }
-
-    public void setTime(int nowYearId, int nowMonthId, int nowDayId) {
+    public void setTime(int nowYearId, int nowMonthId) {
         this.nowYearId = nowYearId;
         this.nowMonthId = nowMonthId;
-        this.nowDayId = nowDayId;
         initNowData();
     }
 
@@ -174,7 +139,6 @@ public class ChooseTimePicker extends ActionSheet {
         mYearWheelView.setViewAdapter(mYearAdapter);
         mYearWheelView.setCurrentItem(nowYearId);
         mYearStr = arry_year.get(nowYearId);
-//        setTextViewStyle(mYearStr, mYearAdapter);
     }
 
     private int getYearMonth(String dateStr, String splitStr) {
@@ -195,95 +159,15 @@ public class ChooseTimePicker extends ActionSheet {
         Calendar nowCalendar = Calendar.getInstance();
         int nowMonth = nowCalendar.get(Calendar.MONTH) + 1;
         arry_month.clear();
-        for (int i = 1; i <= 12; i++) {
-            arry_month.add(i + "月");
+        for (int i = 1; i <5; i++) {
+            arry_month.add("第"+i+"季度");
         }
         mMonthAdapter = new CalendarTextAdapter(getActivity(), arry_month, nowMonth, MAX_TEXT_SIZE, MIN_TEXT_SIZE);
-        mMonthWheelView.setVisibleItems(5);
+        mMonthWheelView.setVisibleItems(4);
         mMonthWheelView.setViewAdapter(mMonthAdapter);
         mMonthWheelView.setCurrentItem(nowMonthId);
         mMonthStr = arry_month.get(nowMonthId);
-//        setTextViewStyle(mMonthStr, mMonthAdapter);
     }
-
-
-    /**
-     * 初始化天
-     */
-    private void initDay() {
-        Calendar nowCalendar = Calendar.getInstance();
-        int nowYear = nowCalendar.get(Calendar.YEAR);
-        int nowMonth = nowCalendar.get(Calendar.MONTH) + 1;
-        setDay(nowYear, nowMonth);
-        mDayAdapter = new CalendarTextAdapter(getActivity(), arry_day, nowDayId, MAX_TEXT_SIZE, MIN_TEXT_SIZE);
-        mDayWheelView.setVisibleItems(5);
-        mDayWheelView.setViewAdapter(mDayAdapter);
-        mDayWheelView.setCurrentItem(nowDayId);
-        mDayStr = arry_day.get(nowDayId);
-//        setTextViewStyle(mDayStr, mDayAdapter);
-    }
-
-    /**
-     * 将改年的所有日期写入数组
-     *
-     * @param year
-     */
-    private void setDay(int year, int month) {
-        arry_day.clear();
-        boolean isRun = isRunNian(year);
-        Calendar nowCalendar = Calendar.getInstance();
-        int nowDay = nowCalendar.get(Calendar.DAY_OF_MONTH);
-        switch (month) {
-            case 1:
-            case 3:
-            case 5:
-            case 7:
-            case 8:
-            case 10:
-            case 12:
-                for (int day = 1; day <= 31; day++) {
-                    arry_day.add(day + "日");
-                }
-                break;
-            case 2:
-                if (isRun) {
-                    for (int day = 1; day <= 29; day++) {
-                        arry_day.add(day + "日");
-                    }
-                } else {
-                    for (int day = 1; day <= 28; day++) {
-                        arry_day.add(day + "日");
-                    }
-                }
-                break;
-            case 4:
-            case 6:
-            case 9:
-            case 11:
-                for (int day = 1; day <= 30; day++) {
-                    arry_day.add(day + "日");
-                }
-                break;
-            default:
-                break;
-        }
-    }
-
-
-    /**
-     * 判断是否是闰年
-     *
-     * @param year
-     * @return
-     */
-    private boolean isRunNian(int year) {
-        if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
 
     /**
      * 初始化滚动监听事件
@@ -298,20 +182,9 @@ public class ChooseTimePicker extends ActionSheet {
                 String currentText = (String) mYearAdapter.getItemText(wheel.getCurrentItem());
                 setTextViewStyle(currentText, mYearAdapter);
                 mYearStr = arry_year.get(wheel.getCurrentItem()) + "";
-                if (TextUtils.equals("2月", mMonthStr)) {
-                    yearAll = false;
-                    monthAll = false;
-                    selectYearInt = getYearMonth(mYearStr, "年");
-                    setDay(selectYearInt, 2);
-                    mDayAdapter.setList(arry_day);
-                    mDayWheelView.setViewAdapter(mDayAdapter);
-                    mDayWheelView.setCurrentItem(0);
-                    mMonthWheelView.setCanScroll(true);
-                } else {
-                    yearAll = false;
-                    monthAll = false;
-                    mMonthWheelView.setCanScroll(true);
-                }
+                yearAll = false;
+                monthAll = false;
+                mMonthWheelView.setCanScroll(true);
             }
         });
 
@@ -339,13 +212,6 @@ public class ChooseTimePicker extends ActionSheet {
                 setMonthTextViewStyle(currentText, mMonthAdapter);
                 mMonthStr = arry_month.get(wheel.getCurrentItem());
                 monthAll = false;
-                mDayWheelView.setCanScroll(true);
-                selectYearInt = getYearMonth(mYearStr, "年");
-                selectMonthInt = getYearMonth(mMonthStr, "月");
-                setDay(selectYearInt, selectMonthInt);
-                mDayAdapter.setList(arry_day);
-                mDayWheelView.setViewAdapter(mDayAdapter);
-                mDayWheelView.setCurrentItem(0);
 
             }
         });
@@ -361,47 +227,6 @@ public class ChooseTimePicker extends ActionSheet {
             public void onScrollingFinished(WheelView wheel) {
                 String currentText = (String) mMonthAdapter.getItemText(wheel.getCurrentItem());
                 setTextViewStyle(currentText, mMonthAdapter);
-//                if (TextUtils.equals(currentText, "全部")) {
-//                    monthAll=true;
-//                    mDayWheelView.setCurrentItem(0);
-//                    mDayWheelView.setCanScroll(false);
-//                } else {
-//                    monthAll=false;
-//                    mDayWheelView.setCanScroll(true);
-//                    selectYearInt = getYearMonth(mYearStr, "年");
-//                    selectMonthInt = getYearMonth(mMonthStr, "月");
-//                    setDay(selectYearInt, selectMonthInt);
-//                    mDayAdapter.setList(arry_day);
-//                    mDayWheelView.setViewAdapter(mDayAdapter);
-//                    mDayWheelView.setCurrentItem(0);
-//                }
-            }
-        });
-
-
-        //天********************
-
-        mDayWheelView.addChangingListener(new OnWheelChangedListener() {
-            @Override
-            public void onChanged(WheelView wheel, int oldValue, int newValue) {
-                backDaySelect = wheel.getCurrentItem();
-                String currentText = (String) mDayAdapter.getItemText(wheel.getCurrentItem());
-                setDayTextViewStyle(currentText, mDayAdapter);
-                mDayStr = arry_day.get(wheel.getCurrentItem());
-            }
-        });
-
-
-        mDayWheelView.addScrollingListener(new OnWheelScrollListener() {
-            @Override
-            public void onScrollingStarted(WheelView wheel) {
-
-            }
-
-            @Override
-            public void onScrollingFinished(WheelView wheel) {
-                String currentText = (String) mDayAdapter.getItemText(wheel.getCurrentItem());
-                setDayTextViewStyle(currentText, mDayAdapter);
             }
         });
     }
@@ -542,13 +367,6 @@ public class ChooseTimePicker extends ActionSheet {
         OnTimeSelectListener listener;
         int yearSelect;
         int monthSelect;
-        int daySelect;
-        String chooseTimeType;
-
-        public Builder chooseTypeGet(String chooseTimeType) {
-            this.chooseTimeType = chooseTimeType;
-            return this;
-        }
 
         public Builder yearSelectGet(int yearSelect) {
             this.yearSelect = yearSelect;
@@ -560,19 +378,12 @@ public class ChooseTimePicker extends ActionSheet {
             return this;
         }
 
-        public Builder daySelectGet(int daySelect) {
-            this.daySelect = daySelect;
-            return this;
-        }
 
-
-        public ChooseTimePicker build() {
+        public ChooseSeasonTimePicker build() {
             Bundle args = new Bundle();
-            args.putString(KEY_TYPE_SELECT, chooseTimeType);
             args.putInt(KEY_YEAR_SELECT, yearSelect);
             args.putInt(KEY_MONTH_SELECT, monthSelect);
-            args.putInt(KEY_DAY_SELECT, daySelect);
-            ChooseTimePicker chooseTimePicker = ChooseTimePicker.newInstance();
+            ChooseSeasonTimePicker chooseTimePicker = ChooseSeasonTimePicker.newInstance();
             chooseTimePicker.setArguments(args);
             chooseTimePicker.setListener(listener);
             return chooseTimePicker;
@@ -586,7 +397,7 @@ public class ChooseTimePicker extends ActionSheet {
 
 
     public interface OnTimeSelectListener {
-        void onConfirmServiceTime(String time, int backYearSelect, int backMonthSelect, int backDaySelect);
+        void onConfirmServiceTime(String time, int backYearSelect, int backMonthSelect);
     }
 
     public void setListener(OnTimeSelectListener listener) {
@@ -625,8 +436,8 @@ public class ChooseTimePicker extends ActionSheet {
                 break;
             case R.id.confirm:
                 if (listener != null) {
-                    Log.d(TAG, "mYearStr:" + mYearStr + "mMonthStr:" + mMonthStr + "mDayStr:" + mDayStr);
-                    listener.onConfirmServiceTime(strTimeToDateFormat(mYearStr, mMonthStr, mDayStr, chooseType), backYearSelect, backMonthSelect, backDaySelect);
+                    Log.d(TAG, "mYearStr:" + mYearStr + "mMonthStr:" + mMonthStr);
+                    listener.onConfirmServiceTime(strTimeToDateFormat(mYearStr, backMonthSelect), backYearSelect, backMonthSelect);
                     dismiss();
                 }
                 break;
@@ -635,19 +446,15 @@ public class ChooseTimePicker extends ActionSheet {
         }
     }
 
-    private String strTimeToDateFormat(String yearStr, String monthStr, String dayStr, String returnYype) {
-        if (monthStr.length() == 2) {
-            monthStr = "0" + monthStr;
-        }
-        if (dayStr.length() == 2) {
-            dayStr = "0" + dayStr;
-        }
-        if (TextUtils.equals("1",returnYype)) {
-            return yearStr.replace("年", "");
-        } else if (TextUtils.equals("2",returnYype)) {
-            return yearStr.replace("年", "-") + monthStr.replace("月", "");
-        } else {
-            return yearStr.replace("年", "-") + monthStr.replace("月", "-") + dayStr.replace("日", "");
+    private String strTimeToDateFormat(String yearStr, int monthSelect) {
+        if(monthSelect==0){
+            return yearStr.replace("年", "-") +"01";
+        }else if(monthSelect==1){
+            return yearStr.replace("年", "-") +"04";
+        }else if(monthSelect==2){
+            return yearStr.replace("年", "-") +"07";
+        }else {
+            return yearStr.replace("年", "-") +"10";
         }
     }
 

@@ -76,7 +76,7 @@ public class RankingFragment extends BaseFragment {
         titleList = new ArrayList<>();
         viewpager.setOffscreenPageLimit(1);
         fragmentList.add(ConsumeRankingFragment.newInstance());
-        fragmentList.add(ConsumeRankingFragment.newInstance());
+        fragmentList.add(RRankingFragment.newInstance());
         titleList.add("消费排行");
         titleList.add("推荐收益排行");
         baseListAdapter = new BaseListAdapter(getChildFragmentManager(), fragmentList, titleList);

@@ -165,7 +165,7 @@ public class ChoiceTimeActivity extends BaseActivity {
      */
     private void setStartTimePicker() {
         chooseStartTimePicker = new ChooseTimePicker.Builder()
-                .chooseTypeGet("1")
+                .chooseTypeGet("2")
                 .yearSelectGet(startYearSelect)
                 .monthSelectGet(startMonthSelect)
                 .daySelectGet(startDaySelect)
@@ -194,7 +194,7 @@ public class ChoiceTimeActivity extends BaseActivity {
      */
     private void setEndTimePicker() {
         chooseEndTimePicker = new ChooseTimePicker.Builder()
-                .chooseTypeGet("1")
+                .chooseTypeGet("2")
                 .yearSelectGet(endYearSelect)
                 .monthSelectGet(endMonthSelect)
                 .daySelectGet(endDaySelect)

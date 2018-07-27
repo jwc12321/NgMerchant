@@ -36,6 +36,8 @@ import butterknife.OnClick;
  */
 
 public class IncomeDetailActivity extends BaseActivity implements BillContract.IncomeDetailView {
+    @Inject
+    IncomeDetailPresenter incomeDetailPresenter;
     @BindView(R.id.back)
     ImageView back;
     @BindView(R.id.title)
@@ -54,24 +56,20 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
     TextView paymentMethod;
     @BindView(R.id.go_arrow)
     ImageView goArrow;
-    @BindView(R.id.first_info)
-    TextView firstInfo;
-    @BindView(R.id.first_numbe)
-    TextView firstNumbe;
-    @BindView(R.id.first_ll)
-    LinearLayout firstLl;
-    @BindView(R.id.second_info)
-    TextView secondInfo;
-    @BindView(R.id.second_numbe)
-    TextView secondNumbe;
-    @BindView(R.id.second_ll)
-    LinearLayout secondLl;
-    @BindView(R.id.third_info)
-    TextView thirdInfo;
-    @BindView(R.id.third_numbe)
-    TextView thirdNumbe;
-    @BindView(R.id.third_ll)
-    LinearLayout thirdLl;
+    @BindView(R.id.energy_numbe)
+    TextView energyNumbe;
+    @BindView(R.id.energy_ll)
+    LinearLayout energyLl;
+    @BindView(R.id.cash_numbe)
+    TextView cashNumbe;
+    @BindView(R.id.cash_ll)
+    LinearLayout cashLl;
+    @BindView(R.id.coupon_numbe)
+    TextView couponNumbe;
+    @BindView(R.id.coupon_ll)
+    LinearLayout couponLl;
+    @BindView(R.id.money_ll)
+    LinearLayout moneyLl;
     @BindView(R.id.service_c_proportion)
     TextView serviceCProportion;
     @BindView(R.id.service_c_price)
@@ -84,6 +82,8 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
     TextView subsidyEOutPrice;
     @BindView(R.id.subsidy_e_out_p_ll)
     LinearLayout subsidyEOutPLl;
+    @BindView(R.id.service_ll)
+    LinearLayout serviceLl;
     @BindView(R.id.cash_store)
     TextView cashStore;
     @BindView(R.id.created_at)
@@ -94,22 +94,6 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
     TextView merchantOrderNumber;
     @BindView(R.id.go_recode_rl)
     RelativeLayout goRecodeRl;
-    @BindView(R.id.money_ll)
-    LinearLayout moneyLl;
-    @BindView(R.id.service_ll)
-    LinearLayout serviceLl;
-    @BindView(R.id.service_one_name)
-    TextView serviceOneName;
-    @BindView(R.id.service_one_info)
-    TextView serviceOneInfo;
-    @BindView(R.id.service_one_number)
-    TextView serviceOneNumber;
-    @BindView(R.id.service_one_ll)
-    LinearLayout serviceOneLl;
-    @BindView(R.id.service_rl)
-    RelativeLayout serviceRl;
-    @Inject
-    IncomeDetailPresenter incomeDetailPresenter;
 
     private String billId;
     private String uid;
@@ -176,69 +160,29 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
                 paymentMethod.setText("微信");
             }
             int zeroTotal = 0;
-            boolean powerZero = false;
-            boolean cashZero = false;
-            boolean quanZero = false;
             if (TextUtils.equals("0.00", incomeDetailInfo.getPower())) {
-                powerZero = true;
+                energyLl.setVisibility(View.GONE);
                 zeroTotal++;
             }
             if (TextUtils.equals("0.00", incomeDetailInfo.getPrice())) {
-                cashZero = true;
+                cashLl.setVisibility(View.GONE);
                 zeroTotal++;
             }
             if (TextUtils.equals("0.00", incomeDetailInfo.getQuannum())) {
-                quanZero = true;
+                couponLl.setVisibility(View.GONE);
                 zeroTotal++;
             }
-            if (zeroTotal == 0) {
-                firstInfo.setText("能量");
-                firstNumbe.setText(incomeDetailInfo.getPower() + "能量");
-                secondInfo.setText("现金");
-                secondNumbe.setText("¥" + incomeDetailInfo.getPrice());
-                thirdInfo.setText("优惠券");
-                thirdNumbe.setText("¥" + incomeDetailInfo.getQuannum());
-            } else if (zeroTotal == 1) {
-                firstLl.setVisibility(View.VISIBLE);
-                secondLl.setVisibility(View.INVISIBLE);
-                thirdLl.setVisibility(View.VISIBLE);
-                if (powerZero) {
-                    firstInfo.setText("现金");
-                    firstNumbe.setText("¥" + incomeDetailInfo.getPrice());
-                    thirdInfo.setText("优惠券");
-                    thirdNumbe.setText("¥" + incomeDetailInfo.getQuannum());
-                } else if (!cashZero) {
-                    firstInfo.setText("能量");
-                    firstNumbe.setText(incomeDetailInfo.getPower() + "能量");
-                    thirdInfo.setText("优惠券");
-                    thirdNumbe.setText("¥" + incomeDetailInfo.getQuannum());
-                } else if (!quanZero) {
-                    firstInfo.setText("能量");
-                    firstNumbe.setText(incomeDetailInfo.getPower() + "能量");
-                    thirdInfo.setText("现金");
-                    thirdNumbe.setText("¥" + incomeDetailInfo.getPrice());
-                }
-            } else if (zeroTotal == 2) {
-                firstLl.setVisibility(View.INVISIBLE);
-                secondLl.setVisibility(View.VISIBLE);
-                thirdLl.setVisibility(View.INVISIBLE);
-                if (!powerZero) {
-                    secondInfo.setText("能量");
-                    secondNumbe.setText(incomeDetailInfo.getPower() + "能量");
-                } else if (!cashZero) {
-                    secondInfo.setText("现金");
-                    secondNumbe.setText("¥" + incomeDetailInfo.getPrice());
-                } else if (!quanZero) {
-                    secondInfo.setText("优惠券");
-                    secondNumbe.setText("¥" + incomeDetailInfo.getQuannum());
-                }
-            } else {
+            energyNumbe.setText(incomeDetailInfo.getPower() + "能量");
+            cashNumbe.setText("¥" + incomeDetailInfo.getPrice());
+            couponNumbe.setText("¥" + incomeDetailInfo.getQuannum());
+            if (zeroTotal == 3) {
                 moneyLl.setVisibility(View.GONE);
             }
+
             priceDecimal = new BigDecimal(incomeDetailInfo.getAprice()).setScale(2, BigDecimal.ROUND_DOWN);
             energyDecimal = new BigDecimal(incomeDetailInfo.getApower()).setScale(2, BigDecimal.ROUND_DOWN);
             serviceCPrice.setText("¥" + priceDecimal.add(energyDecimal).toString());
-            serviceCProportion.setText("(现金"+incomeDetailInfo.getScharge()+"%+能量"+incomeDetailInfo.getScharge()+"%)");
+            serviceCProportion.setText("(现金" + incomeDetailInfo.getScharge() + "%+能量" + incomeDetailInfo.getScharge() + "%)");
             ptDecimal = new BigDecimal(incomeDetailInfo.getPowerRate()).setScale(2, BigDecimal.ROUND_DOWN);
             percentageDecimal = new BigDecimal(100).setScale(2, BigDecimal.ROUND_DOWN);
             divisorDecimal = ptDecimal.divide(percentageDecimal, 2, BigDecimal.ROUND_DOWN);
@@ -255,37 +199,20 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
             }
             proportion.setText("能量 : 现金 = 1 : " + intercept);
             subsidyEOutPrice.setText(incomeDetailInfo.getBpower() + "能量");
-            int serviceZero=0;
-            boolean scPrice=false;
-            boolean isBpower=false;
-
+            int serviceZero = 0;
             if (TextUtils.equals("0.00", serviceCPrice.toString())) {
-                scPrice=true;
+                serviceCPLl.setVisibility(View.GONE);
                 serviceZero++;
 
             }
             if (TextUtils.equals("0.00", incomeDetailInfo.getBpower())
                     || TextUtils.equals("0.0", incomeDetailInfo.getBpower())
                     || TextUtils.equals("0", incomeDetailInfo.getBpower())) {
+                subsidyEOutPLl.setVisibility(View.GONE);
                 serviceZero++;
-                isBpower=true;
             }
-            if(serviceZero==0){
-                serviceOneLl.setVisibility(View.GONE);
-            }else if(serviceZero==1){
+            if (serviceZero == 2) {
                 serviceLl.setVisibility(View.GONE);
-                serviceOneLl.setVisibility(View.VISIBLE);
-                if(!scPrice){
-                    serviceOneName.setText("服务费");
-                    serviceOneInfo.setText("(现金"+incomeDetailInfo.getScharge()+"%+能量"+incomeDetailInfo.getScharge()+"%)");
-                    serviceOneNumber.setText("¥" + priceDecimal.add(energyDecimal).toString());
-                }else if(!isBpower){
-                    serviceOneName.setText("补贴能量支出");
-                    serviceOneInfo.setText("能量 : 现金 = 1 : " + intercept);
-                    serviceOneNumber.setText(incomeDetailInfo.getBpower() + "能量");
-                }
-            }else {
-                serviceRl.setVisibility(View.GONE);
             }
         }
     }

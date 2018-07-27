@@ -164,7 +164,7 @@ public class PutForwardListActivity extends BaseActivity implements BankCardCont
      */
     private void setStartTimePicker() {
         chooseStartTimePicker = new ChooseTimePicker.Builder()
-                .chooseTypeGet("1")
+                .chooseTypeGet("2")
                 .yearSelectGet(startYearSelect)
                 .monthSelectGet(startMonthSelect)
                 .daySelectGet(startDaySelect)

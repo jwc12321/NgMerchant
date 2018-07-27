@@ -76,12 +76,12 @@ public class PutForwardItemAdapter extends RecyclerView.Adapter<PutForwardItemAd
         }
 
         public void bindData(PutForwardItem putForwardItem) {
-            if (TextUtils.equals("0.00", putForwardItem.getPrice())) {
+            if (TextUtils.equals("2", putForwardItem.getType())) {
                 name.setText("能量提现");
                 price.setText(putForwardItem.getPower() + "个能量");
             } else {
                 name.setText("现金提现");
-                price.setText("¥" + putForwardItem.getPrice());
+                price.setText("¥" + putForwardItem.getPower());
             }
             time.setText(FormatUtil.formatMonthByLine(putForwardItem.getCreatedAt()));
             bankName.setText(putForwardItem.getCardbank());

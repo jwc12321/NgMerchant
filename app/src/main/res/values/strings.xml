@@ -139,4 +139,8 @@
     <string name="month_ranking">月排行</string>
     <string name="consumption">消费</string>
     <string name="receivables">收款</string>
+
+    <!--排行榜-->
+    <string name="energy_cost">能量消费</string>
+    <string name="cash_cost">现金消费</string>
 </resources>

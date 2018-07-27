@@ -38,12 +38,20 @@
         tools:src="@mipmap/app_icon" />
 
     <TextView
+        android:id="@+id/name"
+        style="@style/modify_password_style"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/common_ten_margin"
+        android:layout_toRightOf="@id/head_photo"
+        tools:text="小于" />
+
+    <TextView
         android:id="@+id/rmb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/common_one_hundred_margin"
+        android:layout_marginRight="@dimen/common_seven_margin"
         android:layout_marginTop="@dimen/common_seventeen_margin"
+        android:layout_toLeftOf="@id/rmb_number"
         android:text="¥"
         android:textColor="@color/appText6"
         android:textSize="13sp" />
@@ -84,8 +92,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:layout_marginBottom="@dimen/common_seventeen_margin"
-        android:layout_marginRight="@dimen/common_one_hundred_margin"
+        android:layout_marginRight="@dimen/common_seven_margin"
+        android:layout_toLeftOf="@id/energy"
         android:src="@mipmap/energy_icon" />
 </RelativeLayout>

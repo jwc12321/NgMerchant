@@ -20,6 +20,7 @@ import com.nenggou.slsm.bill.DaggerBillComponent;
 import com.nenggou.slsm.bill.adapter.IncomeAdapter;
 import com.nenggou.slsm.bill.presenter.DayIncomePresenter;
 import com.nenggou.slsm.common.refreshview.HeaderViewLayout;
+import com.nenggou.slsm.common.unit.CommonAppPreferences;
 import com.nenggou.slsm.common.unit.FormatUtil;
 import com.nenggou.slsm.common.widget.KeywordUtil;
 import com.nenggou.slsm.data.RemoteDataException;
@@ -66,6 +67,8 @@ public class BillFragment extends BaseFragment implements BillContract.DayIncome
     @Inject
     DayIncomePresenter dayIncomePresenter;
 
+    private CommonAppPreferences commonAppPreferences;
+
     private String today;
     private String firstIn = "1";
     private String proportion;
@@ -104,6 +107,7 @@ public class BillFragment extends BaseFragment implements BillContract.DayIncome
     }
 
     private void initView() {
+        commonAppPreferences=new CommonAppPreferences(getActivity());
         today = FormatUtil.formatYMDByLine();
         refreshLayout.setOnRefreshListener(mOnRefreshListener);
         refreshLayout.setCanLoadMore(false);
@@ -218,6 +222,10 @@ public class BillFragment extends BaseFragment implements BillContract.DayIncome
                 incomeRv.setVisibility(View.GONE);
                 emptyView.setVisibility(View.VISIBLE);
             }
+        }
+        if(!TextUtils.equals("1",commonAppPreferences.getExplainCash())){
+            commonAppPreferences.setExplainCash("1");
+            ExplainCashActivity.start(getActivity());
         }
     }
 
