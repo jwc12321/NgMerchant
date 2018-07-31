@@ -11,6 +11,7 @@ public class RankingModule {
     private RankingContract.CRankingView cRankingView;
     private RankingContract.RRankingView rRankingView;
     private RankingContract.RIncomeView rIncomeView;
+    private RankingContract.CouponView couponView;
 
     public RankingModule(RankingContract.CRankingView cRankingView) {
         this.cRankingView = cRankingView;
@@ -22,6 +23,10 @@ public class RankingModule {
 
     public RankingModule(RankingContract.RIncomeView rIncomeView) {
         this.rIncomeView = rIncomeView;
+    }
+
+    public RankingModule(RankingContract.CouponView couponView) {
+        this.couponView = couponView;
     }
 
     @Provides
@@ -37,5 +42,10 @@ public class RankingModule {
     @Provides
     RankingContract.RIncomeView provideRIncomeView(){
         return rIncomeView;
+    }
+
+    @Provides
+    RankingContract.CouponView provideCouponView(){
+        return couponView;
     }
 }

@@ -387,4 +387,9 @@ public class RRankingFragment extends BaseFragment implements RankingContract.RR
     public void goIntercourseRecord(String uid, String nickName) {
         RIncomeListActivity.start(getActivity(),uid,choiceType,starttime);
     }
+
+    @Override
+    public void sendOutCoupon(String uid) {
+        CouponListActivity.start(getActivity(),uid);
+    }
 }

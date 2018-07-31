@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/common_twelve_margin"
+        android:layout_marginRight="@dimen/common_twelve_margin"
+        android:layout_marginTop="@dimen/common_twenty_five_margin"
+        android:background="@color/appText1"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/coupon_white_bg">
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/appText14"
+                android:textSize="18sp"
+                tools:text="30"
+                android:layout_marginTop="@dimen/common_twelve_margin"
+                android:layout_marginLeft="@dimen/common_forty_nine_margin"/>
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/appText5"
+                android:textSize="13sp"
+                tools:text="30"
+                android:layout_marginTop="@dimen/common_ten_margin"
+                android:layout_marginLeft="@dimen/common_forty_nine_margin"
+                android:layout_toRightOf="@id/price"/>
+            <TextView
+                android:id="@+id/explain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/appText5"
+                android:textSize="13sp"
+                tools:text="30"
+                android:layout_marginTop="@dimen/common_two_margin"
+                android:layout_marginLeft="@dimen/common_forty_nine_margin"
+                android:layout_toRightOf="@id/price"
+                android:layout_below="@id/name"/>
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/appText6"
+                android:textSize="12sp"
+                tools:text="30"
+                android:layout_marginTop="@dimen/common_seventy_two_margin"
+                android:layout_marginLeft="@dimen/common_forty_nine_margin"
+                android:layout_toRightOf="@id/price" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/coupon_y_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@mipmap/coupon_yellow_bg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/send_out"
+                android:textColor="@color/appText1"
+                android:textSize="17sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

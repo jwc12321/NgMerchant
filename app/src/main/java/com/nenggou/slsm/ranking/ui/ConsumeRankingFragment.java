@@ -387,4 +387,9 @@ public class ConsumeRankingFragment extends BaseFragment implements RankingContr
     public void goIntercourseRecord(String uid, String nickName) {
         IntercourseRecordActivity.start(getActivity(),uid,nickName,choiceType,starttime);
     }
+
+    @Override
+    public void sendOutCoupon(String uid) {
+        CouponListActivity.start(getActivity(),uid);
+    }
 }

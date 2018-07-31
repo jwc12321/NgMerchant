@@ -245,6 +245,14 @@
         <item name="android:textColor">@color/appText6</item>
     </style>
 
+
+    <style name="text_fifteen_oy_style">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/appText3</item>
+    </style>
+
     <!--全屏加透明-->
     <style name="TranslucentFullScreenTheme" parent="FullScreenTheme">
         <item name="android:windowBackground">@color/backGround3</item>
@@ -396,5 +404,13 @@
         <item name="android:textColor">@color/appText6</item>
         <item name="android:textColorHint">@color/appText6</item>
         <item name="android:textSize">13sp</item>
+    </style>
+    <style name="progress_first_text_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/appText6</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:gravity">center</item>
     </style>
 </resources>

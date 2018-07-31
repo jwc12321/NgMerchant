@@ -2,8 +2,11 @@ package com.nenggou.slsm.ranking;
 
 import com.nenggou.slsm.BasePresenter;
 import com.nenggou.slsm.BaseView;
+import com.nenggou.slsm.data.entity.CouponInfo;
 import com.nenggou.slsm.data.entity.RIncomeInfo;
 import com.nenggou.slsm.data.entity.RankingListInfo;
+
+import java.util.List;
 
 /**
  * Created by JWC on 2018/7/24.
@@ -36,5 +39,15 @@ public interface RankingContract {
     interface RIncomeView extends BaseView<RIncomePresenter>{
         void renderRIncomeList(RIncomeInfo rIncomeInfo);
         void renderMoreRIncomeList(RIncomeInfo rIncomeInfo);
+    }
+
+    interface CouponPresenter extends BasePresenter{
+        void getCouponInfos();
+        void sendOutCoupon(String uid,String quanId);
+    }
+
+    interface CouponView extends BaseView<CouponPresenter>{
+        void renderCouponInfos(List<CouponInfo> couponInfos);
+        void sendOutSuccess();
     }
 }

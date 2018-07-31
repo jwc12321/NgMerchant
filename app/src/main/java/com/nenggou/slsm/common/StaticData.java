@@ -63,4 +63,6 @@ public class StaticData {
     public static final String EXPLAIN_CASH="explainCash";
     //时间
     public static final String START_TIME="startTime";
+    //理财数据
+    public static final String FINANCING_ITEM_INFO="FinancingItemInfo";
 }

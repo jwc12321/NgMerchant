@@ -66,6 +66,14 @@ public class ConsumeRankingAdapter extends RecyclerView.Adapter<ConsumeRankingAd
                 }
             }
         });
+        holder.rankCoupon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(itemClickListener!=null){
+                    itemClickListener.sendOutCoupon(rankingInfo.getUid());
+                }
+            }
+        });
     }
 
     @Override
@@ -136,6 +144,7 @@ public class ConsumeRankingAdapter extends RecyclerView.Adapter<ConsumeRankingAd
 
     public interface ItemClickListener {
         void goIntercourseRecord(String uid, String nickName);
+        void sendOutCoupon(String uid);
     }
 
     private ItemClickListener itemClickListener;

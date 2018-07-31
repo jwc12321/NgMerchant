@@ -139,8 +139,18 @@
     <string name="month_ranking">月排行</string>
     <string name="consumption">消费</string>
     <string name="receivables">收款</string>
-
-    <!--排行榜-->
     <string name="energy_cost">能量消费</string>
     <string name="cash_cost">现金消费</string>
+    <string name="send_out">发送</string>
+
+    <!--理财-->
+    <string name="project_list">项目列表</string>
+    <string name="novice">新手专享</string>
+    <string name="begin_to_join">开始加入</string>
+    <string name="start_the_interest">开始计息</string>
+    <string name="end_of_closed_period">封闭期结束</string>
+    <string name="return_to_balance">本息返至余额</string>
+    <string name="today_loan">今日出借</string>
+    <string name="storage_mode">存管方式</string>
+    <string name="target_interest_rate">目标利率( 年化 )</string>
 </resources>

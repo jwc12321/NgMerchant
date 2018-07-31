@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/financing_item"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_one_hundred_and_thirty_margin"
+        android:layout_marginTop="@dimen/common_fifteen_margin"
+        android:background="@color/appText1">
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/modify_password_style"
+            android:layout_margin="@dimen/common_twelve_margin"
+            tools:text="新手专享" />
+
+        <TextView
+            android:id="@+id/interestRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/common_twelve_margin"
+            android:layout_marginTop="@dimen/common_fifty_margin"
+            android:textColor="@color/appText3"
+            android:textSize="30sp"
+            tools:text="哈哈" />
+
+        <TextView
+            android:id="@+id/additional"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/common_twelve_margin"
+            android:layout_marginTop="@dimen/common_sixty_five_margin"
+            android:layout_toRightOf="@id/interestRate"
+            android:textColor="@color/appText3"
+            android:textSize="15sp"
+            tools:text="7.0%" />
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_sixty_five_margin"
+            android:textColor="@color/appText5"
+            android:textSize="13sp"
+            tools:text="2个月"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/common_twelve_margin"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="@color/appText6"
+            android:layout_alignParentBottom="true"
+            android:text="@string/target_interest_rate"
+            android:layout_marginLeft="@dimen/common_twelve_margin"
+            android:layout_marginBottom="@dimen/common_seventeen_margin"/>
+        <TextView
+            android:id="@+id/surplus_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="@color/appText6"
+            android:layout_alignParentBottom="true"
+            tools:text="100"
+            android:layout_marginBottom="@dimen/common_seventeen_margin"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/common_twelve_margin"/>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/common_seventeen_margin"
+            android:background="@color/backGround2"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/common_seventeen_margin"/>
+    </RelativeLayout>
+</LinearLayout>

@@ -190,6 +190,10 @@
             android:theme="@style/TranslucentFullScreenTheme" />
         <activity android:name=".ranking.ui.RIncomeListActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ranking.ui.CouponListActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".financing.ui.NoviceActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

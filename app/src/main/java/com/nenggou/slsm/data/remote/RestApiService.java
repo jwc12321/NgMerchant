@@ -10,7 +10,9 @@ import com.nenggou.slsm.data.entity.BillInfo;
 import com.nenggou.slsm.data.entity.CashDate;
 import com.nenggou.slsm.data.entity.CashInfo;
 import com.nenggou.slsm.data.entity.ChangeAppInfo;
+import com.nenggou.slsm.data.entity.CouponInfo;
 import com.nenggou.slsm.data.entity.EnergyInfo;
+import com.nenggou.slsm.data.entity.FinancingInfo;
 import com.nenggou.slsm.data.entity.HistoryIncomInfo;
 import com.nenggou.slsm.data.entity.Ignore;
 import com.nenggou.slsm.data.entity.IncomeDetailInfo;
@@ -42,6 +44,7 @@ import com.nenggou.slsm.data.request.CRankingRequest;
 import com.nenggou.slsm.data.request.RIncomeRequest;
 import com.nenggou.slsm.data.request.RdIncomeRequest;
 import com.nenggou.slsm.data.request.SendCodeRequest;
+import com.nenggou.slsm.data.request.SendOutCouponRequest;
 import com.nenggou.slsm.data.request.SetPasswordRequest;
 import com.nenggou.slsm.data.request.StartimeRequest;
 import com.nenggou.slsm.data.request.StoreIdPageRequest;
@@ -190,4 +193,16 @@ public interface RestApiService {
     //推荐收益
     @POST("home/bill/usergains")
     Flowable<RemoteDataWrapper<RIncomeInfo>> getRIncomeInfo(@Body RIncomeRequest rIncomeRequest);
+
+    //获取优惠券
+    @POST("home/quan/businessCoupon")
+    Flowable<RemoteDataWrapper<List<CouponInfo>>> getCouoponInfos(@Body TokenRequest tokenRequest);
+
+    //发送优惠券
+    @POST("home/quan/pushquan")
+    Flowable<RemoteDataWrapper<Ignore>> sendOutCoupon(@Body SendOutCouponRequest sendOutCouponRequest);
+
+    //理财列表
+    @POST("home/financing/list")
+    Flowable<RemoteDataWrapper<FinancingInfo>> getFinancingInfos(@Body PageRequest pageRequest);
 }
