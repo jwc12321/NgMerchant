@@ -49,8 +49,6 @@ public class NoviceActivity extends BaseActivity {
     TextView surplusAmount;
     @BindView(R.id.surplus_amount_info)
     TextView surplusAmountInfo;
-    @BindView(R.id.progress_iv)
-    ImageView progressIv;
     @BindView(R.id.progress_first)
     TextView progressFirst;
     @BindView(R.id.progress_second)
@@ -63,6 +61,14 @@ public class NoviceActivity extends BaseActivity {
     TextView storageModeInfo;
     @BindView(R.id.scrollview)
     GradationScrollView scrollview;
+    @BindView(R.id.progress_first_iv)
+    ImageView progressFirstIv;
+    @BindView(R.id.progress_second_iv)
+    ImageView progressSecondIv;
+    @BindView(R.id.progress_third_iv)
+    ImageView progressThirdIv;
+    @BindView(R.id.progress_ll)
+    LinearLayout progressLl;
     private FinancingItemInfo financingItemInfo;
     private BigDecimal deviationDecimal;//偏差率
     private BigDecimal interestRateDecimal;//年利率
@@ -80,30 +86,47 @@ public class NoviceActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_novice);
         ButterKnife.bind(this);
-        setHeight(back,title,null);
+        setHeight(back, title, null);
         initView();
     }
 
     private void initView() {
         financingItemInfo = (FinancingItemInfo) getIntent().getSerializableExtra(StaticData.FINANCING_ITEM_INFO);
-        if(financingItemInfo!=null){
-            if(TextUtils.equals("0.00",financingItemInfo.getDeviation())){
-                interestRate.setText(financingItemInfo.getInterestRate()+"%");
-            }else {
+        if (financingItemInfo != null) {
+            if (TextUtils.equals("0.00", financingItemInfo.getDeviation())) {
+                interestRate.setText(financingItemInfo.getInterestRate() + "%");
+            } else {
                 interestRateDecimal = new BigDecimal(financingItemInfo.getInterestRate()).setScale(2, BigDecimal.ROUND_DOWN);
                 deviationDecimal = new BigDecimal(financingItemInfo.getDeviation()).setScale(2, BigDecimal.ROUND_DOWN);
                 addDecimal = interestRateDecimal.add(deviationDecimal);
-                reduceDecimal =interestRateDecimal.subtract(deviationDecimal);
-                interestRate.setText(reduceDecimal.toString()+"%~"+addDecimal.toString()+"%");
+                reduceDecimal = interestRateDecimal.subtract(deviationDecimal);
+                interestRate.setText(reduceDecimal.toString() + "%~" + addDecimal.toString() + "%");
             }
-            if(TextUtils.equals("0.00",financingItemInfo.getAdditional())){
+            if (TextUtils.equals("0.00", financingItemInfo.getAdditional())) {
                 additional.setText("");
-            }else {
-                additional.setText("+"+financingItemInfo.getAdditional()+"%("+financingItemInfo.getAdditionaltype()+")");
+            } else {
+                additional.setText("+" + financingItemInfo.getAdditional() + "%(" + financingItemInfo.getAdditionaltype() + ")");
             }
-            closedPeriodInfo.setText(financingItemInfo.getCycle()+"天");
-            surplusAmount.setText("剩余金额"+financingItemInfo.getSurplus()+"元");
+            closedPeriodInfo.setText(financingItemInfo.getCycle() + "天");
+            surplusAmount.setText("剩余金额" + financingItemInfo.getSurplus() + "元");
             storageModeInfo.setText(financingItemInfo.getStoragetype());
+            if (TextUtils.equals("0", financingItemInfo.getStatus())) {
+                progressFirstIv.setSelected(false);
+                progressSecondIv.setSelected(false);
+                progressThirdIv.setSelected(false);
+            } else if (TextUtils.equals("1", financingItemInfo.getStatus())) {
+                progressFirstIv.setSelected(true);
+                progressSecondIv.setSelected(false);
+                progressThirdIv.setSelected(false);
+            } else if (TextUtils.equals("2", financingItemInfo.getStatus())) {
+                progressFirstIv.setSelected(true);
+                progressSecondIv.setSelected(true);
+                progressThirdIv.setSelected(false);
+            } else if (TextUtils.equals("3", financingItemInfo.getStatus())) {
+                progressFirstIv.setSelected(true);
+                progressSecondIv.setSelected(true);
+                progressThirdIv.setSelected(true);
+            }
         }
     }
 
