@@ -1,9 +1,7 @@
 package com.nenggou.slsm.webview.ui;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.SslErrorHandler;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -22,6 +19,7 @@ import android.webkit.WebViewClient;
 import com.nenggou.slsm.BaseFragment;
 import com.nenggou.slsm.R;
 import com.nenggou.slsm.common.StaticData;
+import com.nenggou.slsm.common.widget.web.NoScrollWebView;
 import com.nenggou.slsm.webview.unit.BridgeImpl;
 import com.nenggou.slsm.webview.unit.JSBridge;
 import com.nenggou.slsm.webview.unit.JSBridgeWebChromeClient;
@@ -34,15 +32,16 @@ import butterknife.ButterKnife;
  */
 
 public class WebViewFragment extends BaseFragment {
-    @BindView(R.id.webView)
-    WebView webView;
 
+
+    @BindView(R.id.webView)
+    NoScrollWebView webView;
     private BridgeImpl bridge;
     private String url;
 
     public void addUrl(String url) {
-        this.url=url;
-        if (!isFirstLoad && getUserVisibleHint()&&webView!=null) {
+        this.url = url;
+        if (!isFirstLoad && getUserVisibleHint() && webView != null) {
             webView.loadUrl(url);
         }
     }
@@ -123,7 +122,7 @@ public class WebViewFragment extends BaseFragment {
         super.setUserVisibleHint(isVisibleToUser);
         if (isFirstLoad) {
             if (getUserVisibleHint()) {
-                if (webView != null&&!TextUtils.isEmpty(url)) {
+                if (webView != null && !TextUtils.isEmpty(url)) {
                     webView.loadUrl(url);
                 }
                 isFirstLoad = false;

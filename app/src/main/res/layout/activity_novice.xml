@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/backGround1">
 
     <RelativeLayout
@@ -24,10 +24,9 @@
         android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:overScrollMode="never"
         android:layout_below="@id/title_rel"
         android:layout_marginBottom="@dimen/common_forty_four_margin"
-        android:fillViewport="true">
+        android:overScrollMode="never">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -137,10 +136,11 @@
                         android:id="@+id/progress_first_iv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/common_two_margin"
                         android:layout_weight="1"
-                        android:src="@drawable/progress_bg"
                         android:scaleType="fitXY"
-                        android:layout_marginRight="@dimen/common_two_margin"/>
+                        android:src="@drawable/progress_bg" />
+
                     <ImageView
                         android:id="@+id/progress_second_iv"
                         android:layout_width="match_parent"
@@ -148,16 +148,17 @@
                         android:layout_marginLeft="@dimen/common_two_margin"
                         android:layout_marginRight="@dimen/common_two_margin"
                         android:layout_weight="1"
-                        android:src="@drawable/progress_bg"
-                        android:scaleType="fitXY"/>
+                        android:scaleType="fitXY"
+                        android:src="@drawable/progress_bg" />
+
                     <ImageView
                         android:id="@+id/progress_third_iv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/common_two_margin"
                         android:layout_weight="1"
-                        android:src="@drawable/progress_bg"
-                        android:scaleType="fitXY"/>
+                        android:scaleType="fitXY"
+                        android:src="@drawable/progress_bg" />
                 </LinearLayout>
 
 
@@ -254,21 +255,132 @@
                     android:layout_toRightOf="@id/storage_mode"
                     tools:text="@string/storage_mode" />
             </RelativeLayout>
-            <android.support.design.widget.TabLayout
-                android:id="@+id/indicator"
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_forty_four_margin">
+
+                <RelativeLayout
+                    android:id="@+id/detail_rl"
+                    style="@style/tablayout_rl">
+
+                    <TextView
+                        android:id="@+id/detail_tv"
+                        style="@style/tablayout_text"
+                        android:text="项目详情"/>
+
+                    <View
+                        android:id="@+id/detail_view"
+                        style="@style/tablayout_view" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/problem_rl"
+                    style="@style/tablayout_rl">
+
+                    <TextView
+                        android:id="@+id/problem_tv"
+                        style="@style/tablayout_text"
+                        android:text="常见问题"/>
+
+                    <View
+                        android:id="@+id/problem_view"
+                        style="@style/tablayout_view"
+                        android:visibility="gone"/>
+                </RelativeLayout>
+            </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/detail_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/appText1">
+                    <LinearLayout style="@style/project_detail_ll_style">
+
+                        <TextView
+                            style="@style/project_detail_text_left_style"
+                            android:text="@string/history_rate" />
+                        <LinearLayout
+                            android:id="@+id/d_interestRate_ll"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/d_interest_rate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/appText5"
+                                android:textSize="18sp"
+                                tools:text="哈哈" />
+
+                            <TextView
+                                android:id="@+id/d_additional"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/appText5"
+                                android:textSize="13sp"
+                                tools:text="7.0%" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/project_detail_ll_style">
+
+                        <TextView
+                            style="@style/project_detail_text_left_style"
+                            android:text="@string/project_total_price" />
+
+                        <TextView
+                            android:id="@+id/project_total_price"
+                            style="@style/project_detail_text_right_style"
+                            tools:text="@string/project_total_price" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/project_detail_ll_style">
+
+                        <TextView
+                            style="@style/project_detail_text_left_style"
+                            android:text="@string/closed_period" />
+
+                        <TextView
+                            android:id="@+id/d_closed_period"
+                            style="@style/project_detail_text_right_style"
+                            tools:text="@string/closed_period" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/project_detail_ll_style">
+
+                        <TextView
+                            style="@style/project_detail_text_left_style"
+                            android:text="@string/interest_type" />
+
+                        <TextView
+                            android:id="@+id/d_interest_type"
+                            style="@style/project_detail_text_right_style"
+                            tools:text="@string/interest_type" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/project_detail_ll_style">
+
+                        <TextView
+                            style="@style/project_detail_text_left_style"
+                            android:text="@string/poundage" />
+
+                        <TextView
+                            android:id="@+id/d_poundage"
+                            style="@style/project_detail_text_right_style"
+                            tools:text="@string/poundage" />
+                    </LinearLayout>
+                </LinearLayout>
+            <com.nenggou.slsm.common.widget.web.NoScrollWebView
+                android:id="@+id/webView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/appText1"
-                app:tabIndicatorColor="@color/appText3"
-                app:tabMode="fixed"
-                app:tabSelectedTextColor="@color/appText3" />
-            <android.support.v4.view.ViewPager
-                android:id="@+id/viewpager"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/backGround1" />
-        </LinearLayout>
+                android:visibility="gone"/>
+
+            </LinearLayout>
     </com.nenggou.slsm.common.widget.GradationScrollView>
+
     <net.lucode.hackware.magicindicator.MagicIndicator
         android:id="@+id/magic_indicator_title"
         android:layout_width="match_parent"
@@ -277,9 +389,10 @@
         android:background="@color/appText1"
         android:visibility="gone"
         app:layout_collapseMode="pin" />
+
     <Button
-       style="@style/bottom_button_style"
-        android:text="立即加入"
+        style="@style/bottom_button_style"
         android:layout_alignParentBottom="true"
-        android:enabled="false"/>
+        android:enabled="false"
+        android:text="立即加入" />
 </RelativeLayout>

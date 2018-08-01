@@ -2,16 +2,17 @@ package com.nenggou.slsm.financing.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
+import android.net.http.SslError;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -21,24 +22,16 @@ import com.nenggou.slsm.BaseActivity;
 import com.nenggou.slsm.BuildConfig;
 import com.nenggou.slsm.R;
 import com.nenggou.slsm.common.StaticData;
-import com.nenggou.slsm.common.widget.ColorFlipPagerTitleView;
 import com.nenggou.slsm.common.widget.GradationScrollView;
 import com.nenggou.slsm.common.widget.list.BaseListAdapter;
+import com.nenggou.slsm.common.widget.web.NoScrollWebView;
 import com.nenggou.slsm.data.entity.FinancingItemInfo;
 import com.nenggou.slsm.webview.ui.WebViewFragment;
+import com.nenggou.slsm.webview.unit.JSBridgeWebChromeClient;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
-import net.lucode.hackware.magicindicator.ViewPagerHelper;
-import net.lucode.hackware.magicindicator.buildins.UIUtil;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -51,6 +44,9 @@ import butterknife.OnClick;
  */
 
 public class NoviceActivity extends BaseActivity {
+
+    @BindView(R.id.magic_indicator_title)
+    MagicIndicator magicIndicatorTitle;
     @BindView(R.id.back)
     ImageView back;
     @BindView(R.id.title)
@@ -89,14 +85,38 @@ public class NoviceActivity extends BaseActivity {
     TextView storageMode;
     @BindView(R.id.storage_mode_info)
     TextView storageModeInfo;
-    @BindView(R.id.indicator)
-    TabLayout indicator;
-    @BindView(R.id.viewpager)
-    ViewPager viewpager;
-//    @BindView(R.id.scrollview)
-//    GradationScrollView scrollview;
-    @BindView(R.id.magic_indicator_title)
-    MagicIndicator magicIndicatorTitle;
+    @BindView(R.id.detail_tv)
+    TextView detailTv;
+    @BindView(R.id.detail_view)
+    View detailView;
+    @BindView(R.id.detail_rl)
+    RelativeLayout detailRl;
+    @BindView(R.id.problem_tv)
+    TextView problemTv;
+    @BindView(R.id.problem_view)
+    View problemView;
+    @BindView(R.id.problem_rl)
+    RelativeLayout problemRl;
+    @BindView(R.id.d_interest_rate)
+    TextView dInterestRate;
+    @BindView(R.id.d_additional)
+    TextView dAdditional;
+    @BindView(R.id.d_interestRate_ll)
+    LinearLayout dInterestRateLl;
+    @BindView(R.id.project_total_price)
+    TextView projectTotalPrice;
+    @BindView(R.id.d_closed_period)
+    TextView dClosedPeriod;
+    @BindView(R.id.d_interest_type)
+    TextView dInterestType;
+    @BindView(R.id.d_poundage)
+    TextView dPoundage;
+    @BindView(R.id.detail_ll)
+    LinearLayout detailLl;
+    @BindView(R.id.scrollview)
+    GradationScrollView scrollview;
+    @BindView(R.id.webView)
+    NoScrollWebView webView;
     private FinancingItemInfo financingItemInfo;
     private BigDecimal deviationDecimal;//偏差率
     private BigDecimal interestRateDecimal;//年利率
@@ -121,6 +141,7 @@ public class NoviceActivity extends BaseActivity {
         setContentView(R.layout.activity_novice);
         ButterKnife.bind(this);
         setHeight(back, title, null);
+        initWeb();
         initView();
     }
 
@@ -162,37 +183,97 @@ public class NoviceActivity extends BaseActivity {
                 progressSecondIv.setSelected(true);
                 progressThirdIv.setSelected(true);
             }
-            fragmentList = new ArrayList<>();
-            titleList = new ArrayList<>();
-            viewpager.setOffscreenPageLimit(1);
-            projectDetailsFragment = new ProjectDetailsFragment();
-            webViewFragment = new WebViewFragment();
-            fragmentList.add(projectDetailsFragment);
-            fragmentList.add(webViewFragment);
-            titleList.add("项目详情");
-            titleList.add("常见问题");
-            baseListAdapter = new BaseListAdapter(getSupportFragmentManager(), fragmentList, titleList);
-            viewpager.setAdapter(baseListAdapter);
-            viewpager.setCurrentItem(0);
-            indicator.removeAllTabs();
-            indicator.setupWithViewPager(viewpager);
-            projectDetailsFragment.addFinancingItemInfo(financingItemInfo);
-            String url = BuildConfig.API_BASE_URL + "home/financing/detail";
-            webViewFragment.addUrl(url);
+
+
+            if (TextUtils.equals("0.00", financingItemInfo.getDeviation())) {
+                dInterestRate.setText(financingItemInfo.getInterestRate() + "%");
+            } else {
+                interestRateDecimal = new BigDecimal(financingItemInfo.getInterestRate()).setScale(2, BigDecimal.ROUND_DOWN);
+                deviationDecimal = new BigDecimal(financingItemInfo.getDeviation()).setScale(2, BigDecimal.ROUND_DOWN);
+                addDecimal = interestRateDecimal.add(deviationDecimal);
+                reduceDecimal = interestRateDecimal.subtract(deviationDecimal);
+                dInterestRate.setText(reduceDecimal.toString() + "%~" + addDecimal.toString() + "%");
+            }
+            if (TextUtils.equals("0.00", financingItemInfo.getAdditional())) {
+                dAdditional.setText("");
+            } else {
+                dAdditional.setText("+" + financingItemInfo.getAdditional() + "%(" + financingItemInfo.getAdditionaltype() + ")");
+            }
+            projectTotalPrice.setText(financingItemInfo.getTotalAmount() + "元");
+            dClosedPeriod.setText(financingItemInfo.getCycle() + "天");
+            dInterestType.setText(financingItemInfo.getType());
+            dPoundage.setText(financingItemInfo.getServicecharge());
         }
     }
+
+    //初始化web
+    private void initWeb() {
+        WebSettings settings = webView.getSettings();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            settings.setMixedContentMode(
+                    WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
+        }
+        settings.setJavaScriptEnabled(true);
+
+        //设置是否支持缩放
+        settings.setSupportZoom(true);
+        settings.setBuiltInZoomControls(true);
+
+        //设置是否显示缩放按钮
+        settings.setDisplayZoomControls(true);
+
+        //设置自适应屏幕宽度
+        settings.setUseWideViewPort(true);
+        settings.setLoadWithOverviewMode(true);
+
+
+        webView.setWebChromeClient(new JSBridgeWebChromeClient());
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+            }
+
+            @Override
+            public void onReceivedSslError(WebView view,
+                                           SslErrorHandler handler, SslError error) {
+                // TODO Auto-generated method stub
+                // handler.cancel();// Android默认的处理方式
+                handler.proceed();// 接受所有网站的证书
+                // handleMessage(Message msg);// 进行其他处理
+            }
+        });
+        String url = BuildConfig.API_BASE_URL + "home/financing/detail";
+        webView.loadUrl(url);
+    }
+
     @Override
     public View getSnackBarHolderView() {
         return null;
     }
 
-    @OnClick({R.id.back})
+    @OnClick({R.id.back,R.id.detail_rl,R.id.problem_rl})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
                 finish();
                 break;
+            case R.id.detail_rl:
+                initTextColor("1");
+                break;
+            case R.id.problem_rl:
+                initTextColor("2");
+                break;
             default:
         }
+    }
+
+    private void initTextColor(String type){
+        detailTv.setSelected(TextUtils.equals("1",type)?true:false);
+        problemTv.setSelected(TextUtils.equals("2",type)?true:false);
+        detailView.setVisibility(TextUtils.equals("1",type)?View.VISIBLE:View.GONE);
+        problemView.setVisibility(TextUtils.equals("2",type)?View.VISIBLE:View.GONE);
+        detailLl.setVisibility(TextUtils.equals("1",type)?View.VISIBLE:View.GONE);
+        webView.setVisibility(TextUtils.equals("2",type)?View.VISIBLE:View.GONE);
     }
 }
