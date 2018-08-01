@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/appText1">
+
+    <LinearLayout style="@style/project_detail_ll_style">
+
+        <TextView
+            style="@style/project_detail_text_left_style"
+            android:text="@string/history_rate" />
+        <LinearLayout
+            android:id="@+id/interestRate_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/interest_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/appText5"
+                android:textSize="18sp"
+                tools:text="哈哈" />
+
+            <TextView
+                android:id="@+id/additional"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/appText5"
+                android:textSize="13sp"
+                tools:text="7.0%" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout style="@style/project_detail_ll_style">
+
+        <TextView
+            style="@style/project_detail_text_left_style"
+            android:text="@string/project_total_price" />
+
+        <TextView
+            android:id="@+id/project_total_price"
+            style="@style/project_detail_text_right_style"
+            tools:text="@string/project_total_price" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/project_detail_ll_style">
+
+        <TextView
+            style="@style/project_detail_text_left_style"
+            android:text="@string/closed_period" />
+
+        <TextView
+            android:id="@+id/closed_period"
+            style="@style/project_detail_text_right_style"
+            tools:text="@string/closed_period" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/project_detail_ll_style">
+
+        <TextView
+            style="@style/project_detail_text_left_style"
+            android:text="@string/interest_type" />
+
+        <TextView
+            android:id="@+id/interest_type"
+            style="@style/project_detail_text_right_style"
+            tools:text="@string/interest_type" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/project_detail_ll_style">
+
+        <TextView
+            style="@style/project_detail_text_left_style"
+            android:text="@string/poundage" />
+
+        <TextView
+            android:id="@+id/poundage"
+            style="@style/project_detail_text_right_style"
+            tools:text="@string/poundage" />
+    </LinearLayout>
+</LinearLayout>

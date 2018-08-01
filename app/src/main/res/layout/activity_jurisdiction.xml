@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/bg_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backGround1">
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/start_jurisdiction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/common_twenty_two_margin"
+        android:layout_marginTop="@dimen/common_one_hundred_margin"
+        android:text="请开启以下权限"
+        android:textColor="@color/appText3"
+        android:textSize="18sp" />
+
+    <RelativeLayout
+        android:id="@+id/camear_ll"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_eighty_four_margin"
+        android:layout_below="@id/start_jurisdiction"
+        android:layout_marginLeft="@dimen/common_twenty_two_margin"
+        android:layout_marginRight="@dimen/common_twenty_two_margin"
+        android:layout_marginTop="@dimen/common_thirty_eight_margin"
+        android:background="@drawable/jurisdiction_out">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/common_five_margin"
+            android:layout_toLeftOf="@id/camear_select"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/camear_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_fifteen_margin"
+                android:text="允许访问摄像头"
+                android:textColor="@drawable/jurisdiction_text_select"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/camear_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_fifteen_margin"
+                android:layout_marginTop="@dimen/common_five_margin"
+                android:text="用于扫描，更换头像"
+                android:textColor="@drawable/jurisdiction_text_select"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/camear_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/common_fifteen_margin"
+            android:src="@mipmap/jur_selected" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/storage_ll"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_eighty_four_margin"
+        android:layout_below="@id/camear_ll"
+        android:layout_marginLeft="@dimen/common_twenty_two_margin"
+        android:layout_marginRight="@dimen/common_twenty_two_margin"
+        android:layout_marginTop="@dimen/common_thirty_eight_margin"
+        android:background="@drawable/jurisdiction_out">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/common_five_margin"
+            android:layout_toLeftOf="@id/storage_select"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/storage_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_fifteen_margin"
+                android:text="允许访问SD卡"
+                android:textColor="@drawable/jurisdiction_text_select"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/storage_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_fifteen_margin"
+                android:layout_marginTop="@dimen/common_five_margin"
+                android:text="用于下载更新APP"
+                android:textColor="@drawable/jurisdiction_text_select"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/storage_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/common_fifteen_margin"
+            android:src="@mipmap/jur_selected" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/confirm"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_forty_four_margin"
+        android:layout_below="@id/storage_ll"
+        android:layout_marginLeft="@dimen/common_fifteen_margin"
+        android:layout_marginRight="@dimen/common_fifteen_margin"
+        android:layout_marginTop="@dimen/common_fifty_margin"
+        android:background="@drawable/jurisdiction_bg"
+        android:text="@string/confirm"
+        android:textColor="@color/appText3"
+        android:textSize="18sp" />
+</RelativeLayout>

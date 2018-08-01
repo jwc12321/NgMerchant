@@ -48,4 +48,26 @@ public class CommonAppPreferences {
         return sharedPreferences.getString(StaticData.EXPLAIN_CASH,"");
     }
 
+    //第一次权限出现
+    public void setFirstJurisdiction(String jurisdiction){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(StaticData.JURISDICTION,jurisdiction);
+        editor.commit();
+    }
+
+    public String getFirstJurisdiction(){
+        return sharedPreferences.getString(StaticData.JURISDICTION,"");
+    }
+
+    //第一次打开app
+    public void setFirstOpenApp(String jurisdiction){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(StaticData.FIRST_OPEN_APP,jurisdiction);
+        editor.commit();
+    }
+
+    public String getFirstOpenApp(){
+        return sharedPreferences.getString(StaticData.FIRST_OPEN_APP,"");
+    }
+
 }

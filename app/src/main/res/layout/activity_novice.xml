@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backGround1"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/backGround1">
 
     <RelativeLayout
         android:id="@+id/title_rel"
@@ -24,7 +24,10 @@
         android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:overScrollMode="never">
+        android:overScrollMode="never"
+        android:layout_below="@id/title_rel"
+        android:layout_marginBottom="@dimen/common_forty_four_margin"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -251,6 +254,32 @@
                     android:layout_toRightOf="@id/storage_mode"
                     tools:text="@string/storage_mode" />
             </RelativeLayout>
+            <android.support.design.widget.TabLayout
+                android:id="@+id/indicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/appText1"
+                app:tabIndicatorColor="@color/appText3"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/appText3" />
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/backGround1" />
         </LinearLayout>
     </com.nenggou.slsm.common.widget.GradationScrollView>
-</LinearLayout>
+    <net.lucode.hackware.magicindicator.MagicIndicator
+        android:id="@+id/magic_indicator_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_forty_four_margin"
+        android:layout_below="@+id/title_rel"
+        android:background="@color/appText1"
+        android:visibility="gone"
+        app:layout_collapseMode="pin" />
+    <Button
+       style="@style/bottom_button_style"
+        android:text="立即加入"
+        android:layout_alignParentBottom="true"
+        android:enabled="false"/>
+</RelativeLayout>

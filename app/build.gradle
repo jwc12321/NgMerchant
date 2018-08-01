@@ -169,4 +169,6 @@ dependencies {
     compile "com.azoft.carousellayoutmanager:carousel:$rootProject.ext.carouselVersion"
     implementation files('libs/classes.jar')
     implementation files('libs/umeng-common-1.5.3.jar')
+
+    compile 'com.github.hackware1993:MagicIndicator:1.5.0'
 }

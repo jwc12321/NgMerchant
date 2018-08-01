@@ -153,4 +153,11 @@
     <string name="today_loan">今日出借</string>
     <string name="storage_mode">存管方式</string>
     <string name="target_interest_rate">目标利率( 年化 )</string>
+    <string name="history_rate">历史年化收益率</string>
+    <string name="project_total_price">项目总额</string>
+    <string name="closed_period">封闭期</string>
+    <string name="interest_type">计息方式</string>
+    <string name="poundage">手续费</string>
+
+
 </resources>

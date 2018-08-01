@@ -2,25 +2,48 @@ package com.nenggou.slsm.financing.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nenggou.slsm.BaseActivity;
+import com.nenggou.slsm.BuildConfig;
 import com.nenggou.slsm.R;
 import com.nenggou.slsm.common.StaticData;
+import com.nenggou.slsm.common.widget.ColorFlipPagerTitleView;
 import com.nenggou.slsm.common.widget.GradationScrollView;
+import com.nenggou.slsm.common.widget.list.BaseListAdapter;
 import com.nenggou.slsm.data.entity.FinancingItemInfo;
+import com.nenggou.slsm.webview.ui.WebViewFragment;
+
+import net.lucode.hackware.magicindicator.MagicIndicator;
+import net.lucode.hackware.magicindicator.ViewPagerHelper;
+import net.lucode.hackware.magicindicator.buildins.UIUtil;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by JWC on 2018/7/31.
@@ -28,7 +51,6 @@ import butterknife.ButterKnife;
  */
 
 public class NoviceActivity extends BaseActivity {
-
     @BindView(R.id.back)
     ImageView back;
     @BindView(R.id.title)
@@ -49,6 +71,14 @@ public class NoviceActivity extends BaseActivity {
     TextView surplusAmount;
     @BindView(R.id.surplus_amount_info)
     TextView surplusAmountInfo;
+    @BindView(R.id.progress_first_iv)
+    ImageView progressFirstIv;
+    @BindView(R.id.progress_second_iv)
+    ImageView progressSecondIv;
+    @BindView(R.id.progress_third_iv)
+    ImageView progressThirdIv;
+    @BindView(R.id.progress_ll)
+    LinearLayout progressLl;
     @BindView(R.id.progress_first)
     TextView progressFirst;
     @BindView(R.id.progress_second)
@@ -59,21 +89,25 @@ public class NoviceActivity extends BaseActivity {
     TextView storageMode;
     @BindView(R.id.storage_mode_info)
     TextView storageModeInfo;
-    @BindView(R.id.scrollview)
-    GradationScrollView scrollview;
-    @BindView(R.id.progress_first_iv)
-    ImageView progressFirstIv;
-    @BindView(R.id.progress_second_iv)
-    ImageView progressSecondIv;
-    @BindView(R.id.progress_third_iv)
-    ImageView progressThirdIv;
-    @BindView(R.id.progress_ll)
-    LinearLayout progressLl;
+    @BindView(R.id.indicator)
+    TabLayout indicator;
+    @BindView(R.id.viewpager)
+    ViewPager viewpager;
+//    @BindView(R.id.scrollview)
+//    GradationScrollView scrollview;
+    @BindView(R.id.magic_indicator_title)
+    MagicIndicator magicIndicatorTitle;
     private FinancingItemInfo financingItemInfo;
     private BigDecimal deviationDecimal;//偏差率
     private BigDecimal interestRateDecimal;//年利率
     private BigDecimal addDecimal;//年利率+偏差率
     private BigDecimal reduceDecimal;//年利率-偏差率
+    private ProjectDetailsFragment projectDetailsFragment;
+    private WebViewFragment webViewFragment;
+
+    private List<Fragment> fragmentList;
+    private List<String> titleList;
+    private BaseListAdapter baseListAdapter;
 
     public static void start(Context context, FinancingItemInfo financingItemInfo) {
         Intent intent = new Intent(context, NoviceActivity.class);
@@ -108,7 +142,8 @@ public class NoviceActivity extends BaseActivity {
                 additional.setText("+" + financingItemInfo.getAdditional() + "%(" + financingItemInfo.getAdditionaltype() + ")");
             }
             closedPeriodInfo.setText(financingItemInfo.getCycle() + "天");
-            surplusAmount.setText("剩余金额" + financingItemInfo.getSurplus() + "元");
+            surplusAmountInfo.setText(financingItemInfo.getSurplus() + "元");
+            progressSecond.setText(financingItemInfo.getCycle() + "天\n持续享收益");
             storageModeInfo.setText(financingItemInfo.getStoragetype());
             if (TextUtils.equals("0", financingItemInfo.getStatus())) {
                 progressFirstIv.setSelected(false);
@@ -127,11 +162,37 @@ public class NoviceActivity extends BaseActivity {
                 progressSecondIv.setSelected(true);
                 progressThirdIv.setSelected(true);
             }
+            fragmentList = new ArrayList<>();
+            titleList = new ArrayList<>();
+            viewpager.setOffscreenPageLimit(1);
+            projectDetailsFragment = new ProjectDetailsFragment();
+            webViewFragment = new WebViewFragment();
+            fragmentList.add(projectDetailsFragment);
+            fragmentList.add(webViewFragment);
+            titleList.add("项目详情");
+            titleList.add("常见问题");
+            baseListAdapter = new BaseListAdapter(getSupportFragmentManager(), fragmentList, titleList);
+            viewpager.setAdapter(baseListAdapter);
+            viewpager.setCurrentItem(0);
+            indicator.removeAllTabs();
+            indicator.setupWithViewPager(viewpager);
+            projectDetailsFragment.addFinancingItemInfo(financingItemInfo);
+            String url = BuildConfig.API_BASE_URL + "home/financing/detail";
+            webViewFragment.addUrl(url);
         }
     }
-
     @Override
     public View getSnackBarHolderView() {
         return null;
+    }
+
+    @OnClick({R.id.back})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.back:
+                finish();
+                break;
+            default:
+        }
     }
 }

@@ -66,6 +66,7 @@
     <dimen name="common_eighty_margin">80dp</dimen>
     <dimen name="common_eighty_one_margin">81dp</dimen>
     <dimen name="common_eighty_two_margin">82dp</dimen>
+    <dimen name="common_eighty_four_margin">84dp</dimen>
     <dimen name="common_eighty_five_margin">85dp</dimen>
     <dimen name="common_eighty_eight_margin">88dp</dimen>
     <dimen name="common_ninety_margin">90dp</dimen>

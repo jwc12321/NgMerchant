@@ -413,4 +413,35 @@
         <item name="android:textSize">12sp</item>
         <item name="android:gravity">center</item>
     </style>
+    <!--底部的button-->
+    <style name="bottom_button_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/common_forty_four_margin</item>
+        <item name="android:background">@drawable/put_forward_button_bg</item>
+        <item name="android:textColor">@color/appText1</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <!--理财详情-->
+    <style name="project_detail_ll_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/common_thirty_five_margin</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="project_detail_text_left_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/appText6</item>
+        <item name="android:layout_marginLeft">@dimen/common_twelve_margin</item>
+    </style>
+    <style name="project_detail_text_right_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/appText5</item>
+    </style>
 </resources>

@@ -65,4 +65,8 @@ public class StaticData {
     public static final String START_TIME="startTime";
     //理财数据
     public static final String FINANCING_ITEM_INFO="FinancingItemInfo";
+    //第一次权限
+    public static final String JURISDICTION="jurisdiction";
+    //第一次打开app
+    public static final String FIRST_OPEN_APP="firstOpenApp";
 }
