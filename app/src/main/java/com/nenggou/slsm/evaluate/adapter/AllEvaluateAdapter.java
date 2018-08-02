@@ -113,7 +113,7 @@ public class AllEvaluateAdapter extends RecyclerView.Adapter<AllEvaluateAdapter.
         public void bindData(EvaluateItemInfo evaluateItemInfo) {
             List<UsersInfo> usersInfos = evaluateItemInfo.getUsersInfos();
             if (usersInfos != null && usersInfos.size() > 0 && usersInfos.get(0) != null) {
-                GlideHelper.load((Activity) context, usersInfos.get(0).getAvatar(), R.mipmap.app_icon, peopleIcon);
+                GlideHelper.load((Activity) context, usersInfos.get(0).getAvatar(), R.mipmap.default_head_image_icon, peopleIcon);
                 String nikeName=usersInfos.get(0).getNickname();
                 if(!TextUtils.isEmpty(nikeName)) {
                     if(nikeName.length()==1){

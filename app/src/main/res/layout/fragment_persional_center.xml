@@ -43,7 +43,7 @@
                     android:layout_marginTop="@dimen/common_five_margin"
                     app:riv_oval="true"
                     tools:background="@null"
-                    tools:src="@mipmap/app_icon" />
+                    tools:src="@mipmap/default_head_image_icon" />
 
                 <TextView
                     android:id="@+id/user_name"

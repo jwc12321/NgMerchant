@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,11 +21,9 @@ import com.nenggou.slsm.common.unit.CommonAppPreferences;
 import com.nenggou.slsm.common.unit.PermissionUtil;
 import com.nenggou.slsm.common.unit.StaticHandler;
 import com.nenggou.slsm.common.unit.TokenManager;
-import com.nenggou.slsm.common.widget.pickphoto.adapter.ImgGridViewAdapter;
 import com.nenggou.slsm.login.ui.LoginActivity;
 import com.nenggou.slsm.mainframe.ui.MainFrameActivity;
 import com.nenggou.slsm.splash.GuideActivity;
-import com.nenggou.slsm.splash.SplashActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +58,10 @@ public class JurisdictionActivity extends BaseActivity {
     ImageView storageSelect;
     @BindView(R.id.storage_ll)
     RelativeLayout storageLl;
+    @BindView(R.id.confirm)
+    Button confirm;
+    @BindView(R.id.jur_item)
+    RelativeLayout jurItem;
 
     private boolean camearFlag = false;
     private boolean storageFlag = false;
@@ -85,13 +88,13 @@ public class JurisdictionActivity extends BaseActivity {
     }
 
     private void initView() {
-        commonAppPreferences=new CommonAppPreferences(this);
+        commonAppPreferences = new CommonAppPreferences(this);
         groups = new ArrayList<>();
     }
 
     @Override
     public View getSnackBarHolderView() {
-        return null;
+        return jurItem;
     }
 
     @Override
@@ -104,7 +107,7 @@ public class JurisdictionActivity extends BaseActivity {
         }
     }
 
-    private void permissions(){
+    private void permissions() {
         if (!TextUtils.equals("1", commonAppPreferences.getFirstOpenApp())) {
             commonAppPreferences.setFirstOpenApp("1");
             mHandler.sendEmptyMessageDelayed(GO_GUIDE, 1000);
@@ -159,7 +162,7 @@ public class JurisdictionActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.camear_ll,R.id.storage_ll,R.id.confirm})
+    @OnClick({R.id.camear_ll, R.id.storage_ll, R.id.confirm})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.camear_ll:

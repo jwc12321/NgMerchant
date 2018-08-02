@@ -243,13 +243,13 @@ public class RRankingFragment extends BaseFragment implements RankingContract.RR
                 energyNum.setText(rankingInfo.getPower());
                 cashNum.setText(rankingInfo.getPrice());
                 userName.setText(rankingInfo.getNickname());
-                GlideHelper.load(this, rankingInfo.getAvatar(), R.mipmap.app_icon, headPhoto);
+                GlideHelper.load(this, rankingInfo.getAvatar(), R.mipmap.default_head_image_icon, headPhoto);
                 refreshLayout.setCanLoadMore(true);
             } else {
                 energyNum.setText("");
                 cashNum.setText("");
                 userName.setText("");
-                GlideHelper.load(this, "", R.mipmap.app_icon, headPhoto);
+                GlideHelper.load(this, "", R.mipmap.default_head_image_icon, headPhoto);
                 refreshLayout.setCanLoadMore(false);
             }
             consumeRankingAdapter.setData(rankingListInfo.getRankingInfos());
@@ -257,7 +257,7 @@ public class RRankingFragment extends BaseFragment implements RankingContract.RR
             energyNum.setText("");
             cashNum.setText("");
             userName.setText("");
-            GlideHelper.load(this, "", R.mipmap.app_icon, headPhoto);
+            GlideHelper.load(this, "", R.mipmap.default_head_image_icon, headPhoto);
             refreshLayout.setCanLoadMore(false);
         }
     }

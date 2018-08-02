@@ -148,15 +148,15 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
             shopName = incomeDetailInfo.getTitle();
             GlideHelper.load(this, incomeDetailInfo.getAvatar(), R.mipmap.app_icon, photo);
             nickName = incomeDetailInfo.getNickname();
-            if(!TextUtils.isEmpty(nickName)) {
-                if(nickName.length()==1){
-                    businessName.setText("*"+nickName);
-                }else if(nickName.length()==11){
-                    businessName.setText("*"+nickName.substring(nickName.length()-4,nickName.length()));
-                }else {
-                    businessName.setText("*"+nickName.substring(nickName.length()-1,nickName.length()));
+            if (!TextUtils.isEmpty(nickName)) {
+                if (nickName.length() == 1) {
+                    businessName.setText("*" + nickName);
+                } else if (nickName.length() == 11) {
+                    businessName.setText("*" + nickName.substring(nickName.length() - 4, nickName.length()));
+                } else {
+                    businessName.setText("*" + nickName.substring(nickName.length() - 1, nickName.length()));
                 }
-            }else {
+            } else {
                 businessName.setText("*");
             }
             price.setText(incomeDetailInfo.getAllprice());
@@ -210,7 +210,9 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
             proportion.setText("能量 : 现金 = 1 : " + intercept);
             subsidyEOutPrice.setText(incomeDetailInfo.getBpower() + "能量");
             int serviceZero = 0;
-            if (TextUtils.equals("0.00", serviceCPrice.toString())) {
+            if (TextUtils.equals("0.00", serviceCPrice.toString())
+                    || TextUtils.equals("0.0", serviceCPrice.toString())
+                    || TextUtils.equals("0", serviceCPrice.toString())) {
                 serviceCPLl.setVisibility(View.GONE);
                 serviceZero++;
 
@@ -235,7 +237,7 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
                 break;
             case R.id.go_recode_rl:
                 if (!TextUtils.isEmpty(uid)) {
-                    IntercourseRecordActivity.start(this, uid, nickName,"","");
+                    IntercourseRecordActivity.start(this, uid, nickName, "", "");
                 }
                 break;
             default:

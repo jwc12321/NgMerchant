@@ -89,7 +89,7 @@ public class BusinessImActivity extends BaseActivity implements SettingContract.
         gson = new Gson();
         if (!TextUtils.isEmpty(persionInfoStr)) {
             persionInfoResponse = gson.fromJson(persionInfoStr, PersionInfoResponse.class);
-            GlideHelper.load(this, persionInfoResponse.getAvatar(), R.mipmap.app_icon, headPhoto);
+            GlideHelper.load(this, persionInfoResponse.getAvatar(), R.mipmap.default_head_image_icon, headPhoto);
             businessName.setText(persionInfoResponse.getName());
             serviceType.setText(persionInfoResponse.getCname());
             utDate.setText(FormatUtil.formatDateByLine(persionInfoResponse.getVerified_at()));
@@ -151,7 +151,7 @@ public class BusinessImActivity extends BaseActivity implements SettingContract.
     public void changeAvataSuccess() {
         dismissLoading();
         showMessage("头像修改成功");
-        GlideHelper.load(this, headPhoneStr, R.mipmap.app_icon, headPhoto);
+        GlideHelper.load(this, headPhoneStr, R.mipmap.default_head_image_icon, headPhoto);
         persionInfoResponse.setAvatar(headPhoneStr);
         persionInfoStr = gson.toJson(persionInfoResponse);
         persionAppPreferences.setPersionInfo(persionInfoStr);
