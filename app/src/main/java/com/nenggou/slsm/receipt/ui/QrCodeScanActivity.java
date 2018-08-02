@@ -171,7 +171,7 @@ public class QrCodeScanActivity extends BaseActivity implements QRCodeView.Deleg
 
     @Override
     public void backQrText(String backQrtext) {
-        if (TextUtils.isEmpty(backQrtext)) {
+        if (!TextUtils.isEmpty(backQrtext)) {
             if (backQrtext.startsWith("http")) {
                 webViewDetailInfo = new WebViewDetailInfo();
                 webViewDetailInfo.setUrl(backQrtext);
