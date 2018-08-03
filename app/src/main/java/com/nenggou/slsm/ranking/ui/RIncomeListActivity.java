@@ -33,7 +33,7 @@ import butterknife.OnClick;
  * Created by JWC on 2018/7/27.
  */
 
-public class RIncomeListActivity extends BaseActivity implements RankingContract.RIncomeView{
+public class RIncomeListActivity extends BaseActivity implements RankingContract.RIncomeView,RIncomeAdapter.ItemClickListener{
     @BindView(R.id.back)
     ImageView back;
     @BindView(R.id.title)
@@ -87,6 +87,7 @@ public class RIncomeListActivity extends BaseActivity implements RankingContract
 
     private void addAdapter() {
         rIncomeAdapter = new RIncomeAdapter();
+        rIncomeAdapter.setItemClickListener(this);
         riRv.setAdapter(rIncomeAdapter);
     }
 
@@ -160,5 +161,10 @@ public class RIncomeListActivity extends BaseActivity implements RankingContract
         } else {
             refreshLayout.setCanLoadMore(false);
         }
+    }
+
+    @Override
+    public void goShowMessage() {
+        showMessage("为保护隐私,他人消费订单无法查看");
     }
 }

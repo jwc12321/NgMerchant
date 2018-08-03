@@ -102,6 +102,7 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
 
     private BigDecimal priceDecimal;//现金
     private BigDecimal energyDecimal;//能量
+    private BigDecimal sCPriceDecimal;
     private BigDecimal ptDecimal;//兑换比例
     private BigDecimal percentageDecimal;//能量兑换比是200，要除以100才行
     private BigDecimal divisorDecimal;
@@ -188,7 +189,7 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
                 couponLl.setVisibility(View.GONE);
                 zeroTotal++;
             }
-            energyNumbe.setText(incomeDetailInfo.getPower() + "能量");
+            energyNumbe.setText(incomeDetailInfo.getPower() + "个");
             cashNumbe.setText("¥" + incomeDetailInfo.getPrice());
             couponNumbe.setText("¥" + incomeDetailInfo.getQuannum());
             if (zeroTotal == 3) {
@@ -199,7 +200,8 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
 
             priceDecimal = new BigDecimal(incomeDetailInfo.getAprice()).setScale(2, BigDecimal.ROUND_DOWN);
             energyDecimal = new BigDecimal(incomeDetailInfo.getApower()).setScale(2, BigDecimal.ROUND_DOWN);
-            serviceCPrice.setText("¥" + priceDecimal.add(energyDecimal).toString());
+            sCPriceDecimal=priceDecimal.add(energyDecimal);
+            serviceCPrice.setText("¥" + sCPriceDecimal.toString());
             serviceCProportion.setText("(现金" + incomeDetailInfo.getScharge() + "%+能量" + incomeDetailInfo.getScharge() + "%)");
             ptDecimal = new BigDecimal(incomeDetailInfo.getPowerRate()).setScale(2, BigDecimal.ROUND_DOWN);
             percentageDecimal = new BigDecimal(100).setScale(2, BigDecimal.ROUND_DOWN);
@@ -216,14 +218,13 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
                 intercept = divisorStr;
             }
             proportion.setText("能量 : 现金 = 1 : " + intercept);
-            subsidyEOutPrice.setText(incomeDetailInfo.getBpower() + "能量");
+            subsidyEOutPrice.setText(incomeDetailInfo.getBpower() + "个");
             int serviceZero = 0;
-            if (TextUtils.equals("0.00", serviceCPrice.toString())
-                    || TextUtils.equals("0.0", serviceCPrice.toString())
-                    || TextUtils.equals("0", serviceCPrice.toString())) {
+            if (TextUtils.equals("0.00", sCPriceDecimal.toString())
+                    || TextUtils.equals("0.0", sCPriceDecimal.toString())
+                    || TextUtils.equals("0", sCPriceDecimal.toString())) {
                 serviceCPLl.setVisibility(View.GONE);
                 serviceZero++;
-
             }
             if (TextUtils.equals("0.00", incomeDetailInfo.getBpower())
                     || TextUtils.equals("0.0", incomeDetailInfo.getBpower())

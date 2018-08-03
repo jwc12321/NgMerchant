@@ -55,6 +55,7 @@ public class RIncomeAdapter extends RecyclerView.Adapter<RIncomeAdapter.RIncomeV
             @Override
             public void onClick(View v) {
                 if (itemClickListener != null) {
+                    itemClickListener.goShowMessage();
                 }
             }
         });
@@ -104,7 +105,7 @@ public class RIncomeAdapter extends RecyclerView.Adapter<RIncomeAdapter.RIncomeV
     }
 
     public interface ItemClickListener {
-        void goIncomeDetail(String id);
+        void goShowMessage();
     }
 
     private ItemClickListener itemClickListener;
