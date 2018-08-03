@@ -117,7 +117,8 @@
                 android:layout_marginRight="@dimen/common_twenty_six_margin"
                 android:layout_marginTop="@dimen/common_five_margin"
                 android:gravity="center_horizontal"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:id="@+id/energy_ll"
@@ -209,7 +210,8 @@
                 android:layout_marginRight="@dimen/common_twenty_six_margin"
                 android:layout_marginTop="@dimen/common_fifteen_margin"
                 android:gravity="center_horizontal"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:id="@+id/service_c_p_ll"
@@ -284,8 +286,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/common_thirty_three_margin"
-                android:layout_marginTop="@dimen/common_fifteen_margin">
+                android:layout_height="@dimen/common_thirty_three_margin">
 
                 <TextView
                     style="@style/account_detail_left_tv"

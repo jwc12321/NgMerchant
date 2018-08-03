@@ -8,7 +8,7 @@
         android:id="@+id/bg_rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/backGround1">
+        android:background="@color/appText3">
 
     </RelativeLayout>
 
@@ -67,7 +67,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/common_fifteen_margin"
-            android:src="@mipmap/jur_selected" />
+            android:src="@mipmap/jur_selected"
+            android:visibility="gone"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -115,7 +116,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/common_fifteen_margin"
-            android:src="@mipmap/jur_selected" />
+            android:src="@mipmap/jur_selected"
+            android:visibility="gone"/>
     </RelativeLayout>
 
     <Button

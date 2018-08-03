@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.nenggou.slsm.bankcard.ui.PutForwardDetailActivity;
 import com.nenggou.slsm.bill.ui.IncomeDetailActivity;
 import com.nenggou.slsm.common.refreshview.HeaderViewLayout;
 import com.nenggou.slsm.common.widget.list.BaseListFragment;
@@ -52,7 +53,7 @@ public class OutEnergyFragment extends BaseListFragment<EnergyDetailInfo> implem
     @Override
     public void onResume() {
         super.onResume();
-        if (energyListPresenter != null && getUserVisibleHint()) {
+        if (!isFirstLoad&&energyListPresenter != null && getUserVisibleHint()) {
             energyListPresenter.getEnergyList("1", "3");
         }
     }
@@ -113,6 +114,11 @@ public class OutEnergyFragment extends BaseListFragment<EnergyDetailInfo> implem
     @Override
     public void goIncomeDetail(String id) {
         IncomeDetailActivity.start(getActivity(),id);
+    }
+
+    @Override
+    public void goPutForwardDetail(String id) {
+        PutForwardDetailActivity.start(getActivity(),id);
     }
 
     public interface OutBackEnergyListener {

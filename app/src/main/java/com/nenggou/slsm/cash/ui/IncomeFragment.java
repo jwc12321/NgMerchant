@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.nenggou.slsm.bankcard.ui.PutForwardDetailActivity;
 import com.nenggou.slsm.bill.ui.IncomeDetailActivity;
 import com.nenggou.slsm.cash.CashContract;
 import com.nenggou.slsm.cash.CashModule;
@@ -111,5 +112,10 @@ public class IncomeFragment extends BaseListFragment<CashDetailInfo> implements 
     @Override
     public void goIncomeDetail(String id) {
         IncomeDetailActivity.start(getActivity(),id);
+    }
+
+    @Override
+    public void goPutForwardDetail(String id) {
+        PutForwardDetailActivity.start(getActivity(),id);
     }
 }

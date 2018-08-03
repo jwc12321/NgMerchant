@@ -89,7 +89,9 @@ public class JurisdictionActivity extends BaseActivity {
 
     private void initView() {
         commonAppPreferences = new CommonAppPreferences(this);
+        commonAppPreferences.setFirstJurisdiction("1");
         groups = new ArrayList<>();
+        bgRl.setAlpha(0.33f);
     }
 
     @Override
@@ -101,7 +103,6 @@ public class JurisdictionActivity extends BaseActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
             case REQUEST_CODE:
-                commonAppPreferences.setFirstJurisdiction("1");
                 permissions();
                 break;
         }

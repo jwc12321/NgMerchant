@@ -170,15 +170,21 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
                 paymentMethod.setText("微信");
             }
             int zeroTotal = 0;
-            if (TextUtils.equals("0.00", incomeDetailInfo.getPower())) {
+            if (TextUtils.equals("0.00", incomeDetailInfo.getPower())
+                    || TextUtils.equals("0.0", incomeDetailInfo.getPower())
+                    || TextUtils.equals("0", incomeDetailInfo.getPower())) {
                 energyLl.setVisibility(View.GONE);
                 zeroTotal++;
             }
-            if (TextUtils.equals("0.00", incomeDetailInfo.getPrice())) {
+            if (TextUtils.equals("0.00", incomeDetailInfo.getPrice())
+                    || TextUtils.equals("0.0", incomeDetailInfo.getPrice())
+                    || TextUtils.equals("0", incomeDetailInfo.getPrice())) {
                 cashLl.setVisibility(View.GONE);
                 zeroTotal++;
             }
-            if (TextUtils.equals("0.00", incomeDetailInfo.getQuannum())) {
+            if (TextUtils.equals("0.00", incomeDetailInfo.getQuannum())
+                    || TextUtils.equals("0.0", incomeDetailInfo.getQuannum())
+                    || TextUtils.equals("0",incomeDetailInfo.getQuannum())) {
                 couponLl.setVisibility(View.GONE);
                 zeroTotal++;
             }
@@ -187,6 +193,8 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
             couponNumbe.setText("¥" + incomeDetailInfo.getQuannum());
             if (zeroTotal == 3) {
                 moneyLl.setVisibility(View.GONE);
+            }else {
+                moneyLl.setVisibility(View.VISIBLE);
             }
 
             priceDecimal = new BigDecimal(incomeDetailInfo.getAprice()).setScale(2, BigDecimal.ROUND_DOWN);
@@ -225,6 +233,8 @@ public class IncomeDetailActivity extends BaseActivity implements BillContract.I
             }
             if (serviceZero == 2) {
                 serviceLl.setVisibility(View.GONE);
+            }else {
+                serviceLl.setVisibility(View.VISIBLE);
             }
         }
     }

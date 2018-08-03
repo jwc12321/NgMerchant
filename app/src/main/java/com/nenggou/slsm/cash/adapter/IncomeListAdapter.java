@@ -56,6 +56,8 @@ public class IncomeListAdapter extends RecyclerView.Adapter<IncomeListAdapter.In
                 if(itemClickListener!=null){
                     if(TextUtils.equals("1",cashDetailInfo.getTypes())||TextUtils.equals("4",cashDetailInfo.getTypes())){
                         itemClickListener.goIncomeDetail(cashDetailInfo.getPayoutid());
+                    }else if(TextUtils.equals("2",cashDetailInfo.getTypes())){
+                        itemClickListener.goPutForwardDetail(cashDetailInfo.getCashtixianid());
                     }
                 }
             }
@@ -117,6 +119,7 @@ public class IncomeListAdapter extends RecyclerView.Adapter<IncomeListAdapter.In
 
     public interface ItemClickListener {
         void goIncomeDetail(String id);
+        void goPutForwardDetail(String id);
     }
 
     private ItemClickListener itemClickListener;

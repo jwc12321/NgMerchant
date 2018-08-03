@@ -1,10 +1,10 @@
 package com.nenggou.slsm.bankcard.ui;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -48,12 +48,15 @@ public class BankCardListActivity extends BaseActivity implements BankCardContra
     HeaderViewLayout refreshLayout;
     @BindView(R.id.add_bank)
     LinearLayout addBank;
+    @BindView(R.id.imageView)
+    ImageView imageView;
+    @BindView(R.id.empty_view)
+    NestedScrollView emptyView;
 
     private String bankId;
     private BankCardAdapter bankCardAdapter;
     @Inject
     BankCardListPresenter bankCardListPresenter;
-
 
 
     @Override
@@ -124,6 +127,13 @@ public class BankCardListActivity extends BaseActivity implements BankCardContra
 
     @Override
     public void renderBankCardList(List<BankCardInfo> bankCardInfos) {
+        if (bankCardInfos != null && bankCardInfos.size() > 0) {
+            bankRv.setVisibility(View.VISIBLE);
+            emptyView.setVisibility(View.GONE);
+        }else {
+            bankRv.setVisibility(View.GONE);
+            emptyView.setVisibility(View.VISIBLE);
+        }
         bankCardAdapter.setData(bankCardInfos);
     }
 

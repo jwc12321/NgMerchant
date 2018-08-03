@@ -99,7 +99,7 @@ public class PutForwardListActivity extends BaseActivity implements BankCardCont
                 super.onScrolled(recyclerView, dx, dy);
                 LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                 int position = layoutManager.findFirstVisibleItemPosition();
-                if (putForwardInfos != null && position < putForwardInfos.size()) {
+                if (position!=-1&&putForwardInfos != null && position < putForwardInfos.size()) {
                     monthLl.setVisibility(View.VISIBLE);
                     time.setText(putForwardInfos.get(position).getDate());
                     totalPrice.setText("提现¥"+putForwardInfos.get(position).getAllmoney());

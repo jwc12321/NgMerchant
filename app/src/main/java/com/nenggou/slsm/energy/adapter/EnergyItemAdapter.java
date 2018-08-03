@@ -62,6 +62,8 @@ public class EnergyItemAdapter extends RecyclerView.Adapter<EnergyItemAdapter.En
                 if (itemClickListener != null)
                     if (TextUtils.equals("1", energyDetailInfo.getTypes()) || TextUtils.equals("4", energyDetailInfo.getTypes())) {
                         itemClickListener.goIncomeDetail(energyDetailInfo.getPayoutid());
+                    } else if (TextUtils.equals("3", energyDetailInfo.getTypes())) {
+                        itemClickListener.goPutForwardDetail(energyDetailInfo.getCashtixianid());
                     }
             }
         });
@@ -105,14 +107,14 @@ public class EnergyItemAdapter extends RecyclerView.Adapter<EnergyItemAdapter.En
 
         public void bindData(EnergyDetailInfo energyDetailInfo) {
             GlideHelper.load((Activity) context, energyDetailInfo.getAvatar(), R.mipmap.app_icon, headPhoto);
-            if(TextUtils.equals("1",energyDetailInfo.getTypes())){
-                name.setText(energyDetailInfo.getNickname()+"到店消费");
-            }else if(TextUtils.equals("2",energyDetailInfo.getTypes())){
-                name.setText(energyDetailInfo.getNickname()+"推荐收入");
-            }else if(TextUtils.equals("3",energyDetailInfo.getTypes())){
+            if (TextUtils.equals("1", energyDetailInfo.getTypes())) {
+                name.setText(energyDetailInfo.getNickname() + "到店消费");
+            } else if (TextUtils.equals("2", energyDetailInfo.getTypes())) {
+                name.setText(energyDetailInfo.getNickname() + "推荐收入");
+            } else if (TextUtils.equals("3", energyDetailInfo.getTypes())) {
                 name.setText("申请提现");
-            }else if(TextUtils.equals("4",energyDetailInfo.getTypes())){
-                name.setText(energyDetailInfo.getNickname()+"服务费支出");
+            } else if (TextUtils.equals("4", energyDetailInfo.getTypes())) {
+                name.setText(energyDetailInfo.getNickname() + "服务费支出");
             }
             time.setText(FormatUtil.formatDateByLine(energyDetailInfo.getCreated_at()));
             if (TextUtils.equals("0", type)) {
@@ -125,6 +127,8 @@ public class EnergyItemAdapter extends RecyclerView.Adapter<EnergyItemAdapter.En
 
     public interface ItemClickListener {
         void goIncomeDetail(String id);
+
+        void goPutForwardDetail(String id);
     }
 
     private ItemClickListener itemClickListener;

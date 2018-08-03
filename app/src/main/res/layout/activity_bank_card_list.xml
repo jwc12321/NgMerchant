@@ -26,37 +26,65 @@
         android:layout_height="match_parent"
         app:refreshMode="LIST_LOAD">
 
-        <LinearLayout
+
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/appText1"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:background="@color/appText1">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/bank_rv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 app:layoutManager="@string/layoutManager_LinearLayout" />
 
-            <LinearLayout
-                android:id="@+id/add_bank"
+            <android.support.v4.widget.NestedScrollView
+                android:id="@+id/empty_view"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/common_sixty_margin"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
                 android:visibility="gone">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/common_twelve_margin"
-                    android:src="@mipmap/add_icon" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <TextView
-                    style="@style/choice_module_text"
-                    android:layout_marginLeft="@dimen/common_thirteen_margin"
-                    android:text="添加新银行卡" />
-            </LinearLayout>
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/app_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="没数据"
+                        android:textColor="@color/appText4"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/add_bank"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_sixty_margin"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_twelve_margin"
+                android:src="@mipmap/add_icon" />
+
+            <TextView
+                style="@style/choice_module_text"
+                android:layout_marginLeft="@dimen/common_thirteen_margin"
+                android:text="添加新银行卡" />
         </LinearLayout>
     </com.nenggou.slsm.common.refreshview.HeaderViewLayout>
 </LinearLayout>

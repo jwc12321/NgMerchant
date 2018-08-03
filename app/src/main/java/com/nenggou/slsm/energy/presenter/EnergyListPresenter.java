@@ -107,7 +107,6 @@ public class EnergyListPresenter implements EnergyContract.EnergyListPresenter {
                 .subscribe(new Consumer<EnergyInfo>() {
                     @Override
                     public void accept(EnergyInfo energyInfo) throws Exception {
-                        energyListView.dismissLoading();
                         if(energyInfo!=null) {
                             energyListView.renderMore(energyInfo.getEnergyListInfo().getEnergyDetailInfos());
                         }
@@ -115,7 +114,6 @@ public class EnergyListPresenter implements EnergyContract.EnergyListPresenter {
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        energyListView.dismissLoading();
                         energyListView.showError(throwable);
                     }
                 });

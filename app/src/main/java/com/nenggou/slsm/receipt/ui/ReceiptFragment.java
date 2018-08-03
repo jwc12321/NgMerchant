@@ -19,7 +19,6 @@ import com.nenggou.slsm.BuildConfig;
 import com.nenggou.slsm.R;
 import com.nenggou.slsm.bill.ui.MonthIncomeActivity;
 import com.nenggou.slsm.common.refreshview.HeaderViewLayout;
-import com.nenggou.slsm.common.unit.CommonAppPreferences;
 import com.nenggou.slsm.common.unit.DownloadService;
 import com.nenggou.slsm.common.unit.PermissionUtil;
 import com.nenggou.slsm.common.widget.dialog.CommonDialog;
@@ -170,7 +169,7 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
     @Override
     public void renderAppstoreInfos(List<AppstoreInfo> appstoreInfos) {
         refreshLayout.stopRefresh();
-        if (appstoreInfos != null && appstoreInfos.size() > 0) {
+        if (appstoreInfos != null) {
             cardPagerAdapter = new CardPagerAdapter(appstoreInfos);
             cardPagerAdapter.setOnItemClickListener(this);
             mCardShadowTransformer = new ShadowTransformer(viewPager, cardPagerAdapter);
@@ -179,7 +178,9 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
             }
             viewPager.setAdapter(cardPagerAdapter);
             viewPager.setPageTransformer(false, mCardShadowTransformer);
-            viewPager.setOffscreenPageLimit(appstoreInfos.size() - 1);
+            if(appstoreInfos.size()>0) {
+                viewPager.setOffscreenPageLimit(appstoreInfos.size() - 1);
+            }
         }
     }
 

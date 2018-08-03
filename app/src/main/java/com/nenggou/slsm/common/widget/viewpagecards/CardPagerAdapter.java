@@ -49,7 +49,7 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
 
     @Override
     public int getCount() {
-        return appstoreInfos.size();
+        return appstoreInfos==null?0:appstoreInfos.size();
     }
 
     @Override

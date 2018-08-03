@@ -37,8 +37,6 @@ public class GuideActivity extends BaseActivity implements ViewPager.OnPageChang
     Button guideBt;
     private List<View> views;
     private GuideAdapter vpAdapter;
-    //用pref记录是否为首次载入
-    private static final String SHAREDPREFERENCES_NAME = "ngm_first_pref";
 
 
     public static void start(Context context) {
@@ -101,7 +99,6 @@ public class GuideActivity extends BaseActivity implements ViewPager.OnPageChang
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.guide_bt:
-                setGuided();
                 if (TextUtils.isEmpty(TokenManager.getToken())) {
                     LoginActivity.start(this);
                 } else {
@@ -112,17 +109,4 @@ public class GuideActivity extends BaseActivity implements ViewPager.OnPageChang
             default:
         }
     }
-
-    /**
-     * 跳转到引导页面
-     */
-    private void setGuided() {
-        SharedPreferences preferences = getSharedPreferences(SHAREDPREFERENCES_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        //走完一遍引导页面后设置标志为false
-        editor.putBoolean("isFirstIn", false);
-        editor.commit();
-    }
-
-
 }

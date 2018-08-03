@@ -132,7 +132,7 @@ public class EnergyActivity extends BaseActivity implements InEnergyFragment.InB
                 break;
             case R.id.explain:
                 webViewDetailInfo = new WebViewDetailInfo();
-                webViewDetailInfo.setTitle("能量明细");
+                webViewDetailInfo.setTitle("能量说明");
                 webViewDetailInfo.setUrl("https://open.365neng.com/api/home/power/powerInfo");
                 WebViewActivity.start(this, webViewDetailInfo);
                 break;
