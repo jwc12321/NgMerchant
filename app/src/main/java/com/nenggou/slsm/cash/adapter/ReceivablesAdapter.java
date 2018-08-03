@@ -84,7 +84,7 @@ public class ReceivablesAdapter extends RecyclerView.Adapter<ReceivablesAdapter.
         }
 
         public void bindData(PushInfo pushInfo) {
-            GlideHelper.load((Activity) context, pushInfo.getUseravatar(), R.mipmap.app_icon, headPhoto);
+            GlideHelper.load((Activity) context, pushInfo.getUseravatar(), R.mipmap.default_head_image_icon, headPhoto);
             userName.setText(pushInfo.getUsername());
             busName.setText("向"+pushInfo.getStorename()+"付款");
             if(TextUtils.equals("0",pushInfo.getNowprice())){
