@@ -60,7 +60,8 @@ public class EnergyItemAdapter extends RecyclerView.Adapter<EnergyItemAdapter.En
             @Override
             public void onClick(View v) {
                 if (itemClickListener != null)
-                    if (TextUtils.equals("1", energyDetailInfo.getTypes()) || TextUtils.equals("4", energyDetailInfo.getTypes())) {
+                    if (TextUtils.equals("1", energyDetailInfo.getTypes()) || TextUtils.equals("4", energyDetailInfo.getTypes())
+                            || TextUtils.equals("5", energyDetailInfo.getTypes()) ) {
                         itemClickListener.goIncomeDetail(energyDetailInfo.getPayoutid());
                     } else if (TextUtils.equals("3", energyDetailInfo.getTypes())) {
                         itemClickListener.goPutForwardDetail(energyDetailInfo.getCashtixianid());

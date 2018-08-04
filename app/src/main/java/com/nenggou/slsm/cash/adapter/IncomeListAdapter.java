@@ -54,9 +54,10 @@ public class IncomeListAdapter extends RecyclerView.Adapter<IncomeListAdapter.In
             @Override
             public void onClick(View v) {
                 if(itemClickListener!=null){
-                    if(TextUtils.equals("1",cashDetailInfo.getTypes())||TextUtils.equals("4",cashDetailInfo.getTypes())){
+                    if(TextUtils.equals("1",cashDetailInfo.getTypes())||TextUtils.equals("4",cashDetailInfo.getTypes())
+                            ||TextUtils.equals("5",cashDetailInfo.getTypes())){
                         itemClickListener.goIncomeDetail(cashDetailInfo.getPayoutid());
-                    }else if(TextUtils.equals("2",cashDetailInfo.getTypes())){
+                    }else if(TextUtils.equals("3",cashDetailInfo.getTypes())){
                         itemClickListener.goPutForwardDetail(cashDetailInfo.getCashtixianid());
                     }
                 }
