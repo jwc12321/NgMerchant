@@ -107,7 +107,7 @@ public class EnergyItemAdapter extends RecyclerView.Adapter<EnergyItemAdapter.En
         }
 
         public void bindData(EnergyDetailInfo energyDetailInfo) {
-            GlideHelper.load((Activity) context, energyDetailInfo.getAvatar(), R.mipmap.app_icon, headPhoto);
+            GlideHelper.load((Activity) context, energyDetailInfo.getAvatar(), R.mipmap.default_head_image_icon, headPhoto);
             if (TextUtils.equals("1", energyDetailInfo.getTypes())) {
                 name.setText(energyDetailInfo.getNickname() + "到店消费");
             } else if (TextUtils.equals("2", energyDetailInfo.getTypes())) {

@@ -122,7 +122,7 @@ public class ConsumeRankingAdapter extends RecyclerView.Adapter<ConsumeRankingAd
             } else {
                 medal.setVisibility(View.GONE);
                 ranking.setVisibility(View.VISIBLE);
-                ranking.setText(String.valueOf(position));
+                ranking.setText(String.valueOf(position+1));
             }
             GlideHelper.load((Activity) context, rankingInfo.getAvatar(), R.mipmap.default_head_image_icon, headPhoto);
             String nikeName=rankingInfo.getNickname();

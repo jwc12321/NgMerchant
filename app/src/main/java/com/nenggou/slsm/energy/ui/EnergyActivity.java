@@ -142,6 +142,8 @@ public class EnergyActivity extends BaseActivity implements InEnergyFragment.InB
 
     private void goPutFroward() {
         if (!TextUtils.isEmpty(sum) && !TextUtils.isEmpty(proportion)) {
+            inEnergyFragment.setWhereGo("1");
+            outEnergyFragment.setWhereGo("1");
             sumDecimal = new BigDecimal(sum).setScale(2, BigDecimal.ROUND_DOWN);
             ptDecimal = new BigDecimal(proportion).setScale(2, BigDecimal.ROUND_DOWN);
             percentageDecimal = new BigDecimal(100).setScale(2, BigDecimal.ROUND_DOWN);

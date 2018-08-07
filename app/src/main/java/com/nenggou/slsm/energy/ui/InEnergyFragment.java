@@ -3,6 +3,7 @@ package com.nenggou.slsm.energy.ui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,12 @@ public class InEnergyFragment extends BaseListFragment<EnergyDetailInfo> impleme
     EnergyListPresenter energyListPresenter;
     private EnergyItemAdapter energyItemAdapter;
 
+    private String whereGo="1";//去哪里，回来是否要刷新 0：不刷新 1：刷新
+
+    public void setWhereGo(String whereGo){
+        this.whereGo=whereGo;
+    }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,7 +60,8 @@ public class InEnergyFragment extends BaseListFragment<EnergyDetailInfo> impleme
     @Override
     public void onResume() {
         super.onResume();
-        if (!isFirstLoad&&energyListPresenter != null && getUserVisibleHint()) {
+        if (!isFirstLoad&&energyListPresenter != null && getUserVisibleHint()&& TextUtils.equals("1",whereGo)) {
+            whereGo="0";
             energyListPresenter.getEnergyList("1", "0");
         }
     }
