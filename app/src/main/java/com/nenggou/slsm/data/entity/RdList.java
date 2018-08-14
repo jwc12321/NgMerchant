@@ -13,6 +13,8 @@ public class RdList {
     private String currentPage;
     @SerializedName("data")
     private List<RdListInfo> rdListInfos;
+    @SerializedName("total")
+    private String total;
 
     public String getCurrentPage() {
         return currentPage;
@@ -28,5 +30,13 @@ public class RdList {
 
     public void setRdListInfos(List<RdListInfo> rdListInfos) {
         this.rdListInfos = rdListInfos;
+    }
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
     }
 }
