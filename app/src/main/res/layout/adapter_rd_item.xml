@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/common_eighty_margin"
+    android:id="@+id/rd_item">
+<TextView
+    android:id="@+id/time"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="15sp"
+    android:textColor="@color/appText5"
+    tools:text="0909"
+    android:layout_marginTop="@dimen/common_seventeen_margin"
+    android:layout_marginLeft="@dimen/common_twelve_margin"/>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/appText6"
+        tools:text="0909"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/common_seventeen_margin"
+        android:layout_marginLeft="@dimen/common_twelve_margin"/>
+
+    <TextView
+        android:id="@+id/rmb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/common_seven_margin"
+        android:layout_marginTop="@dimen/common_seventeen_margin"
+        android:layout_toLeftOf="@id/rmb_number"
+        android:text="¥"
+        android:textColor="@color/appText6"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/rmb_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/common_twelve_margin"
+        android:layout_marginTop="@dimen/common_seventeen_margin"
+        android:text="100"
+        android:textColor="@color/appText6"
+        android:textSize="13sp" />
+    <TextView
+        android:id="@+id/energy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/common_seventeen_margin"
+        android:layout_marginRight="@dimen/common_twelve_margin"
+        android:textColor="@color/appText6"
+        android:textSize="13sp"
+        tools:text="100" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/common_seventeen_margin"
+        android:layout_marginRight="@dimen/common_seven_margin"
+        android:layout_toLeftOf="@id/energy"
+        android:src="@mipmap/energy_icon" />
+    <View
+        style="@style/st_line"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

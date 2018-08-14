@@ -54,15 +54,17 @@ public class RIncomeListActivity extends BaseActivity implements RankingContract
     private String uid;
     private String timeType;
     private String startTime;
+    private String whereGo;//1：来往记录 2：收益记录
 
     @Inject
     RIncomePresenter rIncomePresenter;
 
-    public static void start(Context context, String uid, String type, String starttime) {
+    public static void start(Context context, String uid, String type, String starttime,String whereGo) {
         Intent intent = new Intent(context, RIncomeListActivity.class);
         intent.putExtra(StaticData.UID, uid);
         intent.putExtra(StaticData.TIME_TYPE,type);
         intent.putExtra(StaticData.START_TIME,starttime);
+        intent.putExtra(StaticData.WHERE_GO,whereGo);
         context.startActivity(intent);
     }
 
@@ -80,6 +82,12 @@ public class RIncomeListActivity extends BaseActivity implements RankingContract
         uid = getIntent().getStringExtra(StaticData.UID);
         timeType = getIntent().getStringExtra(StaticData.TIME_TYPE);
         startTime = getIntent().getStringExtra(StaticData.START_TIME);
+        whereGo=getIntent().getStringExtra(StaticData.WHERE_GO);
+        if(TextUtils.equals("1",whereGo)){
+            title.setText("来往记录");
+        }else if(TextUtils.equals("2",whereGo)){
+            title.setText("收益记录");
+        }
         refreshLayout.setOnRefreshListener(mOnRefreshListener);
         addAdapter();
         rIncomePresenter.getRIncomeList("1", uid, timeType, startTime);

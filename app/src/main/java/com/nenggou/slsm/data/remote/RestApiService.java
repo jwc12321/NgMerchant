@@ -22,6 +22,7 @@ import com.nenggou.slsm.data.entity.PutForwardDetailInfo;
 import com.nenggou.slsm.data.entity.PutForwardInfo;
 import com.nenggou.slsm.data.entity.RIncomeInfo;
 import com.nenggou.slsm.data.entity.RankingListInfo;
+import com.nenggou.slsm.data.entity.RdList;
 import com.nenggou.slsm.data.request.AddbankcardRequest;
 import com.nenggou.slsm.data.request.AvatarRequest;
 import com.nenggou.slsm.data.request.BillIdRequest;
@@ -205,4 +206,8 @@ public interface RestApiService {
     //理财列表
     @POST("home/financing/list")
     Flowable<RemoteDataWrapper<FinancingInfo>> getFinancingInfos(@Body PageRequest pageRequest);
+
+    //推荐人列表
+    @POST("home/business/apprecommend")
+    Flowable<RemoteDataWrapper<RdList>> getRdList(@Body PageRequest pageRequest);
 }

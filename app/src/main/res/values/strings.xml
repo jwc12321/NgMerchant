@@ -158,6 +158,9 @@
     <string name="closed_period">封闭期</string>
     <string name="interest_type">计息方式</string>
     <string name="poundage">手续费</string>
+    
+    <!--推荐人-->
+    <string name="rd_list">推荐人列表</string>
 
 
 </resources>

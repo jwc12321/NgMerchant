@@ -69,4 +69,6 @@ public class StaticData {
     public static final String JURISDICTION="jurisdiction";
     //第一次打开app
     public static final String FIRST_OPEN_APP="firstOpenApp";
+    //哪里来的
+    public static final String WHERE_GO="whereGo";
 }

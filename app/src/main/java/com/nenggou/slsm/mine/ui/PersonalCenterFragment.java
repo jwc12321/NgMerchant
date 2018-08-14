@@ -23,6 +23,7 @@ import com.nenggou.slsm.data.entity.PersionInfoResponse;
 import com.nenggou.slsm.energy.ui.EnergyActivity;
 import com.nenggou.slsm.feedback.ui.FeedBackActivity;
 import com.nenggou.slsm.login.ui.LoginActivity;
+import com.nenggou.slsm.referee.ui.RdListActivity;
 import com.nenggou.slsm.setting.ui.SettingActivity;
 
 import butterknife.BindView;
@@ -48,6 +49,8 @@ public class PersonalCenterFragment extends BaseFragment {
     RelativeLayout itemAddress;
     @BindView(R.id.item_feedback)
     RelativeLayout itemFeedback;
+    @BindView(R.id.item_rd)
+    RelativeLayout itemRd;
 
     private String phoneNumber;
 
@@ -108,7 +111,7 @@ public class PersonalCenterFragment extends BaseFragment {
         if (!isFirstLoad && getUserVisibleHint()) {
             persionInfoStr = persionAppPreferences.getPersionInfo();
             gson = new Gson();
-            if (!TextUtils.isEmpty(persionInfoStr)&& !TextUtils.isEmpty(TokenManager.getToken())) {
+            if (!TextUtils.isEmpty(persionInfoStr) && !TextUtils.isEmpty(TokenManager.getToken())) {
                 persionInfoResponse = gson.fromJson(persionInfoStr, PersionInfoResponse.class);
                 GlideHelper.load(this, persionInfoResponse.getAvatar(), R.mipmap.default_head_image_icon, headPhoto);
                 userName.setText(persionInfoResponse.getName());
@@ -124,11 +127,11 @@ public class PersonalCenterFragment extends BaseFragment {
         super.onDestroyView();
     }
 
-    @OnClick({R.id.item_cash, R.id.item_energy, R.id.item_address, R.id.item_feedback, R.id.setting})
+    @OnClick({R.id.item_cash, R.id.item_energy, R.id.item_address, R.id.item_feedback, R.id.setting,R.id.item_rd})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.setting:
-                SettingActivity.start(getActivity(),phoneNumber);
+                SettingActivity.start(getActivity(), phoneNumber);
                 break;
             case R.id.item_cash: //现金
                 CashActivity.start(getActivity());
@@ -141,6 +144,9 @@ public class PersonalCenterFragment extends BaseFragment {
                 break;
             case R.id.item_feedback://意见反馈
                 FeedBackActivity.start(getActivity());
+                break;
+            case R.id.item_rd://推荐人列表
+                RdListActivity.start(getActivity());
                 break;
             default:
         }

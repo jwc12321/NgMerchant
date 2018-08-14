@@ -105,6 +105,20 @@
 
                     <ImageView style="@style/go_arrow" />
                 </RelativeLayout>
+                <View style="@style/persion_st_line" />
+
+                <RelativeLayout
+                    android:id="@+id/item_rd"
+                    style="@style/persion_item_fl_style">
+
+                    <TextView
+                        style="@style/persion_item_text_style"
+                        android:drawableLeft="@mipmap/feedback_icon"
+                        android:drawableStart="@mipmap/feedback_icon"
+                        android:text="@string/rd_list" />
+
+                    <ImageView style="@style/go_arrow" />
+                </RelativeLayout>
             </LinearLayout>
 
             <LinearLayout

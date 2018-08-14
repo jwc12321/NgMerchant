@@ -9,8 +9,8 @@ android {
         applicationId "com.nenggou.slsm"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 3
-        versionName "1.0.3"
+        versionCode 4
+        versionName "1.0.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         buildConfigField "long", "DEFAULT_CONNECTION_TIMEOUT_SEC", "30"
@@ -61,7 +61,7 @@ android {
             zipAlignEnabled true
         }
         debug {
-            buildConfigField "String", "API_BASE_URL", "\"http://test.365neng.com/api/\""
+            buildConfigField "String", "API_BASE_URL", "\"http://www.xiaoqidian.top/api/\""
 //            buildConfigField "String", "API_BASE_URL", "\"http://192.168.100.150/test365neng/public/api/\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

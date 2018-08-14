@@ -194,6 +194,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".financing.ui.NoviceActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".referee.ui.RdListActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
