@@ -85,18 +85,7 @@ public class RdItemAdapter extends RecyclerView.Adapter<RdItemAdapter.RdItemView
 
         public void bindData(RdListInfo rdListInfo) {
             time.setText(FormatUtil.formatDateByLine(rdListInfo.getCreatedAt()));
-            String nikeName=rdListInfo.getNickname();
-            if(!TextUtils.isEmpty(nikeName)) {
-                if(nikeName.length()==1){
-                    name.setText("*"+nikeName);
-                }else if(nikeName.length()==11){
-                    name.setText("*"+nikeName.substring(nikeName.length()-4,nikeName.length()));
-                }else {
-                    name.setText("*"+nikeName.substring(nikeName.length()-1,nikeName.length()));
-                }
-            }else {
-                name.setText("*");
-            }
+            name.setText(rdListInfo.getUsername());
             rmbNumber.setText(rdListInfo.getPrice());
             energy.setText(rdListInfo.getPower());
         }

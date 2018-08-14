@@ -117,7 +117,7 @@ public class RdListActivity extends BaseActivity implements RefereeContract.RdLi
         refreshLayout.stopRefresh();
         if(rdList!=null){
             if(!TextUtils.isEmpty(rdList.getTotal())){
-                title.setText("推荐人列表（"+rdList.getTotal()+")");
+                title.setText("推荐人列表( "+rdList.getTotal()+" )");
             }
             if(rdList.getRdListInfos()!=null&&rdList.getRdListInfos().size()>0){
                 rdRv.setVisibility(View.VISIBLE);

@@ -6,7 +6,7 @@
     android:layout_height="@dimen/common_eighty_margin"
     android:id="@+id/rd_item">
 <TextView
-    android:id="@+id/time"
+    android:id="@+id/name"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textSize="15sp"
@@ -16,7 +16,7 @@
     android:layout_marginLeft="@dimen/common_twelve_margin"/>
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12sp"
