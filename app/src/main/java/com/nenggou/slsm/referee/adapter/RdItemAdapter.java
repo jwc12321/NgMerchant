@@ -84,7 +84,7 @@ public class RdItemAdapter extends RecyclerView.Adapter<RdItemAdapter.RdItemView
         }
 
         public void bindData(RdListInfo rdListInfo) {
-            time.setText(FormatUtil.formatDateByLine(rdListInfo.getCreatedAt()));
+            time.setText("推荐日期:"+FormatUtil.formatDateYear(rdListInfo.getCreatedAt()));
             name.setText(rdListInfo.getUsername());
             rmbNumber.setText(rdListInfo.getPrice());
             energy.setText(rdListInfo.getPower());
