@@ -101,7 +101,8 @@ public class ReceivablesActivity extends BaseActivity implements TextToSpeech.On
             setPushInfo(pushInfo);
             if (!TextUtils.equals("0", pushInfo.getNowprice())) {
                 if (!TextUtils.equals(time, pushInfo.getPaytime()) || !TextUtils.equals(name, pushInfo.getUsername())) {
-                    tts.speak("能购收到" + pushInfo.getNowprice() + "元", TextToSpeech.QUEUE_ADD, null);
+                    String pcash="能购收到"+pushInfo.getAprice()+"现金"+pushInfo.getApower()+"能量";
+                    tts.speak(pcash, TextToSpeech.QUEUE_ADD, null);
                     time = pushInfo.getPaytime();
                     name = pushInfo.getUsername();
                 }

@@ -29,6 +29,10 @@ public class PushInfo implements Serializable {
     private String paytime;
     @SerializedName("useravatar")
     private String useravatar;
+    @SerializedName("apower")
+    private String apower;
+    @SerializedName("aprice")
+    private String aprice;
 
     public String getNowprice() {
         return nowprice;
@@ -100,5 +104,21 @@ public class PushInfo implements Serializable {
 
     public void setUseravatar(String useravatar) {
         this.useravatar = useravatar;
+    }
+
+    public String getApower() {
+        return apower;
+    }
+
+    public void setApower(String apower) {
+        this.apower = apower;
+    }
+
+    public String getAprice() {
+        return aprice;
+    }
+
+    public void setAprice(String aprice) {
+        this.aprice = aprice;
     }
 }

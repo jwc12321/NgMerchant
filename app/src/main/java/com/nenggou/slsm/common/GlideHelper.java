@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
@@ -36,7 +37,9 @@ public class GlideHelper {
             Glide.with(activity)
                     .load(url)
                     .placeholder(placeHolder)
-                    .into(new ImageTarget(target));
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .dontAnimate()
+                    .into(target);
         }
     }
     public static void load(Fragment fragment, String url, int placeHolder, ImageView target){
@@ -44,7 +47,9 @@ public class GlideHelper {
             Glide.with(fragment)
                     .load(url)
                     .placeholder(placeHolder)
-                    .into(new ImageTarget(target));
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .dontAnimate()
+                    .into(target);
         }
     }
 
