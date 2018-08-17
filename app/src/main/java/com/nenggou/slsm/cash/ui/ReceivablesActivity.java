@@ -99,7 +99,7 @@ public class ReceivablesActivity extends BaseActivity implements TextToSpeech.On
         if (!TextUtils.isEmpty(pushInfoStr)) {
             pushInfo = gson.fromJson(pushInfoStr, PushInfo.class);
             setPushInfo(pushInfo);
-            if (!TextUtils.equals("0", pushInfo.getNowprice())) {
+            if (!TextUtils.equals("0", pushInfo.getNowprice())&&!TextUtils.equals("0.0", pushInfo.getNowprice())&&!TextUtils.equals("0.00", pushInfo.getNowprice())) {
                 if (!TextUtils.equals(time, pushInfo.getPaytime()) || !TextUtils.equals(name, pushInfo.getUsername())) {
                     String pcash="能购收到"+pushInfo.getAprice()+"现金"+pushInfo.getApower()+"能量";
                     tts.speak(pcash, TextToSpeech.QUEUE_ADD, null);
