@@ -50,6 +50,8 @@ public class PushReceiver extends BroadcastReceiver {
                 Intent activityIntent = new Intent(context, receivablesActivity.getClass());
                 activityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(activityIntent);
+                Intent regIntent = new Intent(context, TtsService.class);
+                context.startService(regIntent);
             }
         } else if (JPushInterface.ACTION_REGISTRATION_ID.equals(intent.getAction())) {
             String regId = bundle.getString(JPushInterface.EXTRA_REGISTRATION_ID);

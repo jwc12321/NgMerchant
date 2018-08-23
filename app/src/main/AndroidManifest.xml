@@ -196,6 +196,7 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".referee.ui.RdListActivity"
             android:screenOrientation="portrait"/>
+        <service android:name=".push.TtsService"/>
     </application>
 
 </manifest>

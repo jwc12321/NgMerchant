@@ -30,7 +30,7 @@ import butterknife.OnClick;
  * Created by JWC on 2018/7/25.
  */
 
-public class ReceivablesActivity extends BaseActivity implements TextToSpeech.OnInitListener {
+public class ReceivablesActivity extends BaseActivity {
     @BindView(R.id.back)
     ImageView back;
     @BindView(R.id.title)
@@ -40,7 +40,6 @@ public class ReceivablesActivity extends BaseActivity implements TextToSpeech.On
     @BindView(R.id.receivables_rv)
     RecyclerView receivablesRv;
 
-    private TextToSpeech tts;
 
     private List<PushInfo> pushInfos = new ArrayList<>();
     private PushInfo pushInfo;
@@ -80,8 +79,6 @@ public class ReceivablesActivity extends BaseActivity implements TextToSpeech.On
     }
 
     private void initView() {
-        //初始化TTS
-        tts = new TextToSpeech(this, this);
         commonAppPreferences = new CommonAppPreferences(this);
         receivablesAdapter = new ReceivablesAdapter(this);
         receivablesRv.setAdapter(receivablesAdapter);
@@ -99,14 +96,6 @@ public class ReceivablesActivity extends BaseActivity implements TextToSpeech.On
         if (!TextUtils.isEmpty(pushInfoStr)) {
             pushInfo = gson.fromJson(pushInfoStr, PushInfo.class);
             setPushInfo(pushInfo);
-            if (!TextUtils.equals("0", pushInfo.getNowprice())&&!TextUtils.equals("0.0", pushInfo.getNowprice())&&!TextUtils.equals("0.00", pushInfo.getNowprice())) {
-                if (!TextUtils.equals(time, pushInfo.getPaytime()) || !TextUtils.equals(name, pushInfo.getUsername())) {
-                    String pcash="能购收到"+pushInfo.getAprice()+"现金"+pushInfo.getApower()+"能量";
-                    tts.speak(pcash, TextToSpeech.QUEUE_ADD, null);
-                    time = pushInfo.getPaytime();
-                    name = pushInfo.getUsername();
-                }
-            }
         }
     }
 
@@ -123,33 +112,15 @@ public class ReceivablesActivity extends BaseActivity implements TextToSpeech.On
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (tts != null) {
-            tts.shutdown();
-        }
     }
 
     @OnClick({R.id.back})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
-                finish();
+                this.finish();
                 break;
             default:
         }
     }
-
-    @Override
-    public void onInit(int status) {
-        // 判断是否转化成功
-        if (status == TextToSpeech.SUCCESS) {
-            //默认设定语言为中文，原生的android貌似不支持中文。
-            int result = tts.setLanguage(Locale.CHINA);
-            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-            } else {
-                //不支持中文就将语言设置为英文
-                tts.setLanguage(Locale.US);
-            }
-        }
-    }
-
 }

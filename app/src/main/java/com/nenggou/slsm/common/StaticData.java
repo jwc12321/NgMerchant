@@ -71,4 +71,6 @@ public class StaticData {
     public static final String FIRST_OPEN_APP="firstOpenApp";
     //哪里来的
     public static final String WHERE_GO="whereGo";
+    //通知提醒
+    public static final String PUSH_REMIND="pushRemind";
 }

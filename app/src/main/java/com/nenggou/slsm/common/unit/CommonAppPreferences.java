@@ -70,4 +70,14 @@ public class CommonAppPreferences {
         return sharedPreferences.getString(StaticData.FIRST_OPEN_APP,"");
     }
 
+    public void setPush(String pushRemind){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(StaticData.PUSH_REMIND,pushRemind);
+        editor.commit();
+    }
+
+    public String getPush(){
+        return sharedPreferences.getString(StaticData.PUSH_REMIND,"");
+    }
+
 }
