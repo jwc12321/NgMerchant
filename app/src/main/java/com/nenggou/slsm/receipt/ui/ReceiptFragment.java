@@ -179,7 +179,7 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
     @Override
     public void renderAppstoreInfos(List<AppstoreInfo> appstoreInfos) {
         refreshLayout.stopRefresh();
-        if (appstoreInfos != null) {
+        if (appstoreInfos != null&&appstoreInfos.size()>0) {
             cardPagerAdapter = new CardPagerAdapter(appstoreInfos);
             cardPagerAdapter.setOnItemClickListener(this);
             mCardShadowTransformer = new ShadowTransformer(viewPager, cardPagerAdapter);
