@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,7 +19,15 @@ import com.nenggou.slsm.common.unit.PersionAppPreferences;
 import com.nenggou.slsm.common.unit.TokenManager;
 import com.nenggou.slsm.data.entity.WebViewDetailInfo;
 import com.nenggou.slsm.login.ui.LoginActivity;
+import com.nenggou.slsm.paypassword.ui.FirstPayPwActivity;
+import com.nenggou.slsm.paypassword.ui.RememberPswActivity;
+import com.nenggou.slsm.setting.DaggerSettingComponent;
+import com.nenggou.slsm.setting.SettingContract;
+import com.nenggou.slsm.setting.SettingModule;
+import com.nenggou.slsm.setting.presenter.SettingPresenter;
 import com.nenggou.slsm.webview.ui.WebViewActivity;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,7 +38,7 @@ import cn.jpush.android.api.JPushInterface;
  * Created by JWC on 2018/6/25.
  */
 
-public class SettingActivity extends BaseActivity {
+public class SettingActivity extends BaseActivity implements SettingContract.SettingView{
     @BindView(R.id.back)
     ImageView back;
     @BindView(R.id.title)
@@ -50,16 +59,23 @@ public class SettingActivity extends BaseActivity {
     LinearLayout settingItem;
     @BindView(R.id.item_business_im)
     RelativeLayout itemBusinessIm;
+    @BindView(R.id.item_pay_password)
+    RelativeLayout itemPayPassword;
 
     private String phoneNumber;
     private PersionAppPreferences persionAppPreferences;
 
     private WebViewDetailInfo webViewDetailInfo;
-    public static void start(Context context,String phoneNumber) {
+
+    @Inject
+    SettingPresenter settingPresenter;
+
+    public static void start(Context context, String phoneNumber) {
         Intent intent = new Intent(context, SettingActivity.class);
-        intent.putExtra(StaticData.PHONE_NUMBER,phoneNumber);
+        intent.putExtra(StaticData.PHONE_NUMBER, phoneNumber);
         context.startActivity(intent);
     }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +87,7 @@ public class SettingActivity extends BaseActivity {
 
     private void initView() {
         persionAppPreferences = new PersionAppPreferences(this);
-        phoneNumber=getIntent().getStringExtra(StaticData.PHONE_NUMBER);
+        phoneNumber = getIntent().getStringExtra(StaticData.PHONE_NUMBER);
     }
 
     @Override
@@ -79,7 +95,7 @@ public class SettingActivity extends BaseActivity {
         return null;
     }
 
-    @OnClick({R.id.back, R.id.item_business_im, R.id.item_shift_handset, R.id.item_modify_password, R.id.item_contact_us, R.id.item_new_version_detection, R.id.login_out})
+    @OnClick({R.id.back, R.id.item_business_im, R.id.item_shift_handset, R.id.item_modify_password, R.id.item_contact_us, R.id.item_new_version_detection, R.id.login_out,R.id.item_pay_password})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
@@ -89,10 +105,10 @@ public class SettingActivity extends BaseActivity {
                 BusinessImActivity.start(this);
                 break;
             case R.id.item_shift_handset://换绑手机
-                ShiftHandsetActivity.start(this,phoneNumber);
+                ShiftHandsetActivity.start(this, phoneNumber);
                 break;
             case R.id.item_modify_password://修改密码
-                ModifyPasswordActivity.start(this,phoneNumber);
+                ModifyPasswordActivity.start(this, phoneNumber);
                 break;
             case R.id.item_contact_us://联系我们
                 webViewDetailInfo = new WebViewDetailInfo();
@@ -112,7 +128,33 @@ public class SettingActivity extends BaseActivity {
                 LoginActivity.start(this);
                 finish();
                 break;
+            case R.id.item_pay_password:
+                settingPresenter.isSetUpPayPw();
+                break;
             default:
+        }
+    }
+
+    @Override
+    protected void initializeInjector() {
+        DaggerSettingComponent.builder()
+                .applicationComponent(getApplicationComponent())
+                .settingModule(new SettingModule(this))
+                .build()
+                .inject(this);
+    }
+
+    @Override
+    public void setPresenter(SettingContract.SettingPresenter presenter) {
+
+    }
+
+    @Override
+    public void renderIsSetUpPayPw(String what) {
+        if(TextUtils.equals("true",what)){
+            RememberPswActivity.start(this,phoneNumber);
+        }else {
+            FirstPayPwActivity.start(this,"0","");
         }
     }
 }

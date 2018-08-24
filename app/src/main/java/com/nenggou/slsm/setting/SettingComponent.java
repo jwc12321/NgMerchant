@@ -8,6 +8,7 @@ import com.nenggou.slsm.ActivityScope;
 import com.nenggou.slsm.ApplicationComponent;
 import com.nenggou.slsm.setting.ui.BusinessImActivity;
 import com.nenggou.slsm.setting.ui.ModifyPasswordActivity;
+import com.nenggou.slsm.setting.ui.SettingActivity;
 import com.nenggou.slsm.setting.ui.ShiftHandsetActivity;
 
 import dagger.Component;
@@ -18,4 +19,5 @@ public interface SettingComponent {
     void inject(BusinessImActivity businessImActivity);
     void inject(ModifyPasswordActivity modifyPasswordActivity);
     void inject(ShiftHandsetActivity shiftHandsetActivity);
+    void inject(SettingActivity settingActivity);
 }

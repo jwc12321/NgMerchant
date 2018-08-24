@@ -12,6 +12,7 @@ public class SettingModule {
     private SettingContract.ChangeAvatarView changeAvatarView;
     private SettingContract.ModifyPasswordView modifyPasswordView;
     private SettingContract.ShiftHandsetView shiftHandsetView;
+    private SettingContract.SettingView settingView;
 
     public SettingModule(SettingContract.ChangeAvatarView changeAvatarView) {
         this.changeAvatarView = changeAvatarView;
@@ -23,6 +24,10 @@ public class SettingModule {
 
     public SettingModule(SettingContract.ShiftHandsetView shiftHandsetView) {
         this.shiftHandsetView = shiftHandsetView;
+    }
+
+    public SettingModule(SettingContract.SettingView settingView) {
+        this.settingView = settingView;
     }
 
     @Provides
@@ -38,5 +43,10 @@ public class SettingModule {
     @Provides
     SettingContract.ShiftHandsetView provideShiftHandsetView(){
         return shiftHandsetView;
+    }
+
+    @Provides
+    SettingContract.SettingView provideSettingView(){
+        return settingView;
     }
 }

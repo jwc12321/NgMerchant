@@ -13,10 +13,13 @@ public class PutForwardRequest {
     private String type;
     @SerializedName("bankid")
     private String bankid;
+    @SerializedName("paypassword")
+    private String paypassword;
 
-    public PutForwardRequest(String amount, String type, String bankid) {
+    public PutForwardRequest(String amount, String type, String bankid, String paypassword) {
         this.amount = amount;
         this.type = type;
         this.bankid = bankid;
+        this.paypassword = paypassword;
     }
 }

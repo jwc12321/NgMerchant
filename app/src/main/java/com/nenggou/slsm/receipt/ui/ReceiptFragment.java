@@ -64,7 +64,6 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
     private CardPagerAdapter cardPagerAdapter;
     private ShadowTransformer mCardShadowTransformer;
     private ChangeAppInfo changeAppInfo;
-    private CommonAppPreferences commonAppPreferences;
 
     private static final int REQUEST_PERMISSION_WRITE = 2;
     private static final int REQUEST_CODE_CAMERA = 4;
@@ -104,7 +103,6 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
 
 
     private void initView() {
-        commonAppPreferences=new CommonAppPreferences(getActivity());
         refreshLayout.setOnRefreshListener(mOnRefreshListener);
         refreshLayout.setCanLoadMore(false);
         receiptPresenter.getAppstoreInfos("1");
@@ -237,15 +235,11 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
             if (requestRuntimePermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE,}, REQUEST_PERMISSION_WRITE)) {
                 showUpdate(changeAppInfo);
             }
-        }else {
-            String pushRemind=commonAppPreferences.getPush();
-            if(!TextUtils.equals("1",pushRemind)) {
-                commonAppPreferences.setPush("1");
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
-                    boolean isPm = isNotificationEnabled(getActivity());
-                    if (!isPm) {
-                        toSetPush();
-                    }
+        } else {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+                boolean isPm = isNotificationEnabled(getActivity());
+                if (!isPm) {
+                    toSetPush();
                 }
             }
         }
@@ -273,11 +267,11 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
         dialogUpdate.show(getFragmentManager(), "");
     }
 
-    private void toSetPush(){
+    private void toSetPush() {
         if (dialogToSetPush == null)
             dialogToSetPush = new CommonDialog.Builder()
                     .setTitle("推送权限")
-                    .setContent("请打开推送权限")
+                    .setContent("点击确定，找到通知，打开其中的权限，就可以收到语音提示了")
                     .setContentGravity(Gravity.CENTER)
                     .setCancelButton("忽略", new View.OnClickListener() {
                         @Override

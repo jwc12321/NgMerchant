@@ -1,0 +1,146 @@
+package com.nenggou.slsm.paypassword.ui;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.nenggou.slsm.BaseActivity;
+import com.nenggou.slsm.R;
+import com.nenggou.slsm.common.StaticData;
+import com.nenggou.slsm.common.widget.paypw.PayPwdEditText;
+import com.nenggou.slsm.paypassword.DaggerPayPasswordComponent;
+import com.nenggou.slsm.paypassword.PayPasswordContract;
+import com.nenggou.slsm.paypassword.PayPasswordModule;
+import com.nenggou.slsm.paypassword.presenter.PayPasswordPresenter;
+
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+/**
+ * Created by JWC on 2018/8/20.
+ * 第一次设置提现密码
+ */
+
+public class SecondPayPwActivity extends BaseActivity implements PayPasswordContract.PayPasswordView{
+    @BindView(R.id.back)
+    ImageView back;
+    @BindView(R.id.title)
+    TextView title;
+    @BindView(R.id.title_rel)
+    RelativeLayout titleRel;
+    @BindView(R.id.pwd_et)
+    PayPwdEditText pwdEt;
+    @BindView(R.id.confirm)
+    Button confirm;
+    @BindView(R.id.setting_item)
+    LinearLayout settingItem;
+    private String whereGo; //0:新密码(第一次设置支付密码)1:忘记支付密码短信修改2:记得支付密码修改
+    private String password;
+    private String firstPayPw;
+    private String ppwOldData;
+
+    @Inject
+    PayPasswordPresenter payPasswordPresenter;
+
+    public static void start(Context context, String whereGo, String firstPayPw,String ppwOldData) {
+        Intent intent = new Intent(context, SecondPayPwActivity.class);
+        intent.putExtra(StaticData.WHERE_GO, whereGo);
+        intent.putExtra(StaticData.FIRST_PAY_PASSWORD, firstPayPw);
+        intent.putExtra(StaticData.PPW_OLD_DATA,ppwOldData);
+        context.startActivity(intent);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_second_pay_pw);
+        ButterKnife.bind(this);
+        setHeight(back,title,null);
+        initView();
+    }
+
+    private void initView() {
+        whereGo = getIntent().getStringExtra(StaticData.WHERE_GO);
+        firstPayPw = getIntent().getStringExtra(StaticData.FIRST_PAY_PASSWORD);
+        ppwOldData=getIntent().getStringExtra(StaticData.PPW_OLD_DATA);
+        if (TextUtils.equals("0", whereGo)) {
+            title.setText("提现密码");
+        } else {
+            title.setText("修改提现密码");
+        }
+        initEt();
+    }
+
+    private void initEt() {
+        pwdEt.initStyle(R.drawable.password_num_bg, 6, 0.33f, R.color.backGround19, R.color.backGround19, 20);
+        pwdEt.setOnTextFinishListener(new PayPwdEditText.OnTextFinishListener() {
+            @Override
+            public void onFinish(String str) {//密码输入完后的回调
+                password = str;
+                confirm.setEnabled(true);
+            }
+        });
+
+    }
+
+    @Override
+    protected void initializeInjector() {
+        DaggerPayPasswordComponent.builder()
+                .applicationComponent(getApplicationComponent())
+                .payPasswordModule(new PayPasswordModule(this))
+                .build()
+                .inject(this);
+    }
+
+    @OnClick({R.id.back, R.id.confirm})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.back:
+                finish();
+                break;
+            case R.id.confirm:
+                confirmData();
+                break;
+            default:
+        }
+    }
+
+    private void confirmData(){
+        if(!TextUtils.equals(firstPayPw,password)){
+            showMessage("两次设置的提现密码不一样");
+            return;
+        }
+        payPasswordPresenter.setPayPassword(password,whereGo,ppwOldData);
+    }
+
+    @Override
+    public View getSnackBarHolderView() {
+        return null;
+    }
+
+    @Override
+    public void setPresenter(PayPasswordContract.PayPasswordPresenter presenter) {
+
+    }
+
+    @Override
+    public void renderSuccess() {
+        if(TextUtils.equals("1",whereGo)) {
+            showMessage("设置提现密码成功");
+        }else {
+            showMessage("修改提现密码成功");
+        }
+        finish();
+    }
+}

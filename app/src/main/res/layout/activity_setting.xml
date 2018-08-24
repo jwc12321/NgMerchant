@@ -82,6 +82,20 @@
                         style="@style/st_line"
                         android:layout_alignParentBottom="true" />
                 </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/item_pay_password"
+                    style="@style/persion_item_fl_style">
+
+                    <TextView
+                        style="@style/setting_item_text_style"
+                        android:text="@string/pay_password" />
+
+                    <ImageView style="@style/go_arrow" />
+
+                    <View
+                        style="@style/st_line"
+                        android:layout_alignParentBottom="true" />
+                </RelativeLayout>
             </LinearLayout>
 
             <LinearLayout

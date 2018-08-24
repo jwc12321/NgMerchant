@@ -40,6 +40,7 @@ import com.nenggou.slsm.data.request.IntercourseRecordRequest;
 import com.nenggou.slsm.data.request.ModifyPasswordRequest;
 import com.nenggou.slsm.data.request.PageRequest;
 import com.nenggou.slsm.data.request.PasswordLoginRequest;
+import com.nenggou.slsm.data.request.PayPasswordRequest;
 import com.nenggou.slsm.data.request.PutForwardRequest;
 import com.nenggou.slsm.data.request.CRankingRequest;
 import com.nenggou.slsm.data.request.RIncomeRequest;
@@ -47,6 +48,7 @@ import com.nenggou.slsm.data.request.RdIncomeRequest;
 import com.nenggou.slsm.data.request.SendCodeRequest;
 import com.nenggou.slsm.data.request.SendOutCouponRequest;
 import com.nenggou.slsm.data.request.SetPasswordRequest;
+import com.nenggou.slsm.data.request.SetPayPwRequest;
 import com.nenggou.slsm.data.request.StartimeRequest;
 import com.nenggou.slsm.data.request.StoreIdPageRequest;
 import com.nenggou.slsm.data.request.TextRequest;
@@ -210,4 +212,16 @@ public interface RestApiService {
     //推荐人列表
     @POST("home/business/apprecommend")
     Flowable<RemoteDataWrapper<RdList>> getRdList(@Body PageRequest pageRequest);
+
+    //设置提现密码
+    @POST("home/business/setpaypassword")
+    Flowable<RemoteDataWrapper<Ignore>> setPayPassword(@Body SetPayPwRequest setPayPwRequest);
+
+    //获取提现密码是否设置
+    @POST("home/business/getpaypassword")
+    Flowable<RemoteDataWrapper<String>> isSetUpPayPw(@Body TokenRequest tokenRequest);
+
+    //验证原提现密码
+    @POST("home/business/verifypaypassword")
+    Flowable<RemoteDataWrapper<Ignore>> verifyPayPassword(@Body PayPasswordRequest payPasswordRequest);
 }

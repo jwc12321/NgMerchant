@@ -28,11 +28,13 @@ public interface BankCardContract {
     }
 
     interface PutForwardPresenter extends BasePresenter{
-        void putForward(String amount,String type,String bankid);
+        void putForward(String amount,String type,String bankid, String paypassword);
+        void isSetUpPayPw();
     }
 
     interface PutForwardView extends BaseView<PutForwardPresenter>{
         void purForwardSuccess();
+        void renderIsSetUpPayPw(String what);
     }
 
     interface PutForwardInfosPresenter extends BasePresenter{

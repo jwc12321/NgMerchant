@@ -6,6 +6,7 @@ import com.nenggou.slsm.data.entity.Ignore;
 import com.nenggou.slsm.data.remote.RestApiService;
 import com.nenggou.slsm.data.remote.RxRemoteDataParse;
 import com.nenggou.slsm.data.request.PutForwardRequest;
+import com.nenggou.slsm.data.request.TokenRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,9 +56,9 @@ public class PutForwardPresenter implements BankCardContract.PutForwardPresenter
     }
 
     @Override
-    public void putForward(String amount, String type, String bankid) {
+    public void putForward(String amount, String type, String bankid, String paypassword) {
         putForwardView.showLoading();
-        PutForwardRequest putForwardRequest=new PutForwardRequest(amount,type,bankid);
+        PutForwardRequest putForwardRequest=new PutForwardRequest(amount,type,bankid,paypassword);
         Disposable disposable = restApiService.putForward(putForwardRequest)
                 .flatMap(new RxRemoteDataParse<Ignore>())
                 .compose(new RxSchedulerTransformer<Ignore>())
@@ -76,4 +77,29 @@ public class PutForwardPresenter implements BankCardContract.PutForwardPresenter
                 });
         mDisposableList.add(disposable);
     }
+
+    //是否设置了支付密码
+    @Override
+    public void isSetUpPayPw() {
+        putForwardView.showLoading();
+        TokenRequest tokenRequest=new TokenRequest();
+        Disposable disposable=restApiService.isSetUpPayPw(tokenRequest)
+                .flatMap(new RxRemoteDataParse<String>())
+                .compose(new RxSchedulerTransformer<String>())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String string) throws Exception {
+                        putForwardView.dismissLoading();
+                        putForwardView.renderIsSetUpPayPw(string);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        putForwardView.dismissLoading();
+                        putForwardView.showError(throwable);
+                    }
+                });
+        mDisposableList.add(disposable);
+    }
+
 }

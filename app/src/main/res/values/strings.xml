@@ -162,5 +162,17 @@
     <!--推荐人-->
     <string name="rd_list">推荐人列表</string>
 
-
+    <!--支付密码-->
+    <string name="pay_password">提现密码</string>
+    <string name="setting_six_password">请设置6位数字提现密码</string>
+    <string name="only_to_pay_energy">此密码用于仅使用提现时</string>
+    <string name="pay_password_can_not_be_repeated">提现密码不能是重复、连续的数字</string>
+    <string name="input_again">请再次输入确认</string>
+    <string name="input_pw_to_authentication">输入提现密码,完成身份验证</string>
+    <string name="remember">记得</string>
+    <string name="do_not_remember">不记得</string>
+    <string name="input_pay_password">请输入提现密码</string>
+    <string name="confirm_setting">确认设置</string>
+    <string name="modify_pay_pw">修改提现密码</string>
+    <string name="send_sms_to_authentication">发送短信验证码到绑定的手机,完成身份验证</string>
 </resources>

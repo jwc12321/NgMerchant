@@ -26,6 +26,8 @@ import com.nenggou.slsm.bankcard.presenter.PutForwardPresenter;
 import com.nenggou.slsm.common.StaticData;
 import com.nenggou.slsm.common.widget.dialog.CommonDialog;
 import com.nenggou.slsm.data.entity.BankCardInfo;
+import com.nenggou.slsm.paypassword.ui.InputPayPwActivity;
+import com.nenggou.slsm.paypassword.ui.RdSPpwActivity;
 
 import java.math.BigDecimal;
 
@@ -84,6 +86,8 @@ public class PutForwardActivity extends BaseActivity implements BankCardContract
     private String content;
     boolean moneyDouble = true;
     private int digits = 2;
+    private static final int REQUEST_PAY_PW = 23;
+    private String payPassword;
 
     public static void start(Context context, String cashType, String amountCash, String proportion) {
         Intent intent = new Intent(context, PutForwardActivity.class);
@@ -224,6 +228,17 @@ public class PutForwardActivity extends BaseActivity implements BankCardContract
                         }
                     }
                     break;
+                case REQUEST_PAY_PW:
+                    if (data != null) {
+                        Bundle bundle = data.getExtras();
+                        payPassword = (String) bundle.getSerializable(StaticData.PAY_PASSWORD);
+                        if (TextUtils.equals("1", cashType)) {
+                            putForwardPresenter.putForward(inAmount, cashType, bankId,payPassword);
+                        } else {
+                            goPutFroward();
+                        }
+                    }
+                    break;
                 default:
             }
         }
@@ -260,11 +275,7 @@ public class PutForwardActivity extends BaseActivity implements BankCardContract
             amountEt.setText("");
             return;
         }
-        if (TextUtils.equals("1", cashType)) {
-            putForwardPresenter.putForward(inAmount, cashType, bankId);
-        } else {
-            goPutFroward();
-        }
+        putForwardPresenter.isSetUpPayPw();
     }
 
 
@@ -285,7 +296,7 @@ public class PutForwardActivity extends BaseActivity implements BankCardContract
                     @Override
                     public void onClick(View v) {
                         putForwardDialog.dismiss();
-                        putForwardPresenter.putForward(offsetEnergyBd.toString(), cashType, bankId);
+                        putForwardPresenter.putForward(offsetEnergyBd.toString(), cashType, bankId,payPassword);
                     }
                 }).create();
         putForwardDialog.show(getSupportFragmentManager(), "");
@@ -309,5 +320,15 @@ public class PutForwardActivity extends BaseActivity implements BankCardContract
     public void purForwardSuccess() {
         showMessage("提交提现成功");
         finish();
+    }
+
+    @Override
+    public void renderIsSetUpPayPw(String what) {
+        if (TextUtils.equals("true", what)) {
+            Intent intent = new Intent(this, InputPayPwActivity.class);
+            startActivityForResult(intent, REQUEST_PAY_PW);
+        } else {
+            RdSPpwActivity.start(this);
+        }
     }
 }

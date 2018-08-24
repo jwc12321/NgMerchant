@@ -73,4 +73,10 @@ public class StaticData {
     public static final String WHERE_GO="whereGo";
     //通知提醒
     public static final String PUSH_REMIND="pushRemind";
+    //第一次输入的支付密码
+    public static final String FIRST_PAY_PASSWORD="firstPayPassword";
+    //输入的验证码还是原支付密码数据
+    public static final String PPW_OLD_DATA= "ppwOldData";
+    //支付密码
+    public static final String PAY_PASSWORD="payPassword";
 }

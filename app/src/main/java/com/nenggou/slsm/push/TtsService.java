@@ -1,12 +1,15 @@
 package com.nenggou.slsm.push;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.os.Build;
 import android.os.IBinder;
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-
 import com.google.gson.Gson;
 import com.nenggou.slsm.common.unit.CommonAppPreferences;
 
@@ -25,14 +28,20 @@ public class TtsService extends Service implements TextToSpeech.OnInitListener{
     private CommonAppPreferences commonAppPreferences;
     private String pushInfoStr;
     private static final Gson gson = new Gson();
+    private int currVolume;
 
 
     private void setTts(){
         if(pushInfo!=null) {
             if (!TextUtils.equals("0", pushInfo.getNowprice()) && !TextUtils.equals("0.0", pushInfo.getNowprice()) && !TextUtils.equals("0.00", pushInfo.getNowprice())) {
                 if (!TextUtils.equals(time, pushInfo.getPaytime()) || !TextUtils.equals(name, pushInfo.getUsername())) {
+                    openSpeaker();
                     String pcash = "能购收到" + pushInfo.getAprice() + "现金" + pushInfo.getApower() + "能量";
-                    tts.speak(pcash, TextToSpeech.QUEUE_ADD, null);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        tts.speak(pcash, TextToSpeech.QUEUE_ADD, null,"back");
+                    }else {
+                        tts.speak(pcash, TextToSpeech.QUEUE_ADD, null);
+                    }
                     time = pushInfo.getPaytime();
                     name = pushInfo.getUsername();
                 }
@@ -50,6 +59,22 @@ public class TtsService extends Service implements TextToSpeech.OnInitListener{
         super.onCreate();
         tts = new TextToSpeech(this, this);
         commonAppPreferences = new CommonAppPreferences(this);
+        tts.setOnUtteranceProgressListener(new UtteranceProgressListener() {
+            @Override
+            public void onStart(String utteranceId) {
+
+            }
+
+            @Override
+            public void onDone(String utteranceId) {
+                backCurrSpeaker();
+            }
+
+            @Override
+            public void onError(String utteranceId) {
+
+            }
+        });
     }
 
     @Override
@@ -83,5 +108,20 @@ public class TtsService extends Service implements TextToSpeech.OnInitListener{
                 tts.setLanguage(Locale.US);
             }
         }
+    }
+
+    /**
+     * 打开扬声器
+     */
+    private void openSpeaker() {
+        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        currVolume=audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,maxVolume , 0);
+    }
+
+    private void backCurrSpeaker(){
+        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,currVolume , 0);
     }
 }

@@ -44,4 +44,12 @@ public interface SettingContract {
         void checkNewCodeSuccess();
     }
 
+    interface SettingPresenter extends BasePresenter {
+        void isSetUpPayPw();
+    }
+
+    interface SettingView extends BaseView<SettingPresenter> {
+        void renderIsSetUpPayPw(String what);
+    }
+
 }
