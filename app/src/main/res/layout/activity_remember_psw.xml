@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/common_twenty_two_margin"
                     android:layout_marginTop="@dimen/common_ten_margin"
-                    android:text="当前使用的实付密码"
+                    android:text="当前使用的提现密码"
                     android:textColor="@color/appText6"
                     android:textSize="15sp" />
             </LinearLayout>

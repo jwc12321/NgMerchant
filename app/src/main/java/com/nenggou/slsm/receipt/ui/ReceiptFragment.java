@@ -153,6 +153,7 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
         if (!isFirstLoad && getUserVisibleHint() && TextUtils.equals("0", firstIn)) {
             if (receiptPresenter != null) {
                 receiptPresenter.getAppstoreInfos("1");
+                receiptPresenter.detectionVersion(BuildConfig.VERSION_NAME, "android");
             }
             firstIn = "1";
         }

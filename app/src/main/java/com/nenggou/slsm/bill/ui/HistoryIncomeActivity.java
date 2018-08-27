@@ -151,7 +151,7 @@ public class HistoryIncomeActivity extends BaseActivity implements BillContract.
             if (historyIncomAlls != null && historyIncomAlls.size() > 0) {
                 HistoryIncomAll historyIncomAll = historyIncomAlls.get(0);
                 cashIncome.setText("现金:" + historyIncomAll.getAllmoney() + "元");
-                energyIncome.setText("能量" + historyIncomAll.getAllpower() + "个");
+                energyIncome.setText("能量:" + historyIncomAll.getAllpower() + "个");
                 energyDecimal = new BigDecimal(historyIncomAll.getAllpower()).setScale(2, BigDecimal.ROUND_DOWN);
                 ptDecimal = new BigDecimal(proportion).setScale(2, BigDecimal.ROUND_DOWN);
                 percentageDecimal = new BigDecimal(100).setScale(2, BigDecimal.ROUND_DOWN);

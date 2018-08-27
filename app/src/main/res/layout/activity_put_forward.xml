@@ -38,7 +38,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="215dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/common_twelve_margin"
                 android:layout_marginRight="@dimen/common_twelve_margin"
                 android:layout_marginTop="@dimen/common_fifteen_margin"
@@ -106,15 +106,29 @@
                         android:layout_alignParentBottom="true" />
                 </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/max_amount_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/common_twelve_margin"
-                    android:layout_marginTop="@dimen/common_fourteen_margin"
-                    android:textColor="@color/appText6"
-                    android:textSize="12sp"
-                    tools:text="最多能用" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/max_amount_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common_twelve_margin"
+                        android:layout_marginTop="@dimen/common_fourteen_margin"
+                        android:textColor="@color/appText6"
+                        android:textSize="12sp"
+                        tools:text="最多能用" />
+                    <TextView
+                        android:id="@+id/full_presentation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/common_fourteen_margin"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/appText3"
+                        android:textSize="12sp"
+                        android:text="全部提现" />
+                </RelativeLayout>
             </LinearLayout>
 
             <Button

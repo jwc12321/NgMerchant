@@ -63,6 +63,8 @@ public class PutForwardActivity extends BaseActivity implements BankCardContract
     Button confirmBt;
     @BindView(R.id.present_record)
     TextView presentRecord;
+    @BindView(R.id.full_presentation)
+    TextView fullPresentation;
     private String bankId;
     private BankCardInfo bankCardInfo;
 
@@ -185,7 +187,7 @@ public class PutForwardActivity extends BaseActivity implements BankCardContract
         return null;
     }
 
-    @OnClick({R.id.back, R.id.item_bank, R.id.confirm_bt,R.id.present_record})
+    @OnClick({R.id.back, R.id.item_bank, R.id.confirm_bt, R.id.present_record,R.id.full_presentation})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
@@ -201,6 +203,9 @@ public class PutForwardActivity extends BaseActivity implements BankCardContract
                 break;
             case R.id.present_record:
                 PutForwardListActivity.start(this);
+                break;
+            case R.id.full_presentation:
+                amountEt.setText(amountCash);
                 break;
             default:
         }
@@ -233,7 +238,7 @@ public class PutForwardActivity extends BaseActivity implements BankCardContract
                         Bundle bundle = data.getExtras();
                         payPassword = (String) bundle.getSerializable(StaticData.PAY_PASSWORD);
                         if (TextUtils.equals("1", cashType)) {
-                            putForwardPresenter.putForward(inAmount, cashType, bankId,payPassword);
+                            putForwardPresenter.putForward(inAmount, cashType, bankId, payPassword);
                         } else {
                             goPutFroward();
                         }
@@ -254,6 +259,7 @@ public class PutForwardActivity extends BaseActivity implements BankCardContract
     }
 
     private void confirm() {
+        inAmount = amountEt.getText().toString().trim();
         if (TextUtils.isEmpty(inAmount)) {
             showMessage("请输入提现金额");
             return;
@@ -278,7 +284,6 @@ public class PutForwardActivity extends BaseActivity implements BankCardContract
         putForwardPresenter.isSetUpPayPw();
     }
 
-
     private void goPutFroward() {
         offsetEnergyBd = inAmountBd.multiply(percentageBd).divide(proportionBd, 2, BigDecimal.ROUND_DOWN);
         content = "提¥" + inAmount + "需要消耗" + offsetEnergyBd.toString() + "个能量,请确认";
@@ -296,7 +301,7 @@ public class PutForwardActivity extends BaseActivity implements BankCardContract
                     @Override
                     public void onClick(View v) {
                         putForwardDialog.dismiss();
-                        putForwardPresenter.putForward(offsetEnergyBd.toString(), cashType, bankId,payPassword);
+                        putForwardPresenter.putForward(offsetEnergyBd.toString(), cashType, bankId, payPassword);
                     }
                 }).create();
         putForwardDialog.show(getSupportFragmentManager(), "");

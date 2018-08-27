@@ -139,7 +139,7 @@ public interface RestApiService {
     Flowable<RemoteDataWrapper<String>> subFeedBack(@Body FeedbackRequest feedbackRequest);
 
     //提现
-    @POST("home/business/atm")
+    @POST("home/business/atmpaypassword")
     Flowable<RemoteDataWrapper<Ignore>> putForward(@Body PutForwardRequest putForwardRequest);
 
     /**

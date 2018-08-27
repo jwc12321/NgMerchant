@@ -2,6 +2,7 @@ package com.nenggou.slsm;
 
 import android.app.Dialog;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -221,5 +222,15 @@ public abstract class BaseActivity extends AppCompatActivity implements LoadData
     protected void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);
+    }
+
+    @Override
+    public android.content.res.Resources getResources()
+    {
+        android.content.res.Resources res = super.getResources();
+        Configuration config=new Configuration();
+        config.setToDefaults();
+        res.updateConfiguration(config,res.getDisplayMetrics() );
+        return res;
     }
 }

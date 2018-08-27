@@ -130,7 +130,7 @@ public class RdIncomeActivity extends BaseActivity implements BillContract.RdInc
             if (historyIncomAlls != null && historyIncomAlls.size() > 0) {
                 HistoryIncomAll historyIncomAll = historyIncomAlls.get(0);
                 cashIncome.setText("现金:" + historyIncomAll.getAllmoney() + "元");
-                energyIncome.setText("能量" + historyIncomAll.getAllpower() + "个");
+                energyIncome.setText("能量:" + historyIncomAll.getAllpower() + "个");
                 String totalNumberStr;
                 if (!TextUtils.isEmpty(historyIncomAll.getAllTotal())) {
                     totalNumberStr = "共计" + historyIncomAll.getAllTotal() + "笔";
