@@ -168,8 +168,8 @@ public class IncomeListActivity extends BaseActivity implements BillContract.Day
         if (billInfo != null) {
             proportion=billInfo.getPowerRate();
             incomeAdapter.setProportion(proportion);
-            cashIncome.setText("现金" + billInfo.getAllmoney() + "元");
-            energyIncome.setText("能量" + billInfo.getAllpower() + "个");
+            cashIncome.setText("现金:" + billInfo.getAllmoney() + "元");
+            energyIncome.setText("能量:" + billInfo.getAllpower() + "个");
             energyDecimal = new BigDecimal(billInfo.getAllpower()).setScale(2, BigDecimal.ROUND_DOWN);
             ptDecimal = new BigDecimal(proportion).setScale(2, BigDecimal.ROUND_DOWN);
             percentageDecimal = new BigDecimal(100).setScale(2, BigDecimal.ROUND_DOWN);

@@ -101,7 +101,7 @@ public class HMIncomeAdapter extends RecyclerView.Adapter<HMIncomeAdapter.HMInco
             time.setText(historyIncomeItem.getDate());
             incomeNumber.setText(historyIncomeItem.getCountTotal());
             cashIncome.setText("现金:" + historyIncomeItem.getAllmoney() + "元");
-            energyIncome.setText("能量" + historyIncomeItem.getAllpower() + "个");
+            energyIncome.setText("能量:" + historyIncomeItem.getAllpower() + "个");
             energyDecimal = new BigDecimal(historyIncomeItem.getAllpower()).setScale(2, BigDecimal.ROUND_DOWN);
             offsetCashDecimal = energyDecimal.multiply(ptDecimal).divide(percentageDecimal, 2, BigDecimal.ROUND_DOWN);
             energyCash.setText("(可兑换现金¥"+offsetCashDecimal.toString()+")");

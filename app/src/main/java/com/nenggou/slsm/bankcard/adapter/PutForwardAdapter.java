@@ -60,6 +60,8 @@ public class PutForwardAdapter extends RecyclerView.Adapter<PutForwardAdapter.Pu
         public PutForwardView(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            putForwardRv.setFocusableInTouchMode(false);
+            putForwardRv.requestFocus();
             putForwardItemAdapter=new PutForwardItemAdapter();
             putForwardItemAdapter.setItemClickListener(this);
             putForwardRv.setAdapter(putForwardItemAdapter);
