@@ -79,4 +79,10 @@ public class StaticData {
     public static final String PPW_OLD_DATA= "ppwOldData";
     //支付密码
     public static final String PAY_PASSWORD="payPassword";
+
+    public static final boolean DEBUG = true;
+
+    public static final String PACKAGE_NAME = "com.nenggou.slsm";
+    //哪里启动
+    public static final String WHAT_START="whatStart";
 }

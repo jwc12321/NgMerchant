@@ -46,7 +46,7 @@ public class PushReceiver extends BroadcastReceiver {
             String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);//获取附加字段,是一个json数
             PushInfo pushInfo = gson.fromJson(extras, PushInfo.class);
             if (TextUtils.equals("1", pushInfo.getType())) {
-                commonAppPreferences.setPushInfoStr(gson.toJson(pushInfo));
+                commonAppPreferences.setPushInfoStr(gson.toJson(pushInfo),"1");
                 Intent activityIntent = new Intent(context, receivablesActivity.getClass());
                 activityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(activityIntent);

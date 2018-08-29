@@ -29,6 +29,7 @@ public class TtsService extends Service implements TextToSpeech.OnInitListener{
     private String pushInfoStr;
     private static final Gson gson = new Gson();
     private int currVolume;
+    private String whatStart;
 
 
     private void setTts(){
@@ -80,9 +81,12 @@ public class TtsService extends Service implements TextToSpeech.OnInitListener{
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         pushInfoStr = commonAppPreferences.getPushInfoStr();
-        if (!TextUtils.isEmpty(pushInfoStr)) {
-            pushInfo = gson.fromJson(pushInfoStr, PushInfo.class);
-            setTts();
+        whatStart=commonAppPreferences.getWhatStart();
+        if(TextUtils.equals("1",whatStart)) {
+            if (!TextUtils.isEmpty(pushInfoStr)) {
+                pushInfo = gson.fromJson(pushInfoStr, PushInfo.class);
+                setTts();
+            }
         }
         return super.onStartCommand(intent, flags, startId);
     }
@@ -95,6 +99,11 @@ public class TtsService extends Service implements TextToSpeech.OnInitListener{
             tts.shutdown();
             tts = null;
         }
+        if(commonAppPreferences!=null){
+            commonAppPreferences.setPushInfoStr("","0");
+        }
+        Intent intent = new Intent(getApplicationContext(),TtsService.class);
+        startService(intent);
     }
 
     @Override

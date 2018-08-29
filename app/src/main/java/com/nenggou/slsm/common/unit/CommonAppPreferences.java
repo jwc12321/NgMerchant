@@ -29,15 +29,18 @@ public class CommonAppPreferences {
         return sharedPreferences.getString(StaticData.TO_UPDATE,"");
     }
 
-    public void setPushInfoStr(String pushInfoStr){
+    public void setPushInfoStr(String pushInfoStr,String whatStart){
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(StaticData.PUSH_INFO_STR,pushInfoStr);
+        editor.putString(StaticData.WHAT_START,whatStart);
         editor.commit();
     }
     public String getPushInfoStr(){
         return sharedPreferences.getString(StaticData.PUSH_INFO_STR,"");
     }
-
+    public String getWhatStart(){
+        return sharedPreferences.getString(StaticData.WHAT_START,"");
+    }
     public void setExplainCash(String eCash){
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(StaticData.EXPLAIN_CASH,eCash);
