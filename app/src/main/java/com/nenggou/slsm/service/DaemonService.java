@@ -35,7 +35,7 @@ public class DaemonService extends Service {
         //如果API大于18，需要弹出一个可见通知
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2){
             Notification.Builder builder = new Notification.Builder(this);
-            builder.setSmallIcon(R.mipmap.ic_launcher);
+            builder.setSmallIcon(R.mipmap.app_icon);
             builder.setContentTitle("KeepAppAlive");
             builder.setContentText("DaemonService is runing...");
             startForeground(NOTICE_ID,builder.build());

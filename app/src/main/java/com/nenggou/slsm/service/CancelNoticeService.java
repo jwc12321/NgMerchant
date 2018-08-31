@@ -33,7 +33,7 @@ public class CancelNoticeService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         if(Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2){
             Notification.Builder builder = new Notification.Builder(this);
-            builder.setSmallIcon(R.mipmap.ic_launcher);
+            builder.setSmallIcon(R.mipmap.app_icon);
             startForeground(DaemonService.NOTICE_ID,builder.build());
             // 开启一条线程，去移除DaemonService弹出的通知
             new Thread(new Runnable() {
