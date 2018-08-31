@@ -121,6 +121,13 @@ public class PutForwardActivity extends BaseActivity implements BankCardContract
      * edittext监听
      */
     private void editListener() {
+        //只是为了显示光标
+        amountEt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                amountEt.setCursorVisible(true);
+            }
+        });
         amountEt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -206,6 +213,7 @@ public class PutForwardActivity extends BaseActivity implements BankCardContract
                 break;
             case R.id.full_presentation:
                 amountEt.setText(amountCash);
+                amountEt.setCursorVisible(false);
                 break;
             default:
         }

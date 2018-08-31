@@ -35,14 +35,14 @@ public class AliveJobService extends JobService {
         public boolean handleMessage(Message msg) {
             // 具体任务逻辑
             if(SystemUtils.isAPPALive(getApplicationContext(), StaticData.PACKAGE_NAME)){
-                Toast.makeText(getApplicationContext(), "APP活着的", Toast.LENGTH_SHORT)
-                        .show();
+//                Toast.makeText(getApplicationContext(), "APP活着的", Toast.LENGTH_SHORT)
+//                        .show();
             }else{
                 Intent intent = new Intent(getApplicationContext(), MainFrameActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-                Toast.makeText(getApplicationContext(), "APP被杀死，重启...", Toast.LENGTH_SHORT)
-                        .show();
+//                Toast.makeText(getApplicationContext(), "APP被杀死，重启...", Toast.LENGTH_SHORT)
+//                        .show();
             }
             // 通知系统任务执行结束
             jobFinished( (JobParameters) msg.obj, false );
