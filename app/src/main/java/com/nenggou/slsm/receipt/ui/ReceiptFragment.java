@@ -73,6 +73,7 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
     private String storeId;
 
     private String firstIn = "1";
+    private String firstUpdate="1";
 
     public ReceiptFragment() {
     }
@@ -106,7 +107,6 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
         refreshLayout.setOnRefreshListener(mOnRefreshListener);
         refreshLayout.setCanLoadMore(false);
         receiptPresenter.getAppstoreInfos("1");
-        receiptPresenter.detectionVersion(BuildConfig.VERSION_NAME, "android");
     }
 
 
@@ -153,7 +153,6 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
         if (!isFirstLoad && getUserVisibleHint() && TextUtils.equals("0", firstIn)) {
             if (receiptPresenter != null) {
                 receiptPresenter.getAppstoreInfos("1");
-                receiptPresenter.detectionVersion(BuildConfig.VERSION_NAME, "android");
             }
             firstIn = "1";
         }
@@ -179,6 +178,10 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
 
     @Override
     public void renderAppstoreInfos(List<AppstoreInfo> appstoreInfos) {
+        if(TextUtils.equals("1",firstUpdate)){
+            receiptPresenter.detectionVersion(BuildConfig.VERSION_NAME, "android");
+            firstUpdate="0";
+        }
         refreshLayout.stopRefresh();
         if (appstoreInfos != null&&appstoreInfos.size()>0) {
             cardPagerAdapter = new CardPagerAdapter(appstoreInfos);
