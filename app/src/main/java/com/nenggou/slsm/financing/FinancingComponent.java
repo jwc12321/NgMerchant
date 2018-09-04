@@ -6,6 +6,8 @@ package com.nenggou.slsm.financing;
 
 import com.nenggou.slsm.ActivityScope;
 import com.nenggou.slsm.ApplicationComponent;
+import com.nenggou.slsm.financing.ui.CashFinancingFragment;
+import com.nenggou.slsm.financing.ui.EnergyFinancingFragment;
 import com.nenggou.slsm.financing.ui.FinancingFragment;
 
 import dagger.Component;
@@ -14,4 +16,6 @@ import dagger.Component;
 @Component(dependencies = ApplicationComponent.class, modules = {FinancingModule.class})
 public interface FinancingComponent {
     void inject(FinancingFragment financingFragment);
+    void inject(EnergyFinancingFragment energyFinancingFragment);
+    void inject(CashFinancingFragment cashFinancingFragment);
 }

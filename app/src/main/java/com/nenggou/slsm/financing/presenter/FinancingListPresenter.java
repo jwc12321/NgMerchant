@@ -73,7 +73,7 @@ public class FinancingListPresenter implements FinancingContract.FinancingListPr
                     @Override
                     public void accept(FinancingInfo financingInfo) throws Exception {
                         financindListView.dismissLoading();
-                        financindListView.renderFinancingInfos(financingInfo);
+                        financindListView.render(financingInfo.getFinancingItemInfos());
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -96,7 +96,7 @@ public class FinancingListPresenter implements FinancingContract.FinancingListPr
                     @Override
                     public void accept(FinancingInfo financingInfo) throws Exception {
                         financindListView.dismissLoading();
-                        financindListView.renderMoreFinancingInfos(financingInfo);
+                        financindListView.renderMore(financingInfo.getFinancingItemInfos());
                     }
                 }, new Consumer<Throwable>() {
                     @Override

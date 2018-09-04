@@ -391,8 +391,9 @@
         app:layout_collapseMode="pin" />
 
     <Button
+        android:id="@+id/next"
         style="@style/bottom_button_style"
         android:layout_alignParentBottom="true"
-        android:enabled="false"
+        android:enabled="true"
         android:text="立即加入" />
 </RelativeLayout>

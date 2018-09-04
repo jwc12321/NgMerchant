@@ -23,6 +23,8 @@ import com.nenggou.slsm.financing.FinancingModule;
 import com.nenggou.slsm.financing.adapter.FinancingItemAdapter;
 import com.nenggou.slsm.financing.presenter.FinancingListPresenter;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -32,7 +34,7 @@ import butterknife.ButterKnife;
  * Created by JWC on 2018/7/24.
  */
 
-public class FinancingFragment extends BaseFragment implements FinancingContract.FinancindListView,FinancingItemAdapter.ItemClickListener{
+public class FinancingFragment extends BaseFragment implements FinancingContract.FinancindListView, FinancingItemAdapter.ItemClickListener {
 
 
     @BindView(R.id.title)
@@ -72,14 +74,14 @@ public class FinancingFragment extends BaseFragment implements FinancingContract
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setHeight(null,title,null);
+        setHeight(null, title, null);
         initView();
     }
 
     private void initView() {
         refreshLayout.setOnRefreshListener(mOnRefreshListener);
         refreshLayout.setCanLoadMore(false);
-        financingItemAdapter=new FinancingItemAdapter();
+        financingItemAdapter = new FinancingItemAdapter();
         financingItemAdapter.setItemClickListener(this);
         financingRv.setAdapter(financingItemAdapter);
     }
@@ -154,38 +156,34 @@ public class FinancingFragment extends BaseFragment implements FinancingContract
     }
 
     @Override
-    public void renderFinancingInfos(FinancingInfo financingInfo) {
+    public void render(List<FinancingItemInfo> financingItemInfos) {
         refreshLayout.stopRefresh();
-        if(financingInfo!=null){
-            if(financingInfo.getFinancingItemInfos()!=null&&financingInfo.getFinancingItemInfos().size()>0){
-                financingRv.setVisibility(View.VISIBLE);
-                emptyView.setVisibility(View.GONE);
-                refreshLayout.setCanLoadMore(true);
-            } else {
-                financingRv.setVisibility(View.GONE);
-                emptyView.setVisibility(View.VISIBLE);
-                refreshLayout.setCanLoadMore(false);
-            }
-            financingItemAdapter.setData(financingInfo.getFinancingItemInfos());
+        if (financingItemInfos != null && financingItemInfos.size() > 0) {
+            financingRv.setVisibility(View.VISIBLE);
+            emptyView.setVisibility(View.GONE);
+            refreshLayout.setCanLoadMore(true);
+        } else {
+            financingRv.setVisibility(View.GONE);
+            emptyView.setVisibility(View.VISIBLE);
+            refreshLayout.setCanLoadMore(false);
+            financingItemAdapter.setData(financingItemInfos);
         }
     }
 
     @Override
-    public void renderMoreFinancingInfos(FinancingInfo financingInfo) {
+    public void renderMore(List<FinancingItemInfo> financingItemInfos) {
         refreshLayout.stopRefresh();
-        if(financingInfo!=null){
-            if(financingInfo.getFinancingItemInfos()!=null&&financingInfo.getFinancingItemInfos().size()>0){
-                financingItemAdapter.addMore(financingInfo.getFinancingItemInfos());
-                refreshLayout.setCanLoadMore(true);
-            } else {
-                refreshLayout.setCanLoadMore(false);
-            }
+        if (financingItemInfos != null && financingItemInfos.size() > 0) {
+            financingItemAdapter.addMore(financingItemInfos);
+            refreshLayout.setCanLoadMore(true);
+        } else {
+            refreshLayout.setCanLoadMore(false);
         }
     }
 
 
     @Override
     public void goNovice(FinancingItemInfo financingItemInfo) {
-        NoviceActivity.start(getActivity(),financingItemInfo);
+        NoviceActivity.start(getActivity(), financingItemInfo);
     }
 }

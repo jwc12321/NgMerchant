@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backGround1">
+
+    <RelativeLayout
+        android:id="@+id/title_rel"
+        style="@style/title_rl_style">
+
+        <ImageView
+            android:id="@+id/back"
+            style="@style/title_left_back_style" />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/title_text_style"
+            android:text="@string/pay_order" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/input_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_rel"
+        android:layout_marginTop="@dimen/common_fifteen_margin"
+        android:background="@color/appText1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/pay_type"
+            style="@style/modify_password_style"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/common_twenty_three_margin"
+            tools:text="支付能量" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_twenty_eight_margin">
+
+            <EditText
+                android:id="@+id/amount_et"
+                style="@style/number_et_style"
+                android:layout_centerHorizontal="true"
+                android:inputType="number|numberDecimal"
+                android:minWidth="150dp" />
+
+            <ImageView
+                android:id="@+id/reduce_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/common_fifteen_margin"
+                android:layout_toLeftOf="@id/amount_et"
+                android:src="@mipmap/reduce_icon" />
+
+            <ImageView
+                android:id="@+id/increase_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_fifteen_margin"
+                android:layout_toRightOf="@id/amount_et"
+                android:src="@mipmap/increase_icon" />
+
+            <View
+                android:layout_width="150dp"
+                android:layout_height="1dp"
+                android:layout_alignBottom="@id/increase_number"
+                android:layout_centerHorizontal="true"
+                android:background="@color/backGround2" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/initial_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/common_twenty_seven_margin"
+            android:textColor="@color/appText6"
+            android:textSize="12sp"
+            tools:text="100个能量起借" />
+
+        <TextView
+            android:id="@+id/income_statement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/common_forty_margin"
+            android:layout_marginTop="@dimen/common_twenty_seven_margin"
+            android:textColor="@color/appText6"
+            android:textSize="12sp"
+            tools:text="收益说明" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/input_ll"
+        android:layout_marginTop="@dimen/common_fifteen_margin"
+        android:background="@color/appText1"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/available_type"
+                style="@style/modify_password_style"
+                android:layout_marginBottom="@dimen/common_seventeen_margin"
+                android:layout_marginLeft="@dimen/common_twelve_margin"
+                android:layout_marginTop="@dimen/common_seventeen_margin"
+                tools:text="可用能量" />
+
+            <TextView
+                android:id="@+id/available_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/common_twelve_margin"
+                android:textColor="@color/appText5"
+                android:textSize="12sp"
+                tools:text="可用能量" />
+
+            <TextView
+                android:id="@+id/available_total"
+                style="@style/modify_password_style"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/common_five_margin"
+                android:layout_toLeftOf="@id/available_item"
+                tools:text="2000" />
+        </RelativeLayout>
+
+        <View style="@style/st_line" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/common_twenty_margin"
+            android:layout_marginLeft="@dimen/common_twelve_margin"
+            android:layout_marginRight="@dimen/common_twelve_margin"
+            android:layout_marginTop="@dimen/common_twenty_margin"
+            android:textColor="@color/appText3"
+            android:textSize="10sp"
+            tools:text="hahaha " />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/confirm"
+        style="@style/bottom_buttton_style"
+        android:layout_marginTop="@dimen/common_thirty_nine_margin"
+        android:text="确认支付" />
+</RelativeLayout>

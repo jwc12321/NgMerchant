@@ -18,6 +18,7 @@ import com.nenggou.slsm.common.unit.JobSchedulerManager;
 import com.nenggou.slsm.common.unit.ScreenManager;
 import com.nenggou.slsm.common.viewpage.ViewPagerSlide;
 import com.nenggou.slsm.financing.ui.FinancingFragment;
+import com.nenggou.slsm.financing.ui.FinancingSFragment;
 import com.nenggou.slsm.mainframe.adapter.MainPagerAdapter;
 import com.nenggou.slsm.mine.ui.PersonalCenterFragment;
 import com.nenggou.slsm.ranking.ui.RankingFragment;
@@ -133,7 +134,7 @@ public class MainFrameActivity extends BaseActivity {
         fragments[0] = ReceiptFragment.newInstance();
         fragments[1] = BillFragment.newInstance();
         fragments[2] = RankingFragment.newInstance();
-        fragments[3] = FinancingFragment.newInstance();
+        fragments[3] = FinancingSFragment.newInstance();
         fragments[4] = PersonalCenterFragment.newInstance();
         relativeLayouts = new RelativeLayout[5];
         relativeLayouts[0] = receiptRl;

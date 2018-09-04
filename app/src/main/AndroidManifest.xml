@@ -239,6 +239,16 @@
             android:enabled="true"
             android:exported="true"
             android:process=":music_service"/>
+        <activity android:name=".financing.ui.FinancingOrderActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".financing.ui.FinancingWalletActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".financing.ui.TurnOutBalanceActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".financing.ui.PayFinancingOrderActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".financing.ui.FinancingOrderDetailActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

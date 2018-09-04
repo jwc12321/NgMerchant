@@ -13,6 +13,7 @@ import android.webkit.SslErrorHandler;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -117,6 +118,8 @@ public class NoviceActivity extends BaseActivity {
     GradationScrollView scrollview;
     @BindView(R.id.webView)
     NoScrollWebView webView;
+    @BindView(R.id.next)
+    Button next;
     private FinancingItemInfo financingItemInfo;
     private BigDecimal deviationDecimal;//偏差率
     private BigDecimal interestRateDecimal;//年利率
@@ -252,7 +255,7 @@ public class NoviceActivity extends BaseActivity {
         return null;
     }
 
-    @OnClick({R.id.back,R.id.detail_rl,R.id.problem_rl})
+    @OnClick({R.id.back, R.id.detail_rl, R.id.problem_rl,R.id.next})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
@@ -264,16 +267,19 @@ public class NoviceActivity extends BaseActivity {
             case R.id.problem_rl:
                 initTextColor("2");
                 break;
+            case R.id.next:
+                PayFinancingOrderActivity.start(this);
+                break;
             default:
         }
     }
 
-    private void initTextColor(String type){
-        detailTv.setSelected(TextUtils.equals("1",type)?true:false);
-        problemTv.setSelected(TextUtils.equals("2",type)?true:false);
-        detailView.setVisibility(TextUtils.equals("1",type)?View.VISIBLE:View.GONE);
-        problemView.setVisibility(TextUtils.equals("2",type)?View.VISIBLE:View.GONE);
-        detailLl.setVisibility(TextUtils.equals("1",type)?View.VISIBLE:View.GONE);
-        webView.setVisibility(TextUtils.equals("2",type)?View.VISIBLE:View.GONE);
+    private void initTextColor(String type) {
+        detailTv.setSelected(TextUtils.equals("1", type) ? true : false);
+        problemTv.setSelected(TextUtils.equals("2", type) ? true : false);
+        detailView.setVisibility(TextUtils.equals("1", type) ? View.VISIBLE : View.GONE);
+        problemView.setVisibility(TextUtils.equals("2", type) ? View.VISIBLE : View.GONE);
+        detailLl.setVisibility(TextUtils.equals("1", type) ? View.VISIBLE : View.GONE);
+        webView.setVisibility(TextUtils.equals("2", type) ? View.VISIBLE : View.GONE);
     }
 }

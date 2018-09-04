@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/title_rel"
+        style="@style/title_rl_style">
+
+        <ImageView
+            android:id="@+id/back"
+            style="@style/title_left_back_style" />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/title_text_style"
+            android:text="@string/financing_wallet" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/common_thirteen_margin"
+        android:layout_marginRight="@dimen/common_thirteen_margin"
+        android:layout_marginTop="@dimen/common_twenty_margin"
+        android:background="@drawable/white_bg"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/common_thirteen_margin"
+            android:layout_marginLeft="@dimen/common_twenty_margin"
+            android:layout_marginTop="@dimen/common_thirteen_margin"
+            android:text="@string/energy_wallet"
+            android:textColor="@color/appText3"
+            android:textSize="15sp" />
+
+        <View
+            style="@style/st_line"
+            android:layout_marginLeft="@dimen/common_twenty_margin" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_thirteen_margin">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_twenty_margin"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/accumulated_loan_repayment"
+                    android:textColor="@color/appText6"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/energy_alp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/common_four_margin"
+                    android:textColor="@color/appText5"
+                    android:textSize="15sp"
+                    tools:text="10000个能量" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/energy_eyes"
+                android:layout_width="@dimen/common_forty_margin"
+                android:layout_height="@dimen/common_forty_margin"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/common_eleven_margin"
+                android:padding="@dimen/common_nine_margin"
+                android:src="@drawable/eyes_select" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/common_twenty_two_margin"
+            android:layout_marginTop="@dimen/common_thirty_margin">
+
+            <LinearLayout
+                android:id="@+id/energy_total_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_twenty_margin"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/total_assets"
+                    android:textColor="@color/appText6"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/energy_total_assets"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/common_four_margin"
+                    android:textColor="@color/appText5"
+                    android:textSize="15sp"
+                    tools:text="10000个能量" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/energy_turn_out"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/common_thirty_margin"
+                android:layout_alignBottom="@id/energy_total_ll"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/common_thirteen_margin"
+                android:background="@drawable/turn_out_bg"
+                android:text="@string/turn_out"
+                android:textColor="@color/appText1"
+                android:textSize="15sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/common_thirteen_margin"
+        android:layout_marginRight="@dimen/common_thirteen_margin"
+        android:layout_marginTop="@dimen/common_twenty_margin"
+        android:background="@drawable/white_bg"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/common_thirteen_margin"
+            android:layout_marginLeft="@dimen/common_twenty_margin"
+            android:layout_marginTop="@dimen/common_thirteen_margin"
+            android:text="@string/cash_wallet"
+            android:textColor="@color/appText3"
+            android:textSize="15sp" />
+
+        <View
+            style="@style/st_line"
+            android:layout_marginLeft="@dimen/common_twenty_margin" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_thirteen_margin">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_twenty_margin"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/accumulated_loan_repayment"
+                    android:textColor="@color/appText6"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/cash_alp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/common_four_margin"
+                    android:textColor="@color/appText5"
+                    android:textSize="15sp"
+                    tools:text="10000元" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/cash_eyes"
+                android:layout_width="@dimen/common_forty_margin"
+                android:layout_height="@dimen/common_forty_margin"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/common_eleven_margin"
+                android:padding="@dimen/common_nine_margin"
+                android:src="@drawable/eyes_select" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/common_twenty_two_margin"
+            android:layout_marginTop="@dimen/common_thirty_margin">
+
+            <LinearLayout
+                android:id="@+id/cash_total_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_twenty_margin"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/total_assets"
+                    android:textColor="@color/appText6"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/cash_total_assets"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/common_four_margin"
+                    android:textColor="@color/appText5"
+                    android:textSize="15sp"
+                    tools:text="10000元" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/cash_turn_out"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/common_thirty_margin"
+                android:layout_alignBottom="@id/cash_total_ll"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/common_thirteen_margin"
+                android:background="@drawable/turn_out_bg"
+                android:text="@string/turn_out"
+                android:textColor="@color/appText1"
+                android:textSize="15sp" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

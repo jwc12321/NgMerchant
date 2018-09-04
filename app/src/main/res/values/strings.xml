@@ -132,7 +132,7 @@
     <string name="input_phone_number">请输入手机号</string>
     <string name="button_send_auth_code">发送验证码</string>
     <string name="input_sms_verificationcode">请输入手机验证码</string>
-    
+
     <!--排行榜-->
     <string name="year_ranking">年排行</string>
     <string name="season_ranking">季排行</string>
@@ -158,7 +158,19 @@
     <string name="closed_period">封闭期</string>
     <string name="interest_type">计息方式</string>
     <string name="poundage">手续费</string>
-    
+    <string name="energy_financing">能量理财</string>
+    <string name="cash_financing">现金理财</string>
+    <string name="finaning_order">我的订单</string>
+    <string name="go_investment">去投资</string>
+    <string name="financing_wallet">理财钱包</string>
+    <string name="energy_wallet">能量钱包</string>
+    <string name="cash_wallet">现金钱包</string>
+    <string name="accumulated_loan_repayment">累计出借回报</string>
+    <string name="turn_out">转出</string>
+    <string name="total_assets">资产总额</string>
+    <string name="turn_out_balance">转出到余额</string>
+    <string name="pay_order">支付订单</string>
+    <string name="order_detail">订单详情</string>
     <!--推荐人-->
     <string name="rd_list">推荐人列表</string>
 

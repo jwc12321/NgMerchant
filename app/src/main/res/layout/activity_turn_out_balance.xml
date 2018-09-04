@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backGround1"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/title_rel"
+        style="@style/title_rl_style">
+
+        <ImageView
+            android:id="@+id/back"
+            style="@style/title_left_back_style" />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/title_text_style"
+            android:text="@string/turn_out_balance" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_fifty_margin"
+        android:layout_marginTop="@dimen/common_twenty_margin"
+        android:background="@color/appText1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/common_twelve_margin"
+            android:text="转出到"
+            android:textColor="@color/appText6"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/common_twelve_margin"
+            android:text="我的余额"
+            android:textColor="@color/appText5"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_twenty_margin"
+        android:background="@color/appText1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_thirty_margin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_twelve_margin"
+                android:text="¥"
+                android:textColor="@color/appText5"
+                android:textSize="40sp" />
+
+            <EditText
+                android:id="@+id/amount_et"
+                style="@style/login_input_phone_style"
+                android:layout_marginLeft="@dimen/common_eleven_margin"
+                android:inputType="number|numberDecimal"
+                android:textSize="15sp"
+                tools:hint="请输入转出金额,单笔最低100个能量" />
+        </LinearLayout>
+        <View
+            style="@style/st_line"
+            android:layout_marginTop="@dimen/common_twenty_margin"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_ten_margin"
+            android:layout_marginBottom="@dimen/common_ten_margin">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@color/appText5"
+                android:id="@+id/have_number"
+                tools:text="可用100个能量"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/common_twelve_margin"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@color/appText3"
+                android:id="@+id/all_turn_out"
+                android:text="全部转出"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/common_twelve_margin"/>
+        </RelativeLayout>
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:textColor="@color/appText6"
+        android:text="请输入支付密码"
+        android:layout_marginLeft="@dimen/common_twelve_margin"
+        android:layout_marginTop="@dimen/common_thirty_margin"/>
+    <com.nenggou.slsm.common.widget.paypw.PayPwdEditText
+        android:id="@+id/pwd_et"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_fifty_margin"
+        android:layout_marginLeft="@dimen/common_twelve_margin"
+        android:layout_marginRight="@dimen/common_twelve_margin"
+        android:layout_marginTop="@dimen/common_ten_margin"/>
+    <Button
+        android:id="@+id/confirm"
+        style="@style/next_buttton_style"
+        android:text="确认转出"
+        android:enabled="false"
+        android:layout_marginTop="@dimen/common_thirty_nine_margin"/>
+</LinearLayout>

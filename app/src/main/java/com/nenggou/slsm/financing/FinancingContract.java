@@ -3,6 +3,9 @@ package com.nenggou.slsm.financing;
 import com.nenggou.slsm.BasePresenter;
 import com.nenggou.slsm.BaseView;
 import com.nenggou.slsm.data.entity.FinancingInfo;
+import com.nenggou.slsm.data.entity.FinancingItemInfo;
+
+import java.util.List;
 
 /**
  * Created by JWC on 2018/7/24.
@@ -15,8 +18,8 @@ public interface FinancingContract {
     }
 
     interface FinancindListView extends BaseView<FinancingListPresenter>{
-        void renderFinancingInfos(FinancingInfo financingInfo);
-        void renderMoreFinancingInfos(FinancingInfo financingInfo);
+        void render(List<FinancingItemInfo> financingItemInfos);
+        void renderMore(List<FinancingItemInfo> financingItemInfos);
     }
 
 }

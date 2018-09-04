@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/order_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_twenty_margin"
+        android:background="@color/appText1"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_seventeen_margin">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/common_twenty_margin"
+                android:textColor="@color/appText5"
+                android:textSize="16sp"
+                tools:text="新手" />
+
+            <Button
+                android:id="@+id/order_state"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/common_twenty_four_margin"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/financint_order_state_bg"
+                android:paddingLeft="@dimen/common_five_margin"
+                android:paddingRight="@dimen/common_five_margin"
+                android:textColor="@color/appText1"
+                android:textSize="12sp"
+                tools:text="回款中" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/common_twenty_margin"
+            android:layout_marginTop="@dimen/common_thirteen_margin"
+            android:textColor="@color/appText6"
+            android:textSize="13sp"
+            tools:text="2018-09-09" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_thirty_two_margin"
+            android:layout_marginBottom="@dimen/common_nineteen_margin">
+
+            <LinearLayout style="@style/financing_order_ll_style">
+
+                <TextView
+                    android:id="@+id/lend_number"
+                    style="@style/finaning_order_up_text_style"
+                    tools:text="1000个能量" />
+
+                <TextView
+                    android:id="@+id/lend_type"
+                    style="@style/finaning_order_down_text_style"
+                    android:layout_marginTop="@dimen/common_five_margin"
+                    tools:text="出借现金" />
+            </LinearLayout>
+            <LinearLayout style="@style/financing_order_ll_style">
+
+                <TextView
+                    android:id="@+id/profit_number"
+                    style="@style/finaning_order_up_text_style"
+                    tools:text="1000个能量" />
+
+                <TextView
+                    style="@style/finaning_order_down_text_style"
+                    android:layout_marginTop="@dimen/common_five_margin"
+                    android:text="预期收益" />
+            </LinearLayout>
+            <LinearLayout style="@style/financing_order_ll_style">
+
+                <TextView
+                    android:id="@+id/due_date"
+                    style="@style/finaning_order_up_text_style"
+                    tools:text="2018-08-07" />
+
+                <TextView
+                    style="@style/finaning_order_down_text_style"
+                    android:layout_marginTop="@dimen/common_five_margin"
+                    android:text="到期日" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

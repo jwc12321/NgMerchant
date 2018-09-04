@@ -76,6 +76,13 @@
         <item name="android:padding">@dimen/common_eleven_margin</item>
     </style>
 
+    <style name="title_left_image_style">
+        <item name="android:layout_width">@dimen/common_forty_four_margin</item>
+        <item name="android:layout_height">@dimen/common_forty_four_margin</item>
+        <item name="android:background">@null</item>
+        <item name="android:padding">@dimen/common_eleven_margin</item>
+    </style>
+
     <style name="title_text_style">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">@dimen/common_forty_four_margin</item>
@@ -112,18 +119,21 @@
         <item name="riv_border_color">@color/appText1</item>
         <item name="riv_corner_radius">1dp</item>
     </style>
+
     <style name="orangePhotoStyle">
         <item name="android:scaleType">fitXY</item>
         <item name="riv_border_width">3dp</item>
         <item name="riv_border_color">@color/appText3</item>
         <item name="riv_corner_radius">1dp</item>
     </style>
+
     <style name="noPhotoStyle">
         <item name="android:scaleType">centerCrop</item>
         <item name="riv_border_width">0dp</item>
         <item name="riv_border_color">@color/appText1</item>
         <item name="riv_corner_radius">0dp</item>
     </style>
+
     <style name="head_PhotoStyle">
         <item name="android:scaleType">fitXY</item>
         <item name="riv_border_width">0dp</item>
@@ -205,6 +215,18 @@
         <item name="android:textColorHint">@color/appText6</item>
         <item name="android:textSize">17sp</item>
         <item name="android:drawablePadding">@dimen/common_six_margin</item>
+    </style>
+
+    <style name="number_et_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:background">@null</item>
+        <item name="android:textColor">@color/appText3</item>
+        <item name="android:textColorHint">@color/appText6</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:drawablePadding">@dimen/common_six_margin</item>
+        <item name="android:gravity">center_horizontal</item>
     </style>
 
     <!--登录页忘记密码-->
@@ -405,6 +427,7 @@
         <item name="android:textColorHint">@color/appText6</item>
         <item name="android:textSize">13sp</item>
     </style>
+
     <style name="progress_first_text_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -429,6 +452,7 @@
         <item name="android:orientation">horizontal</item>
         <item name="android:gravity">center_vertical</item>
     </style>
+
     <style name="project_detail_text_left_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -437,6 +461,7 @@
         <item name="android:textColor">@color/appText6</item>
         <item name="android:layout_marginLeft">@dimen/common_twelve_margin</item>
     </style>
+
     <style name="project_detail_text_right_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -444,12 +469,14 @@
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/appText5</item>
     </style>
+
     <style name="tablayout_rl">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/common_forty_four_margin</item>
         <item name="android:background">@color/appText1</item>
         <item name="android:layout_weight">1</item>
     </style>
+
     <style name="tablayout_text">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -457,6 +484,7 @@
         <item name="android:textColor">@drawable/bottom_text_select</item>
         <item name="android:layout_centerInParent">true</item>
     </style>
+
     <style name="tablayout_view">
         <item name="android:layout_width">@dimen/common_twenty_seven_margin</item>
         <item name="android:layout_height">@dimen/common_two_margin</item>
@@ -494,5 +522,36 @@
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowNoDisplay">false</item>
+    </style>
+
+    <style name="financing_order_ll_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="finaning_order_up_text_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/appText3</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="finaning_order_down_text_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/appText6</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="bottom_buttton_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/common_forty_nine_margin</item>
+        <item name="android:background">@drawable/next_button_background</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@drawable/next_button_text_select</item>
+        <item name="android:layout_alignParentBottom">true</item>
     </style>
 </resources>
