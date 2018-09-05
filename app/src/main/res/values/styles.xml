@@ -554,4 +554,49 @@
         <item name="android:textColor">@drawable/next_button_text_select</item>
         <item name="android:layout_alignParentBottom">true</item>
     </style>
+
+    <style name="fc_order_speed_iv_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:src">@drawable/order_hook_select</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+    <style name="fc_order_speed_view_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+       <item name="android:background">@drawable/order_speed_bg</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+    <style name="fc_order_speed_tv_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@drawable/order_speed_text_select</item>
+        <item name="android:layout_marginTop">@dimen/common_ten_margin</item>
+    </style>
+    <style name="fc_order_left_text_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/appText6</item>
+        <item name="android:layout_marginLeft">@dimen/common_twelve_margin</item>
+        <item name="android:layout_marginTop">@dimen/common_eight_margin</item>
+        <item name="android:layout_marginBottom">@dimen/common_eight_margin</item>
+    </style>
+    <style name="fc_order_right_text_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/appText5</item>
+        <item name="android:layout_marginRight">@dimen/common_twelve_margin</item>
+        <item name="android:layout_marginTop">@dimen/common_eight_margin</item>
+        <item name="android:layout_marginBottom">@dimen/common_eight_margin</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+    <style name="fifteen_appfive_text_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/appText5</item>
+        <item name="android:textSize">15sp</item>
+    </style>
 </resources>

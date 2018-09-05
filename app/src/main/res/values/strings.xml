@@ -171,6 +171,10 @@
     <string name="turn_out_balance">转出到余额</string>
     <string name="pay_order">支付订单</string>
     <string name="order_detail">订单详情</string>
+    <string name="pay_success">支付成功</string>
+    <string name="in_the_interest_rate">计息中</string>
+    <string name="pay_type">支付方式</string>
+    <string name="p_i_total">本息合计</string>
     <!--推荐人-->
     <string name="rd_list">推荐人列表</string>
 

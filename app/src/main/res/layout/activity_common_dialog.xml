@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_common_dialog"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backGround3">
+
+    <LinearLayout
+        android:layout_width="@dimen/common_two_hundred_and_seventy_five_margin"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/white_bg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/fifteen_appfive_text_style"
+            android:layout_margin="@dimen/common_fifteen_margin"
+            tools:text="提示" />
+
+        <View style="@style/st_line" />
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/common_thirty_five_margin"
+            android:layout_marginLeft="@dimen/common_twenty_margin"
+            android:layout_marginRight="@dimen/common_twenty_margin"
+            android:layout_marginTop="@dimen/common_thirty_five_margin"
+            android:textColor="@color/appText5"
+            android:textSize="14sp"
+            tools:text="能量不足" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/common_twenty_three_margin"
+            android:layout_marginTop="@dimen/common_eight_margin">
+
+            <Button
+                android:id="@+id/negative"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/common_thirty_six_margin"
+                android:layout_marginLeft="@dimen/common_twenty_margin"
+                android:background="@drawable/common_dialog_no_bg"
+                android:text="否"
+                android:textColor="@color/appText3" />
+
+            <Button
+                android:id="@+id/confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/common_thirty_six_margin"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/common_twenty_margin"
+                android:background="@drawable/common_dialog_ok_bg"
+                android:text="是"
+                android:textColor="@color/appText1" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

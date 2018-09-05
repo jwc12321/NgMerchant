@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backGround1"
-    android:orientation="vertical">
+    android:background="@color/backGround1">
 
     <RelativeLayout
         android:id="@+id/title_rel"
@@ -20,70 +19,274 @@
             android:text="@string/order_detail" />
     </RelativeLayout>
 
-    <LinearLayout
+    <com.nenggou.slsm.common.widget.ReboundScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/appText1"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/order_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/common_twenty_two_margin"
-            android:textColor="@color/appText6"
-            android:textSize="15sp"
-            tools:text="新手专享" />
-
-        <TextView
-            android:id="@+id/investment_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/common_eighteen_margin"
-            android:textColor="@color/appText3"
-            android:textSize="18sp"
-            tools:text="新手专享" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/title_rel"
+        android:fadingEdge="none"
+        android:overScrollMode="never"
+        android:layout_marginBottom="@dimen/common_fifty_margin">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/common_thirty_margin"
-            android:layout_marginBottom="@dimen/common_seventeen_margin">
+            android:orientation="vertical">
 
-            <LinearLayout style="@style/financing_order_ll_style">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/appText1"
+                android:orientation="vertical">
+
                 <TextView
-                    style="@style/finaning_order_down_text_style"
-                    android:text="预计收益" />
+                    android:id="@+id/order_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/common_twenty_two_margin"
+                    android:textColor="@color/appText6"
+                    android:textSize="15sp"
+                    tools:text="新手专享" />
+
                 <TextView
-                    android:id="@+id/expected_earnings"
-                    style="@style/finaning_order_up_text_style"
-                    tools:text="95"
-                    android:layout_marginTop="@dimen/common_five_margin"/>
+                    android:id="@+id/investment_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/common_eighteen_margin"
+                    android:textColor="@color/appText3"
+                    android:textSize="18sp"
+                    tools:text="新手专享" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common_seventeen_margin"
+                    android:layout_marginTop="@dimen/common_thirty_margin"
+                    android:orientation="horizontal">
+
+                    <LinearLayout style="@style/financing_order_ll_style">
+
+                        <TextView
+                            style="@style/finaning_order_down_text_style"
+                            android:text="预计收益" />
+
+                        <TextView
+                            android:id="@+id/expected_earnings"
+                            style="@style/finaning_order_up_text_style"
+                            android:layout_marginTop="@dimen/common_five_margin"
+                            tools:text="95" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/financing_order_ll_style">
+
+                        <TextView
+                            style="@style/finaning_order_down_text_style"
+                            android:text="已得收益" />
+
+                        <TextView
+                            android:id="@+id/already_earnings"
+                            style="@style/finaning_order_up_text_style"
+                            android:layout_marginTop="@dimen/common_five_margin"
+                            tools:text="95" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/financing_order_ll_style">
+
+                        <TextView
+                            style="@style/finaning_order_down_text_style"
+                            android:text="@string/closed_period" />
+
+                        <TextView
+                            android:id="@+id/closed_period"
+                            style="@style/finaning_order_up_text_style"
+                            android:layout_marginTop="@dimen/common_five_margin"
+                            tools:text="95" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
-            <LinearLayout style="@style/financing_order_ll_style">
-                <TextView
-                    style="@style/finaning_order_down_text_style"
-                    android:text="已得收益" />
-                <TextView
-                    android:id="@+id/already_earnings"
-                    style="@style/finaning_order_up_text_style"
-                    tools:text="95"
-                    android:layout_marginTop="@dimen/common_five_margin"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_ten_margin"
+                android:background="@color/appText1"
+                android:paddingBottom="@dimen/common_twenty_four_margin"
+                android:paddingTop="@dimen/common_twenty_four_margin">
+
+                <LinearLayout style="@style/financing_order_ll_style">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/first_hook"
+                            style="@style/fc_order_speed_iv_style" />
+
+                        <View
+                            android:id="@+id/first_speed"
+                            style="@style/fc_order_speed_view_style"
+                            android:layout_marginLeft="@dimen/common_ten_margin"
+                            android:layout_toRightOf="@id/first_hook" />
+                    </RelativeLayout>
+
+                    <TextView
+                        style="@style/fc_order_speed_tv_style"
+                        android:text="@string/pay_success" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/financing_order_ll_style">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/second_hook"
+                            style="@style/fc_order_speed_iv_style" />
+
+                        <View
+                            android:id="@+id/second_speed"
+                            style="@style/fc_order_speed_view_style"
+                            android:layout_marginRight="@dimen/common_ten_margin"
+                            android:layout_toLeftOf="@id/second_hook" />
+
+                        <View
+                            android:id="@+id/third_speed"
+                            style="@style/fc_order_speed_view_style"
+                            android:layout_marginLeft="@dimen/common_ten_margin"
+                            android:layout_toRightOf="@id/second_hook" />
+                    </RelativeLayout>
+
+                    <TextView
+                        style="@style/fc_order_speed_tv_style"
+                        android:text="@string/in_the_interest_rate" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/financing_order_ll_style">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/third_hook"
+                            style="@style/fc_order_speed_iv_style" />
+
+                        <View
+                            android:id="@+id/fourth_speed"
+                            style="@style/fc_order_speed_view_style"
+                            android:layout_marginRight="@dimen/common_ten_margin"
+                            android:layout_toLeftOf="@id/third_hook" />
+
+                        <View
+                            android:id="@+id/fifty_speed"
+                            style="@style/fc_order_speed_view_style"
+                            android:layout_marginLeft="@dimen/common_ten_margin"
+                            android:layout_toRightOf="@id/third_hook" />
+                    </RelativeLayout>
+
+                    <TextView
+                        style="@style/fc_order_speed_tv_style"
+                        android:text="@string/end_of_closed_period" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/financing_order_ll_style">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/fourth_hook"
+                            style="@style/fc_order_speed_iv_style" />
+
+                        <View
+                            android:id="@+id/sixth_speed"
+                            style="@style/fc_order_speed_view_style"
+                            android:layout_marginRight="@dimen/common_ten_margin"
+                            android:layout_toLeftOf="@id/fourth_hook" />
+                    </RelativeLayout>
+
+                    <TextView
+                        style="@style/fc_order_speed_tv_style"
+                        android:text="@string/return_to_balance" />
+                </LinearLayout>
             </LinearLayout>
-            <LinearLayout style="@style/financing_order_ll_style">
-                <TextView
-                    style="@style/finaning_order_down_text_style"
-                    android:text="@string/closed_period" />
-                <TextView
-                    android:id="@+id/closed_period"
-                    style="@style/finaning_order_up_text_style"
-                    tools:text="95"
-                    android:layout_marginTop="@dimen/common_five_margin"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_ten_margin"
+                android:background="@color/appText1"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/fc_order_left_text_style"
+                        android:text="@string/history_rate" />
+
+                    <TextView
+                        android:id="@+id/history_rate"
+                        style="@style/fc_order_right_text_style"
+                        android:text="@string/history_rate"
+                        tools:text="7+2.5" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/fc_order_left_text_style"
+                        android:text="@string/closed_period" />
+
+                    <TextView
+                        android:id="@+id/closed_period_number"
+                        style="@style/fc_order_right_text_style"
+                        android:text="@string/history_rate"
+                        tools:text="3个月" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/fc_order_left_text_style"
+                        android:text="@string/p_i_total" />
+
+                    <TextView
+                        android:id="@+id/p_i_total"
+                        style="@style/fc_order_right_text_style"
+                        android:text="@string/history_rate"
+                        tools:text="1098能量" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/fc_order_left_text_style"
+                        android:text="@string/poundage" />
+
+                    <TextView
+                        android:id="@+id/poundage"
+                        style="@style/fc_order_right_text_style"
+                        android:text="@string/history_rate"
+                        tools:text="1098能量" />
+                </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </com.nenggou.slsm.common.widget.ReboundScrollView>
 
-</LinearLayout>
+    <Button
+        android:id="@+id/confirm"
+        style="@style/bottom_buttton_style"
+        android:text="再付一笔" />
+</RelativeLayout>

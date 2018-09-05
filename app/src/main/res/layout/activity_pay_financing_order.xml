@@ -150,6 +150,5 @@
     <Button
         android:id="@+id/confirm"
         style="@style/bottom_buttton_style"
-        android:layout_marginTop="@dimen/common_thirty_nine_margin"
         android:text="确认支付" />
 </RelativeLayout>

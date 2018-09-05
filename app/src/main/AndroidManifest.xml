@@ -249,6 +249,9 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".financing.ui.FinancingOrderDetailActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".mainframe.ui.CommonDialogActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentFullScreenTheme"/>
     </application>
 
 </manifest>

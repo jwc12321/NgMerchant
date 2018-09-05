@@ -85,4 +85,8 @@ public class StaticData {
     public static final String PACKAGE_NAME = "com.nenggou.slsm";
     //哪里启动
     public static final String WHAT_START="whatStart";
+    //提示框的title
+    public static final String TITLE_DATA="titleData";
+    //提示框内容
+    public static final String CONTENT_DATA="contentData";
 }
