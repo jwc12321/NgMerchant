@@ -95,7 +95,7 @@ public class FinancingFragment extends BaseFragment implements FinancingContract
             if (getUserVisibleHint()) {
                 isFirstLoad = false;
                 if (financingListPresenter != null) {
-                    financingListPresenter.getFinancingInfos("1");
+                    financingListPresenter.getFinancingInfos("1","-1");
                 }
             }
         }
@@ -106,7 +106,7 @@ public class FinancingFragment extends BaseFragment implements FinancingContract
         super.onResume();
         if (!isFirstLoad && getUserVisibleHint() && TextUtils.equals("0", firstIn)) {
             if (financingListPresenter != null) {
-                financingListPresenter.getFinancingInfos("1");
+                financingListPresenter.getFinancingInfos("1","-1");
             }
             firstIn = "1";
         }
@@ -123,12 +123,12 @@ public class FinancingFragment extends BaseFragment implements FinancingContract
     HeaderViewLayout.OnRefreshListener mOnRefreshListener = new HeaderViewLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            financingListPresenter.getFinancingInfos("0");
+            financingListPresenter.getFinancingInfos("0","-1");
         }
 
         @Override
         public void onLoadMore() {
-            financingListPresenter.getMoreFinancinInfos();
+            financingListPresenter.getMoreFinancinInfos("-1");
         }
 
         @Override

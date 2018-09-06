@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_turn_out_screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backGround3">
+
+    <LinearLayout
+        android:layout_width="@dimen/common_one_hundred_and_twenty_five_margin"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:background="@color/appText1"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_thirty_four_margin"
+            android:text="@string/screen"
+            android:textColor="@color/appText5"
+            android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/all_bt"
+            style="@style/turn_out_screen_bg_style"
+            android:text="@string/all"
+            android:layout_marginTop="@dimen/common_fifty_two_margin"/>
+
+        <Button
+            android:id="@+id/cash_bt"
+            style="@style/turn_out_screen_bg_style"
+            android:text="@string/cash"
+            android:layout_marginTop="@dimen/common_twenty_margin"/>
+
+        <Button
+            android:id="@+id/energy_bt"
+            style="@style/turn_out_screen_bg_style"
+            android:text="@string/energy"
+            android:layout_marginTop="@dimen/common_twenty_margin"/>
+    </LinearLayout>
+</RelativeLayout>

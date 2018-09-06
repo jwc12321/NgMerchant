@@ -252,6 +252,11 @@
         <activity android:name=".mainframe.ui.CommonDialogActivity"
             android:screenOrientation="portrait"
             android:theme="@style/TranslucentFullScreenTheme"/>
+        <activity android:name=".financing.ui.TurnOutRecordActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".financing.ui.TurnOutScreenActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentFullScreenTheme"/>
     </application>
 
 </manifest>

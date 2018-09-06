@@ -90,6 +90,7 @@
     <string name="reach_time">提现到账时间</string>
     <string name="putforward_bank">提现银行</string>
     <string name="putforward_orderno">提现单号</string>
+    <string name="all">全部</string>
 
     <!--现金-->
     <string name="cash_detail">明细</string>
@@ -175,6 +176,7 @@
     <string name="in_the_interest_rate">计息中</string>
     <string name="pay_type">支付方式</string>
     <string name="p_i_total">本息合计</string>
+    <string name="turn_out_record">转出记录</string>
     <!--推荐人-->
     <string name="rd_list">推荐人列表</string>
 

@@ -59,7 +59,7 @@ public class EnergyFinancingFragment extends BaseListFragment<FinancingItemInfo>
         if (isFirstLoad) {
             if (getUserVisibleHint()) {
                 if (financingListPresenter != null) {
-                    financingListPresenter.getFinancingInfos("1");
+                    financingListPresenter.getFinancingInfos("1","0");
                 }
                 isFirstLoad = false;
             }
@@ -70,7 +70,7 @@ public class EnergyFinancingFragment extends BaseListFragment<FinancingItemInfo>
     public void onResume() {
         super.onResume();
         if (!isFirstLoad && financingListPresenter != null && getUserVisibleHint() && TextUtils.equals("0", firstIn)) {
-            financingListPresenter.getFinancingInfos("1");
+            financingListPresenter.getFinancingInfos("1","0");
             firstIn="1";
         }
     }
@@ -95,12 +95,12 @@ public class EnergyFinancingFragment extends BaseListFragment<FinancingItemInfo>
 
     @Override
     public void onRefresh() {
-        financingListPresenter.getFinancingInfos("0");
+        financingListPresenter.getFinancingInfos("0","0");
     }
 
     @Override
     public void onLoadMore() {
-        financingListPresenter.getMoreFinancinInfos();
+        financingListPresenter.getMoreFinancinInfos("0");
     }
 
     @Override

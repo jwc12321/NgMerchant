@@ -1,6 +1,5 @@
 package com.nenggou.slsm.mainframe.ui;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,8 +11,6 @@ import android.widget.TextView;
 import com.nenggou.slsm.BaseActivity;
 import com.nenggou.slsm.R;
 import com.nenggou.slsm.common.StaticData;
-import com.nenggou.slsm.paypassword.ui.FirstPayPwActivity;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

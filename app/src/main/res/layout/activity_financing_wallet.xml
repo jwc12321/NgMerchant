@@ -19,6 +19,11 @@
             style="@style/title_text_style"
             android:text="@string/financing_wallet" />
 
+        <TextView
+            android:id="@+id/turn_out_record"
+            style="@style/title_text_right_style"
+            android:text="@string/turn_out_record"/>
+
     </RelativeLayout>
 
     <LinearLayout

@@ -113,7 +113,11 @@ public class FinancingTypeItemAdapter extends RecyclerView.Adapter<FinancingType
                 additional.setText("+"+financingItemInfo.getAdditional()+"%("+financingItemInfo.getAdditionaltype()+")");
             }
             time.setText(financingItemInfo.getCycle()+"天");
-            surplusAmount.setText("剩余金额"+financingItemInfo.getSurplus()+"元");
+            if(TextUtils.equals("0",financingItemInfo.getPricetype())){
+                surplusAmount.setText("剩余能量" + financingItemInfo.getSurplus() + "个");
+            }else {
+                surplusAmount.setText("剩余金额" + financingItemInfo.getSurplus() + "元");
+            }
         }
     }
 

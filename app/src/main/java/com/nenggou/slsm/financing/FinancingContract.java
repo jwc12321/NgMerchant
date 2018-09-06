@@ -13,8 +13,8 @@ import java.util.List;
 
 public interface FinancingContract {
     interface FinancingListPresenter extends BasePresenter{
-        void getFinancingInfos(String refreshType);
-        void getMoreFinancinInfos();
+        void getFinancingInfos(String refreshType,String pricetype);
+        void getMoreFinancinInfos(String pricetype);
     }
 
     interface FinancindListView extends BaseView<FinancingListPresenter>{

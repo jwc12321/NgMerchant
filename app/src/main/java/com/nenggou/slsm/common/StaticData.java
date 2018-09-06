@@ -89,4 +89,6 @@ public class StaticData {
     public static final String TITLE_DATA="titleData";
     //提示框内容
     public static final String CONTENT_DATA="contentData";
+    //选择了那个筛选
+    public static final String SELECT_WHAT="selectWhat";
 }

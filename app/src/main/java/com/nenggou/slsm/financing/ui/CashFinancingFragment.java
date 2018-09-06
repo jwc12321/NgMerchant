@@ -58,7 +58,7 @@ public class CashFinancingFragment extends BaseListFragment<FinancingItemInfo> i
         if (isFirstLoad) {
             if (getUserVisibleHint()) {
                 if (financingListPresenter != null) {
-                    financingListPresenter.getFinancingInfos("1");
+                    financingListPresenter.getFinancingInfos("1","1");
                 }
                 isFirstLoad = false;
             }
@@ -90,12 +90,12 @@ public class CashFinancingFragment extends BaseListFragment<FinancingItemInfo> i
 
     @Override
     public void onRefresh() {
-        financingListPresenter.getFinancingInfos("0");
+        financingListPresenter.getFinancingInfos("0","1");
     }
 
     @Override
     public void onLoadMore() {
-        financingListPresenter.getMoreFinancinInfos();
+        financingListPresenter.getMoreFinancinInfos("1");
     }
 
     @Override

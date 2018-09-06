@@ -7,6 +7,7 @@ import com.nenggou.slsm.data.entity.FinancingInfo;
 import com.nenggou.slsm.data.entity.RIncomeInfo;
 import com.nenggou.slsm.data.remote.RestApiService;
 import com.nenggou.slsm.data.remote.RxRemoteDataParse;
+import com.nenggou.slsm.data.request.FinancingListRequest;
 import com.nenggou.slsm.data.request.PageRequest;
 import com.nenggou.slsm.financing.FinancingContract;
 
@@ -26,7 +27,8 @@ public class FinancingListPresenter implements FinancingContract.FinancingListPr
     private RestApiService restApiService;
     private List<Disposable> mDisposableList = new ArrayList<>();
     private FinancingContract.FinancindListView financindListView;
-    private int currentIndex = 1;
+    private int energyCurrentIndex = 1;
+    private int cashCurrentIndex=1;
 
     @Inject
     public FinancingListPresenter(RestApiService restApiService, FinancingContract.FinancindListView financindListView) {
@@ -59,14 +61,23 @@ public class FinancingListPresenter implements FinancingContract.FinancingListPr
         }
     }
 
+    /**
+     *
+     * @param refreshType
+     * @param pricetype  0:能量 1：现金
+     */
     @Override
-    public void getFinancingInfos(String refreshType) {
+    public void getFinancingInfos(String refreshType,String pricetype) {
         if (TextUtils.equals("1", refreshType)) {
             financindListView.showLoading();
         }
-        currentIndex = 1;
-        PageRequest pageRequest = new PageRequest(String.valueOf(currentIndex));
-        Disposable disposable = restApiService.getFinancingInfos(pageRequest)
+        if(TextUtils.equals("0",pricetype)){
+            energyCurrentIndex=1;
+        }else {
+            cashCurrentIndex=1;
+        }
+        FinancingListRequest financingListRequest = new FinancingListRequest(String.valueOf(1),pricetype);
+        Disposable disposable = restApiService.getFinancingInfos(financingListRequest)
                 .flatMap(new RxRemoteDataParse<FinancingInfo>())
                 .compose(new RxSchedulerTransformer<FinancingInfo>())
                 .subscribe(new Consumer<FinancingInfo>() {
@@ -86,10 +97,16 @@ public class FinancingListPresenter implements FinancingContract.FinancingListPr
     }
 
     @Override
-    public void getMoreFinancinInfos() {
-        currentIndex = currentIndex+1;
-        PageRequest pageRequest = new PageRequest(String.valueOf(currentIndex));
-        Disposable disposable = restApiService.getFinancingInfos(pageRequest)
+    public void getMoreFinancinInfos(String pricetype) {
+        FinancingListRequest financingListRequest;
+        if(TextUtils.equals("0",pricetype)){
+            energyCurrentIndex=energyCurrentIndex+1;
+            financingListRequest = new FinancingListRequest(String.valueOf(energyCurrentIndex),pricetype);
+        }else {
+            cashCurrentIndex=cashCurrentIndex+1;
+            financingListRequest = new FinancingListRequest(String.valueOf(cashCurrentIndex),pricetype);
+        }
+        Disposable disposable = restApiService.getFinancingInfos(financingListRequest)
                 .flatMap(new RxRemoteDataParse<FinancingInfo>())
                 .compose(new RxSchedulerTransformer<FinancingInfo>())
                 .subscribe(new Consumer<FinancingInfo>() {

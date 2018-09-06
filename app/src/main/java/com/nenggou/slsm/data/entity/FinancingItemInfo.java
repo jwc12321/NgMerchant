@@ -56,6 +56,9 @@ public class FinancingItemInfo implements Serializable{
     private String storagetype;
     @SerializedName("additionaltype")
     private String additionaltype;
+    //0:能量 1:现金
+    @SerializedName("pricetype")
+    private String pricetype;
 
     public String getId() {
         return id;
@@ -199,5 +202,13 @@ public class FinancingItemInfo implements Serializable{
 
     public void setAdditionaltype(String additionaltype) {
         this.additionaltype = additionaltype;
+    }
+
+    public String getPricetype() {
+        return pricetype;
+    }
+
+    public void setPricetype(String pricetype) {
+        this.pricetype = pricetype;
     }
 }

@@ -599,4 +599,11 @@
         <item name="android:textColor">@color/appText5</item>
         <item name="android:textSize">15sp</item>
     </style>
+    <style name="turn_out_screen_bg_style">
+        <item name="android:layout_width">@dimen/common_ninety_eight_margin</item>
+        <item name="android:layout_height">@dimen/common_thirty_six_margin</item>
+        <item name="android:background">@drawable/turn_out_screen_bg</item>
+        <item name="android:textColor">@drawable/turn_out_screen_select</item>
+        <item name="android:textSize">17sp</item>
+    </style>
 </resources>

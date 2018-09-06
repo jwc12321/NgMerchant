@@ -16,8 +16,7 @@
 
         <TextView
             android:id="@+id/title"
-            style="@style/title_text_style"
-            android:text="@string/novice" />
+            style="@style/title_text_style" />
     </RelativeLayout>
 
     <com.nenggou.slsm.common.widget.GradationScrollView

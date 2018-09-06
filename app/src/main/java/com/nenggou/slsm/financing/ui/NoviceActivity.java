@@ -125,12 +125,6 @@ public class NoviceActivity extends BaseActivity {
     private BigDecimal interestRateDecimal;//年利率
     private BigDecimal addDecimal;//年利率+偏差率
     private BigDecimal reduceDecimal;//年利率-偏差率
-    private ProjectDetailsFragment projectDetailsFragment;
-    private WebViewFragment webViewFragment;
-
-    private List<Fragment> fragmentList;
-    private List<String> titleList;
-    private BaseListAdapter baseListAdapter;
 
     public static void start(Context context, FinancingItemInfo financingItemInfo) {
         Intent intent = new Intent(context, NoviceActivity.class);
@@ -151,6 +145,7 @@ public class NoviceActivity extends BaseActivity {
     private void initView() {
         financingItemInfo = (FinancingItemInfo) getIntent().getSerializableExtra(StaticData.FINANCING_ITEM_INFO);
         if (financingItemInfo != null) {
+            title.setText(financingItemInfo.getTitle());
             if (TextUtils.equals("0.00", financingItemInfo.getDeviation())) {
                 interestRate.setText(financingItemInfo.getInterestRate() + "%");
             } else {

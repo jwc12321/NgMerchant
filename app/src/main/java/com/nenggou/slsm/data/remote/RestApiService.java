@@ -34,6 +34,7 @@ import com.nenggou.slsm.data.request.DayIncomeRequest;
 import com.nenggou.slsm.data.request.DetectionVersionRequest;
 import com.nenggou.slsm.data.request.EnergyRequest;
 import com.nenggou.slsm.data.request.FeedbackRequest;
+import com.nenggou.slsm.data.request.FinancingListRequest;
 import com.nenggou.slsm.data.request.HistoryIncomeRequest;
 import com.nenggou.slsm.data.request.IdRequest;
 import com.nenggou.slsm.data.request.IntercourseRecordRequest;
@@ -207,7 +208,7 @@ public interface RestApiService {
 
     //理财列表
     @POST("home/financing/list")
-    Flowable<RemoteDataWrapper<FinancingInfo>> getFinancingInfos(@Body PageRequest pageRequest);
+    Flowable<RemoteDataWrapper<FinancingInfo>> getFinancingInfos(@Body FinancingListRequest financingListRequest);
 
     //推荐人列表
     @POST("home/business/apprecommend")

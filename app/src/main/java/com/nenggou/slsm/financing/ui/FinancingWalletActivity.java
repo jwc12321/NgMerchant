@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.nenggou.slsm.BaseActivity;
 import com.nenggou.slsm.R;
-import com.nenggou.slsm.address.ui.AddressTelActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,24 +50,27 @@ public class FinancingWalletActivity extends BaseActivity {
     LinearLayout cashTotalLl;
     @BindView(R.id.cash_turn_out)
     Button cashTurnOut;
+    @BindView(R.id.turn_out_record)
+    TextView turnOutRecord;
 
-    private boolean isEnergyFlag=true;
-    private boolean isCashFlag=true;
+    private boolean isEnergyFlag = true;
+    private boolean isCashFlag = true;
 
     public static void start(Context context) {
         Intent intent = new Intent(context, FinancingWalletActivity.class);
         context.startActivity(intent);
     }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_financing_wallet);
         ButterKnife.bind(this);
-        setHeight(back,title,null);
+        setHeight(back, title, turnOutRecord);
         initView();
     }
 
-    private void initView(){
+    private void initView() {
         energyEyes.setSelected(true);
         cashEyes.setSelected(true);
     }
@@ -78,18 +80,18 @@ public class FinancingWalletActivity extends BaseActivity {
         return null;
     }
 
-    @OnClick({R.id.back,R.id.energy_eyes,R.id.cash_eyes,R.id.energy_turn_out,R.id.cash_turn_out})
+    @OnClick({R.id.back, R.id.energy_eyes, R.id.cash_eyes, R.id.energy_turn_out, R.id.cash_turn_out,R.id.turn_out_record})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
                 finish();
                 break;
             case R.id.energy_eyes:
-                isEnergyFlag=!isEnergyFlag;
+                isEnergyFlag = !isEnergyFlag;
                 energyEyes.setSelected(isEnergyFlag);
                 break;
             case R.id.cash_eyes:
-                isCashFlag=!isCashFlag;
+                isCashFlag = !isCashFlag;
                 cashEyes.setSelected(isCashFlag);
                 break;
             case R.id.energy_turn_out:
@@ -97,6 +99,9 @@ public class FinancingWalletActivity extends BaseActivity {
                 break;
             case R.id.cash_turn_out:
                 TurnOutBalanceActivity.start(this);
+                break;
+            case R.id.turn_out_record:
+                TurnOutRecordActivity.start(this);
                 break;
             default:
         }
