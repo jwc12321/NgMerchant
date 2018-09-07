@@ -144,7 +144,7 @@
             android:layout_marginTop="@dimen/common_twenty_margin"
             android:textColor="@color/appText3"
             android:textSize="10sp"
-            tools:text="hahaha " />
+            android:text="@string/pay_order_explain" />
     </LinearLayout>
 
     <Button

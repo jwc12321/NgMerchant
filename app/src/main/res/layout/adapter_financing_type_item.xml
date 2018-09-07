@@ -7,7 +7,7 @@
     <RelativeLayout
         android:id="@+id/financing_item"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/common_one_hundred_and_thirty_margin"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/common_fifteen_margin"
         android:background="@color/appText1">
 
@@ -52,17 +52,19 @@
             android:layout_height="wrap_content"
             android:textSize="13sp"
             android:textColor="@color/appText6"
-            android:layout_alignParentBottom="true"
             android:text="@string/target_interest_rate"
             android:layout_marginLeft="@dimen/common_twelve_margin"
-            android:layout_marginBottom="@dimen/common_seventeen_margin"/>
+            android:layout_marginBottom="@dimen/common_seventeen_margin"
+            android:layout_marginTop="@dimen/common_fifteen_margin"
+            android:layout_below="@id/interestRate"/>
         <TextView
             android:id="@+id/surplus_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="13sp"
             android:textColor="@color/appText6"
-            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/common_fifteen_margin"
+            android:layout_below="@id/interestRate"
             tools:text="100"
             android:layout_marginBottom="@dimen/common_seventeen_margin"
             android:layout_alignParentRight="true"
@@ -72,7 +74,8 @@
             android:layout_height="@dimen/common_seventeen_margin"
             android:background="@color/backGround2"
             android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/common_fifteen_margin"
+            android:layout_below="@id/interestRate"
             android:layout_marginBottom="@dimen/common_seventeen_margin"/>
     </RelativeLayout>
 </LinearLayout>

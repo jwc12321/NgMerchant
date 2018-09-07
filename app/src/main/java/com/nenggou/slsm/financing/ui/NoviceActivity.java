@@ -125,6 +125,11 @@ public class NoviceActivity extends BaseActivity {
     private BigDecimal interestRateDecimal;//年利率
     private BigDecimal addDecimal;//年利率+偏差率
     private BigDecimal reduceDecimal;//年利率-偏差率
+    private String financingType;
+    private String financingId;
+    private String interestrate;//利息
+    private String financingCycle;//周期
+
 
     public static void start(Context context, FinancingItemInfo financingItemInfo) {
         Intent intent = new Intent(context, NoviceActivity.class);
@@ -145,6 +150,10 @@ public class NoviceActivity extends BaseActivity {
     private void initView() {
         financingItemInfo = (FinancingItemInfo) getIntent().getSerializableExtra(StaticData.FINANCING_ITEM_INFO);
         if (financingItemInfo != null) {
+            financingId=financingItemInfo.getId();
+            financingType=financingItemInfo.getPricetype();
+            interestrate=financingItemInfo.getInterestRate();
+            financingCycle=financingItemInfo.getCycle();
             title.setText(financingItemInfo.getTitle());
             if (TextUtils.equals("0.00", financingItemInfo.getDeviation())) {
                 interestRate.setText(financingItemInfo.getInterestRate() + "%");
@@ -263,7 +272,7 @@ public class NoviceActivity extends BaseActivity {
                 initTextColor("2");
                 break;
             case R.id.next:
-                PayFinancingOrderActivity.start(this);
+                PayFinancingOrderActivity.start(this,financingId,financingType,interestrate,financingCycle);
                 break;
             default:
         }

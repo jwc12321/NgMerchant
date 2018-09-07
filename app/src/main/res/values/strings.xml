@@ -177,6 +177,8 @@
     <string name="pay_type">支付方式</string>
     <string name="p_i_total">本息合计</string>
     <string name="turn_out_record">转出记录</string>
+    <string name="pay_order_explain">提示:优先扣除钱包中的金额(能量/现金),当钱包中的金额(能量/现金)不
+足时,再从余额中扣除剩下所需的金额(能量/现金).</string>
     <!--推荐人-->
     <string name="rd_list">推荐人列表</string>
 

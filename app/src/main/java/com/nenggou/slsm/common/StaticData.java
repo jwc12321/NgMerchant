@@ -91,4 +91,12 @@ public class StaticData {
     public static final String CONTENT_DATA="contentData";
     //选择了那个筛选
     public static final String SELECT_WHAT="selectWhat";
+    //理财是能量还是现金   0:能量  1:现金
+    public static final String FINANCING_TYPE="financingType";
+    //理财产品的id
+    public static final String FINANCING_ID="financingId";
+    //利息
+    public static final String INTEREST_RATE="interestRate";
+    //理财周期
+    public static final String FINANCING_CYCLE="financingCycle";
 }

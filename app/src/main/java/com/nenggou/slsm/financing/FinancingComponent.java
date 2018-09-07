@@ -9,6 +9,7 @@ import com.nenggou.slsm.ApplicationComponent;
 import com.nenggou.slsm.financing.ui.CashFinancingFragment;
 import com.nenggou.slsm.financing.ui.EnergyFinancingFragment;
 import com.nenggou.slsm.financing.ui.FinancingFragment;
+import com.nenggou.slsm.financing.ui.PayFinancingOrderActivity;
 
 import dagger.Component;
 
@@ -18,4 +19,5 @@ public interface FinancingComponent {
     void inject(FinancingFragment financingFragment);
     void inject(EnergyFinancingFragment energyFinancingFragment);
     void inject(CashFinancingFragment cashFinancingFragment);
+    void inject(PayFinancingOrderActivity payFinancingOrderActivity);
 }

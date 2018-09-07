@@ -17,6 +17,7 @@ import com.nenggou.slsm.data.entity.HistoryIncomInfo;
 import com.nenggou.slsm.data.entity.Ignore;
 import com.nenggou.slsm.data.entity.IncomeDetailInfo;
 import com.nenggou.slsm.data.entity.IntercourseRecordInfo;
+import com.nenggou.slsm.data.entity.PayFcOrderInfo;
 import com.nenggou.slsm.data.entity.PersionInfoResponse;
 import com.nenggou.slsm.data.entity.PutForwardDetailInfo;
 import com.nenggou.slsm.data.entity.PutForwardInfo;
@@ -35,6 +36,7 @@ import com.nenggou.slsm.data.request.DetectionVersionRequest;
 import com.nenggou.slsm.data.request.EnergyRequest;
 import com.nenggou.slsm.data.request.FeedbackRequest;
 import com.nenggou.slsm.data.request.FinancingListRequest;
+import com.nenggou.slsm.data.request.FinancingidRequest;
 import com.nenggou.slsm.data.request.HistoryIncomeRequest;
 import com.nenggou.slsm.data.request.IdRequest;
 import com.nenggou.slsm.data.request.IntercourseRecordRequest;
@@ -225,4 +227,7 @@ public interface RestApiService {
     //验证原提现密码
     @POST("home/business/verifypaypassword")
     Flowable<RemoteDataWrapper<Ignore>> verifyPayPassword(@Body PayPasswordRequest payPasswordRequest);
+    //理财点击立即加入，到支付订单时候的数据
+    @POST("home/financing/getwallet")
+    Flowable<RemoteDataWrapper<PayFcOrderInfo>> getPayFcOrderInfo(@Body FinancingidRequest financingidRequest);
 }

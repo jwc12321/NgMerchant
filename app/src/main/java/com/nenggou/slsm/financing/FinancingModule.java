@@ -9,13 +9,23 @@ import dagger.Provides;
 @Module
 public class FinancingModule {
     private FinancingContract.FinancindListView financindListView;
+    private FinancingContract.PayFcOrderView payFcOrderView;
 
     public FinancingModule(FinancingContract.FinancindListView financindListView) {
         this.financindListView = financindListView;
     }
 
+    public FinancingModule(FinancingContract.PayFcOrderView payFcOrderView) {
+        this.payFcOrderView = payFcOrderView;
+    }
+
     @Provides
     FinancingContract.FinancindListView provideFinancindListView(){
         return financindListView;
+    }
+
+    @Provides
+    FinancingContract.PayFcOrderView providePayFcOrderView(){
+        return payFcOrderView;
     }
 }

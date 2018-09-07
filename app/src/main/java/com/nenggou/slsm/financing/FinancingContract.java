@@ -4,6 +4,7 @@ import com.nenggou.slsm.BasePresenter;
 import com.nenggou.slsm.BaseView;
 import com.nenggou.slsm.data.entity.FinancingInfo;
 import com.nenggou.slsm.data.entity.FinancingItemInfo;
+import com.nenggou.slsm.data.entity.PayFcOrderInfo;
 
 import java.util.List;
 
@@ -20,6 +21,14 @@ public interface FinancingContract {
     interface FinancindListView extends BaseView<FinancingListPresenter>{
         void render(List<FinancingItemInfo> financingItemInfos);
         void renderMore(List<FinancingItemInfo> financingItemInfos);
+    }
+
+    interface PayFcOrderPresenter extends BasePresenter{
+        void getPayFcOrderInfo(String financingid);
+    }
+
+    interface PayFcOrderView extends BaseView<PayFcOrderPresenter>{
+        void renderPayFcOrderInfo(PayFcOrderInfo payFcOrderInfo);
     }
 
 }
