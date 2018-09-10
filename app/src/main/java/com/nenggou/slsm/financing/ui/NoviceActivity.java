@@ -170,7 +170,15 @@ public class NoviceActivity extends BaseActivity {
                 additional.setText("+" + financingItemInfo.getAdditional() + "%(" + financingItemInfo.getAdditionaltype() + ")");
             }
             closedPeriodInfo.setText(financingItemInfo.getCycle() + "天");
-            surplusAmountInfo.setText(financingItemInfo.getSurplus() + "元");
+            if(TextUtils.equals("0",financingItemInfo.getPricetype())){
+                surplusAmount.setText("剩余能量");
+                surplusAmountInfo.setText(financingItemInfo.getSurplus() + "个能量");
+                projectTotalPrice.setText(financingItemInfo.getTotalAmount() + "个能量");
+            }else {
+                surplusAmount.setText("剩余现金");
+                surplusAmountInfo.setText(financingItemInfo.getSurplus() + "元");
+                projectTotalPrice.setText(financingItemInfo.getTotalAmount() + "元");
+            }
             progressSecond.setText(financingItemInfo.getCycle() + "天\n持续享收益");
             storageModeInfo.setText(financingItemInfo.getStoragetype());
             if (TextUtils.equals("0", financingItemInfo.getStatus())) {
@@ -206,7 +214,6 @@ public class NoviceActivity extends BaseActivity {
             } else {
                 dAdditional.setText("+" + financingItemInfo.getAdditional() + "%(" + financingItemInfo.getAdditionaltype() + ")");
             }
-            projectTotalPrice.setText(financingItemInfo.getTotalAmount() + "元");
             dClosedPeriod.setText(financingItemInfo.getCycle() + "天");
             dInterestType.setText(financingItemInfo.getType());
             dPoundage.setText(financingItemInfo.getServicecharge());

@@ -4,11 +4,9 @@ import android.text.TextUtils;
 
 import com.nenggou.slsm.data.RxSchedulerTransformer;
 import com.nenggou.slsm.data.entity.FcOrderList;
-import com.nenggou.slsm.data.entity.FinancingInfo;
 import com.nenggou.slsm.data.remote.RestApiService;
 import com.nenggou.slsm.data.remote.RxRemoteDataParse;
 import com.nenggou.slsm.data.request.FcOrderListRequest;
-import com.nenggou.slsm.data.request.FinancingListRequest;
 import com.nenggou.slsm.financing.FinancingContract;
 
 import java.util.ArrayList;
