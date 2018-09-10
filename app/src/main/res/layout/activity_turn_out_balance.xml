@@ -73,8 +73,7 @@
                 style="@style/login_input_phone_style"
                 android:layout_marginLeft="@dimen/common_eleven_margin"
                 android:inputType="number|numberDecimal"
-                android:textSize="15sp"
-                tools:hint="请输入转出金额,单笔最低100个能量" />
+                android:textSize="20sp" />
         </LinearLayout>
         <View
             style="@style/st_line"
@@ -123,6 +122,5 @@
         android:id="@+id/confirm"
         style="@style/next_buttton_style"
         android:text="确认转出"
-        android:enabled="false"
         android:layout_marginTop="@dimen/common_thirty_nine_margin"/>
 </LinearLayout>

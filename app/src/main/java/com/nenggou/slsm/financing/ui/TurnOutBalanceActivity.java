@@ -7,7 +7,9 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -17,7 +19,17 @@ import android.widget.Toast;
 
 import com.nenggou.slsm.BaseActivity;
 import com.nenggou.slsm.R;
+import com.nenggou.slsm.common.StaticData;
 import com.nenggou.slsm.common.widget.paypw.PayPwdEditText;
+import com.nenggou.slsm.data.request.TokenRequest;
+import com.nenggou.slsm.financing.DaggerFinancingComponent;
+import com.nenggou.slsm.financing.FinancingContract;
+import com.nenggou.slsm.financing.FinancingModule;
+import com.nenggou.slsm.financing.presenter.TurnOutBalancePresenter;
+
+import java.math.BigDecimal;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,7 +40,7 @@ import butterknife.OnClick;
  * 转出到余额
  */
 
-public class TurnOutBalanceActivity extends BaseActivity {
+public class TurnOutBalanceActivity extends BaseActivity implements FinancingContract.TurnOutBalanceView{
 
     @BindView(R.id.back)
     ImageView back;
@@ -50,9 +62,18 @@ public class TurnOutBalanceActivity extends BaseActivity {
     private String password;
     boolean moneyDouble = true;
     private int digits = 2;
+    private String financingType;
+    private String eAcNumber;
+    private BigDecimal eAcNumberBd;
+    private BigDecimal amountBd;
 
-    public static void start(Context context) {
+    @Inject
+    TurnOutBalancePresenter turnOutBalancePresenter;
+
+    public static void start(Context context,String financingType,String eAcNumber) {
         Intent intent = new Intent(context, TurnOutBalanceActivity.class);
+        intent.putExtra(StaticData.FINANCING_TYPE,financingType);
+        intent.putExtra(StaticData.E_A_C_NUMBER,eAcNumber);
         context.startActivity(intent);
     }
 
@@ -66,8 +87,16 @@ public class TurnOutBalanceActivity extends BaseActivity {
     }
 
     private void initView(){
+        financingType=getIntent().getStringExtra(StaticData.FINANCING_TYPE);
+        eAcNumber=getIntent().getStringExtra(StaticData.E_A_C_NUMBER);
+        eAcNumberBd= new BigDecimal(eAcNumber).setScale(2, BigDecimal.ROUND_DOWN);
         initEt();
         editListener();
+        if(TextUtils.equals("0",financingType)){
+            haveNumber.setText("可用"+eAcNumber+"个能量");
+        }else {
+            haveNumber.setText("可用"+eAcNumber+"元现金");
+        }
     }
 
 
@@ -161,15 +190,91 @@ public class TurnOutBalanceActivity extends BaseActivity {
         return null;
     }
 
-    @OnClick({R.id.back, R.id.confirm})
+    @OnClick({R.id.back, R.id.confirm,R.id.all_turn_out})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
                 finish();
                 break;
             case R.id.confirm:
+                confirm();
+                break;
+            case R.id.all_turn_out:
+                amountEt.setText(eAcNumber);
+                amountEt.setCursorVisible(false);
                 break;
             default:
         }
+    }
+
+    private void confirm(){
+        amountBd=new BigDecimal(amountEt.getText().toString()).setScale(2, BigDecimal.ROUND_DOWN);
+        if(amountBd.compareTo(eAcNumberBd)>0){
+            showMessage("转出金额最大只能"+eAcNumber);
+            amountEt.setText(eAcNumber);
+            return;
+        }
+        if(TextUtils.isEmpty(password)){
+            showMessage("请输入支付密码");
+            return;
+        }
+        turnOutBalancePresenter.verifyPayPassword(password);
+    }
+
+    @Override
+    protected void initializeInjector() {
+        DaggerFinancingComponent.builder()
+                .applicationComponent(getApplicationComponent())
+                .financingModule(new FinancingModule(this))
+                .build()
+                .inject(this);
+    }
+
+    @Override
+    public void setPresenter(FinancingContract.TurnOutBalancePresenter presenter) {
+
+    }
+
+    @Override
+    public void verifySuccess() {
+        turnOutBalancePresenter.turnOutBalance(amountEt.getText().toString(),financingType,password);
+    }
+
+    @Override
+    public void turnOutSuccess() {
+        showMessage("转出成功");
+        finish();
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if (isShouldHideInput(v, ev)) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm != null) {
+                    assert v != null;
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+            return super.dispatchTouchEvent(ev);
+        }
+        // 必不可少，否则所有的组件都不会有TouchEvent了
+        return getWindow().superDispatchTouchEvent(ev) || onTouchEvent(ev);
+    }
+
+    public boolean isShouldHideInput(View v, MotionEvent event) {
+        if (v != null && (v instanceof EditText)) {
+            int[] leftTop = {0, 0};
+            //获取输入框当前的location位置
+            v.getLocationInWindow(leftTop);
+            int left = leftTop[0];
+            int top = leftTop[1];
+            int bottom = top + v.getHeight();
+            int right = left + v.getWidth();
+            return !(event.getX() > left && event.getX() < right
+                    && event.getY() > top && event.getY() < bottom);
+        }
+        return false;
     }
 }

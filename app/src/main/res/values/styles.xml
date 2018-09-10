@@ -531,6 +531,12 @@
         <item name="android:orientation">vertical</item>
         <item name="android:gravity">center_horizontal</item>
     </style>
+    <style name="financing_s_order_ll_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+    </style>
 
     <style name="finaning_order_up_text_style">
         <item name="android:layout_width">wrap_content</item>

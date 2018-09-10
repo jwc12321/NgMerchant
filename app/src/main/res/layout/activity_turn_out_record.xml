@@ -21,7 +21,8 @@
         <TextView
             android:id="@+id/screen"
             style="@style/title_text_right_style"
-            android:text="@string/screen"/>
+            android:text="@string/screen"
+            android:visibility="invisible"/>
     </RelativeLayout>
     <com.nenggou.slsm.common.refreshview.HeaderViewLayout
         android:id="@+id/refreshLayout"
@@ -32,7 +33,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/appText1">
+            android:background="@color/backGround1">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/record_rv"

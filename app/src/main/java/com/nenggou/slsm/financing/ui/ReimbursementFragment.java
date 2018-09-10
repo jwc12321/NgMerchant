@@ -13,17 +13,25 @@ import android.widget.Button;
 import com.nenggou.slsm.BaseFragment;
 import com.nenggou.slsm.R;
 import com.nenggou.slsm.common.refreshview.HeaderViewLayout;
+import com.nenggou.slsm.data.entity.FcOrderList;
+import com.nenggou.slsm.financing.DaggerFinancingComponent;
+import com.nenggou.slsm.financing.FinancingContract;
+import com.nenggou.slsm.financing.FinancingModule;
 import com.nenggou.slsm.financing.adapter.FinaningOrderAdapter;
+import com.nenggou.slsm.financing.presenter.FcOrderListPresenter;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by JWC on 2018/9/4.
  * 持有中的订单
  */
 
-public class ReimbursementFragment extends BaseFragment implements FinaningOrderAdapter.ItemClickListener {
+public class ReimbursementFragment extends BaseFragment implements FinaningOrderAdapter.ItemClickListener,FinancingContract.FcOrderListView  {
     @BindView(R.id.order_rv)
     RecyclerView orderRv;
     @BindView(R.id.go_investment)
@@ -34,8 +42,9 @@ public class ReimbursementFragment extends BaseFragment implements FinaningOrder
     HeaderViewLayout refreshLayout;
 
     private FinaningOrderAdapter finaningOrderAdapter;
-    private String firstIn = "0";
     private boolean isFirstLoad = true;
+    @Inject
+    FcOrderListPresenter fcOrderListPresenter;
 
     public static ReimbursementFragment newInstance() {
         ReimbursementFragment fragment = new ReimbursementFragment();
@@ -77,10 +86,12 @@ public class ReimbursementFragment extends BaseFragment implements FinaningOrder
     HeaderViewLayout.OnRefreshListener mOnRefreshListener = new HeaderViewLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
+            fcOrderListPresenter.getFcOrderItemInfos("0","3");
         }
 
         @Override
         public void onLoadMore() {
+            fcOrderListPresenter.getMoreFcOrderItemInfos("3");
         }
 
         @Override
@@ -100,6 +111,7 @@ public class ReimbursementFragment extends BaseFragment implements FinaningOrder
         if (isFirstLoad) {
             if (getUserVisibleHint()) {
                 isFirstLoad = false;
+                fcOrderListPresenter.getFcOrderItemInfos("1","3");
             }
         }
     }
@@ -107,5 +119,63 @@ public class ReimbursementFragment extends BaseFragment implements FinaningOrder
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+    }
+
+    @Override
+    protected void initializeInjector() {
+        DaggerFinancingComponent.builder()
+                .applicationComponent(getApplicationComponent())
+                .financingModule(new FinancingModule(this))
+                .build()
+                .inject(this);
+    }
+
+
+    @Override
+    public void render(FcOrderList fcOrderList) {
+        refreshLayout.stopRefresh();
+        if(fcOrderList!=null&&fcOrderList.getFinaningOrderItemInfos()!=null&&fcOrderList.getFinaningOrderItemInfos().size()>0){
+            orderRv.setVisibility(View.VISIBLE);
+            emptyView.setVisibility(View.GONE);
+            refreshLayout.setCanLoadMore(true);
+            finaningOrderAdapter.setData(fcOrderList.getFinaningOrderItemInfos());
+        }else {
+            orderRv.setVisibility(View.GONE);
+            emptyView.setVisibility(View.VISIBLE);
+            refreshLayout.setCanLoadMore(false);
+            finaningOrderAdapter.setData(null);
+        }
+    }
+
+    @Override
+    public void renderMore(FcOrderList fcOrderList) {
+        refreshLayout.stopRefresh();
+        if(fcOrderList!=null&&fcOrderList.getFinaningOrderItemInfos()!=null&&fcOrderList.getFinaningOrderItemInfos().size()>0){
+            refreshLayout.setCanLoadMore(true);
+            finaningOrderAdapter.addMore(fcOrderList.getFinaningOrderItemInfos());
+        }else {
+            refreshLayout.setCanLoadMore(false);
+        }
+    }
+
+    @Override
+    public void setPresenter(FinancingContract.FcOrderListPresenter presenter) {
+
+    }
+
+    @Override
+    public void returnFcId(String financingId) {
+        FinancingOrderDetailActivity.start(getActivity(),financingId);
+    }
+
+
+    @OnClick({R.id.go_investment})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.go_investment:
+                getActivity().finish();
+                break;
+            default:
+        }
     }
 }

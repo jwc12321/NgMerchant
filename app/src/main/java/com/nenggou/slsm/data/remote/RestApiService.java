@@ -12,6 +12,9 @@ import com.nenggou.slsm.data.entity.CashInfo;
 import com.nenggou.slsm.data.entity.ChangeAppInfo;
 import com.nenggou.slsm.data.entity.CouponInfo;
 import com.nenggou.slsm.data.entity.EnergyInfo;
+import com.nenggou.slsm.data.entity.FcOrderDetailInfo;
+import com.nenggou.slsm.data.entity.FcOrderList;
+import com.nenggou.slsm.data.entity.FcWalletInfo;
 import com.nenggou.slsm.data.entity.FinancingInfo;
 import com.nenggou.slsm.data.entity.HistoryIncomInfo;
 import com.nenggou.slsm.data.entity.Ignore;
@@ -24,6 +27,7 @@ import com.nenggou.slsm.data.entity.PutForwardInfo;
 import com.nenggou.slsm.data.entity.RIncomeInfo;
 import com.nenggou.slsm.data.entity.RankingListInfo;
 import com.nenggou.slsm.data.entity.RdList;
+import com.nenggou.slsm.data.entity.TurnOutRecord;
 import com.nenggou.slsm.data.request.AddbankcardRequest;
 import com.nenggou.slsm.data.request.AvatarRequest;
 import com.nenggou.slsm.data.request.BillIdRequest;
@@ -34,6 +38,7 @@ import com.nenggou.slsm.data.request.CodeLoginRequest;
 import com.nenggou.slsm.data.request.DayIncomeRequest;
 import com.nenggou.slsm.data.request.DetectionVersionRequest;
 import com.nenggou.slsm.data.request.EnergyRequest;
+import com.nenggou.slsm.data.request.FcOrderListRequest;
 import com.nenggou.slsm.data.request.FeedbackRequest;
 import com.nenggou.slsm.data.request.FinancingListRequest;
 import com.nenggou.slsm.data.request.FinancingidRequest;
@@ -43,6 +48,7 @@ import com.nenggou.slsm.data.request.IntercourseRecordRequest;
 import com.nenggou.slsm.data.request.ModifyPasswordRequest;
 import com.nenggou.slsm.data.request.PageRequest;
 import com.nenggou.slsm.data.request.PasswordLoginRequest;
+import com.nenggou.slsm.data.request.PayFcOrderRequest;
 import com.nenggou.slsm.data.request.PayPasswordRequest;
 import com.nenggou.slsm.data.request.PutForwardRequest;
 import com.nenggou.slsm.data.request.CRankingRequest;
@@ -56,10 +62,12 @@ import com.nenggou.slsm.data.request.StartimeRequest;
 import com.nenggou.slsm.data.request.StoreIdPageRequest;
 import com.nenggou.slsm.data.request.TextRequest;
 import com.nenggou.slsm.data.request.TokenRequest;
+import com.nenggou.slsm.data.request.TurnOutBalanceRequest;
 
 import java.util.List;
 import java.util.Map;
 
+import dagger.Provides;
 import io.reactivex.Flowable;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
@@ -230,4 +238,23 @@ public interface RestApiService {
     //理财点击立即加入，到支付订单时候的数据
     @POST("home/financing/getwallet")
     Flowable<RemoteDataWrapper<PayFcOrderInfo>> getPayFcOrderInfo(@Body FinancingidRequest financingidRequest);
+    //购买理财
+    @POST("home/financing/payfinancing")
+    Flowable<RemoteDataWrapper<Ignore>> payFcOrder(@Body PayFcOrderRequest payFcOrderRequest);
+    //理财详情
+    @POST("home/financing/orderdetail")
+    Flowable<RemoteDataWrapper<FcOrderDetailInfo>> getFcOrderDetailInfo(@Body FinancingidRequest financingidRequest);
+    //理财订单列表
+    @POST("home/financing/getlist")
+    Flowable<RemoteDataWrapper<FcOrderList>> getFcOrderList(@Body FcOrderListRequest fcOrderListRequest);
+    //理财钱包
+    @POST("home/financing/mywallet")
+    Flowable<RemoteDataWrapper<FcWalletInfo>> getFcWalletInfo(@Body TokenRequest tokenRequest);
+    //转到余额
+    @POST("home/financing/walletturnto")
+    Flowable<RemoteDataWrapper<Ignore>> turnToBalance(@Body TurnOutBalanceRequest turnOutBalanceRequest);
+    //转出记录
+    @POST("home/financing/walletturntolog")
+    Flowable<RemoteDataWrapper<TurnOutRecord>> getTurnOutRecordInfos(@Body PageRequest pageRequest);
+
 }

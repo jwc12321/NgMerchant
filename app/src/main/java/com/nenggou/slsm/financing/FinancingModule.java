@@ -1,5 +1,6 @@
 package com.nenggou.slsm.financing;
 
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -10,6 +11,11 @@ import dagger.Provides;
 public class FinancingModule {
     private FinancingContract.FinancindListView financindListView;
     private FinancingContract.PayFcOrderView payFcOrderView;
+    private FinancingContract.FcOrderDetailView fcOrderDetailView;
+    private FinancingContract.FcOrderListView fcOrderListView;
+    private FinancingContract.FcWalletView fcWalletView;
+    private FinancingContract.TurnOutBalanceView turnOutBalanceView;
+    private FinancingContract.TurnOutRecordView turnOutRecordView;
 
     public FinancingModule(FinancingContract.FinancindListView financindListView) {
         this.financindListView = financindListView;
@@ -17,6 +23,26 @@ public class FinancingModule {
 
     public FinancingModule(FinancingContract.PayFcOrderView payFcOrderView) {
         this.payFcOrderView = payFcOrderView;
+    }
+
+    public FinancingModule(FinancingContract.FcOrderDetailView fcOrderDetailView) {
+        this.fcOrderDetailView = fcOrderDetailView;
+    }
+
+    public FinancingModule(FinancingContract.FcOrderListView fcOrderListView) {
+        this.fcOrderListView = fcOrderListView;
+    }
+
+    public FinancingModule(FinancingContract.FcWalletView fcWalletView) {
+        this.fcWalletView = fcWalletView;
+    }
+
+    public FinancingModule(FinancingContract.TurnOutBalanceView turnOutBalanceView) {
+        this.turnOutBalanceView = turnOutBalanceView;
+    }
+
+    public FinancingModule(FinancingContract.TurnOutRecordView turnOutRecordView) {
+        this.turnOutRecordView = turnOutRecordView;
     }
 
     @Provides
@@ -27,5 +53,30 @@ public class FinancingModule {
     @Provides
     FinancingContract.PayFcOrderView providePayFcOrderView(){
         return payFcOrderView;
+    }
+
+    @Provides
+    FinancingContract.FcOrderDetailView provideFcOrderDetailView(){
+        return fcOrderDetailView;
+    }
+
+    @Provides
+    FinancingContract.FcOrderListView provideFcOrderListView(){
+        return fcOrderListView;
+    }
+
+    @Provides
+    FinancingContract.FcWalletView provideFcWalletView(){
+        return fcWalletView;
+    }
+
+    @Provides
+    FinancingContract.TurnOutBalanceView provideTurnOutBalanceView(){
+        return turnOutBalanceView;
+    }
+
+    @Provides
+    FinancingContract.TurnOutRecordView provideTurnOutRecordView(){
+        return turnOutRecordView;
     }
 }

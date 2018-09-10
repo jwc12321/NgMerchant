@@ -16,7 +16,14 @@ import com.nenggou.slsm.BaseActivity;
 import com.nenggou.slsm.R;
 import com.nenggou.slsm.common.StaticData;
 import com.nenggou.slsm.common.refreshview.HeaderViewLayout;
+import com.nenggou.slsm.data.entity.TurnOutRecord;
+import com.nenggou.slsm.financing.DaggerFinancingComponent;
+import com.nenggou.slsm.financing.FinancingContract;
+import com.nenggou.slsm.financing.FinancingModule;
 import com.nenggou.slsm.financing.adapter.TurnOutRecordAdapter;
+import com.nenggou.slsm.financing.presenter.TurnOutRecordPresenter;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,7 +33,7 @@ import butterknife.OnClick;
  * Created by JWC on 2018/9/6.
  */
 
-public class TurnOutRecordActivity extends BaseActivity {
+public class TurnOutRecordActivity extends BaseActivity implements FinancingContract.TurnOutRecordView {
     @BindView(R.id.back)
     ImageView back;
     @BindView(R.id.title)
@@ -45,6 +52,9 @@ public class TurnOutRecordActivity extends BaseActivity {
     HeaderViewLayout refreshLayout;
 
     private TurnOutRecordAdapter turnOutRecordAdapter;
+
+    @Inject
+    TurnOutRecordPresenter turnOutRecordPresenter;
 
     private static final int REQUEST_SELECT_WHAT = 102;
     private String selectWhat = "0";
@@ -68,17 +78,18 @@ public class TurnOutRecordActivity extends BaseActivity {
         refreshLayout.setCanLoadMore(false);
         turnOutRecordAdapter = new TurnOutRecordAdapter();
         recordRv.setAdapter(turnOutRecordAdapter);
+        turnOutRecordPresenter.getTurnOutRecord("1");
     }
 
     HeaderViewLayout.OnRefreshListener mOnRefreshListener = new HeaderViewLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-
+            turnOutRecordPresenter.getTurnOutRecord("0");
         }
 
         @Override
         public void onLoadMore() {
-
+            turnOutRecordPresenter.getMoreTurnOutRecord();
         }
 
         @Override
@@ -121,5 +132,48 @@ public class TurnOutRecordActivity extends BaseActivity {
                 default:
             }
         }
+    }
+
+    @Override
+    protected void initializeInjector() {
+        DaggerFinancingComponent.builder()
+                .applicationComponent(getApplicationComponent())
+                .financingModule(new FinancingModule(this))
+                .build()
+                .inject(this);
+    }
+
+
+    @Override
+    public void renderRecords(TurnOutRecord turnOutRecord) {
+        refreshLayout.stopRefresh();
+        if (turnOutRecord != null && turnOutRecord.getTurnOutRecordItems() != null && turnOutRecord.getTurnOutRecordItems().size() > 0) {
+            recordRv.setVisibility(View.VISIBLE);
+            emptyView.setVisibility(View.GONE);
+            refreshLayout.setCanLoadMore(true);
+            turnOutRecordAdapter.setData(turnOutRecord.getTurnOutRecordItems());
+
+        } else {
+            recordRv.setVisibility(View.GONE);
+            emptyView.setVisibility(View.VISIBLE);
+            refreshLayout.setCanLoadMore(false);
+            turnOutRecordAdapter.setData(null);
+        }
+    }
+
+    @Override
+    public void renderMoreRecords(TurnOutRecord turnOutRecord) {
+        refreshLayout.stopRefresh();
+        if (turnOutRecord != null && turnOutRecord.getTurnOutRecordItems() != null && turnOutRecord.getTurnOutRecordItems().size() > 0) {
+            refreshLayout.setCanLoadMore(true);
+            turnOutRecordAdapter.addMore(turnOutRecord.getTurnOutRecordItems());
+        } else {
+            refreshLayout.setCanLoadMore(false);
+        }
+    }
+
+    @Override
+    public void setPresenter(FinancingContract.TurnOutRecordPresenter presenter) {
+
     }
 }

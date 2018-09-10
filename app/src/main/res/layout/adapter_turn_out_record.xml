@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
@@ -13,11 +13,10 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/turn_out_state"
             style="@style/fifteen_apptext5_text_style"
             android:layout_marginLeft="@dimen/common_twelve_margin"
             android:layout_marginTop="@dimen/common_seventeen_margin"
-            tools:text="转出成功" />
+            android:text="转出成功" />
 
         <RelativeLayout
             android:layout_width="match_parent"

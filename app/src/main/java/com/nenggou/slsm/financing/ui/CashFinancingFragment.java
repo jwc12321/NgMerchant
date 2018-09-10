@@ -85,7 +85,7 @@ public class CashFinancingFragment extends BaseListFragment<FinancingItemInfo> i
 
     @Override
     public void goNovice(FinancingItemInfo financingItemInfo) {
-
+        NoviceActivity.start(getActivity(), financingItemInfo);
     }
 
     @Override

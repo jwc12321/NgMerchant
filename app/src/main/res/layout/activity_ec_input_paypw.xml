@@ -41,7 +41,16 @@
                 android:layout_height="@dimen/common_fifty_margin"
                 android:layout_marginLeft="@dimen/common_twelve_margin"
                 android:layout_marginRight="@dimen/common_twelve_margin"
-                android:layout_marginTop="@dimen/common_twenty_three_margin"
-                android:layout_marginBottom="@dimen/common_three_hundred_margin"/>
+                android:layout_marginTop="@dimen/common_twenty_three_margin" />
+            <TextView
+                android:id="@+id/forget_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/appText5"
+                android:text="@string/forget_password"
+                android:padding="@dimen/common_ten_margin"
+                android:layout_marginBottom="@dimen/common_three_hundred_margin"
+                android:layout_gravity="center_horizontal" />
         </LinearLayout>
 </RelativeLayout>

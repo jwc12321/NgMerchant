@@ -3,14 +3,19 @@ package com.nenggou.slsm.paypassword.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.nenggou.slsm.BaseActivity;
 import com.nenggou.slsm.R;
 import com.nenggou.slsm.common.StaticData;
+import com.nenggou.slsm.common.unit.PersionAppPreferences;
 import com.nenggou.slsm.common.widget.paypw.PayPwdEditText;
+import com.nenggou.slsm.data.entity.PersionInfoResponse;
 import com.nenggou.slsm.paypassword.DaggerPayPasswordComponent;
 import com.nenggou.slsm.paypassword.PayPasswordContract;
 import com.nenggou.slsm.paypassword.PayPasswordModule;
@@ -26,18 +31,25 @@ import butterknife.OnClick;
  * Created by JWC on 2018/8/21.
  */
 
-public class InputPayPwActivity extends BaseActivity implements PayPasswordContract.PayPwPowerView{
+public class InputPayPwActivity extends BaseActivity implements PayPasswordContract.PayPwPowerView {
     @BindView(R.id.cancel)
     ImageView cancel;
     @BindView(R.id.pwd_et)
     PayPwdEditText pwdEt;
     @BindView(R.id.item_input_pw)
     RelativeLayout itemInputPw;
+    @BindView(R.id.forget_password)
+    TextView forgetPassword;
 
     @Inject
     PayPwPowerPresenter payPwPowerPresenter;
 
     private String password;
+    private PersionAppPreferences persionAppPreferences;
+    private Gson gson= new Gson();
+    private String persionInfoStr;
+    private PersionInfoResponse persionInfoResponse;
+    private String phoneNumber;
 
 
     @Override
@@ -48,7 +60,13 @@ public class InputPayPwActivity extends BaseActivity implements PayPasswordContr
         initView();
     }
 
-    private void initView(){
+    private void initView() {
+        persionAppPreferences = new PersionAppPreferences(this);
+        persionInfoStr = persionAppPreferences.getPersionInfo();
+        if (!TextUtils.isEmpty(persionInfoStr)) {
+            persionInfoResponse = gson.fromJson(persionInfoStr, PersionInfoResponse.class);
+            phoneNumber=persionInfoResponse.getTel();
+        }
         initEt();
     }
 
@@ -57,19 +75,22 @@ public class InputPayPwActivity extends BaseActivity implements PayPasswordContr
         pwdEt.setOnTextFinishListener(new PayPwdEditText.OnTextFinishListener() {
             @Override
             public void onFinish(String str) {//密码输入完后的回调
-                password=str;
+                password = str;
                 payPwPowerPresenter.verifyPayPassword(str);
             }
         });
 
     }
 
-    @OnClick({R.id.cancel, R.id.item_input_pw})
+    @OnClick({R.id.cancel, R.id.item_input_pw,R.id.forget_password})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.cancel:
             case R.id.item_input_pw:
                 finish();
+                break;
+            case R.id.forget_password:
+                SmsAuthenticationActivity.start(this,phoneNumber);
                 break;
             default:
         }

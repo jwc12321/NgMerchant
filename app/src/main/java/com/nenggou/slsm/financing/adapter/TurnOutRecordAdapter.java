@@ -1,12 +1,14 @@
 package com.nenggou.slsm.financing.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.nenggou.slsm.R;
+import com.nenggou.slsm.common.unit.FormatUtil;
 import com.nenggou.slsm.data.entity.TurnOutRecordItem;
 
 import java.util.List;
@@ -44,17 +46,17 @@ public class TurnOutRecordAdapter extends RecyclerView.Adapter<TurnOutRecordAdap
 
     @Override
     public void onBindViewHolder(TurnOutRecordView holder, int position) {
+        TurnOutRecordItem turnOutRecordItem=turnOutRecordItems.get(holder.getAdapterPosition());
+        holder.bindData(turnOutRecordItem);
 
     }
 
     @Override
     public int getItemCount() {
-        return turnOutRecordItems==null?0:turnOutRecordItems.size();
+        return turnOutRecordItems == null ? 0 : turnOutRecordItems.size();
     }
 
     public class TurnOutRecordView extends RecyclerView.ViewHolder {
-        @BindView(R.id.turn_out_state)
-        TextView turnOutState;
         @BindView(R.id.turn_out_explain)
         TextView turnOutExplain;
         @BindView(R.id.turn_out_number)
@@ -63,13 +65,20 @@ public class TurnOutRecordAdapter extends RecyclerView.Adapter<TurnOutRecordAdap
         TextView time;
         @BindView(R.id.turn_out_where)
         TextView turnOutWhere;
+
         public TurnOutRecordView(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
         public void bindData(TurnOutRecordItem turnOutRecordItem) {
-
+            if(TextUtils.equals("0",turnOutRecordItem.getType())){
+                turnOutExplain.setText("[转出能量"+turnOutRecordItem.getPrice()+"个]");
+            }else {
+                turnOutExplain.setText("[转出现金"+turnOutRecordItem.getPrice()+"元]");
+            }
+            turnOutNumber.setText("+"+turnOutRecordItem.getPrice());
+            time.setText(FormatUtil.formatDateByLine(turnOutRecordItem.getCreatedAt()));
         }
     }
 }

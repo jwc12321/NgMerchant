@@ -3,10 +3,10 @@ package com.nenggou.slsm.data.entity;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by JWC on 2018/9/4.
+ * Created by JWC on 2018/9/10.
  */
 
-public class FinaningOrderItemInfo {
+public class FcOrderDetailInfo {
     @SerializedName("id")
     private String id;
     @SerializedName("financingid")

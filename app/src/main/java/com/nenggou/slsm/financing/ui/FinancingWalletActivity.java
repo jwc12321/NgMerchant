@@ -13,6 +13,13 @@ import android.widget.TextView;
 
 import com.nenggou.slsm.BaseActivity;
 import com.nenggou.slsm.R;
+import com.nenggou.slsm.data.entity.FcWalletInfo;
+import com.nenggou.slsm.financing.DaggerFinancingComponent;
+import com.nenggou.slsm.financing.FinancingContract;
+import com.nenggou.slsm.financing.FinancingModule;
+import com.nenggou.slsm.financing.presenter.FcWalletPresenter;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +30,7 @@ import butterknife.OnClick;
  * 理财钱包
  */
 
-public class FinancingWalletActivity extends BaseActivity {
+public class FinancingWalletActivity extends BaseActivity implements FinancingContract.FcWalletView{
     @BindView(R.id.back)
     ImageView back;
     @BindView(R.id.title)
@@ -56,6 +63,14 @@ public class FinancingWalletActivity extends BaseActivity {
     private boolean isEnergyFlag = true;
     private boolean isCashFlag = true;
 
+    @Inject
+    FcWalletPresenter fcWalletPresenter;
+
+    private String power;
+    private String totalPower;
+    private String cash;
+    private String totalCash;
+
     public static void start(Context context) {
         Intent intent = new Intent(context, FinancingWalletActivity.class);
         context.startActivity(intent);
@@ -76,6 +91,12 @@ public class FinancingWalletActivity extends BaseActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        fcWalletPresenter.getFcWalletInfo();
+    }
+
+    @Override
     public View getSnackBarHolderView() {
         return null;
     }
@@ -89,16 +110,30 @@ public class FinancingWalletActivity extends BaseActivity {
             case R.id.energy_eyes:
                 isEnergyFlag = !isEnergyFlag;
                 energyEyes.setSelected(isEnergyFlag);
+                if(isEnergyFlag){
+                    energyAlp.setText(power+"个能量");
+                    energyTotalAssets.setText(totalPower+"个能量");
+                }else {
+                    energyAlp.setText("***个能量");
+                    energyTotalAssets.setText("***个能量");
+                }
                 break;
             case R.id.cash_eyes:
                 isCashFlag = !isCashFlag;
                 cashEyes.setSelected(isCashFlag);
+                if(isCashFlag){
+                    cashAlp.setText(cash+"元");
+                    cashTotalAssets.setText(totalCash+"元");
+                }else {
+                    cashAlp.setText("***元");
+                    cashTotalAssets.setText("***元");
+                }
                 break;
             case R.id.energy_turn_out:
-                TurnOutBalanceActivity.start(this);
+                TurnOutBalanceActivity.start(this,"0",totalPower);
                 break;
             case R.id.cash_turn_out:
-                TurnOutBalanceActivity.start(this);
+                TurnOutBalanceActivity.start(this,"1",totalCash);
                 break;
             case R.id.turn_out_record:
                 TurnOutRecordActivity.start(this);
@@ -107,4 +142,31 @@ public class FinancingWalletActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public void setPresenter(FinancingContract.FcWalletPresenter presenter) {
+
+    }
+
+    @Override
+    public void renderFcWalletInfo(FcWalletInfo fcWalletInfo) {
+        if(fcWalletInfo!=null) {
+            power=fcWalletInfo.getPowermytotal();
+            totalPower=fcWalletInfo.getPower();
+            cash=fcWalletInfo.getPricemytotal();
+            totalCash=fcWalletInfo.getPrice();
+            energyAlp.setText(power+"个能量");
+            energyTotalAssets.setText(totalPower+"个能量");
+            cashAlp.setText(cash+"元");
+            cashTotalAssets.setText(totalCash+"元");
+        }
+    }
+
+    @Override
+    protected void initializeInjector() {
+        DaggerFinancingComponent.builder()
+                .applicationComponent(getApplicationComponent())
+                .financingModule(new FinancingModule(this))
+                .build()
+                .inject(this);
+    }
 }

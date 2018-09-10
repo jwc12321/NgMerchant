@@ -10,7 +10,9 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -28,6 +30,8 @@ import com.nenggou.slsm.financing.FinancingContract;
 import com.nenggou.slsm.financing.FinancingModule;
 import com.nenggou.slsm.financing.presenter.PayFcOrderPresenter;
 import com.nenggou.slsm.mainframe.ui.CommonDialogActivity;
+import com.nenggou.slsm.paypassword.ui.InputPayPwActivity;
+import com.nenggou.slsm.paypassword.ui.RdSPpwActivity;
 
 import java.lang.ref.WeakReference;
 import java.math.BigDecimal;
@@ -92,12 +96,15 @@ public class PayFinancingOrderActivity extends BaseActivity implements Financing
     private BigDecimal allYearBd;//整年
     private BigDecimal amountRateBd;//输入的加利息
     private BigDecimal restrictpriceBd;//最多能买多少
+    private BigDecimal purchasepriceBd;//最少该买多少
     private BigDecimal oneBd;//每次相加相减都是1
 
 
     boolean amountDouble = true;
     private int digits = 2;
     private static final int UPDATE_AMOUNT = 103;
+    private static final int REQUEST_PAY_PW = 104;
+    private String payPassword;
     private MyHandler mHandler = new MyHandler(this);
 
 
@@ -128,6 +135,7 @@ public class PayFinancingOrderActivity extends BaseActivity implements Financing
         financingCycleBd = new BigDecimal(financingCycle).setScale(2, BigDecimal.ROUND_DOWN);
         percentageBd = new BigDecimal(100).setScale(2, BigDecimal.ROUND_DOWN);
         allYearBd = new BigDecimal(365).setScale(2, BigDecimal.ROUND_DOWN);
+        oneBd = new BigDecimal(1).setScale(2, BigDecimal.ROUND_DOWN);
         editListener();
         payFcOrderPresenter.getPayFcOrderInfo(financingId);
     }
@@ -249,17 +257,20 @@ public class PayFinancingOrderActivity extends BaseActivity implements Financing
         return null;
     }
 
-    @OnClick({R.id.back, R.id.confirm})
+    @OnClick({R.id.back, R.id.confirm,R.id.reduce_number,R.id.increase_number})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
                 finish();
                 break;
             case R.id.confirm:
-                Intent intent = new Intent(this, CommonDialogActivity.class);
-                intent.putExtra(StaticData.TITLE_DATA, "提示");
-                intent.putExtra(StaticData.CONTENT_DATA, "钱包能量不足");
-                startActivityForResult(intent, REQUEST_LACK_MONEY);
+                confirm();
+                break;
+            case R.id.reduce_number:
+                reduceNumber();
+                break;
+            case R.id.increase_number:
+                addNumber();
                 break;
             default:
         }
@@ -271,7 +282,14 @@ public class PayFinancingOrderActivity extends BaseActivity implements Financing
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case REQUEST_LACK_MONEY:
-                    FinancingOrderDetailActivity.start(this);
+                    payFcOrderPresenter.isSetUpPayPw();
+                    break;
+                case REQUEST_PAY_PW:
+                    if (data != null) {
+                        Bundle bundle = data.getExtras();
+                        payPassword = (String) bundle.getSerializable(StaticData.PAY_PASSWORD);
+                        payFcOrderPresenter.payFcOrder(financingId,financingType,amountEt.getText().toString(),payPassword);
+                    }
                     break;
                 default:
             }
@@ -299,6 +317,7 @@ public class PayFinancingOrderActivity extends BaseActivity implements Financing
             walletBd = new BigDecimal(payFcOrderInfo.getQianbao()).setScale(2, BigDecimal.ROUND_DOWN);
             balanceBd = new BigDecimal(payFcOrderInfo.getYue()).setScale(2, BigDecimal.ROUND_DOWN);
             restrictpriceBd = new BigDecimal(payFcOrderInfo.getRestrictprice()).setScale(2, BigDecimal.ROUND_DOWN);
+            purchasepriceBd = new BigDecimal(payFcOrderInfo.getPurchaseprice()).setScale(2, BigDecimal.ROUND_DOWN);
             totalBd = walletBd.add(balanceBd);
             availableTotal.setText(totalBd.toString());
             availableItem.setText("(钱包" + payFcOrderInfo.getQianbao() + "+余额" + payFcOrderInfo.getYue() + ")");
@@ -314,7 +333,87 @@ public class PayFinancingOrderActivity extends BaseActivity implements Financing
         }
     }
 
-    private void addNumber(){
+    @Override
+    public void payFcOrderSuccess() {
+        FinancingOrderDetailActivity.start(this,financingId);
+        finish();
+    }
 
+    @Override
+    public void renderIsSetUpPayPw(String what) {
+        if (TextUtils.equals("true", what)) {
+            Intent intent = new Intent(this, InputPayPwActivity.class);
+            startActivityForResult(intent, REQUEST_PAY_PW);
+        } else {
+            RdSPpwActivity.start(this);
+        }
+    }
+
+    private void addNumber(){
+        amountBd=amountBd.add(oneBd);
+        if (amountBd.compareTo(restrictpriceBd)>0){
+            amountBd=amountBd.subtract(oneBd);
+            showMessage("不能大于"+restrictpriceBd.toString());
+            return;
+        }
+        amountEt.setText(amountBd.toString());
+    }
+
+    private void reduceNumber(){
+        amountBd=amountBd.subtract(oneBd);
+        if (amountBd.compareTo(purchasepriceBd)<0){
+            amountBd=amountBd.add(oneBd);
+            showMessage("不能小于"+purchasepriceBd.toString());
+            return;
+        }
+        amountEt.setText(amountBd.toString());
+    }
+
+    private void confirm(){
+        if(amountBd.compareTo(totalBd)>0){
+            showMessage("支付额度不够");
+            return;
+        }
+        if(amountBd.compareTo(walletBd)>0){
+            Intent intent = new Intent(this, CommonDialogActivity.class);
+            intent.putExtra(StaticData.TITLE_DATA, "提示");
+            intent.putExtra(StaticData.CONTENT_DATA, "钱包能量不足");
+            startActivityForResult(intent, REQUEST_LACK_MONEY);
+            return;
+        }
+        payFcOrderPresenter.isSetUpPayPw();
+    }
+
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if (isShouldHideInput(v, ev)) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm != null) {
+                    assert v != null;
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+            return super.dispatchTouchEvent(ev);
+        }
+        // 必不可少，否则所有的组件都不会有TouchEvent了
+        return getWindow().superDispatchTouchEvent(ev) || onTouchEvent(ev);
+    }
+
+    public boolean isShouldHideInput(View v, MotionEvent event) {
+        if (v != null && (v instanceof EditText)) {
+            int[] leftTop = {0, 0};
+            //获取输入框当前的location位置
+            v.getLocationInWindow(leftTop);
+            int left = leftTop[0];
+            int top = leftTop[1];
+            int bottom = top + v.getHeight();
+            int right = left + v.getWidth();
+            return !(event.getX() > left && event.getX() < right
+                    && event.getY() > top && event.getY() < bottom);
+        }
+        return false;
     }
 }

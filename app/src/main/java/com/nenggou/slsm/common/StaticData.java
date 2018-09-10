@@ -99,4 +99,6 @@ public class StaticData {
     public static final String INTEREST_RATE="interestRate";
     //理财周期
     public static final String FINANCING_CYCLE="financingCycle";
+    //钱包拥有的现金或者能量数量
+    public static final String E_A_C_NUMBER="eAcNumber";
 }

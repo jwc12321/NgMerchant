@@ -65,7 +65,8 @@
                     android:layout_marginTop="@dimen/common_thirty_margin"
                     android:orientation="horizontal">
 
-                    <LinearLayout style="@style/financing_order_ll_style">
+                    <LinearLayout style="@style/financing_order_ll_style"
+                        android:visibility="gone">
 
                         <TextView
                             style="@style/finaning_order_down_text_style"
@@ -233,7 +234,6 @@
                     <TextView
                         android:id="@+id/history_rate"
                         style="@style/fc_order_right_text_style"
-                        android:text="@string/history_rate"
                         tools:text="7+2.5" />
                 </RelativeLayout>
 
@@ -248,10 +248,21 @@
                     <TextView
                         android:id="@+id/closed_period_number"
                         style="@style/fc_order_right_text_style"
-                        android:text="@string/history_rate"
                         tools:text="3个月" />
                 </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
+                    <TextView
+                        style="@style/fc_order_left_text_style"
+                        android:text="@string/interest_type" />
+
+                    <TextView
+                        android:id="@+id/interest_type"
+                        style="@style/fc_order_right_text_style"
+                        tools:text="一次性" />
+                </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -263,7 +274,6 @@
                     <TextView
                         android:id="@+id/p_i_total"
                         style="@style/fc_order_right_text_style"
-                        android:text="@string/history_rate"
                         tools:text="1098能量" />
                 </RelativeLayout>
 
@@ -278,7 +288,6 @@
                     <TextView
                         android:id="@+id/poundage"
                         style="@style/fc_order_right_text_style"
-                        android:text="@string/history_rate"
                         tools:text="1098能量" />
                 </RelativeLayout>
             </LinearLayout>

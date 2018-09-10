@@ -57,7 +57,7 @@ public class PersonalCenterFragment extends BaseFragment {
     private PersionAppPreferences persionAppPreferences;
     private String persionInfoStr;
     private PersionInfoResponse persionInfoResponse;
-    private Gson gson;
+    private Gson gson= new Gson();
 
     public PersonalCenterFragment() {
     }
@@ -110,7 +110,6 @@ public class PersonalCenterFragment extends BaseFragment {
     private void initVeiw() {
         if (!isFirstLoad && getUserVisibleHint()) {
             persionInfoStr = persionAppPreferences.getPersionInfo();
-            gson = new Gson();
             if (!TextUtils.isEmpty(persionInfoStr) && !TextUtils.isEmpty(TokenManager.getToken())) {
                 persionInfoResponse = gson.fromJson(persionInfoStr, PersionInfoResponse.class);
                 GlideHelper.load(this, persionInfoResponse.getAvatar(), R.mipmap.default_head_image_icon, headPhoto);

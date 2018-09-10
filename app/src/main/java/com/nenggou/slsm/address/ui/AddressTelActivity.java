@@ -12,14 +12,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nenggou.slsm.BaseActivity;
-import com.nenggou.slsm.DaggerApplicationComponent;
 import com.nenggou.slsm.R;
 import com.nenggou.slsm.address.AddressContract;
 import com.nenggou.slsm.address.AddressModule;
 import com.nenggou.slsm.address.DaggerAddressComponent;
 import com.nenggou.slsm.address.adapter.AddressTelAdapter;
 import com.nenggou.slsm.address.presenter.AddressPresenter;
-import com.nenggou.slsm.bill.ui.ChoiceTimeActivity;
 import com.nenggou.slsm.common.refreshview.HeaderViewLayout;
 import com.nenggou.slsm.data.entity.AppstoreInfo;
 
