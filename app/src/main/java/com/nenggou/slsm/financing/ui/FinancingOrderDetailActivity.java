@@ -19,6 +19,7 @@ import com.nenggou.slsm.financing.DaggerFinancingComponent;
 import com.nenggou.slsm.financing.FinancingContract;
 import com.nenggou.slsm.financing.FinancingModule;
 import com.nenggou.slsm.financing.presenter.FcOrderDetailPresenter;
+import com.nenggou.slsm.mainframe.ui.MainFrameActivity;
 
 import java.math.BigDecimal;
 
@@ -133,10 +134,17 @@ public class FinancingOrderDetailActivity extends BaseActivity implements Financ
             if(!TextUtils.isEmpty(fcOrderDetailInfo.getStatus())) {
                 state(Integer.parseInt(fcOrderDetailInfo.getStatus()));
             }
-            historyRate.setText(fcOrderDetailInfo.getInterestRate() + "%~" + fcOrderDetailInfo.getAdditional() + "%");
+
+            if(TextUtils.equals("0.00", fcOrderDetailInfo.getAdditional())
+                    ||TextUtils.equals("0", fcOrderDetailInfo.getAdditional())
+                    ||TextUtils.equals("0.0", fcOrderDetailInfo.getAdditional())){
+                historyRate.setText(fcOrderDetailInfo.getInterestRate() + "%");
+            }else {
+                historyRate.setText(fcOrderDetailInfo.getInterestRate() + "%+"+fcOrderDetailInfo.getAdditional()+"%(" + fcOrderDetailInfo.getAdditionaltype() + ")");
+            }
             closedPeriodNumber.setText(fcOrderDetailInfo.getCycle()+"天");
             interestType.setText(fcOrderDetailInfo.getType());
-            poundage.setText(fcOrderDetailInfo.getServicecharge());
+            poundage.setText(fcOrderDetailInfo.getServicecharge()+"%");
             interestRateBd = new BigDecimal(fcOrderDetailInfo.getInterestRate()).setScale(2, BigDecimal.ROUND_DOWN);
             financingCycleBd = new BigDecimal(fcOrderDetailInfo.getCycle()).setScale(2, BigDecimal.ROUND_DOWN);
             priceDd= new BigDecimal(fcOrderDetailInfo.getPrice()).setScale(2, BigDecimal.ROUND_DOWN);
@@ -177,11 +185,14 @@ public class FinancingOrderDetailActivity extends BaseActivity implements Financ
     }
 
 
-    @OnClick({R.id.back})
+    @OnClick({R.id.back,R.id.confirm})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
                 finish();
+                break;
+            case R.id.confirm:
+                MainFrameActivity.start(this);
                 break;
             default:
         }

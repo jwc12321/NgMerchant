@@ -106,10 +106,17 @@ public class TurnOutBalanceActivity extends BaseActivity implements FinancingCon
             @Override
             public void onFinish(String str) {//密码输入完后的回调
                 password=str;
+                hideKeyboard();
             }
         });
 
     }
+
+    private void hideKeyboard() {
+        InputMethodManager inputMethodManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(pwdEt.getWindowToken(), 0);
+    }
+
 
     /**
      * edittext监听

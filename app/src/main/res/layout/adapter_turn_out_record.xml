@@ -67,7 +67,7 @@
                 android:layout_marginRight="@dimen/common_twelve_margin"
                 android:textColor="@color/appText6"
                 android:textSize="12sp"
-                tools:text="余额" />
+                android:text="余额" />
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

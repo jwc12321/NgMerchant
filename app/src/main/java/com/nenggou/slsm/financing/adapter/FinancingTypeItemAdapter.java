@@ -11,10 +11,8 @@ import android.widget.TextView;
 import com.nenggou.slsm.R;
 import com.nenggou.slsm.common.widget.list.MoreLoadable;
 import com.nenggou.slsm.common.widget.list.Refreshable;
-import com.nenggou.slsm.data.entity.CashDetailInfo;
 import com.nenggou.slsm.data.entity.FinancingItemInfo;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import butterknife.BindView;
@@ -27,10 +25,6 @@ import butterknife.ButterKnife;
 public class FinancingTypeItemAdapter extends RecyclerView.Adapter<FinancingTypeItemAdapter.FinancingItemView> implements Refreshable<FinancingItemInfo>, MoreLoadable<FinancingItemInfo> {
     private LayoutInflater layoutInflater;
     private List<FinancingItemInfo> financingItemInfos;
-    private BigDecimal deviationDecimal;//偏差率
-    private BigDecimal interestRateDecimal;//年利率
-    private BigDecimal addDecimal;//年利率+偏差率
-    private BigDecimal reduceDecimal;//年利率-偏差率
 
     public void setData(List<FinancingItemInfo> financingItemInfos) {
         this.financingItemInfos = financingItemInfos;
@@ -38,7 +32,7 @@ public class FinancingTypeItemAdapter extends RecyclerView.Adapter<FinancingType
     }
     @Override
     public void refresh(List<FinancingItemInfo> list) {
-        this.financingItemInfos=list;
+        this.financingItemInfos = list;
         notifyDataSetChanged();
     }
     public void addMore(List<FinancingItemInfo> moreList) {
@@ -63,7 +57,7 @@ public class FinancingTypeItemAdapter extends RecyclerView.Adapter<FinancingType
         holder.financingItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(itemClickListener!=null){
+                if (itemClickListener != null) {
                     itemClickListener.goNovice(financingItemInfo);
                 }
             }
@@ -98,24 +92,17 @@ public class FinancingTypeItemAdapter extends RecyclerView.Adapter<FinancingType
 
         public void bindData(FinancingItemInfo financingItemInfo) {
             title.setText(financingItemInfo.getTitle());
-            if(TextUtils.equals("0.00",financingItemInfo.getDeviation())){
-                interestRate.setText(financingItemInfo.getInterestRate()+"%");
-            }else {
-                interestRateDecimal = new BigDecimal(financingItemInfo.getInterestRate()).setScale(2, BigDecimal.ROUND_DOWN);
-                deviationDecimal = new BigDecimal(financingItemInfo.getDeviation()).setScale(2, BigDecimal.ROUND_DOWN);
-                addDecimal = interestRateDecimal.add(deviationDecimal);
-                reduceDecimal =interestRateDecimal.subtract(deviationDecimal);
-                interestRate.setText(reduceDecimal.toString()+"%~"+addDecimal.toString()+"%");
-            }
-            if(TextUtils.equals("0.00",financingItemInfo.getAdditional())){
+            interestRate.setText(financingItemInfo.getInterestRate() + "%");
+            if (TextUtils.equals("0.00", financingItemInfo.getAdditional())) {
                 additional.setText("");
-            }else {
-                additional.setText("+"+financingItemInfo.getAdditional()+"%("+financingItemInfo.getAdditionaltype()+")");
+            } else {
+                additional.setText("+" + financingItemInfo.getAdditional() + "%(" + financingItemInfo.getAdditionaltype() + ")");
             }
-            time.setText(financingItemInfo.getCycle()+"天");
-            if(TextUtils.equals("0",financingItemInfo.getPricetype())){
+
+            time.setText(financingItemInfo.getCycle() + "天");
+            if (TextUtils.equals("0", financingItemInfo.getPricetype())) {
                 surplusAmount.setText("剩余能量" + financingItemInfo.getSurplus() + "个");
-            }else {
+            } else {
                 surplusAmount.setText("剩余金额" + financingItemInfo.getSurplus() + "元");
             }
         }

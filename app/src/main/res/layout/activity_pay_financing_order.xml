@@ -143,7 +143,7 @@
             android:layout_marginRight="@dimen/common_twelve_margin"
             android:layout_marginTop="@dimen/common_twenty_margin"
             android:textColor="@color/appText3"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:text="@string/pay_order_explain" />
     </LinearLayout>
 

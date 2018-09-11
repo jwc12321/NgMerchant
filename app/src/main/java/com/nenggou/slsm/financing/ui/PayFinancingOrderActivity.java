@@ -144,6 +144,13 @@ public class PayFinancingOrderActivity extends BaseActivity implements Financing
      * edittext监听
      */
     private void editListener() {
+        //只是为了显示光标
+        amountEt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                amountEt.setCursorVisible(true);
+            }
+        });
         //监听edittext变化
         amountEt.addTextChangedListener(new TextWatcher() {
             @Override
@@ -314,6 +321,7 @@ public class PayFinancingOrderActivity extends BaseActivity implements Financing
     public void renderPayFcOrderInfo(PayFcOrderInfo payFcOrderInfo) {
         if (payFcOrderInfo != null) {
             amountEt.setText(payFcOrderInfo.getPurchaseprice());
+            amountEt.setCursorVisible(false);
             walletBd = new BigDecimal(payFcOrderInfo.getQianbao()).setScale(2, BigDecimal.ROUND_DOWN);
             balanceBd = new BigDecimal(payFcOrderInfo.getYue()).setScale(2, BigDecimal.ROUND_DOWN);
             restrictpriceBd = new BigDecimal(payFcOrderInfo.getRestrictprice()).setScale(2, BigDecimal.ROUND_DOWN);
@@ -350,6 +358,7 @@ public class PayFinancingOrderActivity extends BaseActivity implements Financing
     }
 
     private void addNumber(){
+        amountBd = new BigDecimal(amountEt.getText().toString()).setScale(2, BigDecimal.ROUND_DOWN);
         amountBd=amountBd.add(oneBd);
         if (amountBd.compareTo(restrictpriceBd)>0){
             amountBd=amountBd.subtract(oneBd);
@@ -360,6 +369,7 @@ public class PayFinancingOrderActivity extends BaseActivity implements Financing
     }
 
     private void reduceNumber(){
+        amountBd = new BigDecimal(amountEt.getText().toString()).setScale(2, BigDecimal.ROUND_DOWN);
         amountBd=amountBd.subtract(oneBd);
         if (amountBd.compareTo(purchasepriceBd)<0){
             amountBd=amountBd.add(oneBd);

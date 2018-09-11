@@ -6,7 +6,6 @@ import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.SslErrorHandler;
@@ -24,16 +23,13 @@ import com.nenggou.slsm.BuildConfig;
 import com.nenggou.slsm.R;
 import com.nenggou.slsm.common.StaticData;
 import com.nenggou.slsm.common.widget.GradationScrollView;
-import com.nenggou.slsm.common.widget.list.BaseListAdapter;
 import com.nenggou.slsm.common.widget.web.NoScrollWebView;
 import com.nenggou.slsm.data.entity.FinancingItemInfo;
-import com.nenggou.slsm.webview.ui.WebViewFragment;
 import com.nenggou.slsm.webview.unit.JSBridgeWebChromeClient;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,9 +41,6 @@ import butterknife.OnClick;
  */
 
 public class NoviceActivity extends BaseActivity {
-
-    @BindView(R.id.magic_indicator_title)
-    MagicIndicator magicIndicatorTitle;
     @BindView(R.id.back)
     ImageView back;
     @BindView(R.id.title)
@@ -100,10 +93,6 @@ public class NoviceActivity extends BaseActivity {
     RelativeLayout problemRl;
     @BindView(R.id.d_interest_rate)
     TextView dInterestRate;
-    @BindView(R.id.d_additional)
-    TextView dAdditional;
-    @BindView(R.id.d_interestRate_ll)
-    LinearLayout dInterestRateLl;
     @BindView(R.id.project_total_price)
     TextView projectTotalPrice;
     @BindView(R.id.d_closed_period)
@@ -114,10 +103,12 @@ public class NoviceActivity extends BaseActivity {
     TextView dPoundage;
     @BindView(R.id.detail_ll)
     LinearLayout detailLl;
-    @BindView(R.id.scrollview)
-    GradationScrollView scrollview;
     @BindView(R.id.webView)
     NoScrollWebView webView;
+    @BindView(R.id.scrollview)
+    GradationScrollView scrollview;
+    @BindView(R.id.magic_indicator_title)
+    MagicIndicator magicIndicatorTitle;
     @BindView(R.id.next)
     Button next;
     private FinancingItemInfo financingItemInfo;
@@ -150,10 +141,10 @@ public class NoviceActivity extends BaseActivity {
     private void initView() {
         financingItemInfo = (FinancingItemInfo) getIntent().getSerializableExtra(StaticData.FINANCING_ITEM_INFO);
         if (financingItemInfo != null) {
-            financingId=financingItemInfo.getId();
-            financingType=financingItemInfo.getPricetype();
-            interestrate=financingItemInfo.getInterestRate();
-            financingCycle=financingItemInfo.getCycle();
+            financingId = financingItemInfo.getId();
+            financingType = financingItemInfo.getPricetype();
+            interestrate = financingItemInfo.getInterestRate();
+            financingCycle = financingItemInfo.getCycle();
             title.setText(financingItemInfo.getTitle());
             if (TextUtils.equals("0.00", financingItemInfo.getDeviation())) {
                 interestRate.setText(financingItemInfo.getInterestRate() + "%");
@@ -170,11 +161,11 @@ public class NoviceActivity extends BaseActivity {
                 additional.setText("+" + financingItemInfo.getAdditional() + "%(" + financingItemInfo.getAdditionaltype() + ")");
             }
             closedPeriodInfo.setText(financingItemInfo.getCycle() + "天");
-            if(TextUtils.equals("0",financingItemInfo.getPricetype())){
+            if (TextUtils.equals("0", financingItemInfo.getPricetype())) {
                 surplusAmount.setText("剩余能量");
                 surplusAmountInfo.setText(financingItemInfo.getSurplus() + "个能量");
                 projectTotalPrice.setText(financingItemInfo.getTotalAmount() + "个能量");
-            }else {
+            } else {
                 surplusAmount.setText("剩余现金");
                 surplusAmountInfo.setText(financingItemInfo.getSurplus() + "元");
                 projectTotalPrice.setText(financingItemInfo.getTotalAmount() + "元");
@@ -198,25 +189,17 @@ public class NoviceActivity extends BaseActivity {
                 progressSecondIv.setSelected(true);
                 progressThirdIv.setSelected(true);
             }
-
-
-            if (TextUtils.equals("0.00", financingItemInfo.getDeviation())) {
+            if (TextUtils.equals("0.00", financingItemInfo.getAdditional())
+                    || TextUtils.equals("0", financingItemInfo.getAdditional())
+                    || TextUtils.equals("0.0", financingItemInfo.getAdditional())) {
                 dInterestRate.setText(financingItemInfo.getInterestRate() + "%");
             } else {
-                interestRateDecimal = new BigDecimal(financingItemInfo.getInterestRate()).setScale(2, BigDecimal.ROUND_DOWN);
-                deviationDecimal = new BigDecimal(financingItemInfo.getDeviation()).setScale(2, BigDecimal.ROUND_DOWN);
-                addDecimal = interestRateDecimal.add(deviationDecimal);
-                reduceDecimal = interestRateDecimal.subtract(deviationDecimal);
-                dInterestRate.setText(reduceDecimal.toString() + "%~" + addDecimal.toString() + "%");
+                dInterestRate.setText(financingItemInfo.getInterestRate() + "%+" + financingItemInfo.getAdditional() + "%(" + financingItemInfo.getAdditionaltype() + ")");
             }
-            if (TextUtils.equals("0.00", financingItemInfo.getAdditional())) {
-                dAdditional.setText("");
-            } else {
-                dAdditional.setText("+" + financingItemInfo.getAdditional() + "%(" + financingItemInfo.getAdditionaltype() + ")");
-            }
+
             dClosedPeriod.setText(financingItemInfo.getCycle() + "天");
             dInterestType.setText(financingItemInfo.getType());
-            dPoundage.setText(financingItemInfo.getServicecharge());
+            dPoundage.setText(financingItemInfo.getServicecharge() + "%");
         }
     }
 
@@ -266,7 +249,7 @@ public class NoviceActivity extends BaseActivity {
         return null;
     }
 
-    @OnClick({R.id.back, R.id.detail_rl, R.id.problem_rl,R.id.next})
+    @OnClick({R.id.back, R.id.detail_rl, R.id.problem_rl, R.id.next})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
@@ -279,7 +262,7 @@ public class NoviceActivity extends BaseActivity {
                 initTextColor("2");
                 break;
             case R.id.next:
-                PayFinancingOrderActivity.start(this,financingId,financingType,interestrate,financingCycle);
+                PayFinancingOrderActivity.start(this, financingId, financingType, interestrate, financingCycle);
                 break;
             default:
         }
