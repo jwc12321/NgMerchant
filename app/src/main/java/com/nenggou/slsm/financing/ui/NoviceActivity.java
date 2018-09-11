@@ -120,6 +120,7 @@ public class NoviceActivity extends BaseActivity {
     private String financingId;
     private String interestrate;//利息
     private String financingCycle;//周期
+    private String fcAdditional;//新手专享加的
 
 
     public static void start(Context context, FinancingItemInfo financingItemInfo) {
@@ -144,6 +145,7 @@ public class NoviceActivity extends BaseActivity {
             financingId = financingItemInfo.getId();
             financingType = financingItemInfo.getPricetype();
             interestrate = financingItemInfo.getInterestRate();
+            fcAdditional=financingItemInfo.getAdditional();
             financingCycle = financingItemInfo.getCycle();
             title.setText(financingItemInfo.getTitle());
             if (TextUtils.equals("0.00", financingItemInfo.getDeviation())) {
@@ -262,7 +264,7 @@ public class NoviceActivity extends BaseActivity {
                 initTextColor("2");
                 break;
             case R.id.next:
-                PayFinancingOrderActivity.start(this, financingId, financingType, interestrate, financingCycle);
+                PayFinancingOrderActivity.start(this, financingId, financingType, interestrate, financingCycle,fcAdditional);
                 break;
             default:
         }

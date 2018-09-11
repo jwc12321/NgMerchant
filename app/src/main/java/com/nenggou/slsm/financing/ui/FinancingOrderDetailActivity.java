@@ -91,6 +91,7 @@ public class FinancingOrderDetailActivity extends BaseActivity implements Financ
     private BigDecimal priceDd; //投资金额
     private BigDecimal allYearBd;//整年
     private BigDecimal pITotalBd;//本金加利息
+    private BigDecimal fcAdditionalBd;//新手专享
     @Inject
     FcOrderDetailPresenter fcOrderDetailPresenter;
 
@@ -147,8 +148,9 @@ public class FinancingOrderDetailActivity extends BaseActivity implements Financ
             poundage.setText(fcOrderDetailInfo.getServicecharge()+"%");
             interestRateBd = new BigDecimal(fcOrderDetailInfo.getInterestRate()).setScale(2, BigDecimal.ROUND_DOWN);
             financingCycleBd = new BigDecimal(fcOrderDetailInfo.getCycle()).setScale(2, BigDecimal.ROUND_DOWN);
+            fcAdditionalBd = new BigDecimal(fcOrderDetailInfo.getAdditional()).setScale(2, BigDecimal.ROUND_DOWN);
             priceDd= new BigDecimal(fcOrderDetailInfo.getPrice()).setScale(2, BigDecimal.ROUND_DOWN);
-            profitBd=priceDd.multiply(interestRateBd).divide(percentageBd).multiply(financingCycleBd).divide(allYearBd, 2, BigDecimal.ROUND_DOWN);
+            profitBd=priceDd.multiply(interestRateBd.add(fcAdditionalBd)).divide(percentageBd).multiply(financingCycleBd).divide(allYearBd, 2, BigDecimal.ROUND_DOWN);
             pITotalBd=priceDd.add(profitBd);
             if (TextUtils.equals("0", fcOrderDetailInfo.getPricetype())) {
                 investmentNumber.setText("项目投资:" + fcOrderDetailInfo.getPrice() + "个能量");

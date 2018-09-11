@@ -116,7 +116,7 @@ public class FinaningOrderAdapter extends RecyclerView.Adapter<FinaningOrderAdap
                     profitNumber.setText(finaningOrderItemInfo.getAccumulative()+"个能量");
                 }else {
                     profitType.setText("预计收益");
-                    profitNumber.setText(ProfitBdUtils.getProfitBd(finaningOrderItemInfo.getPrice(),finaningOrderItemInfo.getInterestRate(),finaningOrderItemInfo.getCycle())+"个能量");
+                    profitNumber.setText(ProfitBdUtils.getProfitBd(finaningOrderItemInfo.getPrice(),finaningOrderItemInfo.getInterestRate(),finaningOrderItemInfo.getCycle(),finaningOrderItemInfo.getAdditional())+"个能量");
                 }
             } else {
                 lendType.setText("出借现金");
@@ -126,7 +126,7 @@ public class FinaningOrderAdapter extends RecyclerView.Adapter<FinaningOrderAdap
                     profitNumber.setText(finaningOrderItemInfo.getAccumulative()+"元现金");
                 }else {
                     profitType.setText("预计收益");
-                    profitNumber.setText(ProfitBdUtils.getProfitBd(finaningOrderItemInfo.getPrice(),finaningOrderItemInfo.getInterestRate(),finaningOrderItemInfo.getCycle())+"元现金");
+                    profitNumber.setText(ProfitBdUtils.getProfitBd(finaningOrderItemInfo.getPrice(),finaningOrderItemInfo.getInterestRate(),finaningOrderItemInfo.getCycle(),finaningOrderItemInfo.getAdditional())+"元现金");
                 }
             }
             dueDate.setText(FormatUtil.formatDateYear(finaningOrderItemInfo.getEndtime()));

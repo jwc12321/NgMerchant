@@ -81,6 +81,7 @@ public class PayFinancingOrderActivity extends BaseActivity implements Financing
     private String financingType; //0:能量  1:现金
     private String interestRate;//利息
     private String financingCycle;//周期
+    private String fcAdditional;//如新手专享的
 
     @Inject
     PayFcOrderPresenter payFcOrderPresenter;
@@ -90,6 +91,7 @@ public class PayFinancingOrderActivity extends BaseActivity implements Financing
     private BigDecimal totalBd;//总共
     private BigDecimal interestRateBd;//利息
     private BigDecimal financingCycleBd;//周期
+    private BigDecimal fcAdditionalBd;//新手专享
     private BigDecimal percentageBd;//利息要除以100
     private BigDecimal profitBd;//收益金额
     private BigDecimal amountBd;//输入的钱
@@ -108,12 +110,13 @@ public class PayFinancingOrderActivity extends BaseActivity implements Financing
     private MyHandler mHandler = new MyHandler(this);
 
 
-    public static void start(Context context, String financingId, String financingType,String interestRate,String financingCycle) {
+    public static void start(Context context, String financingId, String financingType,String interestRate,String financingCycle,String fcAdditional) {
         Intent intent = new Intent(context, PayFinancingOrderActivity.class);
         intent.putExtra(StaticData.FINANCING_ID, financingId);
         intent.putExtra(StaticData.FINANCING_TYPE, financingType);
         intent.putExtra(StaticData.INTEREST_RATE,interestRate);
         intent.putExtra(StaticData.FINANCING_CYCLE,financingCycle);
+        intent.putExtra(StaticData.FC_ADDITIONAL,fcAdditional);
         context.startActivity(intent);
     }
 
@@ -131,8 +134,10 @@ public class PayFinancingOrderActivity extends BaseActivity implements Financing
         financingType = getIntent().getStringExtra(StaticData.FINANCING_TYPE);
         interestRate=getIntent().getStringExtra(StaticData.INTEREST_RATE);
         financingCycle=getIntent().getStringExtra(StaticData.FINANCING_CYCLE);
+        fcAdditional=getIntent().getStringExtra(StaticData.FC_ADDITIONAL);
         interestRateBd = new BigDecimal(interestRate).setScale(2, BigDecimal.ROUND_DOWN);
         financingCycleBd = new BigDecimal(financingCycle).setScale(2, BigDecimal.ROUND_DOWN);
+        fcAdditionalBd = new BigDecimal(fcAdditional).setScale(2, BigDecimal.ROUND_DOWN);
         percentageBd = new BigDecimal(100).setScale(2, BigDecimal.ROUND_DOWN);
         allYearBd = new BigDecimal(365).setScale(2, BigDecimal.ROUND_DOWN);
         oneBd = new BigDecimal(1).setScale(2, BigDecimal.ROUND_DOWN);
@@ -249,7 +254,7 @@ public class PayFinancingOrderActivity extends BaseActivity implements Financing
             amountEt.setText(restrictpriceBd.toString());
             return;
         }
-        profitBd=amountBd.multiply(interestRateBd).divide(percentageBd).multiply(financingCycleBd).divide(allYearBd, 2, BigDecimal.ROUND_DOWN);
+        profitBd=amountBd.multiply(interestRateBd.add(fcAdditionalBd)).divide(percentageBd).multiply(financingCycleBd).divide(allYearBd, 2, BigDecimal.ROUND_DOWN);
         amountRateBd=amountBd.add(profitBd);
         if (TextUtils.equals("0", financingType)) {
             incomeStatement.setText("预计本息合计"+amountRateBd.toString()+"个能量:支付能量"+amountBd.toString()+"个+收益能量"+profitBd.toString()+"个");

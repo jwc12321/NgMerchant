@@ -7,13 +7,14 @@ import java.math.BigDecimal;
  */
 
 public class ProfitBdUtils {
-    public static BigDecimal getProfitBd(String price, String interestRate, String financingCycle) {
+    public static BigDecimal getProfitBd(String price, String interestRate, String financingCycle,String fcAdditional) {
         BigDecimal percentageBd = new BigDecimal(100).setScale(2, BigDecimal.ROUND_DOWN);
         BigDecimal allYearBd = new BigDecimal(365).setScale(2, BigDecimal.ROUND_DOWN);
         BigDecimal interestRateBd = new BigDecimal(interestRate).setScale(2, BigDecimal.ROUND_DOWN);
+        BigDecimal fcAdditionalBd = new BigDecimal(fcAdditional).setScale(2, BigDecimal.ROUND_DOWN);
         BigDecimal financingCycleBd = new BigDecimal(financingCycle).setScale(2, BigDecimal.ROUND_DOWN);
         BigDecimal priceDd = new BigDecimal(price).setScale(2, BigDecimal.ROUND_DOWN);
-        BigDecimal profitBd = priceDd.multiply(interestRateBd).divide(percentageBd).multiply(financingCycleBd).divide(allYearBd, 2, BigDecimal.ROUND_DOWN);
+        BigDecimal profitBd = priceDd.multiply(interestRateBd.add(fcAdditionalBd)).divide(percentageBd).multiply(financingCycleBd).divide(allYearBd, 2, BigDecimal.ROUND_DOWN);
         return profitBd;
     }
 }
