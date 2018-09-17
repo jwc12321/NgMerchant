@@ -73,7 +73,7 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
     private String storeId;
 
     private String firstIn = "1";
-    private String firstUpdate="1";
+    private String firstUpdate = "1";
 
     public ReceiptFragment() {
     }
@@ -178,12 +178,12 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
 
     @Override
     public void renderAppstoreInfos(List<AppstoreInfo> appstoreInfos) {
-        if(TextUtils.equals("1",firstUpdate)){
+        if (TextUtils.equals("1", firstUpdate)) {
             receiptPresenter.detectionVersion(BuildConfig.VERSION_NAME, "android");
-            firstUpdate="0";
+            firstUpdate = "0";
         }
         refreshLayout.stopRefresh();
-        if (appstoreInfos != null&&appstoreInfos.size()>0) {
+        if (appstoreInfos != null && appstoreInfos.size() > 0) {
             cardPagerAdapter = new CardPagerAdapter(appstoreInfos);
             cardPagerAdapter.setOnItemClickListener(this);
             mCardShadowTransformer = new ShadowTransformer(viewPager, cardPagerAdapter);
@@ -250,7 +250,7 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
     }
 
     private void showUpdate(final ChangeAppInfo changeAppInfo) {
-        if (dialogUpdate == null)
+        if (dialogUpdate == null) {
             dialogUpdate = new CommonDialog.Builder()
                     .setTitle("版本更新")
                     .setContent(changeAppInfo.getTitle())
@@ -268,11 +268,12 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
                             updateApk(changeAppInfo.getUrl());
                         }
                     }).create();
-        dialogUpdate.show(getFragmentManager(), "");
+            dialogUpdate.show(getFragmentManager(), "");
+        }
     }
 
     private void toSetPush() {
-        if (dialogToSetPush == null)
+        if (dialogToSetPush == null) {
             dialogToSetPush = new CommonDialog.Builder()
                     .setTitle("推送权限")
                     .setContent("点击确定，找到通知，打开其中的权限，就可以收到语音提示了")
@@ -290,7 +291,8 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
                             dialogToSetPush.dismiss();
                         }
                     }).create();
-        dialogToSetPush.show(getFragmentManager(), "");
+            dialogToSetPush.show(getFragmentManager(), "");
+        }
     }
 
     private MaterialDialog materialDialog;
@@ -381,5 +383,10 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
             localIntent.putExtra("com.android.settings.ApplicationPkgName", BuildConfig.APPLICATION_ID);
         }
         startActivity(localIntent);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
     }
 }
