@@ -13,6 +13,7 @@ import com.nenggou.slsm.common.widget.list.MoreLoadable;
 import com.nenggou.slsm.common.widget.list.Refreshable;
 import com.nenggou.slsm.data.entity.FinancingItemInfo;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import butterknife.BindView;
@@ -25,6 +26,10 @@ import butterknife.ButterKnife;
 public class FinancingTypeItemAdapter extends RecyclerView.Adapter<FinancingTypeItemAdapter.FinancingItemView> implements Refreshable<FinancingItemInfo>, MoreLoadable<FinancingItemInfo> {
     private LayoutInflater layoutInflater;
     private List<FinancingItemInfo> financingItemInfos;
+    private BigDecimal deviationDecimal;//偏差率
+    private BigDecimal interestRateDecimal;//年利率
+    private BigDecimal addDecimal;//年利率+偏差率
+    private BigDecimal reduceDecimal;//年利率-偏差率
 
     public void setData(List<FinancingItemInfo> financingItemInfos) {
         this.financingItemInfos = financingItemInfos;
@@ -92,13 +97,20 @@ public class FinancingTypeItemAdapter extends RecyclerView.Adapter<FinancingType
 
         public void bindData(FinancingItemInfo financingItemInfo) {
             title.setText(financingItemInfo.getTitle());
-            interestRate.setText(financingItemInfo.getInterestRate() + "%");
-            if (TextUtils.equals("0.00", financingItemInfo.getAdditional())) {
-                additional.setText("");
-            } else {
-                additional.setText("+" + financingItemInfo.getAdditional() + "%(" + financingItemInfo.getAdditionaltype() + ")");
+            if(TextUtils.equals("0.00",financingItemInfo.getDeviation())){
+                interestRate.setText(financingItemInfo.getInterestRate()+"%");
+            }else {
+                interestRateDecimal = new BigDecimal(financingItemInfo.getInterestRate()).setScale(2, BigDecimal.ROUND_DOWN);
+                deviationDecimal = new BigDecimal(financingItemInfo.getDeviation()).setScale(2, BigDecimal.ROUND_DOWN);
+                addDecimal = interestRateDecimal.add(deviationDecimal);
+                reduceDecimal =interestRateDecimal.subtract(deviationDecimal);
+                interestRate.setText(reduceDecimal.toString()+"%~"+addDecimal.toString()+"%");
             }
-
+            if(TextUtils.equals("0.00",financingItemInfo.getAdditional())){
+                additional.setText("");
+            }else {
+                additional.setText("+"+financingItemInfo.getAdditional()+"%("+financingItemInfo.getAdditionaltype()+")");
+            }
             time.setText(financingItemInfo.getCycle() + "天");
             if (TextUtils.equals("0", financingItemInfo.getPricetype())) {
                 surplusAmount.setText("剩余能量" + financingItemInfo.getSurplus() + "个");

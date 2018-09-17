@@ -111,6 +111,8 @@ public class NoviceActivity extends BaseActivity {
     MagicIndicator magicIndicatorTitle;
     @BindView(R.id.next)
     Button next;
+    @BindView(R.id.d_additional)
+    TextView dAdditional;
     private FinancingItemInfo financingItemInfo;
     private BigDecimal deviationDecimal;//偏差率
     private BigDecimal interestRateDecimal;//年利率
@@ -145,22 +147,26 @@ public class NoviceActivity extends BaseActivity {
             financingId = financingItemInfo.getId();
             financingType = financingItemInfo.getPricetype();
             interestrate = financingItemInfo.getInterestRate();
-            fcAdditional=financingItemInfo.getAdditional();
+            fcAdditional = financingItemInfo.getAdditional();
             financingCycle = financingItemInfo.getCycle();
             title.setText(financingItemInfo.getTitle());
             if (TextUtils.equals("0.00", financingItemInfo.getDeviation())) {
                 interestRate.setText(financingItemInfo.getInterestRate() + "%");
+                dInterestRate.setText(financingItemInfo.getInterestRate() + "%");
             } else {
                 interestRateDecimal = new BigDecimal(financingItemInfo.getInterestRate()).setScale(2, BigDecimal.ROUND_DOWN);
                 deviationDecimal = new BigDecimal(financingItemInfo.getDeviation()).setScale(2, BigDecimal.ROUND_DOWN);
                 addDecimal = interestRateDecimal.add(deviationDecimal);
                 reduceDecimal = interestRateDecimal.subtract(deviationDecimal);
                 interestRate.setText(reduceDecimal.toString() + "%~" + addDecimal.toString() + "%");
+                dInterestRate.setText(reduceDecimal.toString() + "%~" + addDecimal.toString() + "%");
             }
             if (TextUtils.equals("0.00", financingItemInfo.getAdditional())) {
                 additional.setText("");
+                dAdditional.setText("");
             } else {
                 additional.setText("+" + financingItemInfo.getAdditional() + "%(" + financingItemInfo.getAdditionaltype() + ")");
+                dAdditional.setText("+" + financingItemInfo.getAdditional() + "%(" + financingItemInfo.getAdditionaltype() + ")");
             }
             closedPeriodInfo.setText(financingItemInfo.getCycle() + "天");
             if (TextUtils.equals("0", financingItemInfo.getPricetype())) {
@@ -191,14 +197,6 @@ public class NoviceActivity extends BaseActivity {
                 progressSecondIv.setSelected(true);
                 progressThirdIv.setSelected(true);
             }
-            if (TextUtils.equals("0.00", financingItemInfo.getAdditional())
-                    || TextUtils.equals("0", financingItemInfo.getAdditional())
-                    || TextUtils.equals("0.0", financingItemInfo.getAdditional())) {
-                dInterestRate.setText(financingItemInfo.getInterestRate() + "%");
-            } else {
-                dInterestRate.setText(financingItemInfo.getInterestRate() + "%+" + financingItemInfo.getAdditional() + "%(" + financingItemInfo.getAdditionaltype() + ")");
-            }
-
             dClosedPeriod.setText(financingItemInfo.getCycle() + "天");
             dInterestType.setText(financingItemInfo.getType());
             dPoundage.setText(financingItemInfo.getServicecharge() + "%");
@@ -264,7 +262,7 @@ public class NoviceActivity extends BaseActivity {
                 initTextColor("2");
                 break;
             case R.id.next:
-                PayFinancingOrderActivity.start(this, financingId, financingType, interestrate, financingCycle,fcAdditional);
+                PayFinancingOrderActivity.start(this, financingId, financingType, interestrate, financingCycle, fcAdditional);
                 break;
             default:
         }

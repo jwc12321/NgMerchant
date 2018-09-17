@@ -82,6 +82,8 @@ public class FinancingOrderDetailActivity extends BaseActivity implements Financ
     TextView poundage;
     @BindView(R.id.confirm)
     Button confirm;
+    @BindView(R.id.additional)
+    TextView additional;
 
     private String financingId;
     private BigDecimal interestRateBd;//利息
@@ -92,6 +94,11 @@ public class FinancingOrderDetailActivity extends BaseActivity implements Financ
     private BigDecimal allYearBd;//整年
     private BigDecimal pITotalBd;//本金加利息
     private BigDecimal fcAdditionalBd;//新手专享
+
+    private BigDecimal deviationDecimal;//偏差率
+    private BigDecimal interestRateDecimal;//年利率
+    private BigDecimal addDecimal;//年利率+偏差率
+    private BigDecimal reduceDecimal;//年利率-偏差率
     @Inject
     FcOrderDetailPresenter fcOrderDetailPresenter;
 
@@ -131,50 +138,56 @@ public class FinancingOrderDetailActivity extends BaseActivity implements Financ
     public void renderFcOrderDetailInfo(FcOrderDetailInfo fcOrderDetailInfo) {
         if (fcOrderDetailInfo != null) {
             orderType.setText(fcOrderDetailInfo.getTitle());
-            closedPeriod.setText(fcOrderDetailInfo.getCycle()+"天");
-            if(!TextUtils.isEmpty(fcOrderDetailInfo.getStatus())) {
+            closedPeriod.setText(fcOrderDetailInfo.getCycle() + "天");
+            if (!TextUtils.isEmpty(fcOrderDetailInfo.getStatus())) {
                 state(Integer.parseInt(fcOrderDetailInfo.getStatus()));
             }
-
-            if(TextUtils.equals("0.00", fcOrderDetailInfo.getAdditional())
-                    ||TextUtils.equals("0", fcOrderDetailInfo.getAdditional())
-                    ||TextUtils.equals("0.0", fcOrderDetailInfo.getAdditional())){
+            if (TextUtils.equals("0.00", fcOrderDetailInfo.getDeviation())) {
                 historyRate.setText(fcOrderDetailInfo.getInterestRate() + "%");
-            }else {
-                historyRate.setText(fcOrderDetailInfo.getInterestRate() + "%+"+fcOrderDetailInfo.getAdditional()+"%(" + fcOrderDetailInfo.getAdditionaltype() + ")");
+            } else {
+                interestRateDecimal = new BigDecimal(fcOrderDetailInfo.getInterestRate()).setScale(2, BigDecimal.ROUND_DOWN);
+                deviationDecimal = new BigDecimal(fcOrderDetailInfo.getDeviation()).setScale(2, BigDecimal.ROUND_DOWN);
+                addDecimal = interestRateDecimal.add(deviationDecimal);
+                reduceDecimal = interestRateDecimal.subtract(deviationDecimal);
+                historyRate.setText(reduceDecimal.toString() + "%~" + addDecimal.toString() + "%");
             }
-            closedPeriodNumber.setText(fcOrderDetailInfo.getCycle()+"天");
+            if (TextUtils.equals("0.00", fcOrderDetailInfo.getAdditional())) {
+                additional.setText("");
+            } else {
+                additional.setText("+" + fcOrderDetailInfo.getAdditional() + "%(" + fcOrderDetailInfo.getAdditionaltype() + ")");
+            }
+            closedPeriodNumber.setText(fcOrderDetailInfo.getCycle() + "天");
             interestType.setText(fcOrderDetailInfo.getType());
-            poundage.setText(fcOrderDetailInfo.getServicecharge()+"%");
+            poundage.setText(fcOrderDetailInfo.getServicecharge() + "%");
             interestRateBd = new BigDecimal(fcOrderDetailInfo.getInterestRate()).setScale(2, BigDecimal.ROUND_DOWN);
             financingCycleBd = new BigDecimal(fcOrderDetailInfo.getCycle()).setScale(2, BigDecimal.ROUND_DOWN);
             fcAdditionalBd = new BigDecimal(fcOrderDetailInfo.getAdditional()).setScale(2, BigDecimal.ROUND_DOWN);
-            priceDd= new BigDecimal(fcOrderDetailInfo.getPrice()).setScale(2, BigDecimal.ROUND_DOWN);
-            profitBd=priceDd.multiply(interestRateBd.add(fcAdditionalBd)).divide(percentageBd).multiply(financingCycleBd).divide(allYearBd, 2, BigDecimal.ROUND_DOWN);
-            pITotalBd=priceDd.add(profitBd);
+            priceDd = new BigDecimal(fcOrderDetailInfo.getPrice()).setScale(2, BigDecimal.ROUND_DOWN);
+            profitBd = priceDd.multiply(interestRateBd.add(fcAdditionalBd)).divide(percentageBd).multiply(financingCycleBd).divide(allYearBd, 2, BigDecimal.ROUND_DOWN);
+            pITotalBd = priceDd.add(profitBd);
             if (TextUtils.equals("0", fcOrderDetailInfo.getPricetype())) {
                 investmentNumber.setText("项目投资:" + fcOrderDetailInfo.getPrice() + "个能量");
-                alreadyEarnings.setText(fcOrderDetailInfo.getAccumulative()+"个");
-                pITotal.setText(pITotalBd.toString()+"个能量");
+                alreadyEarnings.setText(fcOrderDetailInfo.getAccumulative() + "个");
+                pITotal.setText(pITotalBd.toString() + "个能量");
             } else {
                 investmentNumber.setText("项目投资:" + fcOrderDetailInfo.getPrice() + "元现金");
-                alreadyEarnings.setText(fcOrderDetailInfo.getAccumulative()+"元");
-                pITotal.setText(pITotalBd.toString()+"元现金");
+                alreadyEarnings.setText(fcOrderDetailInfo.getAccumulative() + "元");
+                pITotal.setText(pITotalBd.toString() + "元现金");
             }
         }
     }
 
-    private void state(int stateInt){
-        firstHook.setSelected(stateInt>=0?true:false);
-        secondHook.setSelected(stateInt>=1?true:false);
-        thirdHook.setSelected(stateInt>=2?true:false);
-        fourthHook.setSelected(stateInt>=3?true:false);
-        firstSpeed.setSelected(stateInt>0?true:false);
-        secondSpeed.setSelected(stateInt>0?true:false);
-        thirdSpeed.setSelected(stateInt>1?true:false);
-        fourthSpeed.setSelected(stateInt>1?true:false);
-        fiftySpeed.setSelected(stateInt>2?true:false);
-        sixthSpeed.setSelected(stateInt>2?true:false);
+    private void state(int stateInt) {
+        firstHook.setSelected(stateInt >= 0 ? true : false);
+        secondHook.setSelected(stateInt >= 1 ? true : false);
+        thirdHook.setSelected(stateInt >= 2 ? true : false);
+        fourthHook.setSelected(stateInt >= 3 ? true : false);
+        firstSpeed.setSelected(stateInt > 0 ? true : false);
+        secondSpeed.setSelected(stateInt > 0 ? true : false);
+        thirdSpeed.setSelected(stateInt > 1 ? true : false);
+        fourthSpeed.setSelected(stateInt > 1 ? true : false);
+        fiftySpeed.setSelected(stateInt > 2 ? true : false);
+        sixthSpeed.setSelected(stateInt > 2 ? true : false);
     }
 
     @Override
@@ -187,7 +200,7 @@ public class FinancingOrderDetailActivity extends BaseActivity implements Financ
     }
 
 
-    @OnClick({R.id.back,R.id.confirm})
+    @OnClick({R.id.back, R.id.confirm})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
