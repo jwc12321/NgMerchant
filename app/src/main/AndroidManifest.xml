@@ -197,6 +197,7 @@
         <activity android:name=".referee.ui.RdListActivity"
             android:screenOrientation="portrait"/>
         <service android:name=".push.TtsService"/>
+        <service android:name=".service.VoiceService"/>
         <activity android:name=".paypassword.ui.FirstPayPwActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".paypassword.ui.SecondPayPwActivity"

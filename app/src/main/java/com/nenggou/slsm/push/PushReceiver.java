@@ -11,6 +11,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.nenggou.slsm.cash.ui.ReceivablesActivity;
 import com.nenggou.slsm.common.unit.CommonAppPreferences;
+import com.nenggou.slsm.service.VoiceService;
 
 import javax.inject.Inject;
 
@@ -45,13 +46,17 @@ public class PushReceiver extends BroadcastReceiver {
         else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
             String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);//获取附加字段,是一个json数
             PushInfo pushInfo = gson.fromJson(extras, PushInfo.class);
-            if (TextUtils.equals("1", pushInfo.getType())) {
-                commonAppPreferences.setPushInfoStr(gson.toJson(pushInfo),"1");
-                Intent activityIntent = new Intent(context, receivablesActivity.getClass());
-                activityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(activityIntent);
-                Intent regIntent = new Intent(context, TtsService.class);
-                context.startService(regIntent);
+            if(!TextUtils.isEmpty(pushInfo.getPaytime())) {
+                if (System.currentTimeMillis() - Long.parseLong(pushInfo.getPaytime()) * 1000 < 60000) {
+                    if (TextUtils.equals("1", pushInfo.getType())) {
+                        commonAppPreferences.setPushInfoStr(gson.toJson(pushInfo), "1");
+                        Intent activityIntent = new Intent(context, receivablesActivity.getClass());
+                        activityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(activityIntent);
+                        Intent regIntent = new Intent(context, VoiceService.class);
+                        context.startService(regIntent);
+                    }
+                }
             }
         } else if (JPushInterface.ACTION_REGISTRATION_ID.equals(intent.getAction())) {
             String regId = bundle.getString(JPushInterface.EXTRA_REGISTRATION_ID);

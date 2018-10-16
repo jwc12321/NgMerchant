@@ -61,7 +61,7 @@ android {
             zipAlignEnabled true
         }
         debug {
-            buildConfigField "String", "API_BASE_URL", "\"http://www.xiaoqidian.top/api/\""
+            buildConfigField "String", "API_BASE_URL", "\"http://test.hzywwl.com/api/\""
 //            buildConfigField "String", "API_BASE_URL", "\"http://192.168.100.150/test365neng/public/api/\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -71,10 +71,8 @@ android {
         }
     }
 
-    sourceSets {
-        main {
-            jniLibs.srcDirs = ['libs']
-        }
+    sourceSets.main {
+        jniLibs.srcDir 'src/main/jniLibs'
     }
     buildToolsVersion '26.0.2'
 
@@ -169,6 +167,6 @@ dependencies {
     compile "com.azoft.carousellayoutmanager:carousel:$rootProject.ext.carouselVersion"
     implementation files('libs/classes.jar')
     implementation files('libs/umeng-common-1.5.3.jar')
-
     compile 'com.github.hackware1993:MagicIndicator:1.5.0'
+    implementation files('libs/com.baidu.tts_2.3.2.20180713_6101c2a.jar')
 }

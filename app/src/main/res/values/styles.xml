@@ -612,4 +612,34 @@
         <item name="android:textColor">@drawable/turn_out_screen_select</item>
         <item name="android:textSize">17sp</item>
     </style>
+
+    <style name="jurisdiction_rl_bg_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/common_eighty_four_margin</item>
+        <item name="android:layout_marginLeft">@dimen/common_twenty_two_margin</item>
+        <item name="android:layout_marginRight">@dimen/common_twenty_two_margin</item>
+        <item name="android:layout_marginTop">@dimen/common_thirty_eight_margin</item>
+        <item name="android:background">@drawable/jurisdiction_in</item>
+    </style>
+    <style name="jurisdiction_ll_bg_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    <style name="jurisdiction_iv_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginRight">@dimen/common_fifteen_margin</item>
+        <item name="android:src">@mipmap/jur_selected</item>
+    </style>
+    <style name="jurisdiction_tv_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/common_fifteen_margin</item>
+        <item name="android:layout_marginRight">@dimen/common_fifteen_margin</item>
+        <item name="android:textColor">@drawable/jurisdiction_text_select</item>
+    </style>
 </resources>

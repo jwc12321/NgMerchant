@@ -62,9 +62,18 @@ public class JurisdictionActivity extends BaseActivity {
     Button confirm;
     @BindView(R.id.jur_item)
     RelativeLayout jurItem;
+    @BindView(R.id.phone_info)
+    TextView phoneInfo;
+    @BindView(R.id.phone_item)
+    TextView phoneItem;
+    @BindView(R.id.phone_select)
+    ImageView phoneSelect;
+    @BindView(R.id.phone_ll)
+    RelativeLayout phoneLl;
 
-    private boolean camearFlag = false;
-    private boolean storageFlag = false;
+    private boolean camearFlag = true;
+    private boolean storageFlag = true;
+    private boolean phoneFlag=true;
 
     private static final int GO_MAIN = 1;
     private static final int GO_LOGIN = 2;
@@ -91,6 +100,15 @@ public class JurisdictionActivity extends BaseActivity {
         commonAppPreferences = new CommonAppPreferences(this);
         commonAppPreferences.setFirstJurisdiction("1");
         groups = new ArrayList<>();
+        groups.add(Manifest.permission_group.CAMERA);
+        groups.add(Manifest.permission_group.STORAGE);
+        groups.add(Manifest.permission_group.PHONE);
+        camearInfo.setSelected(camearFlag);
+        camearItem.setSelected(camearFlag);
+        storageInfo.setSelected(storageFlag);
+        storageItem.setSelected(storageFlag);
+        phoneInfo.setSelected(phoneFlag);
+        phoneItem.setSelected(phoneFlag);
         bgRl.setAlpha(0.33f);
     }
 
@@ -163,7 +181,7 @@ public class JurisdictionActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.camear_ll, R.id.storage_ll, R.id.confirm})
+    @OnClick({R.id.camear_ll, R.id.storage_ll,R.id.phone_ll, R.id.confirm})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.camear_ll:
@@ -191,6 +209,19 @@ public class JurisdictionActivity extends BaseActivity {
                 storageInfo.setSelected(storageFlag);
                 storageItem.setSelected(storageFlag);
                 storageSelect.setVisibility(storageFlag ? View.VISIBLE : View.GONE);
+                break;
+            case R.id.phone_ll:
+                phoneFlag = !phoneFlag;
+                if (phoneFlag) {
+                    groups.add(Manifest.permission_group.PHONE);
+                    phoneLl.setBackgroundResource(R.drawable.jurisdiction_in);
+                } else {
+                    groups.remove(Manifest.permission_group.PHONE);
+                    phoneLl.setBackgroundResource(R.drawable.jurisdiction_out);
+                }
+                phoneInfo.setSelected(phoneFlag);
+                phoneItem.setSelected(phoneFlag);
+                phoneSelect.setVisibility(phoneFlag ? View.VISIBLE : View.GONE);
                 break;
             case R.id.confirm:
                 if (groups.size() == 0) {

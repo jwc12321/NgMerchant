@@ -26,6 +26,7 @@ import com.nenggou.slsm.receipt.ui.ReceiptFragment;
 import com.nenggou.slsm.receiver.ScreenReceiverUtil;
 import com.nenggou.slsm.service.DaemonService;
 import com.nenggou.slsm.service.PlayerMusicService;
+import com.nenggou.slsm.service.VoiceService;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -126,6 +127,7 @@ public class MainFrameActivity extends BaseActivity {
         mJobManager.startJobScheduler();
         startDaemonService();
         startPlayMusicService();
+        startVoiceService();
         initView();
     }
 
@@ -193,11 +195,6 @@ public class MainFrameActivity extends BaseActivity {
         return mainRl;
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-//         super.onSaveInstanceState(outState);
-    }
-
     private void startDaemonService() {
         Intent intent = new Intent(MainFrameActivity.this, DaemonService.class);
         startService(intent);
@@ -215,6 +212,11 @@ public class MainFrameActivity extends BaseActivity {
 
     private void startPlayMusicService() {
         Intent intent = new Intent(MainFrameActivity.this,PlayerMusicService.class);
+        startService(intent);
+    }
+
+    private void startVoiceService() {
+        Intent intent = new Intent(MainFrameActivity.this, VoiceService.class);
         startService(intent);
     }
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/jur_item"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/jur_item">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/bg_rl"
@@ -24,107 +24,94 @@
 
     <RelativeLayout
         android:id="@+id/camear_ll"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/common_eighty_four_margin"
-        android:layout_below="@id/start_jurisdiction"
-        android:layout_marginLeft="@dimen/common_twenty_two_margin"
-        android:layout_marginRight="@dimen/common_twenty_two_margin"
-        android:layout_marginTop="@dimen/common_thirty_eight_margin"
-        android:background="@drawable/jurisdiction_out">
+        style="@style/jurisdiction_rl_bg_style"
+        android:layout_below="@id/start_jurisdiction">
 
         <LinearLayout
+            style="@style/jurisdiction_ll_bg_style"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/common_five_margin"
-            android:layout_toLeftOf="@id/camear_select"
-            android:orientation="vertical">
+            android:layout_toLeftOf="@id/camear_select">
 
             <TextView
                 android:id="@+id/camear_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/common_fifteen_margin"
+                style="@style/jurisdiction_tv_style"
                 android:text="允许访问摄像头"
-                android:textColor="@drawable/jurisdiction_text_select"
                 android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/camear_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/common_fifteen_margin"
+                style="@style/jurisdiction_tv_style"
                 android:layout_marginTop="@dimen/common_five_margin"
                 android:text="用于扫描，更换头像"
-                android:textColor="@drawable/jurisdiction_text_select"
                 android:textSize="13sp" />
         </LinearLayout>
 
         <ImageView
             android:id="@+id/camear_select"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/common_fifteen_margin"
-            android:src="@mipmap/jur_selected"
-            android:visibility="gone"/>
+            style="@style/jurisdiction_iv_style" />
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/storage_ll"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/common_eighty_four_margin"
-        android:layout_below="@id/camear_ll"
-        android:layout_marginLeft="@dimen/common_twenty_two_margin"
-        android:layout_marginRight="@dimen/common_twenty_two_margin"
-        android:layout_marginTop="@dimen/common_thirty_eight_margin"
-        android:background="@drawable/jurisdiction_out">
+        style="@style/jurisdiction_rl_bg_style"
+        android:layout_below="@id/camear_ll">
 
         <LinearLayout
+            style="@style/jurisdiction_ll_bg_style"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/common_five_margin"
-            android:layout_toLeftOf="@id/storage_select"
-            android:orientation="vertical">
+            android:layout_toLeftOf="@id/storage_select">
 
             <TextView
                 android:id="@+id/storage_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/common_fifteen_margin"
+                style="@style/jurisdiction_tv_style"
                 android:text="允许访问SD卡"
-                android:textColor="@drawable/jurisdiction_text_select"
                 android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/storage_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/common_fifteen_margin"
+                style="@style/jurisdiction_tv_style"
                 android:layout_marginTop="@dimen/common_five_margin"
-                android:text="用于下载更新APP"
-                android:textColor="@drawable/jurisdiction_text_select"
+                android:text="用于下载更新APP和语音播放"
                 android:textSize="13sp" />
         </LinearLayout>
 
         <ImageView
             android:id="@+id/storage_select"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/common_fifteen_margin"
-            android:src="@mipmap/jur_selected"
-            android:visibility="gone"/>
+            style="@style/jurisdiction_iv_style" />
     </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/phone_ll"
+        style="@style/jurisdiction_rl_bg_style"
+        android:layout_below="@id/storage_ll">
 
+        <LinearLayout
+            style="@style/jurisdiction_ll_bg_style"
+            android:layout_width="match_parent"
+            android:layout_toLeftOf="@id/phone_select">
+
+            <TextView
+                android:id="@+id/phone_info"
+                style="@style/jurisdiction_tv_style"
+                android:text="允许访问手机"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/phone_item"
+                style="@style/jurisdiction_tv_style"
+                android:layout_marginTop="@dimen/common_five_margin"
+                android:text="用于语音播放"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/phone_select"
+            style="@style/jurisdiction_iv_style" />
+    </RelativeLayout>
     <Button
         android:id="@+id/confirm"
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_forty_four_margin"
-        android:layout_below="@id/storage_ll"
+        android:layout_below="@id/phone_ll"
         android:layout_marginLeft="@dimen/common_fifteen_margin"
         android:layout_marginRight="@dimen/common_fifteen_margin"
         android:layout_marginTop="@dimen/common_fifty_margin"
