@@ -161,11 +161,11 @@ public class FinancingFragment extends BaseFragment implements FinancingContract
             financingRv.setVisibility(View.VISIBLE);
             emptyView.setVisibility(View.GONE);
             refreshLayout.setCanLoadMore(true);
+            financingItemAdapter.setData(financingItemInfos);
         } else {
             financingRv.setVisibility(View.GONE);
             emptyView.setVisibility(View.VISIBLE);
             refreshLayout.setCanLoadMore(false);
-            financingItemAdapter.setData(financingItemInfos);
         }
     }
 
