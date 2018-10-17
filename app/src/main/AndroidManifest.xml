@@ -258,6 +258,8 @@
         <activity android:name=".financing.ui.TurnOutScreenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/TranslucentFullScreenTheme"/>
+        <activity android:name=".financing.ui.OldNoviceActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

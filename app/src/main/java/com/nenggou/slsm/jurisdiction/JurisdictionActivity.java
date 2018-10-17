@@ -102,7 +102,6 @@ public class JurisdictionActivity extends BaseActivity {
         groups = new ArrayList<>();
         groups.add(Manifest.permission_group.CAMERA);
         groups.add(Manifest.permission_group.STORAGE);
-        groups.add(Manifest.permission_group.PHONE);
         camearInfo.setSelected(camearFlag);
         camearItem.setSelected(camearFlag);
         storageInfo.setSelected(storageFlag);

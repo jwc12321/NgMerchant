@@ -40,6 +40,7 @@ import com.nenggou.slsm.receipt.DaggerReceiptComponent;
 import com.nenggou.slsm.receipt.ReceiptContract;
 import com.nenggou.slsm.receipt.ReceiptModule;
 import com.nenggou.slsm.receipt.presenter.ReceiptPresenter;
+import com.nenggou.slsm.service.VoiceService;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -74,6 +75,7 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
 
     private String firstIn = "1";
     private String firstUpdate = "1";
+    private String canUpload="0";
 
     public ReceiptFragment() {
     }
@@ -106,6 +108,13 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
     private void initView() {
         refreshLayout.setOnRefreshListener(mOnRefreshListener);
         refreshLayout.setCanLoadMore(false);
+        List<String> group = new ArrayList<>();
+        group.add(Manifest.permission_group.STORAGE);
+        if (requestRuntimePermissions(PermissionUtil.permissionGroup(group, null), REQUEST_PERMISSION_WRITE)) {
+            canUpload="1";
+            Intent intent = new Intent(getActivity(), VoiceService.class);
+            getActivity().startService(intent);
+        }
         receiptPresenter.getAppstoreInfos("1");
     }
 
@@ -178,7 +187,7 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
 
     @Override
     public void renderAppstoreInfos(List<AppstoreInfo> appstoreInfos) {
-        if (TextUtils.equals("1", firstUpdate)) {
+        if (TextUtils.equals("1", firstUpdate)&&TextUtils.equals("1",canUpload)) {
             receiptPresenter.detectionVersion(BuildConfig.VERSION_NAME, "android");
             firstUpdate = "0";
         }
@@ -337,7 +346,8 @@ public class ReceiptFragment extends BaseFragment implements ReceiptContract.Rec
                         return;
                     }
                 }
-                showUpdate(changeAppInfo);
+                Intent intent = new Intent(getActivity(), VoiceService.class);
+                getActivity().startService(intent);
                 break;
         }
     }

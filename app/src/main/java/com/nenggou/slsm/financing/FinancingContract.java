@@ -19,6 +19,8 @@ public interface FinancingContract {
     interface FinancingListPresenter extends BasePresenter{
         void getFinancingInfos(String refreshType,String pricetype);
         void getMoreFinancinInfos(String pricetype);
+        void getOldFinancingInfos(String refreshType);
+        void getOldMoreFinancinInfos();
     }
 
     interface FinancindListView extends BaseView<FinancingListPresenter>{

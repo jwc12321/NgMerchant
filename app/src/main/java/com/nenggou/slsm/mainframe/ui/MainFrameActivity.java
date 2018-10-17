@@ -127,7 +127,6 @@ public class MainFrameActivity extends BaseActivity {
         mJobManager.startJobScheduler();
         startDaemonService();
         startPlayMusicService();
-        startVoiceService();
         initView();
     }
 
@@ -136,7 +135,7 @@ public class MainFrameActivity extends BaseActivity {
         fragments[0] = ReceiptFragment.newInstance();
         fragments[1] = BillFragment.newInstance();
         fragments[2] = RankingFragment.newInstance();
-        fragments[3] = FinancingSFragment.newInstance();
+        fragments[3] = FinancingFragment.newInstance();
         fragments[4] = PersonalCenterFragment.newInstance();
         relativeLayouts = new RelativeLayout[5];
         relativeLayouts[0] = receiptRl;
@@ -212,11 +211,6 @@ public class MainFrameActivity extends BaseActivity {
 
     private void startPlayMusicService() {
         Intent intent = new Intent(MainFrameActivity.this,PlayerMusicService.class);
-        startService(intent);
-    }
-
-    private void startVoiceService() {
-        Intent intent = new Intent(MainFrameActivity.this, VoiceService.class);
         startService(intent);
     }
 }

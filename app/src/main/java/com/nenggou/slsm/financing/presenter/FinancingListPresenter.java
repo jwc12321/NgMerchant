@@ -29,6 +29,7 @@ public class FinancingListPresenter implements FinancingContract.FinancingListPr
     private FinancingContract.FinancindListView financindListView;
     private int energyCurrentIndex = 1;
     private int cashCurrentIndex=1;
+    private int currentIndex=1;
 
     @Inject
     public FinancingListPresenter(RestApiService restApiService, FinancingContract.FinancindListView financindListView) {
@@ -107,6 +108,55 @@ public class FinancingListPresenter implements FinancingContract.FinancingListPr
             financingListRequest = new FinancingListRequest(String.valueOf(cashCurrentIndex),pricetype);
         }
         Disposable disposable = restApiService.getFinancingInfos(financingListRequest)
+                .flatMap(new RxRemoteDataParse<FinancingInfo>())
+                .compose(new RxSchedulerTransformer<FinancingInfo>())
+                .subscribe(new Consumer<FinancingInfo>() {
+                    @Override
+                    public void accept(FinancingInfo financingInfo) throws Exception {
+                        financindListView.dismissLoading();
+                        financindListView.renderMore(financingInfo.getFinancingItemInfos());
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        financindListView.dismissLoading();
+                        financindListView.showError(throwable);
+                    }
+                });
+        mDisposableList.add(disposable);
+    }
+
+    @Override
+    public void getOldFinancingInfos(String refreshType) {
+        if (TextUtils.equals("1", refreshType)) {
+            financindListView.showLoading();
+        }
+        currentIndex = 1;
+        PageRequest pageRequest = new PageRequest(String.valueOf(currentIndex));
+        Disposable disposable = restApiService.getOldFinancingInfos(pageRequest)
+                .flatMap(new RxRemoteDataParse<FinancingInfo>())
+                .compose(new RxSchedulerTransformer<FinancingInfo>())
+                .subscribe(new Consumer<FinancingInfo>() {
+                    @Override
+                    public void accept(FinancingInfo financingInfo) throws Exception {
+                        financindListView.dismissLoading();
+                        financindListView.render(financingInfo.getFinancingItemInfos());
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        financindListView.dismissLoading();
+                        financindListView.showError(throwable);
+                    }
+                });
+        mDisposableList.add(disposable);
+    }
+
+    @Override
+    public void getOldMoreFinancinInfos() {
+        currentIndex = currentIndex+1;
+        PageRequest pageRequest = new PageRequest(String.valueOf(currentIndex));
+        Disposable disposable = restApiService.getOldFinancingInfos(pageRequest)
                 .flatMap(new RxRemoteDataParse<FinancingInfo>())
                 .compose(new RxSchedulerTransformer<FinancingInfo>())
                 .subscribe(new Consumer<FinancingInfo>() {

@@ -82,7 +82,8 @@
     <RelativeLayout
         android:id="@+id/phone_ll"
         style="@style/jurisdiction_rl_bg_style"
-        android:layout_below="@id/storage_ll">
+        android:layout_below="@id/storage_ll"
+        android:visibility="gone">
 
         <LinearLayout
             style="@style/jurisdiction_ll_bg_style"
@@ -111,7 +112,7 @@
         android:id="@+id/confirm"
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_forty_four_margin"
-        android:layout_below="@id/phone_ll"
+        android:layout_below="@id/storage_ll"
         android:layout_marginLeft="@dimen/common_fifteen_margin"
         android:layout_marginRight="@dimen/common_fifteen_margin"
         android:layout_marginTop="@dimen/common_fifty_margin"

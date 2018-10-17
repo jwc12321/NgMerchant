@@ -220,6 +220,10 @@ public interface RestApiService {
     @POST("home/financing/list")
     Flowable<RemoteDataWrapper<FinancingInfo>> getFinancingInfos(@Body FinancingListRequest financingListRequest);
 
+    //老理财列表
+    @POST("home/financing/list")
+    Flowable<RemoteDataWrapper<FinancingInfo>> getOldFinancingInfos(@Body PageRequest pageRequest);
+
     //推荐人列表
     @POST("home/business/apprecommend")
     Flowable<RemoteDataWrapper<RdList>> getRdList(@Body PageRequest pageRequest);

@@ -15,7 +15,6 @@ import com.nenggou.slsm.BaseFragment;
 import com.nenggou.slsm.R;
 import com.nenggou.slsm.common.refreshview.HeaderViewLayout;
 import com.nenggou.slsm.data.RemoteDataException;
-import com.nenggou.slsm.data.entity.FinancingInfo;
 import com.nenggou.slsm.data.entity.FinancingItemInfo;
 import com.nenggou.slsm.financing.DaggerFinancingComponent;
 import com.nenggou.slsm.financing.FinancingContract;
@@ -95,7 +94,7 @@ public class FinancingFragment extends BaseFragment implements FinancingContract
             if (getUserVisibleHint()) {
                 isFirstLoad = false;
                 if (financingListPresenter != null) {
-                    financingListPresenter.getFinancingInfos("1","-1");
+                    financingListPresenter.getOldFinancingInfos("1");
                 }
             }
         }
@@ -106,7 +105,7 @@ public class FinancingFragment extends BaseFragment implements FinancingContract
         super.onResume();
         if (!isFirstLoad && getUserVisibleHint() && TextUtils.equals("0", firstIn)) {
             if (financingListPresenter != null) {
-                financingListPresenter.getFinancingInfos("1","-1");
+                financingListPresenter.getOldFinancingInfos("1");
             }
             firstIn = "1";
         }
@@ -123,12 +122,12 @@ public class FinancingFragment extends BaseFragment implements FinancingContract
     HeaderViewLayout.OnRefreshListener mOnRefreshListener = new HeaderViewLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            financingListPresenter.getFinancingInfos("0","-1");
+            financingListPresenter.getOldFinancingInfos("0");
         }
 
         @Override
         public void onLoadMore() {
-            financingListPresenter.getMoreFinancinInfos("-1");
+            financingListPresenter.getOldMoreFinancinInfos();
         }
 
         @Override
@@ -184,6 +183,6 @@ public class FinancingFragment extends BaseFragment implements FinancingContract
 
     @Override
     public void goNovice(FinancingItemInfo financingItemInfo) {
-        NoviceActivity.start(getActivity(), financingItemInfo);
+        OldNoviceActivity.start(getActivity(), financingItemInfo);
     }
 }
