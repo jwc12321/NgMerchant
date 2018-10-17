@@ -74,7 +74,7 @@ public class MySyntherizer implements MainHandlerConstant {
             // 授权检测接口(只是通过AuthInfo进行检验授权是否成功。选择纯在线可以不必调用auth方法。
             AuthInfo authInfo = mSpeechSynthesizer.auth(config.getTtsMode());
             if (!authInfo.isSuccess()) {
-                // 离线授权需要网站上的应用填写包名。本demo的包名是com.baidu.tts.sample，定义在build.gradle中
+                // 离线授权需要网站上的应用填写包名。本demo的包名是，定义在build.gradle中
                 String errorMsg = authInfo.getTtsError().getDetailMessage();
                 sendToUiThread("鉴权失败 =" + errorMsg);
                 return false;

@@ -1,16 +1,16 @@
 package com.nenggou.slsm.service;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.baidu.tts.chainofresponsibility.logger.LoggerProxy;
 import com.baidu.tts.client.SpeechSynthesizer;
 import com.baidu.tts.client.SpeechSynthesizerListener;
 import com.baidu.tts.client.TtsMode;
@@ -22,7 +22,6 @@ import com.nenggou.slsm.common.voiceunit.control.InitConfig;
 import com.nenggou.slsm.common.voiceunit.control.MySyntherizer;
 import com.nenggou.slsm.common.voiceunit.control.NonBlockSyntherizer;
 import com.nenggou.slsm.common.voiceunit.listener.UiMessageListener;
-import com.nenggou.slsm.common.voiceunit.util.AutoCheck;
 import com.nenggou.slsm.common.voiceunit.util.OfflineResource;
 import com.nenggou.slsm.push.PushInfo;
 
@@ -54,6 +53,7 @@ public class VoiceService extends Service implements MainHandlerConstant {
     private PushInfo pushInfo;
     private String time;
     private String name;
+    private int currVolume;
 
     private Handler mHandler = new MyHandler(this);
 
@@ -85,7 +85,6 @@ public class VoiceService extends Service implements MainHandlerConstant {
     }
 
 
-
     /**
      * 初始化引擎，需要的参数均在InitConfig类里
      * <p>
@@ -101,7 +100,7 @@ public class VoiceService extends Service implements MainHandlerConstant {
         Map<String, String> params = getParams();
         // appId appKey secretKey 网站上您申请的应用获取。注意使用离线合成功能的话，需要应用中填写您app的包名。包名在build.gradle中获取。
         InitConfig initConfig = new InitConfig(appId, appKey, secretKey, ttsMode, params, listener);
-        synthesizer = new NonBlockSyntherizer(this, initConfig,mHandler ); // 此处可以改为MySyntherizer 了解调用过程
+        synthesizer = new NonBlockSyntherizer(this, initConfig, mHandler); // 此处可以改为MySyntherizer 了解调用过程
     }
 
     /**
@@ -144,7 +143,7 @@ public class VoiceService extends Service implements MainHandlerConstant {
         } catch (IOException e) {
             // IO 错误自行处理
             e.printStackTrace();
-            Log.e("VioceService","【error】:copy files from assets failed." + e.getMessage());
+            Log.e("VioceService", "【error】:copy files from assets failed." + e.getMessage());
         }
         return offlineResource;
     }
@@ -161,15 +160,15 @@ public class VoiceService extends Service implements MainHandlerConstant {
 
     private void checkResult(int result, String method) {
         if (result != 0) {
-            Log.e("VioceService","error code :" + result + " method:" + method + ", 错误码文档:http://yuyin.baidu.com/docs/tts/122 ");
+            Log.e("VioceService", "error code :" + result + " method:" + method + ", 错误码文档:http://yuyin.baidu.com/docs/tts/122 ");
         }
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         pushInfoStr = commonAppPreferences.getPushInfoStr();
-        whatStart=commonAppPreferences.getWhatStart();
-        if(TextUtils.equals("1",whatStart)) {
+        whatStart = commonAppPreferences.getWhatStart();
+        if (TextUtils.equals("1", whatStart)) {
             if (!TextUtils.isEmpty(pushInfoStr)) {
                 pushInfo = gson.fromJson(pushInfoStr, PushInfo.class);
                 setTts();
@@ -179,9 +178,10 @@ public class VoiceService extends Service implements MainHandlerConstant {
     }
 
 
-    private void setTts(){
-        if(pushInfo!=null) {
+    private void setTts() {
+        if (pushInfo != null) {
             if (!TextUtils.equals("0", pushInfo.getNowprice()) && !TextUtils.equals("0.0", pushInfo.getNowprice()) && !TextUtils.equals("0.00", pushInfo.getNowprice())) {
+                openSpeaker();
                 if (!TextUtils.equals(time, pushInfo.getPaytime()) || !TextUtils.equals(name, pushInfo.getUsername())) {
                     String pcash = "能购收到" + pushInfo.getAprice() + "现金" + pushInfo.getApower() + "能量";
                     speak(pcash);
@@ -210,5 +210,23 @@ public class VoiceService extends Service implements MainHandlerConstant {
 
     //引擎启动成功
     private void goVoice(Message msg) {
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (synthesizer != null) {
+            synthesizer.release();
+        }
+    }
+
+    /**
+     * 打开扬声器
+     */
+    private void openSpeaker() {
+        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        currVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, maxVolume, 0);
     }
 }
